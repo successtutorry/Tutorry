@@ -1,0 +1,242 @@
+{{>home_header}}
+{{>alert}}
+<div>
+	<div id="myCarousel" class="carousel" data-ride="carousel">
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner" role="listbox">
+		  <div class="item active">
+			<img src="http://smarthead.ancorathemes.com/wp-content/uploads/2017/01/slide3.jpg" alt="Image">
+			<div class="carousel-caption">
+			  <p>Personal and Online Tutors</p>
+			  <h1 style="font-size:5em;">Time to Learn</h1>
+			  <button onclick="location.href='/users/find_tutor'" class="button btn btn-lg" type="button">Find Tutor Now</button>
+			</div>
+		  </div>
+		  <div class="item">
+			<img src="http://smarthead.ancorathemes.com/wp-content/uploads/2017/01/slide2.jpg" alt="Image">
+			<div class="carousel-caption">
+			  <p>Personal and Online Tutors</p>
+			  <h1 style="font-size:5em;">Top Tutorring Services</h1>
+			  <button onclick="location.href='/users/find_tutor'" class="button btn btn-lg" type="button">Find Tutor Now</button>
+			</div>
+		  </div>
+		  <div class="item">
+			<img src="http://smarthead.ancorathemes.com/wp-content/uploads/2017/01/slide1.jpg" alt="Image">
+			<div class="carousel-caption">
+			 <p>Personal and Online Tutors</p>
+			  <h1 style="font-size:5em;">Find Private Tutor</h1>
+			  <button onclick="location.href='/users/find_tutor'" class="button btn btn-lg" type="button">Find Tutor Now</button>
+			</div>
+		  </div>
+		</div>
+	</div>
+	<div class="margin-class" style="top:-68px;"> <!----------- start of search bar----------------->
+		<div class="title-margin-class" style="background-color:#062e57;">
+			<form class="form-inline" action="/action_page.php">
+				<div class="form-group form-header">
+					<h6 style="color:white; font-size:2.5rem; line-height:1;">Find Your</span></h6>
+					<h4 style="color:#aece61; font-size:3.125rem; line-height:1;">Tutor</h4>
+				</div>
+				<div class="form-group">
+					<input type="email" class="form-control searchbar-input" id="email" placeholder="Enter a subject" name="email">
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control searchbar-input" id="pwd" placeholder="Location" name="pwd">
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control searchbar-input" id="pwd" placeholder="Zipcode" name="pwd">
+				</div>
+				<div class="form-group" style="padding-bottom:15px; text-align:center; margin-left:10px;">
+					<button class="button btn btn-lg" type="button">Find Now</button>
+				</div>
+			</form>
+		</div>
+	</div> <!----------- start of navigation bar ----------------->
+</div> <!----------- end of carousel ----------------->
+
+<!-- overlay--->
+
+<div id="overlay">
+
+	<div class="login" style=" background-color:white; border-radius:10px; margin:auto; margin-top:10%;">
+		<div class="btn-group " style="width:100%; padding-top:5px; padding-left:3px; padding-right:3px;">
+			<button class="btn-grp-buttons" onclick="displayLogin();" style="background-color:white;color:#183e64;"><i class="fa fa-unlock btn-grp-icons"></i>LOGIN</button>
+			<button class="btn-grp-buttons" onclick="displayRegistration();" style="color:#e2e2e2; background-color:#757575;"><i class="fa fa-user-plus btn-grp-icons"></i>REGISTER</button>
+		</div>
+		<div  style="margin:20px 20px 20px 20px;">
+			<form id="login-form" action="/users/login" method="post">
+				<div class="form-group">
+					<input type="email" class="form-control login-input" id="inputEmail" name="email" placeholder="Email" required autofocus>
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control login-input" id="inputPassword" name="password" placeholder="Password" required>
+				</div>
+				<div class="form-group" style="padding-top:15px;">
+					<a style="color:#92b343;" href="/users/forgotPassword">Forgot Password ?</a>
+				</div>
+				<div class="form-group" style="padding-bottom:10px;">
+					<button type="submit" class="button btn btn-lg">LOGIN</button>
+				</div>
+			</form>
+		</div>
+		<div  style="margin:20px 20px 20px 20px;">
+			<form id="registration-form" style="display:none;" action="/users/register" method="post">
+				<div class="form-group">
+					<input style="height:3em; background-color: #f6f8fa; " type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required autofocus>
+				</div>
+				<div class="form-group">
+					<input style="height:3em; background-color: #f6f8fa; " type="text" class="form-control" id="inputUsername" name="username" placeholder="username" required>
+				</div>
+				<div class="form-group">
+					<input style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
+				</div>
+				<div class="form-group">
+					<input style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputConfirmPassword" name="confirmationPassword" placeholder="Confirm Password">
+				</div>
+				<div class="form-group">
+					<select style="width: 100%;padding: 16px 20px;border: none;border-radius: 4px; background-color: #f1f1f1;" id="country" name="country">
+						<option value="student">Student</option>
+						<option value="tutor">Tutor</option>
+
+					</select>
+				</div>
+				<div class="form-group" style="padding-bottom:10px;">
+					<button type="submit" class="button btn btn-lg">REGISTER</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-----------end of overlay---------->
+
+<!--------- start of video presentation section------------>
+<div id="useful" class="section-margin">
+	<div class="margin-class">
+		<div class="title-margin-class">
+			<p class="title_info" style="color: #91959a;">We provide the best tutoring service</p>
+			<h1 style="color: #134477;">Useful <span style="color: #aece61;"> Information</span></h1>
+		</div>
+		<div class="within-sec-margin title-margin-class videopresent">
+			<!--<div style=" position:relative; top:10%; height:32em; width:49%; background-color:white; z-index:1">
+				<div style="text-align:center; padding-top:20px;">
+					<h1 style="color: #aece61;">Most Popular</h1>
+					<h2 style="color: #134477;"> Trending Subjects</h2>
+				</div>
+			</div>-->
+			<div style="padding-left:20%; padding-top:25%; opacity:1;">
+				<a style=" font-size:2.5em; font-weight:100; text-decoration:none; color:white; padding-right:10px;" href="#">View our video presentation<span class="far fa-play-circle"></span></a>
+			</div>
+		</div>
+	</div>
+</div>
+ <!--------- end of video presentation section------------>
+
+ <!--------- start of three important features section ------------>
+<div class="imageDiv section-margin">
+	<div class="margin-class" style="padding-top:6%; padding-bottom:6%;">
+		<div class="title-margin-class" style="display:block;">
+			<h4 style="color: #91959a;">All tutors are guranteed by us</h4>
+			<h1 style="color:white;">100% <span style="color: #aece61;">Guarantee</span></h1>
+		</div>
+		<div class="row title-margin-class within-sec-margin" style="display:block; margin-bottom:2%;">
+			<div class="col-sm-4" style="padding-right:15px;">
+				<div style="font-size:1.5em; padding-bottom:7%;">
+					<i class="fas fa-award"></i>
+					<span>Professional Tutors</span>
+				</div>
+				<div style="padding-left:7%;">
+					<p style="color: #91959a;">Et scaevola delicata vix, mea ei invidunt indoctum, quodsi eripuit definiebas at pri. Placerat voluptaria ex mel. Eos malis</p>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div style="font-size:1.5em; padding-bottom:7%;">
+					<i class="fas fa-award"></i>
+					<span>Professional Tutors</span>
+				</div>
+				<div style="padding-left:7%;">
+					<p style="color: #91959a;">Et scaevola delicata vix, mea ei invidunt indoctum, quodsi eripuit definiebas at pri. Placerat voluptaria ex mel. Eos malis</p>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div style="font-size:1.5em; padding-bottom:7%;">
+					<i class="fas fa-award"></i>
+					<span>Professional Tutors</span>
+				</div>
+				<div style="padding-left:7%;">
+					<p style="color: #91959a;">Et scaevola delicata vix, mea ei invidunt indoctum, quodsi eripuit definiebas at pri. Placerat voluptaria ex mel. Eos malis</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--------- end of three important features section ------------>
+
+<!--------- start of tutor profile section ------------>
+<div class="section-margin">
+	<div class="margin-class">
+		<div class="title-margin-class">
+			<p  style="color: #91959a;" class="title_info">Find the Right Tutor for You</p>
+			<h1 style="color: #134477;">Featured <span style="color: #aece61;">Tutors</span></h1>
+		</div>
+		<div class="row title-margin-class within-sec-margin">
+			<div class="col-sm-4">
+				<div class="card" style="width:250px">
+					<img class="card-img-top" src="http://smarthead.ancorathemes.com/wp-content/uploads/2016/11/tutor2-740x792.jpg" alt="Card image" style="width:100%">
+					<div class="card-body tutor-card-body">
+						<h4 style="color: #134477;" class="card-title">John Doe</h4>
+						<p style="color:#91959a;" class="card-text">HISTORY, GEOGRAPHY, ECONOMICS</p>
+						<button onclick="location.href='/users/view_tutor'" class="view_tut_btn button btn btn-lg" type="button">View Tutor</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="card" style="width:250px">
+					<img class="card-img-top" src="http://smarthead.ancorathemes.com/wp-content/uploads/2016/11/tutor2-740x792.jpg" alt="Card image" style="width:100%">
+					<div class="card-body tutor-card-body">
+						<h4 style="color: #134477;" class="card-title">John Doe</h4>
+						<p style="color:#91959a;" class="card-text">HISTORY, GEOGRAPHY, ECONOMICS</p>
+						<button class="view_tut_btn button btn btn-lg" type="button">View Tutor</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="card" style="width:250px">
+					<img class="card-img-top" src="http://smarthead.ancorathemes.com/wp-content/uploads/2016/11/tutor2-740x792.jpg" alt="Card image" style="width:100%">
+					<div class="card-body tutor-card-body">
+						<h4 style="color: #134477;" class="card-title">John Doe</h4>
+						<p style="color:#91959a;" class="card-text">HISTORY, GEOGRAPHY, ECONOMICS</p>
+						<button class="view_tut_btn button btn btn-lg" type="button">View Tutor</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--------- end of tutor profile section ------------>
+
+<!--------- start of help heading section ------------>
+<div class="margin-class section-margin">
+	<div class="row title-margin-class" style="margin-bottom:30px;">
+		<div class="col-sm-9">
+			<h1 style="color: #134477;">Want to become tutor in<span style="color: #aece61;"> Tutorry?</span></h1>
+			<h5 style="color: #91959a; font-size:1.3em;">SmartHead collaborate professional and talented tutors from all over the world! Join us right now!</h5>
+		</div>
+		<div class="col-sm-3">
+			<button onclick="location.href='/users/tutor_registration'" class="button btn btn-lg" type="button">Register Now</button>
+		</div>
+	</div>
+</div>
+<!--------- end of help heading section ------------>
+
+<!--------- start of help banner section ------------>
+<div class="help-banner" style="background-image: url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/bg_cta.jpg?id=224); ">
+
+	<div style="color:white; text-align:center; padding-top:10%;">
+		<h6>Call Us 800-123-4567</h6>
+		<h1>Do You Need Help?</h1>
+		<p>Our specialists can help you with finding the right tutor for you or your kids</p>
+		<button onclick="location.href='/users/contact'" class="button btn btn-lg" type="button">Contact Now</button>
+	</div>
+
+</div>
+<!--------- end of help banner section ------------>

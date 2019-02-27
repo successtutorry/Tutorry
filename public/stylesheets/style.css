@@ -1,0 +1,398 @@
+body{
+
+    font-family: Sanchez, Arial, sans-serif;
+	font-weight:400;
+	letter-spacing:1px;
+  }
+
+footer {
+
+	background-color: #f2f2f2;
+    }
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+	color:white;
+	font-weight:bold;
+	background-color:#062e57;
+
+	}
+
+.nav {
+	margin-left:13%;
+	margin-right:13%;
+	color:white;
+}
+
+.carousel-inner img {
+    width: 100%; /* Set width to 100% */
+    margin: auto;
+    min-height:200px;
+  }
+
+  /* Hide the carousel text when the screen is less than 600 pixels wide */
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none;
+    }
+	}
+
+.imageDiv{
+
+    background: #fff;
+	background-image: url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/bg_guarantee.jpg?id=211);
+	background-size:cover;
+    display: block;
+    width: 100%;
+    height: 100%;
+
+	color:white;
+	position:relative;
+
+    }
+
+.bottomDiv{
+
+	background-image:url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/banner.jpg?id=214);
+	background-repeat:no-repeat; !important;
+	background-position:center;
+	background-size:contain; !important;
+	width:100%;
+	height:25em;
+    padding-top: 30%;
+	z-index:1;
+	position:absolute;
+
+	@media(min-width:480px){
+	    padding-top: 0;
+
+	}
+	}
+
+.title_info{
+
+    color: #91959a;
+	font-size: 2.063rem;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+
+. help {
+	border:solid;
+	height:40em;
+	/*background-image: url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/bg_cta.jpg?id=224) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;*/
+}
+
+.subject-list {
+
+	text-decoration:none;
+	color: #91959a;
+	font-size:1.3em;
+
+}
+
+.carousel-caption{
+	top: 50%;
+	transform: translateY(-50%);
+	bottom: initial;
+}
+
+
+
+.margin-class{
+
+	margin-left:9%;
+	margin-right:9%;
+
+}
+
+.title-margin-class{
+	margin-left:5%;
+	margin-right:5%;
+}
+
+.address{
+	padding-right:20px;
+}
+
+.button {
+	background-color: #aece61;
+	border-radius:10em;
+	margin-top:20px;
+	color:white;
+}
+
+.section-margin{
+	margin-top:15%;
+}
+
+.within-sec-margin{
+
+margin-top:7%;
+}
+
+.sticky{
+background-color:pink;
+}
+
+.form-header{
+    display: flex;
+    display: -webkit-flex;
+    -webkit-justify-content: center;
+	text-align:center;
+	background-color:#092746;
+	margin-right:20px;
+	padding-left:30px;
+	padding-right:30px;
+	padding-top:20px;
+	padding-bottom:15px;
+	border:solid #183e64 1px;
+}
+
+.searchbar-input{
+	height:50px;
+	width:100%;
+	background-color:#183e64;
+	border-color:#183e64;
+}
+
+.contact-input{
+	height:50px;
+	width:100%;
+
+}
+
+.videopresent{
+
+	height:40em;
+	background-image:url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/photo11.jpg);
+	background-position:center center;
+	background-size:cover;
+	background-repeat:no-repeat;
+
+}
+
+.btn-group button {
+  background-color: #4CAF50; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
+
+.login{
+
+width:90%;
+
+}
+@media (min-width: 480px) {
+  .login {
+    width:35%;
+  }
+}
+
+ #overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+#message-overlay{
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+
+
+}
+
+
+/* css for tutor-registration page*/
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+
+#regForm {
+  background-color: #ffffff;
+  margin: 100px auto;
+ padding: 40px;
+  width: 70%;
+  min-width: 300px;
+}
+
+.registerheader {
+  text-align: center;
+	color: #134477;
+}
+
+input {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  border: 1px solid #aaaaaa;
+}
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+.tut-reg-btn {
+  background-color: #aece61;
+  color: #ffffff;
+  border-radius:10em;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#prevBtn {
+  background-color: #bbbbbb;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4CAF50;
+}
+
+.subject-buttons {
+
+color: #134477;
+text-decoration:none;
+
+}
+
+.subject-div{
+
+border-right:solid black 1px;
+background-color:#aece61 ;
+padding:10px 0px 10px 0px;
+text-align:center; width:50%;
+margin-bottom:5px;
+
+
+}
+
+/*home page css*/
+.login-close-button{
+	color:white;
+	background:transparent;
+	border:none;
+
+}
+
+.btn-grp-buttons{
+	width:50%;
+	padding:15px 0px 15px 0px;
+	font-size:1.5em;
+	 border-radius:5px;
+
+}
+
+.btn-grp-icons{
+font-size:24px;
+margin-right:10px;
+
+}
+
+.login-input{
+
+height:3em;
+background-color: #f6f8fa;
+color: #bfbebe;
+}
+
+.tutor-card-body{
+
+background-color:#f6f8fa;
+text-align:center;
+padding-top:15px;
+padding-bottom:20px;
+
+
+}
+
+.help-banner{
+	height:40em;
+	margin-bottom:30px;
+	background-position: center !important;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+}
+
+.logo{
+
+
+	color:white;
+	text-decoration:none;
+	padding-left:15px;
+}

@@ -1,0 +1,319 @@
+var express = require('express');
+var router = express.Router();
+const Joi = require('joi');
+const nodemailer = require('nodemailer');
+const smtpTransport = require('nodemailer-smtp-transport');
+const mailer = require('../misc/mailer');
+const url = require('url');
+const bodyParser = require('body-parser');
+const messageForm = require('../models/message');
+//const tutor = require('../models/tutors');
+const request = require('request');
+const User = require('../models/user');
+//const Profile = require('../models/profile');
+const passport = require('passport');
+const randomstring = require('randomstring');
+const springedge = require('springedge');
+var email ='';
+
+//if user is trying to access his home page without login then he is restricted
+const isAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    req.flash('error', 'Sorry, but you must be registered or logged in  first!');
+    res.redirect('/');
+  }
+};
+// if user is already logged in and still wants to access something which can be
+// accessed only when the user is logged in then a message prompts that he is
+// already logged in
+const isNotAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    req.flash('error', 'Sorry, but you are already logged in!');
+    res.redirect('/');
+  } else {
+    return next();
+  }
+};
+
+
+const userSchema = Joi.object().keys({
+  email: Joi.string().email().required(),
+  username: Joi.string().required(),
+  password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).required(),
+  confirmationPassword: Joi.any().valid(Joi.ref('password')).required(),
+  country: Joi.string().required()
+});
+
+router.route('/register')
+  .post(isNotAuthenticated, async (req, res, next) => {
+    try {
+      const result = Joi.validate(req.body, userSchema);
+      if (result.error) {
+        console.log(result.error);
+        req.flash('error', 'Data is not valid. Please try again.');
+        res.redirect('/');
+        return;
+      }
+
+      // When new user is registering , the email he puts is checked if
+      // that email is registered with some other user.
+      const user = await User.findOne({ 'email': result.value.email });
+      console.log(user);
+      if (user) {
+        req.flash('error', 'Email is already in use. Please check your email');
+        res.redirect('/');
+        return;
+      }
+
+      // password is hashed so that is not visible to anyone the way the user inputs
+      const hash = await User.hashPassword(result.value.password);
+      // Generate secret token while registeration which will be used for account verification
+      const secretToken = randomstring.generate();
+      console.log('secretToken', secretToken);
+      // secret code generated while registration is Saved to the DB
+      result.value.secretToken = secretToken;
+      // Flag account as inactive while registeration to restrict him from not accessing
+      // without account verification, Once the account is verified it is set back to true.
+      result.value.active = false;
+      // Save user to DB
+      // We dnt need confirm password and password both to be save in the  database so it
+      // deleted before entering the details in the DB
+      delete result.value.confirmationPassword;
+      result.value.password = hash;
+      const newUser = await new User(result.value);
+      console.log('newUser', newUser);
+      await newUser.save();
+      // Compose email After the details are saved in the database
+      //this is the email which will be send to the user
+      const link = "http://127.0.0.1:3000/users/verify?id="+result.value.secretToken;
+      const html = `Hi there,
+      <br/>
+      Thank you for registering!
+      <br/><br/>
+      Please verify your email by typing the following token:
+      <br/>
+      Token: <b>${secretToken}</b>
+      <br/>
+       <a href="${link}">please click on the link</a>
+      <br/><br/>
+      Have a pleasant day.`
+      // Send email
+      await mailer.sendEmail('tutorry.in@gmail.com', result.value.email, '', html);
+      req.flash('success', 'An email verification code has been sent to you email account, Please check your email and click on the link to complete registration');
+      res.redirect('/');
+
+    } catch(error) {
+      next(error);
+    }
+  });
+
+// user email verification
+  router.route('/verify')
+  .get(isNotAuthenticated, async (req,res)=>{
+    try{
+    console.log('request recieved');
+    const token = req.query.id;
+    await User.updateOne(
+      { secretToken: token },
+      {
+        $set: { active: true }
+      },function(err,res){
+        if(err){
+          throw err;
+        }else{
+          console.log('user verified');
+          return;
+        }
+      }
+);
+  res.redirect('/');
+}catch(error){
+  console.log(error);
+}
+});
+
+// this route is executed when the user tries to login
+router.route('/login')
+  .post(isNotAuthenticated, passport.authenticate('local', {
+    //successReturnToOrRedirect: '/',
+    successRedirect: '/users/abc',
+    failureRedirect: '/users/contact',
+    failureFlash: true
+  }));
+
+  router.route('/abc')
+  .get(isAuthenticated, (req, res) =>{
+    req.flash('success', 'Successfully logged in out');
+    res.render('index',{username:req.user.username})
+  });
+
+
+  router.route('/logout')
+  .get(isAuthenticated, (req, res) => {
+    req.logout();
+    req.flash('success', 'Successfully logged out. Hope to see you soon!');
+    res.redirect('/');
+  });
+
+  router.route('/forgotPassword')
+   .get(isNotAuthenticated,(req,res)=>{
+   res.render('passwordRecovery');
+
+ }).post(async (req,res)=>{
+
+   try{
+
+ var emailId = req.body.email;
+ const userExists = await User.findOne({'email': req.body.email});
+
+ if(userExists){
+   const link = "http://127.0.0.1:3000/users/changePassword?email="+req.body.email;
+   const html = `
+       Please click on the following link to reset your password
+       <br/>
+       <br/>
+        <a href="${link}">please click this</a>
+       <br/><br/>
+       Have a pleasant day.`
+       // Send email
+       await mailer.sendEmail('tutorry.in@gmail.com', req.body.email, '', html);
+       req.flash('success', 'Link has been send to you on you email id.');
+       res.redirect('/');
+
+ }else{
+     console.log('user does not exists or incorrect email id...');
+ }
+}catch(error){
+ console.log(error);
+}
+ });
+
+ router.route('/changePassword')
+ .get((req,res)=>{
+ //console.log(req.query.email);
+ email = req.query.email;
+   res.render('passwordRecovery_1',{email:req.query.email});
+
+ }).post(async (req,res)=>{
+   console.log("coming from email"+ email);
+
+   try{
+
+     if(req.body.password==req.body.confirmationPassword){
+       console.log('password matched');
+       const hashed = await User.hashPassword(req.body.password);
+       console.log(hashed);
+
+       const changedPassword = await User.update(
+         { email: email },
+         {
+           $set: { password: hashed }
+         }
+         );
+
+   console.log(changedPassword);
+   if(changedPassword){
+     email='';
+     res.redirect('/');
+     return;
+   } else{
+     console.log('some error in changing password');
+   }
+ }
+ }catch(error){
+     console.log(error);
+ }
+ });
+
+ /*const messageSchema = Joi.object().keys({
+   name: Joi.string().required(),
+   email: Joi.string().email().required(),
+   phone: Joi.string().required(),
+   subject: Joi.string().required(),
+   message: Joi.string().required()
+ });*/
+
+
+ /*router.route('/message')
+  .post(isAuthenticated, async (req, res) => {
+    const result = Joi.validate(req.body, messageSchema);
+    const contact_message = result.value.message;
+    if (result.error) {
+      console.log(result.error);
+      res.redirect('/users/tutor_details');
+    }
+    const newmessage = await new messageForm(result.value);
+    console.log('newmessage', newmessage);
+    await newmessage.save();
+    var rand = Math.floor((Math.random() * 100) + 54);
+    const link = "http://127.0.0.1:3000/users/verify?id="+result.value.email;
+    const html = `Hi there,
+      <br/>
+      Thank you for contacting us
+      </br></br>
+      We have recieved your message.
+      </br>
+      <b>${contact_message}</b>
+      <br/> </br>
+      <a href="${link}">${contact_message}</a>
+      </br></br>
+      We will reach back to you soon.
+      <br/><br/>
+      Have a pleasant day.`
+      // Send email
+      await mailer.sendEmail('tutorry.in@gmail.com', result.value.email, 'Message', html);
+      res.redirect('/users/tutor_details');
+});*/
+
+router.route('/message')
+.post(async (req,res) => {
+try{
+  console.log(req.body);
+}catch(error){
+
+  console.log(error);
+}
+
+});
+
+router.route('/find_tutor')
+  .get((req, res) => {
+    res.render('find_tutor');
+  });
+
+router.route('/become_tutor')
+    .get((req, res) => {
+      res.render('become_tutor');
+    });
+
+router.route('/contact')
+    .get((req, res) => {
+    res.render('contact');
+  });
+
+  router.route('/tutor_details')
+    .get((req, res) => {
+      res.render('tutor_details');
+    });
+
+    router.route('/tutor_registration')
+      .get((req, res) => {
+        res.render('tutor-registration');
+      });
+
+router.route('/view_tutor')
+  .get((req, res) => {
+  res.render('tutor_details');
+  });
+
+  /*router.route('/message')
+    .get((req, res) => {
+    res.render('message');
+  });*/
+
+
+
+
+module.exports = router;

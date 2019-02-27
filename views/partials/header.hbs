@@ -1,0 +1,39 @@
+<!-- start of navigation bar-->
+<nav id="common_navbar" class="navbar navbar-inverse navbar-fixed-top">
+  <div class="nav container-fluid">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    </button>
+    <div style="font-size:2.5em; padding-top:5px;">
+    <span style="color: #aece61;" class="fas fa-book-reader"><a class="logo" href="#" >Tutorry</a></span>
+    </div>
+  </div>
+  <div style="padding-top:10px;" class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a style="color:white;" href="/">Home</a></li>
+      <li><a style="color:white;" href="/users/find_tutor">Find a Tutor</a></li>
+      <li><a style="color:white;" href="/users/become_tutor">Become a Tutor</a></li>
+      <li><a style="color:white;" href="/users/contact">Contact</a></li>
+      {{# if isAuthenticated}}
+      <li>
+        <div class="dropdown">
+         <button class="login-close-button dropdown-toggle" type="button" style="padding-top:14px;" data-toggle="dropdown">{{req.user.username}}
+         <span class="caret"></span></button>
+         <ul class="dropdown-menu">
+           <li><a href="#">My Profile</a></li>
+           <li><a href="#">My Tutors</a></li>
+           <li><a href="/users/logout">Logout</a></li>
+         </ul>
+       </div>
+     </li>
+      {{else}}
+      <li><button class="login-close-button" type="button" onclick="on();" style="padding-top:14px;">Login</button></li>
+      {{/if}}
+    </ul>
+  </div>
+  </div>
+</nav>
+<!----------- end of navigation bar----------------->
