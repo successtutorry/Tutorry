@@ -12,7 +12,8 @@ const userSchema = new Schema({
 	password: String,
 	secretToken: String,
 	active: Boolean,
-	country: String
+	usertype: String,
+	profilecomplete: Boolean
 }, {
 	   timestamps: { // this will give us the detail when the account is created
     createdAt: 'createdAt',
