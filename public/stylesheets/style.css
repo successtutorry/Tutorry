@@ -1,13 +1,11 @@
 body{
-
-    font-family: Sanchez, Arial, sans-serif;
+  font-family: Sanchez, Arial, sans-serif;
 	font-weight:400;
 	letter-spacing:1px;
   }
 
 footer {
-
-	background-color: #f2f2f2;
+background-color: #f2f2f2;
     }
 
 .navbar {
@@ -16,7 +14,6 @@ footer {
 	color:white;
 	font-weight:bold;
 	background-color:#062e57;
-
 	}
 
 .nav {
@@ -39,48 +36,40 @@ footer {
 	}
 
 .imageDiv{
-
-    background: #fff;
+  background: #fff;
 	background-image: url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/bg_guarantee.jpg?id=211);
 	background-size:cover;
-    display: block;
-    width: 100%;
-    height: 100%;
-
-	color:white;
+  display: block;
+  width: 100%;
+  height: 100%;
+  color:white;
 	position:relative;
-
     }
 
 .bottomDiv{
-
 	background-image:url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/banner.jpg?id=214);
 	background-repeat:no-repeat; !important;
 	background-position:center;
 	background-size:contain; !important;
 	width:100%;
 	height:25em;
-    padding-top: 30%;
+  padding-top: 30%;
 	z-index:1;
 	position:absolute;
-
-	@media(min-width:480px){
-	    padding-top: 0;
-
+  @media(min-width:480px){
+	   padding-top: 0;
 	}
 	}
 
 .title_info{
-
-    color: #91959a;
+  color: #91959a;
 	font-size: 2.063rem;
-    font-style: normal;
-    font-weight: 400;
-    letter-spacing: 0;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
 }
 
-
-. help {
+.help {
 	border:solid;
 	height:40em;
 	/*background-image: url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/bg_cta.jpg?id=224) !important;
@@ -90,11 +79,9 @@ footer {
 }
 
 .subject-list {
-
-	text-decoration:none;
-	color: #91959a;
-	font-size:1.3em;
-
+text-decoration:none;
+color: #91959a;
+font-size:1.3em;
 }
 
 .carousel-caption{
@@ -103,13 +90,9 @@ footer {
 	bottom: initial;
 }
 
-
-
 .margin-class{
-
-	margin-left:9%;
+  margin-left:9%;
 	margin-right:9%;
-
 }
 
 .title-margin-class{
@@ -128,23 +111,28 @@ footer {
 	color:white;
 }
 
+.button:hover{
+  background-color:rgb(19, 68, 119);
+	color:white;
+	transition-duration: 0.4s;
+}
+
 .section-margin{
 	margin-top:15%;
 }
 
 .within-sec-margin{
-
-margin-top:7%;
+  margin-top:7%;
 }
 
 .sticky{
-background-color:pink;
+  background-color:pink;
 }
 
 .form-header{
-    display: flex;
-    display: -webkit-flex;
-    -webkit-justify-content: center;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-justify-content: center;
 	text-align:center;
 	background-color:#092746;
 	margin-right:20px;
@@ -156,26 +144,23 @@ background-color:pink;
 }
 
 .searchbar-input{
-	height:50px;
-	width:100%;
-	background-color:#183e64;
-	border-color:#183e64;
+	 height:50px;
+	 width:100%;
+	 background-color:#183e64;
+	 border-color:#183e64;
 }
 
 .contact-input{
 	height:50px;
 	width:100%;
-
 }
 
 .videopresent{
-
-	height:40em;
+  height:40em;
 	background-image:url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/photo11.jpg);
 	background-position:center center;
 	background-size:cover;
 	background-repeat:no-repeat;
-
 }
 
 .btn-group button {
@@ -204,17 +189,16 @@ background-color:pink;
 }
 
 .login{
-
-width:90%;
-
+  width:90%;
 }
+
 @media (min-width: 480px) {
   .login {
     width:35%;
   }
 }
 
- #overlay {
+#overlay {
   position: fixed;
   display: none;
   width: 100%;
@@ -240,25 +224,19 @@ width:90%;
   background-color: rgba(0,0,0,0.5);
   z-index: 2;
   cursor: pointer;
-
-
 }
 
-
 /* css for tutor-registration page*/
-
 }
 
 * {
   box-sizing: border-box;
 }
 
-
-
 #regForm {
   background-color: #ffffff;
   margin: 100px auto;
- padding: 40px;
+  padding: 40px;
   width: 70%;
   min-width: 300px;
 }
@@ -295,10 +273,6 @@ input.invalid {
   cursor: pointer;
 }
 
-button:hover {
-  opacity: 0.8;
-}
-
 #prevBtn {
   background-color: #bbbbbb;
 }
@@ -325,21 +299,16 @@ button:hover {
 }
 
 .subject-buttons {
-
-color: #134477;
-text-decoration:none;
-
+  color: #134477;
+  text-decoration:none;
 }
 
 .subject-div{
-
-border-right:solid black 1px;
-background-color:#aece61 ;
-padding:10px 0px 10px 0px;
-text-align:center; width:50%;
-margin-bottom:5px;
-
-
+  border-right:solid black 1px;
+  background-color:#aece61 ;
+  padding:10px 0px 10px 0px;
+  text-align:center; width:50%;
+  margin-bottom:5px;
 }
 
 /*home page css*/
@@ -347,38 +316,35 @@ margin-bottom:5px;
 	color:white;
 	background:transparent;
 	border:none;
-
 }
 
 .btn-grp-buttons{
 	width:50%;
 	padding:15px 0px 15px 0px;
 	font-size:1.5em;
-	 border-radius:5px;
-
+	border-radius:5px;
 }
 
 .btn-grp-icons{
-font-size:24px;
-margin-right:10px;
-
+  font-size:24px;
+  margin-right:10px;
 }
 
 .login-input{
-
 height:3em;
 background-color: #f6f8fa;
 color: #bfbebe;
 }
 
 .tutor-card-body{
-
 background-color:#f6f8fa;
 text-align:center;
 padding-top:15px;
 padding-bottom:20px;
+}
 
-
+.card:hover{
+	border:solid rgb(176, 207, 101) 3px;;
 }
 
 .help-banner{
@@ -390,9 +356,10 @@ padding-bottom:20px;
 }
 
 .logo{
-
-
 	color:white;
 	text-decoration:none;
 	padding-left:15px;
+}
+.logo:hover{
+  color:white;
 }
