@@ -43,7 +43,7 @@ const userSchema = Joi.object().keys({
   username: Joi.string().required(),
   password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).required(),
   confirmationPassword: Joi.any().valid(Joi.ref('password')).required(),
-  country: Joi.string().required()
+  usertype: Joi.string().required()
 });
 
 router.route('/register')
@@ -77,6 +77,7 @@ router.route('/register')
       // Flag account as inactive while registeration to restrict him from not accessing
       // without account verification, Once the account is verified it is set back to true.
       result.value.active = false;
+      result.value.profilecomplete = false;
       // Save user to DB
       // We dnt need confirm password and password both to be save in the  database so it
       // deleted before entering the details in the DB
@@ -138,15 +139,27 @@ router.route('/register')
 router.route('/login')
   .post(isNotAuthenticated, passport.authenticate('local', {
     //successReturnToOrRedirect: '/',
-    successRedirect: '/users/abc',
+    successRedirect: '/users/dashboard',
     failureRedirect: '/users/contact',
     failureFlash: true
   }));
 
-  router.route('/abc')
+  router.route('/dashboard')
   .get(isAuthenticated, (req, res) =>{
     req.flash('success', 'Successfully logged in out');
-    res.render('index',{username:req.user.username})
+    if(req.user.country =='student'){
+      console.log('student');
+    }
+    else{
+      console.log('tutor');
+    }
+    if(req.user.profilecomplete){
+      console.log('your profile is complete');
+    }else{
+
+      console.log('complete your profile');
+    }
+    //res.render('dashboard',{username:req.user.username, })
   });
 
 
