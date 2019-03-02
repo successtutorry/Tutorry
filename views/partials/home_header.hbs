@@ -1,4 +1,4 @@
-<!-- start of navigation bar-->
+<!-- start  of navigation bar on homepage-->
 <nav id="navbar" style="background-color:transparent; border-color:transparent;"class="navbar navbar-inverse navbar-fixed-top">
   <div class="nav container-fluid">
     <div class="navbar-header">
@@ -7,9 +7,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-	  <div style="font-size:2.5em; padding-top:5px;">
-		<span style="color: #aece61;" class="fas fa-book-reader"><a style="text-decoration:none;" class="logo" href="/" >Tutorry</a></span>
-	  </div>
+	     <div style="font-size:2.5em; padding-top:5px;">
+		       <span style="color: #aece61;" class="fas fa-book-reader">
+             <a style="text-decoration:none;" class="logo" href="/" >Tutorry</a>
+           </span>
+	     </div>
     </div>
     <div style="padding-top:10px;" class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -20,15 +22,16 @@
         {{# if isAuthenticated}}
         <li>
           <div class="dropdown">
-           <button class="login-close-button dropdown-toggle" type="button" style="padding-top:14px;" data-toggle="dropdown">{{username}}
-           <span class="caret"></span></button>
-           <ul class="dropdown-menu">
+            <button class="login-close-button dropdown-toggle" type="button" style="padding-top:14px;" data-toggle="dropdown">{{username}}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
              <li><a href="#">My Profile</a></li>
              <li><a href="#">My Tutors</a></li>
              <li><a href="/users/logout">Logout</a></li>
-           </ul>
-         </div>
-       </li>
+            </ul>
+          </div>
+        </li>
         {{else}}
         <li><button class="login-close-button" type="button" onclick="on();" style="padding-top:14px;">Login</button></li>
         {{/if}}
@@ -36,5 +39,4 @@
     </div>
   </div>
 </nav>
-
-<!------------- end of navigation bar----------------->
+<!------------- end of navigation bar on homepage----------------->

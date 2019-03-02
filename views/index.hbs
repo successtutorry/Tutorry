@@ -1,5 +1,31 @@
 {{>home_header}}
 {{>alert}}
+<script>
+
+document.addEventListener("scroll", function () {
+	myFunc();
+}, false);
+
+function myFunc() {
+ var navbar = document.getElementById("navbar");
+ var sticky = navbar.offsetTop;
+ var y = window.pageYOffset;
+ if(y>100){
+ navbar.style = "background-color:#062e57;";
+ }
+ myFuncEnd();
+}
+
+function myFuncEnd(){
+
+var y =window.pageYOffset;
+if(y<10){
+var navbar = document.getElementById("navbar");
+navbar.style = "background:transparent; border:none;";
+
+}
+}
+</script>
 <div>
 	<div id="myCarousel" class="carousel" data-ride="carousel">
 		<!-- Wrapper for slides -->
