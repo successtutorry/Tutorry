@@ -72,3 +72,36 @@ x[i].className = x[i].className.replace(" active", "");
 //... and adds the "active" class on the current step:
 x[n].className += " active";
 }
+
+// javascript for overlay login and message overlay regForm
+function on(){
+ document.getElementById("overlay").style="display:block;";
+ document.getElementById("closebtn").style="display:block;";
+
+}
+
+function off(){
+ document.getElementById("overlay").style="display:none;";
+ document.getElementById("closebtn").style="display:none;";
+}
+
+function displayRegistration(){
+
+	document.getElementById("login-form").style = "display:none;";
+	document.getElementById("registration-form").style = "display:initial;";
+
+	}
+
+	function displayLogin(){
+
+	document.getElementById("login-form").style = "display:initial;";
+	document.getElementById("registration-form").style = "display:none;";
+
+	}
+
+  function showform(){
+
+    document.getElementById("message-overlay").style="display:block;";
+
+
+  }
