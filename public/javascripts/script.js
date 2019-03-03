@@ -101,7 +101,15 @@ function displayRegistration(){
 
   function showform(){
 
-    document.getElementById("message-overlay").style="display:block;";
+    $.get("/users/checkAuth", function(data, status){
+    alert("Data: " + data + "\nStatus: " + status);
+    if(data=='true'){
+      document.getElementById("message-overlay").style="display:block;";
+    }
+    if(data=='false'){
+      document.getElementById("overlay").style="display:block;";
+    }
 
-
+  });
+      //document.getElementById("message-overlay").style="display:block;";
   }
