@@ -1,5 +1,6 @@
 {{>home_header}}
 {{>alert}}
+{{>overlay}}
 <script>
 
 document.addEventListener("scroll", function () {
@@ -80,60 +81,6 @@ navbar.style = "background:transparent; border:none;";
 	</div> <!----------- start of navigation bar ----------------->
 </div> <!----------- end of carousel ----------------->
 
-<!-- overlay--->
-
-<div id="overlay">
-
-	<div class="login" style=" background-color:white; border-radius:10px; margin:auto; margin-top:10%;">
-		<div class="btn-group " style="width:100%; padding-top:5px; padding-left:3px; padding-right:3px;">
-			<button class="btn-grp-buttons" onclick="displayLogin();" style="background-color:white;color:#183e64;"><i class="fa fa-unlock btn-grp-icons"></i>LOGIN</button>
-			<button class="btn-grp-buttons" onclick="displayRegistration();" style="color:#e2e2e2; background-color:#757575;"><i class="fa fa-user-plus btn-grp-icons"></i>REGISTER</button>
-		</div>
-		<div  style="margin:20px 20px 20px 20px;">
-			<form id="login-form" action="/users/login" method="post">
-				<div class="form-group">
-					<input type="email" class="form-control login-input" id="inputEmail" name="email" placeholder="Email" required autofocus>
-				</div>
-				<div class="form-group">
-					<input type="password" class="form-control login-input" id="inputPassword" name="password" placeholder="Password" required>
-				</div>
-				<div class="form-group" style="padding-top:15px;">
-					<a style="color:#92b343;" href="/users/forgotPassword">Forgot Password ?</a>
-				</div>
-				<div class="form-group" style="padding-bottom:10px;">
-					<button type="submit" class="button btn btn-lg">LOGIN</button>
-				</div>
-			</form>
-		</div>
-		<div  style="margin:20px 20px 20px 20px;">
-			<form id="registration-form" style="display:none;" action="/users/register" method="post">
-				<div class="form-group">
-					<input style="height:3em; background-color: #f6f8fa; " type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required autofocus>
-				</div>
-				<div class="form-group">
-					<input style="height:3em; background-color: #f6f8fa; " type="text" class="form-control" id="inputUsername" name="username" placeholder="username" required>
-				</div>
-				<div class="form-group">
-					<input style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
-				</div>
-				<div class="form-group">
-					<input style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputConfirmPassword" name="confirmationPassword" placeholder="Confirm Password">
-				</div>
-				<div class="form-group">
-					<select style="width: 100%;padding: 16px 20px;border: none;border-radius: 4px; background-color: #f1f1f1;" id="usertype" name="usertype">
-						<option value="student">Student</option>
-						<option value="tutor">Tutor</option>
-
-					</select>
-				</div>
-				<div class="form-group" style="padding-bottom:10px;">
-					<button type="submit" class="button btn btn-lg">REGISTER</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-<!-----------end of overlay---------->
 
 <!--------- start of video presentation section------------>
 <div id="useful" class="section-margin">
