@@ -344,7 +344,8 @@ padding-bottom:20px;
 }
 
 .card:hover{
-	border:solid rgb(176, 207, 101) 3px;;
+	border:solid rgb(176, 207, 101) 3px;
+  transition-duration:0.3s;
 }
 
 .help-banner{
