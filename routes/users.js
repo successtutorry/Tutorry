@@ -137,10 +137,10 @@ router.route('/register')
 
 // this route is executed when the user tries to login
 router.route('/login')
-  .post(isNotAuthenticated, passport.authenticate('local', {
-    //successReturnToOrRedirect: '/',
-    successRedirect: '/users/dashboard',
-    failureRedirect: '/users/contact',
+.post(isNotAuthenticated, passport.authenticate('local', {
+    successReturnToOrRedirect: '/',
+    //successRedirect: '/users/dashboard',
+    failureRedirect: '/users/login',
     failureFlash: true
   }));
 
@@ -240,6 +240,17 @@ router.route('/login')
  }
  });
 
+ router.route('/checkAuth')
+ .get((req,res)=>{
+ if(req.isAuthenticated()){
+
+   res.send('true');
+ }else{
+   res.send('false');
+ }
+
+ });
+
  /*const messageSchema = Joi.object().keys({
    name: Joi.string().required(),
    email: Joi.string().email().required(),
@@ -281,7 +292,7 @@ router.route('/login')
 });*/
 
 router.route('/message')
-.post(async (req,res) => {
+.post(isAuthenticated, async (req,res) => {
 try{
   console.log(req.body);
 }catch(error){
