@@ -10,7 +10,20 @@ document.addEventListener("scroll", function () {
 function myFunc() {
  var navbar = document.getElementById("navbar");
  var sticky = navbar.offsetTop;
+ var stickysearchbar = document.getElementById("stickysearchbar");
+ var stickysearch = stickysearchbar.offsetTop;
+ //alert(stickysearch);
  var y = window.pageYOffset;
+ if(y>100){
+ navbar.style = "background-color:#062e57;";
+ }
+
+ if(y>625){
+ stickysearchbar.style = "position:sticky; top:0; z-index:100;";
+
+}
+
+
  if(y>100){
  navbar.style = "background-color:#062e57;";
  }
@@ -26,8 +39,9 @@ navbar.style = "background:transparent; border:none;";
 
 }
 }
+
 </script>
-<div>
+
 	<div id="myCarousel" class="carousel" data-ride="carousel">
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner" role="listbox">
@@ -56,8 +70,8 @@ navbar.style = "background:transparent; border:none;";
 			</div>
 		  </div>
 		</div>
-	</div>
-	<div class="margin-class" style="top:-68px;"> <!----------- start of search bar----------------->
+	</div> <!----------- end of carousel ----------------->
+	<div id="stickysearchbar" class=" margin-class" style="top:-68px;"> <!----------- start of search bar----------------->
 		<div class="title-margin-class" style="background-color:#062e57;">
 			<form class="form-inline" action="/action_page.php">
 				<div class="form-group form-header">
@@ -79,7 +93,6 @@ navbar.style = "background:transparent; border:none;";
 			</form>
 		</div>
 	</div> <!----------- start of navigation bar ----------------->
-</div> <!----------- end of carousel ----------------->
 
 
 <!--------- start of video presentation section------------>
@@ -103,6 +116,282 @@ navbar.style = "background:transparent; border:none;";
 	</div>
 </div>
  <!--------- end of video presentation section------------>
+
+ <!---- start of first how we work section---->
+
+	<div id="" class="section-margin margin-class">
+	<div class="title-margin-class">
+		<div class="title_box_h">
+            <h1 class="specialh1">Search Home Tuitions in Your City</h1>
+        </div>
+		<div style="padding-top:15px;" class="row">
+			<div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="col-md-12">
+                    <div class="service-box">
+                        <span class="howwework_icon app_icon fas fa-mobile-alt"></span>
+                            <h4 style="color:#134477;">Download The Qriyo App</h4>
+                            <p style="color: #91959a;">One stop solution to all your home tuition needs. Academics to Zumba</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="service-box">
+                        <span class="howwework_icon file_icon fas fa-mobile-alt"></span>
+							<h4 style="color:#134477;">Download The Qriyo App</h4>
+                            <p style="color: #91959a;">One stop solution to all your home tuition needs. Academics to Zumba</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="service-box">
+                        <span class="howwework_icon demo_icon fas fa-mobile-alt"></span>
+                            <h4 style="color:#134477;">Download The Qriyo App</h4>
+                            <p style="color: #91959a;">One stop solution to all your home tuition needs. Academics to Zumba</p>
+                    </div>
+                </div>
+            </div>
+			<div class="col-md-4 col-sm-12 col-xs-12 text-center">
+                <div class="img-responsive mobile-screen"></div>
+            </div>
+			<div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="col-md-12">
+                    <div class="service-box">
+                        <span class="howwework_icon app_icon fas fa-mobile-alt"></span>
+                            <h4 style="color:#134477;">Download The Qriyo App</h4>
+                            <p style="color: #91959a;">One stop solution to all your home tuition needs. Academics to Zumba</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="service-box">
+                        <span class="howwework_icon file_icon fas fa-mobile-alt"></span>
+							<h4 style="color:#134477;">Download The Qriyo App</h4>
+                            <p style="color: #91959a;">One stop solution to all your home tuition needs. Academics to Zumba</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="service-box">
+                        <span class="howwework_icon demo_icon fas fa-mobile-alt"></span>
+                            <h4 style="color:#134477;">Download The Qriyo App</h4>
+                            <p style="color: #91959a;">One stop solution to all your home tuition needs. Academics to Zumba</p>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+	</div>
+ <!--- end of first how  we work section---->
+
+ <!---- start of second how we work section---->
+<div class="container-fluid grey_bg">
+ <div class="margin-class row">
+	 <div class="col-md-12">
+		 <div class="title_box_h">
+									 <h1> Home Tutors for Academics </h1>
+					 </div>
+		 <div style="padding-top:15px;" class="row">
+			 <div class="features">
+				 <div class="col-md-4 col-sm-6">
+											 <div class="feature-wrap clickMe" data-url="/learn/#/request/home-tutor-academics">
+													 <span class="all_card_icon allclass_icon fas fa-mobile-alt"></span>
+													 <div class="h2">
+							 <h3>School Tuitions</h3>
+						 </div>
+													 <p style="color: #91959a;">Get Home Tutors for Kindergarten to Class 12th</p>
+											 </div>
+									 </div>
+				 <div class="col-md-4 col-sm-6">
+											 <div class="feature-wrap clickMe" data-url="/learn/#/request/home-tutor-academics">
+													 <span class="all_card_icon allclass_icon fas fa-mobile-alt"></span>
+													 <div class="h2">
+							 <h3>School Tuitions</h3>
+						 </div>
+													 <p style="color: #91959a;">Get Home Tutors for Kindergarten to Class 12th</p>
+											 </div>
+									 </div>
+				 <div class="col-md-4 col-sm-6">
+											 <div class="feature-wrap clickMe" data-url="/learn/#/request/home-tutor-academics">
+													 <span class="all_card_icon allclass_icon fas fa-mobile-alt"></span>
+													 <div class="h2">
+							 <h3>School Tuitions</h3>
+						 </div>
+													 <p style="color: #91959a;">Get Home Tutors for Kindergarten to Class 12th</p>
+											 </div>
+									 </div>
+			 </div>
+		 </div>
+	 </div>
+ </div>
+</div>
+<!---- end of second how we work section---->
+
+<!-- start of third how we work section --->
+ <div class="container-fluid">
+	<div style="padding-top:15px;" class="row margin-class">
+	<div class="title-margin-class">
+		<div class="col-md-12">
+			<div class="title_box_h">
+                <h1> Home Tutors for Academics </h1>
+            </div>
+			<div style="padding-top:15px;" class="row">
+				<div class="features">
+					<div class="col-md-3 col-sm-6">
+                        <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+                            <div class="h200 h150">
+                                <span class="all_card_icon yoga_icon fas fa-mobile-alt"></span>
+                                <h2 class="h2 h40"> <a> Yoga </a></h2>
+                                <p>Everyday Yoga for General Fitness, Meditation, Yoga for Weight-loss</p>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-3 col-sm-6">
+                        <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+                            <div class="h200 h150">
+                                <span class="all_card_icon yoga_icon fas fa-mobile-alt"></span>
+                                <h2 class="h2 h40"> <a> Yoga </a></h2>
+                                <p>Everyday Yoga for General Fitness, Meditation, Yoga for Weight-loss</p>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-3 col-sm-6">
+                        <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+                            <div class="h200 h150">
+                                <span class="all_card_icon yoga_icon fas fa-mobile-alt"></span>
+                                <h2 class="h2 h40"> <a> Yoga </a></h2>
+                                <p>Everyday Yoga for General Fitness, Meditation, Yoga for Weight-loss</p>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-3 col-sm-6">
+                        <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+                            <div class="h200 h150">
+                                <span class="all_card_icon yoga_icon fas fa-mobile-alt"></span>
+                                <h2 class="h2 h40"> <a> Yoga </a></h2>
+                                <p>Everyday Yoga for General Fitness, Meditation, Yoga for Weight-loss</p>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-3 col-sm-6">
+                        <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+                            <div class="h200 h150">
+                                <span class="all_card_icon yoga_icon fas fa-mobile-alt"></span>
+                                <h2 class="h2 h40"> <a> Yoga </a></h2>
+                                <p>Everyday Yoga for General Fitness, Meditation, Yoga for Weight-loss</p>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-3 col-sm-6">
+                        <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+                            <div class="h200 h150">
+                                <span class="all_card_icon yoga_icon fas fa-mobile-alt"></span>
+                                <h2 class="h2 h40"> <a> Yoga </a></h2>
+                                <p>Everyday Yoga for General Fitness, Meditation, Yoga for Weight-loss</p>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-3 col-sm-6">
+                        <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+                            <div class="h200 h150">
+                                <span class="all_card_icon yoga_icon fas fa-mobile-alt"></span>
+                                <h2 class="h2 h40"> <a> Yoga </a></h2>
+                                <p>Everyday Yoga for General Fitness, Meditation, Yoga for Weight-loss</p>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-3 col-sm-6">
+                        <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+                            <div class="h200 h150">
+                                <span class="all_card_icon yoga_icon fas fa-mobile-alt"></span>
+                                <h2 class="h2 h40"> <a> Yoga </a></h2>
+                                <p>Everyday Yoga for General Fitness, Meditation, Yoga for Weight-loss</p>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+ </div>
+ <!-- end of third how we work section --->
+
+ <!-- start of fourth how we work section --->
+ <div class="container-fluid">
+	<div style="padding-top:15px;" class="row margin-class">
+	<div class="title-margin-class">
+		<div class="col-md-12">
+			<div class="title_box_h">
+				<h1> Why Qriyo is the Best?</h1>
+			</div>
+			<div style="padding-top:15px;" class="row">
+				<div class="col-md-3 col-sm-12">
+					<div style="text-align:center;">
+						<p class="guarantee_icon"></p>
+					</div>
+					<div style="text-align:center;">
+						<div class="h2">Most Customers Love Our First Classes</div>
+						<p>If you don't like our Qriyo Guru, we will replace him/her.</p>
+					</div>
+				</div>
+				<div class="col-md-9 col-xs-12">
+					<div class="col-md-4 col-xs-12">
+						<div class="service-box">
+							<div class="servie-image">
+								<span style="font-size:64px;" class="whyqriyo_icon fas fa-mobile-alt"></span>
+							</div>
+							<h5>PERFECT TUTOR</h5>
+							<p>Our matchmaking algorithm matches one perfect tutor for you. No more browsing through endless profiles</p>
+						</div>
+					</div>
+					<div class="col-md-4 col-xs-12">
+						<div class="service-box">
+							<div class="servie-image">
+								<span style="font-size:64px;" class="whyqriyo_icon fas fa-mobile-alt"></span>
+							</div>
+							<h5>PERFECT TUTOR</h5>
+							<p>Our matchmaking algorithm matches one perfect tutor for you. No more browsing through endless profiles</p>
+						</div>
+					</div>
+					<div class="col-md-4 col-xs-12">
+						<div class="service-box">
+							<div class="servie-image">
+								<span style="font-size:64px;" class="whyqriyo_icon fas fa-mobile-alt"></span>
+							</div>
+							<h5>PERFECT TUTOR</h5>
+							<p>Our matchmaking algorithm matches one perfect tutor for you. No more browsing through endless profiles</p>
+						</div>
+					</div>
+					<div class="col-md-4 col-xs-12">
+						<div class="service-box">
+							<div class="servie-image">
+								<span style="font-size:64px;" class="whyqriyo_icon fas fa-mobile-alt"></span>
+							</div>
+							<h5>PERFECT TUTOR</h5>
+							<p>Our matchmaking algorithm matches one perfect tutor for you. No more browsing through endless profiles</p>
+						</div>
+					</div>
+					<div class="col-md-4 col-xs-12">
+						<div class="service-box">
+							<div class="servie-image">
+								<span style="font-size:64px;" class="whyqriyo_icon fas fa-mobile-alt"></span>
+							</div>
+							<h5>PERFECT TUTOR</h5>
+							<p>Our matchmaking algorithm matches one perfect tutor for you. No more browsing through endless profiles</p>
+						</div>
+					</div>
+					<div class="col-md-4 col-xs-12">
+						<div class="service-box">
+							<div class="servie-image">
+								<span style="font-size:64px;" class="whyqriyo_icon fas fa-mobile-alt"></span>
+							</div>
+							<h5>PERFECT TUTOR</h5>
+							<p>Our matchmaking algorithm matches one perfect tutor for you. No more browsing through endless profiles</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+ </div>
+ <!-- end of fourth how we work section --->
 
  <!--------- start of three important features section ------------>
 <div class="imageDiv section-margin">
