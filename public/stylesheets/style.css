@@ -364,3 +364,101 @@ padding-bottom:20px;
 .logo:hover{
   color:white;
 }
+
+/* css for the new section*/
+
+.title_box_h{
+    padding: 30px 0 0;
+    width: 100%;
+    max-width: 800px;
+    clear: both;
+    margin: auto;
+	color: #134477;
+    text-align: center;
+	}
+
+	.service-box{
+	margin-top:15px;
+	margin-bottom:20px;
+
+	}
+
+	.howwework_icon{
+	width: 120px;
+    height: 64px;
+	font-size:64px;
+    display: block;
+    margin-bottom: 10px;
+
+	float: none;
+    margin: 10px 20px 20px;
+    line-height: 56px;
+	}
+
+/* css for second section*/
+.grey_bg{
+
+background: #ebf0f2;
+padding: 0 70px 50px;
+}
+
+.features{
+padding: 0px 0px 0px 0px;
+}
+.feature-wrap{
+
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,.1);
+    cursor: pointer;
+}
+
+.h2{
+font-size: 16px;
+margin-bottom: 10px;
+color: #134477;
+}
+
+.mobile-screen{
+
+width: 304px;
+    height: 496px;
+    background: url(https://s3.amazonaws.com/qriyo-website/image/all_icon_eo13sv.png) 0 -5px no-repeat;
+    display: block!important;
+    margin: 0 auto;
+
+}
+
+.all_card_icon{
+
+height: 67px;
+font-size:64px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.guarantee_icon {
+    background: url(https://s3.amazonaws.com/qriyo-website/image/all_icon_eo13sv.png) -706px -314px;
+    width: 155px;
+    height: 155px;
+    margin: 0 auto 35px;
+}
+
+.servie-image{
+
+height: 64px;
+    width: 64px;
+    line-height: 56px;
+    float: left;
+    margin: 35px 15px;
+}
+
+.whyqriyo_icon {
+    width: 64px;
+    height: 64px;
+    display: block;
+    margin: 0 auto 10px;
+    background: url() no-repeat;
+}
