@@ -1,7 +1,27 @@
 {{>header}}
 {{>overlay}}
+<script>
+document.addEventListener("scroll", function () {
+	myFunc();
+}, false);
 
-<div class="margin-class section-margin"> <!----------- start of search bar----------------->
+function myFunc() {
+ var stickysearchbar = document.getElementById("stickysearchbar");
+ var sticky = stickysearchbar.offsetTop;
+ var y = window.pageYOffset;
+
+ if(y>150){
+ stickysearchbar.style = "position:sticky; top:0; z-index:100;";
+ }
+}
+
+
+
+
+</script>
+
+
+<div  id="stickysearchbar" class="margin-class section-margin"> <!----------- start of search bar----------------->
 		<div class="title-margin-class" style="background-color:#062e57;">
 			<form class="form-inline" action="/action_page.php">
 				<div class="form-group form-header">
