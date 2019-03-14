@@ -148,6 +148,7 @@ font-size:1.3em;
 	 width:100%;
 	 background-color:#183e64;
 	 border-color:#183e64;
+   color:white;
 }
 
 .contact-input{
@@ -461,4 +462,13 @@ height: 64px;
     display: block;
     margin: 0 auto 10px;
     background: url() no-repeat;
+}
+
+/* css to remove arrows in input fiels*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
 }
