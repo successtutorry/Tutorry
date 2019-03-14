@@ -302,13 +302,20 @@ input.invalid {
 .subject-buttons {
   color: #134477;
   text-decoration:none;
+  border-right:solid black 1px;
+  background-color:#aece61 ;
+  padding:10px 10px 10px 10px;
+  text-align:center;
+  width:auto;
+  margin-bottom:5px;
 }
 
 .subject-div{
   border-right:solid black 1px;
   background-color:#aece61 ;
   padding:10px 0px 10px 0px;
-  text-align:center; width:50%;
+  text-align:center;
+  width:33%;
   margin-bottom:5px;
 }
 
