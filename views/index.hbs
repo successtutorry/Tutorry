@@ -22,6 +22,10 @@ if(y>600){
  stickysearchbar.style = "position:sticky; top:0; padding-top:60px; z-index:100;";
 }
 
+if(y<600){
+	myFuncEndforSearchBar();
+}
+
  myFuncEnd();
  //myFuncEndforSearchBar();
 }
@@ -34,13 +38,10 @@ function myFuncEnd(){
 }
 }
 
-/*function myFuncEndforSearchBar(){
-	var y = window.pageYOffset;
-	if(y<625){
+function myFuncEndforSearchBar(){
 		var stickysearchbar = document.getElementById("stickysearchbar");
 		stickysearchbar.style = "padding-top:0px";
-	}
-}*/
+}
 
 </script>
 
