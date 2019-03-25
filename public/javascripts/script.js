@@ -113,3 +113,9 @@ function displayRegistration(){
   });
       //document.getElementById("message-overlay").style="display:block;";
   }
+
+  function hideoverlay(){
+
+ document.getElementById('overlay').style = "display:none;";
+
+  }

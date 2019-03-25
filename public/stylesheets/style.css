@@ -148,6 +148,7 @@ font-size:1.3em;
 	 width:100%;
 	 background-color:#183e64;
 	 border-color:#183e64;
+   color:white;
 }
 
 .contact-input{
@@ -301,13 +302,20 @@ input.invalid {
 .subject-buttons {
   color: #134477;
   text-decoration:none;
+  border-right:solid black 1px;
+  background-color:#aece61 ;
+  padding:10px 10px 10px 10px;
+  text-align:center;
+  width:auto;
+  margin-bottom:5px;
 }
 
 .subject-div{
   border-right:solid black 1px;
   background-color:#aece61 ;
   padding:10px 0px 10px 0px;
-  text-align:center; width:50%;
+  text-align:center;
+  width:33%;
   margin-bottom:5px;
 }
 
@@ -461,4 +469,13 @@ height: 64px;
     display: block;
     margin: 0 auto 10px;
     background: url() no-repeat;
+}
+
+/* css to remove arrows in input fiels*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
 }

@@ -12,37 +12,40 @@ function myFunc() {
  var sticky = navbar.offsetTop;
  var stickysearchbar = document.getElementById("stickysearchbar");
  var stickysearch = stickysearchbar.offsetTop;
- //alert(stickysearch);
  var y = window.pageYOffset;
+
  if(y>100){
  navbar.style = "background-color:#062e57;";
  }
 
- if(y>625){
- stickysearchbar.style = "position:sticky; top:0; z-index:100;";
-
+if(y>600){
+ stickysearchbar.style = "position:sticky; top:0; padding-top:60px; z-index:100;";
 }
 
+if(y<600){
+	myFuncEndforSearchBar();
+}
 
- if(y>100){
- navbar.style = "background-color:#062e57;";
- }
  myFuncEnd();
+ //myFuncEndforSearchBar();
 }
 
 function myFuncEnd(){
-
-var y =window.pageYOffset;
-if(y<10){
-var navbar = document.getElementById("navbar");
-navbar.style = "background:transparent; border:none;";
-
+	var y =window.pageYOffset;
+	if(y<10){
+	var navbar = document.getElementById("navbar");
+	navbar.style = "background:transparent; border:none;";
 }
+}
+
+function myFuncEndforSearchBar(){
+		var stickysearchbar = document.getElementById("stickysearchbar");
+		stickysearchbar.style = "padding-top:0px";
 }
 
 </script>
 
-	<div id="myCarousel" class="carousel" data-ride="carousel">
+	<div id="myCarousel" class="carousel" data-ride="carousel" data-interval="3000">
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner" role="listbox">
 		  <div class="item active">
@@ -82,13 +85,13 @@ navbar.style = "background:transparent; border:none;";
 					<input type="email" class="form-control searchbar-input" id="email" placeholder="Enter a subject" name="email">
 				</div>
 				<div class="form-group">
-					<input type="password" class="form-control searchbar-input" id="pwd" placeholder="Location" name="pwd">
+					<input type="text" class="form-control searchbar-input" id="pwd" placeholder="Location" name="pwd">
 				</div>
 				<div class="form-group">
-					<input type="password" class="form-control searchbar-input" id="pwd" placeholder="Zipcode" name="pwd">
+					<input type="number" class="form-control searchbar-input" id="pwd" placeholder="Zipcode" name="pwd">
 				</div>
 				<div class="form-group" style="padding-bottom:15px; text-align:center; margin-left:10px;">
-					<button class="button btn btn-lg" type="button">Find Now</button>
+					<button class="button btn btn-lg" onclick="location.href='/users/find_tutor'" type="button">Find Now</button>
 				</div>
 			</form>
 		</div>
