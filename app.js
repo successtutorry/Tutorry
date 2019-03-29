@@ -13,6 +13,7 @@ const where = require('node-where');
 const iplocation = require('iplocation');
 const flash = require('connect-flash');
 const session = require('express-session');
+var keystone = require('keystone');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 require('./config/passport');
@@ -75,5 +76,12 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+keystone.init({
+  'cookie secret': 'secure string goes here',
+  'mongo':'mongodb://root:root123@ds343895.mlab.com:43895/tutorry_v1',
+});
+
+
 
 module.exports = app;
