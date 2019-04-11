@@ -122,11 +122,11 @@ font-size:1.3em;
 }
 
 .section-margin{
-	margin-top:15%;
+	margin-top:12%;
 }
 
 .within-sec-margin{
-  margin-top:7%;
+  margin-top:5%;
 }
 
 .sticky{
@@ -392,19 +392,19 @@ padding-bottom:20px;
 	}
 
 	.service-box{
-	margin-top:15px;
-	margin-bottom:20px;
+	margin-top:0px;
+	margin-bottom:0px;
 
 	}
 
 	.howwework_icon{
 	width: 120px;
   height: 54px;
-	font-size:54px;
+	font-size:35px;
+  color: #aece61;
   display: block;
-  margin-bottom: 10px;
   float: none;
-  margin: 10px 20px 20px;
+  margin: 0px 20px 0px;
   line-height: 56px;
 	}
 
@@ -437,8 +437,8 @@ color: #134477;
 .mobile-screen{
 
 width: 304px;
-    height: 496px;
-    background: url(https://s3.amazonaws.com/qriyo-website/image/all_icon_eo13sv.png) 0 -5px no-repeat;
+    height:385px;
+    //background: url(https://s3.amazonaws.com/qriyo-website/image/all_icon_eo13sv.png) 0 -5px no-repeat;
     display: block!important;
     margin: 0 auto;
 
@@ -483,4 +483,10 @@ input[type=number]::-webkit-outer-spin-button {
     -moz-appearance: none;
     appearance: none;
     margin: 0;
+}
+
+/*css for text corousel*/
+.testimonial{
+
+  background-image: url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/bg5.jpg?id=192) !important;
 }
