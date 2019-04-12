@@ -119,3 +119,22 @@ function displayRegistration(){
  document.getElementById('overlay').style = "display:none;";
 
   }
+
+  function myFunction() {
+  var x = document.getElementById("inputEmail").value;
+  checkifEmailExists(x);
+}
+
+function checkifEmailExists(x){
+ $.get('/users/checkUserInDatabase:'+ x , function(data, status){
+
+   if(data=='true'){
+     alert('email exists');
+   }
+   if(data=='false'){
+
+     alert('email does not exist');
+   }
+ });
+
+}
