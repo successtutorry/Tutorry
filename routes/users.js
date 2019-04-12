@@ -302,6 +302,14 @@ try{
 
 });
 
+router.route('/checkUserInDatabase:email')
+.get(async(req,res)=>{
+
+const user = await User.findOne({ 'email': req.params.email });
+console.log(user);
+});
+
+
 router.route('/find_tutor')
   .get((req, res) => {
     res.render('find_tutor');
