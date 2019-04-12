@@ -139,7 +139,7 @@ font-size:1.3em;
   -webkit-justify-content: center;
 	text-align:center;
 	background-color:#092746;
-	margin-right:20px;
+/*	margin-right:20px;*/
 	padding-left:30px;
 	padding-right:30px;
 	padding-top:20px;
@@ -149,7 +149,7 @@ font-size:1.3em;
 
 .searchbar-input{
 	 height:50px;
-	 width:100%;
+	/* width:100%;*/
 	 background-color:#183e64;
 	 border-color:#183e64;
    color:white;
