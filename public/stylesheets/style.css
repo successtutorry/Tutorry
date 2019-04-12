@@ -16,7 +16,7 @@ background-color: #f2f2f2;
     margin-bottom: 0;
     border-radius: 0;
 	color:white;
-	font-weight:bold;
+	
 	background-color:#062e57;
 	}
 
@@ -97,6 +97,7 @@ font-size:1.3em;
 .margin-class{
   margin-left:9%;
 	margin-right:9%;
+
 }
 
 .title-margin-class{
@@ -313,7 +314,7 @@ input.invalid {
   padding:10px 10px 10px 10px;
   text-align:center;
   width:auto;
-  margin-bottom:5px;
+  margin-bottom:0px;
 }
 
 .subject-div{
