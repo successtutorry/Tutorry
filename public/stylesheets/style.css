@@ -473,9 +473,9 @@ input.invalid {
 }
 
 .mobile-screen {
-	width: 304px;
-	height: 385px;
-	//background: url(https://s3.amazonaws.com/qriyo-website/image/all_icon_eo13sv.png) 0 -5px no-repeat;
+	/*width: 75px;
+	//height: 100px;
+	//background: url(https://s3.amazonaws.com/qriyo-website/image/all_icon_eo13sv.png) 0 -5px no-repeat;*/
 	display: block!important;
 	margin: 0 auto;
 }
