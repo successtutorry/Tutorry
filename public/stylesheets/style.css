@@ -181,13 +181,32 @@ font-size:1.3em;
 	background-repeat:no-repeat;*/
 }
 
+.btn-group{
+
+  width:100%;
+  padding-top:5px;
+  padding-left:3px;
+  padding-right:3px;
+}
+
+
+
 .btn-group button {
-  background-color: #4CAF50; /* Green background */
-  border: 1px solid green; /* Green border */
-  color: white; /* White text */
-  padding: 10px 24px; /* Some padding */
+
   cursor: pointer; /* Pointer/hand icon */
   float: left; /* Float the buttons side by side */
+  padding:15px 0px 15px 0px;
+  font-size:1.5em;
+  border-radius:5px;
+}
+
+.closebutton{
+
+  float:right;
+  background-color:white;
+  width:10%;
+  color:black;
+  border:none;
 }
 
 /* Clear floats (clearfix hack) */
@@ -201,13 +220,13 @@ font-size:1.3em;
   border-right: none; /* Prevent double borders */
 }
 
-/* Add a background color on hover */
-.btn-group button:hover {
-  background-color: #3e8e41;
-}
 
 .login{
   width:90%;
+   background-color:white;
+   border-radius:10px;
+    margin:auto;
+    margin-top:10%;
 }
 
 @media (min-width: 480px) {
@@ -518,4 +537,10 @@ a.footerlink{
 
 a.footerlink:hover{
   color: #aece61;
+}
+
+.overlaylogin_input{
+
+  height:2em; 
+  background-color: #f6f8fa;
 }
