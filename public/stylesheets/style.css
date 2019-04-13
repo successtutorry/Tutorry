@@ -1,86 +1,89 @@
 html {
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
-body{
-  font-family: Lora;
-	font-weight:400;
-	letter-spacing:1px;
-  }
+body {
+	font-family: Lora;
+	font-weight: 400;
+	letter-spacing: 1px;
+}
 
-  a:hover{
-    color:yellow;
-  }
-
+a:hover {
+	color: yellow;
+}
 
 footer {
-background-color: #f2f2f2;
-    }
+	background-color: #f2f2f2;
+}
 
 .navbar {
-    margin-bottom: 0;
-    border-radius: 0;
-	color:white;
-
-	background-color:#062e57;
-	}
+	margin-bottom: 0;
+	border-radius: 0;
+	color: white;
+	background-color: #062e57;
+}
 
 .nav {
-	margin-left:13%;
-	margin-right:13%;
-	color:white;
+	margin-left: 13%;
+	margin-right: 13%;
+	color: white;
 }
 
 .carousel-inner img {
-    width: 100%; /* Set width to 100% */
-    margin: auto;
-    min-height:200px;
-  }
+	width: 100%;
+	/* Set width to 100% */
+	margin: auto;
+	min-height: 200px;
+}
 
-  /* Hide the carousel text when the screen is less than 600 pixels wide */
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none;
-    }
+
+/* Hide the carousel text when the screen is less than 600 pixels wide */
+
+@media (max-width: 600px) {
+	.carousel-caption {
+		display: none;
 	}
+}
 
-.imageDiv{
-  background: #fff;
+.imageDiv {
+	background: #fff;
 	background-image: url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/bg_guarantee.jpg?id=211);
-	background-size:cover;
-  display: block;
-  width: 100%;
-  height: 100%;
-  color:white;
-	position:relative;
-    }
+	background-size: cover;
+	display: block;
+	width: 100%;
+	height: 100%;
+	color: white;
+	position: relative;
+}
 
-.bottomDiv{
-	background-image:url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/banner.jpg?id=214);
-	background-repeat:no-repeat; !important;
-	background-position:center;
-	background-size:contain; !important;
-	width:100%;
-	height:25em;
-  padding-top: 30%;
-	z-index:1;
-	position:absolute;
-  @media(min-width:480px){
-	   padding-top: 0;
+.bottomDiv {
+	background-image: url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/banner.jpg?id=214);
+	background-repeat: no-repeat;
+	!important;
+	background-position: center;
+	background-size: contain;
+	!important;
+	width: 100%;
+	height: 25em;
+	padding-top: 30%;
+	z-index: 1;
+	position: absolute;
+	@media(min-width: 480px) {
+		padding-top: 0;
 	}
-	}
+}
 
-.title_info{
-  color: #91959a;
+.title_info {
+	color: #91959a;
 	font-size: 2.063rem;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0;
+	font-style: normal;
+	font-weight: 400;
+	letter-spacing: 0;
 }
 
 .help {
-	border:solid;
-	height:40em;
+	border: solid;
+	height: 40em;
 	/*background-image: url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/bg_cta.jpg?id=224) !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
@@ -88,459 +91,461 @@ background-color: #f2f2f2;
 }
 
 .subject-list {
-text-decoration:none;
-color: #91959a;
-font-size:1.3em;
+	text-decoration: none;
+	color: #91959a;
+	font-size: 1.3em;
 }
 
-.carousel-caption{
+.carousel-caption {
 	top: 50%;
 	transform: translateY(-50%);
 	bottom: initial;
 }
 
-.margin-class{
-  margin-left:9%;
-	margin-right:9%;
-
+.margin-class {
+	margin-left: 9%;
+	margin-right: 9%;
 }
 
-.title-margin-class{
-	margin-left:5%;
-	margin-right:5%;
+.title-margin-class {
+	margin-left: 5%;
+	margin-right: 5%;
 }
 
-.address{
-	padding-right:20px;
-  cursor: pointer;
+.address {
+	padding-right: 20px;
+	cursor: pointer;
 }
 
-.address:hover{
-  color: #aece61;
+.address:hover {
+	color: #aece61;
 }
 
 .button {
 	background-color: #aece61;
-	border-radius:10em;
-	margin-top:20px;
-	color:white;
+	border-radius: 10em;
+	margin-top: 20px;
+	color: white;
 }
 
-.button:hover{
-  background-color:rgb(19, 68, 119);
-	color:white;
+.button:hover {
+	background-color: rgb(19, 68, 119);
+	color: white;
 	transition-duration: 0.4s;
 }
 
-.section-margin{
-	margin-top:12%;
+.section-margin {
+	margin-top: 12%;
 }
 
-.within-sec-margin{
-  margin-top:5%;
+.within-sec-margin {
+	margin-top: 5%;
 }
 
-.sticky{
-  background-color:pink;
+.sticky {
+	background-color: pink;
 }
 
-.form-header{
-  display: flex;
-  display: -webkit-flex;
-  -webkit-justify-content: center;
-	text-align:center;
-	background-color:#092746;
-/*	margin-right:20px;*/
-	padding-left:30px;
-	padding-right:30px;
-	padding-top:20px;
-	padding-bottom:15px;
-	border:solid #183e64 1px;
+.form-header {
+	display: flex;
+	display: -webkit-flex;
+	-webkit-justify-content: center;
+	text-align: center;
+	background-color: #092746;
+	/*	margin-right:20px;*/
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 20px;
+	padding-bottom: 15px;
+	border: solid #183e64 1px;
 }
 
-.searchbar-input{
-	 height:50px;
+.searchbar-input {
+	height: 50px;
 	/* width:100%;*/
-	 background-color:#183e64;
-	 border-color:#183e64;
-   color:white;
+	background-color: #183e64;
+	border-color: #183e64;
+	color: white;
 }
 
-.contact-input{
-	height:50px;
-	width:100%;
+.contact-input {
+	height: 50px;
+	width: 100%;
 }
 
-.videopresent{
-
-
-  /*height:40em;
+.videopresent {
+	/*height:40em;
 	background-image:url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/photo11.jpg);
 	background-position:center center;
 	background-size:cover;
 	background-repeat:no-repeat;*/
 }
 
-.btn-group{
-
-  width:100%;
-  padding-top:5px;
-  padding-left:3px;
-  padding-right:3px;
+.btn-group {
+	width: 100%;
+	padding-top: 5px;
+	padding-left: 3px;
+	padding-right: 3px;
 }
-
-
 
 .btn-group button {
-
-  cursor: pointer; /* Pointer/hand icon */
-  float: left; /* Float the buttons side by side */
-  padding:15px 0px 15px 0px;
-  font-size:1.5em;
-  border-radius:5px;
+	cursor: pointer;
+	/* Pointer/hand icon */
+	float: left;
+	/* Float the buttons side by side */
+	padding: 15px 0px 15px 0px;
+	font-size: 1.5em;
+	border-radius: 5px;
 }
 
-.closebutton{
-
-  float:right;
-  background-color:white;
-  width:10%;
-  color:black;
-  border:none;
+.closebutton {
+	float: right;
+	background-color: white;
+	width: 10%;
+	color: black;
+	border: none;
 }
+
 
 /* Clear floats (clearfix hack) */
+
 .btn-group:after {
-  content: "";
-  clear: both;
-  display: table;
+	content: "";
+	clear: both;
+	display: table;
 }
 
 .btn-group button:not(:last-child) {
-  border-right: none; /* Prevent double borders */
+	border-right: none;
+	/* Prevent double borders */
 }
 
-
-.login{
-  width:90%;
-   background-color:white;
-   border-radius:10px;
-    margin:auto;
-    margin-top:10%;
+.login {
+	width: 90%;
+	background-color: white;
+	border-radius: 10px;
+	margin: auto;
+	margin-top: 10%;
 }
 
 @media (min-width: 480px) {
-  .login {
-    width:35%;
-  }
+	.login {
+		width: 35%;
+	}
 }
 
 #overlay {
-  position: fixed;
-  display: none;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5);
-  z-index: 2;
-  cursor: pointer;
+	position: fixed;
+	display: none;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 2;
+	cursor: pointer;
 }
 
-#message-overlay{
-  position: fixed;
-  display: none;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5);
-  z-index: 2;
-  cursor: pointer;
-}
-
-/* css for tutor-registration page*/
+#message-overlay {
+	position: fixed;
+	display: none;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 2;
+	cursor: pointer;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 #regForm {
-  background-color: #ffffff;
-  margin: 100px auto;
-  padding: 40px;
-  width: 70%;
-  min-width: 300px;
+	background-color: #ffffff;
+	margin: 100px auto;
+	padding: 40px;
+	width: 70%;
+	min-width: 300px;
 }
 
 .registerheader {
-  text-align: center;
+	text-align: center;
 	color: #134477;
 }
 
 input {
-  padding: 10px;
-  width: 100%;
-  font-size: 17px;
-  border: 1px solid #aaaaaa;
+	padding: 10px;
+	width: 100%;
+	font-size: 17px;
+	border: 1px solid #aaaaaa;
 }
+
 
 /* Mark input boxes that gets an error on validation: */
+
 input.invalid {
-  background-color: #ffdddd;
+	background-color: #ffdddd;
 }
 
+
 /* Hide all steps by default: */
+
 .tab {
-  display: none;
+	display: none;
 }
 
 .tut-reg-btn {
-  background-color: #aece61;
-  color: #ffffff;
-  border-radius:10em;
-  border: none;
-  padding: 10px 20px;
-  font-size: 17px;
-  cursor: pointer;
+	background-color: #aece61;
+	color: #ffffff;
+	border-radius: 10em;
+	border: none;
+	padding: 10px 20px;
+	font-size: 17px;
+	cursor: pointer;
 }
 
 #prevBtn {
-  background-color: #bbbbbb;
+	background-color: #bbbbbb;
 }
 
+
 /* Make circles that indicate the steps of the form: */
+
 .step {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbbbbb;
-  border: none;
-  border-radius: 50%;
-  display: inline-block;
-  opacity: 0.5;
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbbbbb;
+	border: none;
+	border-radius: 50%;
+	display: inline-block;
+	opacity: 0.5;
 }
 
 .step.active {
-  opacity: 1;
+	opacity: 1;
 }
 
+
 /* Mark the steps that are finished and valid: */
+
 .step.finish {
-  background-color: #4CAF50;
+	background-color: #4CAF50;
 }
 
 .subject-buttons {
-  color: #134477;
-  text-decoration:none;
-  border-right:solid black 1px;
-  background-color:#aece61 ;
-  padding:10px 10px 10px 10px;
-  text-align:center;
-  width:auto;
-  margin-bottom:0px;
+	color: #134477;
+	text-decoration: none;
+	border-right: solid black 1px;
+	background-color: #aece61;
+	padding: 10px 10px 10px 10px;
+	text-align: center;
+	width: auto;
+	margin-bottom: 0px;
 }
 
-.subject-div{
-  border-right:solid black 1px;
-  background-color:#aece61 ;
-  padding:10px 0px 10px 0px;
-  text-align:center;
-  width:33%;
-  margin-bottom:5px;
+.subject-div {
+	border-right: solid black 1px;
+	background-color: #aece61;
+	padding: 10px 0px 10px 0px;
+	text-align: center;
+	width: 33%;
+	margin-bottom: 5px;
 }
+
 
 /*home page css*/
-.login-close-button{
-	color:white;
-	background:transparent;
-	border:none;
+
+.login-close-button {
+	color: white;
+	background: transparent;
+	border: none;
 }
 
-.btn-grp-buttons{
-	width:50%;
-	padding:15px 0px 15px 0px;
-	font-size:1.5em;
-	border-radius:5px;
+.btn-grp-buttons {
+	width: 50%;
+	padding: 15px 0px 15px 0px;
+	font-size: 1.5em;
+	border-radius: 5px;
 }
 
-.btn-grp-icons{
-  font-size:24px;
-  margin-right:10px;
+.btn-grp-icons {
+	font-size: 24px;
+	margin-right: 10px;
 }
 
-.login-input{
-height:3em;
-background-color: #f6f8fa;
-color: #bfbebe;
+.login-input {
+	height: 3em;
+	background-color: #f6f8fa;
+	color: #bfbebe;
 }
 
-.tutor-card-body{
-background-color:#f6f8fa;
-text-align:center;
-padding-top:15px;
-padding-bottom:20px;
+.tutor-card-body {
+	background-color: #f6f8fa;
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 20px;
 }
 
-.card:hover{
-	border:solid rgb(176, 207, 101) 3px;
-  transition-duration:0.3s;
+.card:hover {
+	border: solid rgb(176, 207, 101) 3px;
+	transition-duration: 0.3s;
 }
 
-.help-banner{
-	height:40em;
-	margin-bottom:30px;
+.help-banner {
+	height: 40em;
+	margin-bottom: 30px;
 	background-position: center !important;
 	background-repeat: no-repeat !important;
 	background-size: cover !important;
 }
 
-.logo{
-	color:white;
-	text-decoration:none;
-	padding-left:15px;
+.logo {
+	color: white;
+	text-decoration: none;
+	padding-left: 15px;
 }
-.logo:hover{
-  color:white;
+
+.logo:hover {
+	color: white;
 }
+
 
 /* css for the new section*/
 
-.title_box_h{
-    padding: 30px 0 0;
-    width: 100%;
-    max-width: 800px;
-    clear: both;
-    margin: auto;
-	  color: #134477;
-    text-align: center;
-	}
+.title_box_h {
+	padding: 30px 0 0;
+	width: 100%;
+	max-width: 800px;
+	clear: both;
+	margin: auto;
+	color: #134477;
+	text-align: center;
+}
 
-	.service-box{
-	margin-top:0px;
-	margin-bottom:0px;
+.service-box {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
 
-	}
-
-	.howwework_icon{
+.howwework_icon {
 	width: 120px;
-  height: 54px;
-	font-size:35px;
-  color: #aece61;
-  display: block;
-  float: none;
-  margin: 0px 20px 0px;
-  line-height: 56px;
-	}
+	height: 54px;
+	font-size: 35px;
+	color: #aece61;
+	display: block;
+	float: none;
+	margin: 0px 20px 0px;
+	line-height: 56px;
+}
+
 
 /* css for second section*/
-.grey_bg{
 
-background: #ebf0f2;
-padding: 0 70px 50px;
+.grey_bg {
+	background: #ebf0f2;
+	padding: 0 70px 50px;
 }
 
-.features{
-padding: 0px 0px 0px 0px;
-}
-.feature-wrap{
-
-    margin-bottom: 20px;
-    background-color: #fff;
-    padding: 20px;
-    text-align: center;
-    border: 1px solid rgba(0,0,0,.1);
-    cursor: pointer;
+.features {
+	padding: 0px 0px 0px 0px;
 }
 
-.h2{
-font-size: 16px;
-margin-bottom: 10px;
-color: #134477;
+.feature-wrap {
+	margin-bottom: 20px;
+	background-color: #fff;
+	padding: 20px;
+	text-align: center;
+	border: 1px solid rgba(0, 0, 0, .1);
+	cursor: pointer;
 }
 
-.mobile-screen{
-
-width: 304px;
-    height:385px;
-    //background: url(https://s3.amazonaws.com/qriyo-website/image/all_icon_eo13sv.png) 0 -5px no-repeat;
-    display: block!important;
-    margin: 0 auto;
-
+.h2 {
+	font-size: 16px;
+	margin-bottom: 10px;
+	color: #134477;
 }
 
-.all_card_icon{
+.mobile-screen {
+	width: 304px;
+	height: 385px;
+	//background: url(https://s3.amazonaws.com/qriyo-website/image/all_icon_eo13sv.png) 0 -5px no-repeat;
+	display: block!important;
+	margin: 0 auto;
+}
 
-height: 67px;
-font-size:64px;
-    display: block;
-    margin: 0 auto 10px;
+.all_card_icon {
+	height: 67px;
+	font-size: 64px;
+	display: block;
+	margin: 0 auto 10px;
 }
 
 .guarantee_icon {
-    background: url(https://s3.amazonaws.com/qriyo-website/image/all_icon_eo13sv.png) -706px -314px;
-    width: 155px;
-    height: 155px;
-    margin: 0 auto 35px;
+	background: url(https://s3.amazonaws.com/qriyo-website/image/all_icon_eo13sv.png) -706px -314px;
+	width: 155px;
+	height: 155px;
+	margin: 0 auto 35px;
 }
 
-.servie-image{
-
-height: 64px;
-    width: 64px;
-    line-height: 56px;
-    float: left;
-    margin: 35px 15px;
+.servie-image {
+	height: 64px;
+	width: 64px;
+	line-height: 56px;
+	float: left;
+	margin: 35px 15px;
 }
 
 .whyqriyo_icon {
-    width: 64px;
-    height: 64px;
-    display: block;
-    margin: 0 auto 10px;
-    background: url() no-repeat;
+	width: 64px;
+	height: 64px;
+	display: block;
+	margin: 0 auto 10px;
+	background: url() no-repeat;
 }
+
 
 /* css to remove arrows in input fiels*/
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	margin: 0;
 }
+
 
 /*css for text corousel*/
-.testimonial{
 
-  background-image: url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/bg5.jpg?id=192) !important;
+.testimonial {
+	background-image: url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/bg5.jpg?id=192) !important;
 }
 
-.footerclass{
-
-  padding-top:5%;
-  padding-bottom:5%;
-  border-bottom-style:dashed;
-  border-color: #f1f4f7;
-  border-width:1px;
+.footerclass {
+	padding-top: 5%;
+	padding-bottom: 5%;
+	border-bottom-style: dashed;
+	border-color: #f1f4f7;
+	border-width: 1px;
 }
 
-a.footerlink{
-  color:white;
-  text-decoration:none;
+a.footerlink {
+	color: white;
+	text-decoration: none;
 }
 
-a.footerlink:hover{
-  color: #aece61;
+a.footerlink:hover {
+	color: #aece61;
 }
 
-.overlaylogin_input{
-
-  height:2em;
-  background-color: #f6f8fa;
+.overlaylogin_input {
+	height: 2em;
+	background-color: #f6f8fa;
 }
