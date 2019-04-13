@@ -8,6 +8,11 @@ body{
 	letter-spacing:1px;
   }
 
+  a:hover{
+    color:yellow;
+  }
+
+
 footer {
 background-color: #f2f2f2;
     }
@@ -16,7 +21,7 @@ background-color: #f2f2f2;
     margin-bottom: 0;
     border-radius: 0;
 	color:white;
-	
+
 	background-color:#062e57;
 	}
 
@@ -107,6 +112,11 @@ font-size:1.3em;
 
 .address{
 	padding-right:20px;
+  cursor: pointer;
+}
+
+.address:hover{
+  color: #aece61;
 }
 
 .button {
@@ -490,4 +500,22 @@ input[type=number]::-webkit-outer-spin-button {
 .testimonial{
 
   background-image: url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/bg5.jpg?id=192) !important;
+}
+
+.footerclass{
+
+  padding-top:5%;
+  padding-bottom:5%;
+  border-bottom-style:dashed;
+  border-color: #f1f4f7;
+  border-width:1px;
+}
+
+a.footerlink{
+  color:white;
+  text-decoration:none;
+}
+
+a.footerlink:hover{
+  color: #aece61;
 }
