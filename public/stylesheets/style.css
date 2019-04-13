@@ -3,7 +3,7 @@ html {
 }
 
 body{
-  font-family: Sanchez, Arial, sans-serif;
+  font-family: Lora;
 	font-weight:400;
 	letter-spacing:1px;
   }
@@ -541,6 +541,6 @@ a.footerlink:hover{
 
 .overlaylogin_input{
 
-  height:2em; 
+  height:2em;
   background-color: #f6f8fa;
 }
