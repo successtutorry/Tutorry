@@ -10,21 +10,21 @@ document.addEventListener("scroll", function () {
 function myFunc() {
  var navbar = document.getElementById("navbar");
  var sticky = navbar.offsetTop;
- var stickysearchbar = document.getElementById("stickysearchbar");
- var stickysearch = stickysearchbar.offsetTop;
+ //var stickysearchbar = document.getElementById("stickysearchbar");
+ //var stickysearch = stickysearchbar.offsetTop;
  var y = window.pageYOffset;
 
  if(y>100){
  navbar.style = "background-color:#062e57;";
  }
 
-if(y>600){
+/*if(y>600){
  stickysearchbar.style = "position:sticky; top:0; padding-top:60px; z-index:100;";
-}
+}*/
 
-if(y<600){
+/*if(y<600){
 	myFuncEndforSearchBar();
-}
+}*/
 
  myFuncEnd();
  //myFuncEndforSearchBar();
@@ -38,10 +38,10 @@ function myFuncEnd(){
 }
 }
 
-function myFuncEndforSearchBar(){
+/*function myFuncEndforSearchBar(){
 		var stickysearchbar = document.getElementById("stickysearchbar");
 		stickysearchbar.style = "padding-top:0px";
-}
+}*/
 
 </script>
 
@@ -74,7 +74,8 @@ function myFuncEndforSearchBar(){
 		  </div>
 		</div>
 	</div> <!----------- end of carousel ----------------->
-	<div id="stickysearchbar" class=" margin-class" style="top:-68px;"> <!----------- start of search bar----------------->
+	<!----------- start of search bar----------------->
+	<!--<div id="stickysearchbar" class=" margin-class" style="top:-68px;">
 		<div class="title-margin-class" style="background-color:#062e57;">
 			<form class="form-inline" action="/action_page.php">
 				<div class="form-group form-header">
@@ -82,7 +83,7 @@ function myFuncEndforSearchBar(){
 					<h4 style="color:#aece61; font-size:3.125rem; line-height:1;">Tutor</h4>
 				</div>
 				<div class="form-group">
-					<input type="email" class="form-control searchbar-input" id="email" placeholder="Enter a subject" name="email">
+					<input type="text" class="form-control searchbar-input" id="email" placeholder="Enter a subject" name="email">
 				</div>
 				<div class="form-group">
 					<input type="text" class="form-control searchbar-input" id="pwd" placeholder="Location" name="pwd">
@@ -95,7 +96,8 @@ function myFuncEndforSearchBar(){
 				</div>
 			</form>
 		</div>
-	</div> <!----------- start of navigation bar ----------------->
+	</div>-->
+	<!-----------end of search  bar ----------------->
 
 
 <!--------- start of video presentation section------------>
@@ -105,16 +107,11 @@ function myFuncEndforSearchBar(){
 			<p class="title_info" style="color: #91959a;">We provide the best tutoring service</p>
 			<h1 style="color: #134477;">Useful <span style="color: #aece61;"> Information</span></h1>
 		</div>
-		<div class="within-sec-margin title-margin-class videopresent">
-			<!--<div style=" position:relative; top:10%; height:32em; width:49%; background-color:white; z-index:1">
-				<div style="text-align:center; padding-top:20px;">
-					<h1 style="color: #aece61;">Most Popular</h1>
-					<h2 style="color: #134477;"> Trending Subjects</h2>
-				</div>
-			</div>-->
-			<div style="padding-left:20%; padding-top:25%; opacity:1;">
+		<div class="within-sec-margin title-margin-class">
+		<iframe width="100%" height="400px" src="https://www.youtube.com/embed/vqNqnlP73dY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<!--<div style="padding-left:20%; padding-top:25%; opacity:1;">
 				<a style=" font-size:2.5em; font-weight:100; text-decoration:none; color:white; padding-right:10px;" href="#">View our video presentation<span class="far fa-play-circle"></span></a>
-			</div>
+			</div>-->
 		</div>
 	</div>
 </div>
@@ -124,10 +121,11 @@ function myFuncEndforSearchBar(){
 
 	<div id="" class="section-margin margin-class">
 	<div class="title-margin-class">
-		<div class="title_box_h">
-            <h1 class="specialh1">Search Home Tuitions in Your City</h1>
-        </div>
-		<div style="padding-top:15px;" class="row">
+		<div class="">
+			<p class="title_info" style="color: #91959a;">We provide the best tutoring service</p>
+			<h1 style="color: #134477;">Useful <span style="color: #aece61;"> Information</span></h1>
+		</div>
+		<div style="padding-top:15px;" class="row within-sec-margin">
 			<div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="col-md-12">
                     <div class="service-box">
@@ -183,13 +181,14 @@ function myFuncEndforSearchBar(){
  <!--- end of first how  we work section---->
 
  <!---- start of second how we work section---->
-<div class="container-fluid grey_bg">
+<!--<div class="container-fluid grey_bg section-margin">
  <div class="margin-class row">
 	 <div class="col-md-12">
-		 <div class="title_box_h">
-									 <h1> Home Tutors for Academics </h1>
-					 </div>
-		 <div style="padding-top:15px;" class="row">
+		 <div class="">
+ 			<p class="title_info" style="color: #91959a;">We provide the best tutoring service</p>
+ 			<h1 style="color: #134477;">Useful <span style="color: #aece61;"> Information</span></h1>
+ 		</div>
+		 <div style="padding-top:15px;" class="row within-sec-margin">
 			 <div class="features">
 				 <div class="col-md-4 col-sm-6">
 											 <div class="feature-wrap clickMe" data-url="/learn/#/request/home-tutor-academics">
@@ -222,18 +221,19 @@ function myFuncEndforSearchBar(){
 		 </div>
 	 </div>
  </div>
-</div>
+</div>-->
 <!---- end of second how we work section---->
 
 <!-- start of third how we work section --->
  <div class="container-fluid">
-	<div style="padding-top:15px;" class="row margin-class">
+	<div class="row margin-class section-margin">
 	<div class="title-margin-class">
 		<div class="col-md-12">
-			<div class="title_box_h">
-                <h1> Home Tutors for Academics </h1>
-            </div>
-			<div style="padding-top:15px;" class="row">
+			<div class="">
+  			<p class="title_info" style="color: #91959a;">We provide the best tutoring service</p>
+  			<h1 style="color: #134477;">Useful <span style="color: #aece61;"> Information</span></h1>
+  		</div>
+			<div  class="row within-sec-margin">
 				<div class="features">
 					<div class="col-md-3 col-sm-6">
                         <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
@@ -317,13 +317,21 @@ function myFuncEndforSearchBar(){
 
  <!-- start of fourth how we work section --->
  <div class="container-fluid">
-	<div style="padding-top:15px;" class="row margin-class">
+	<div  class="row margin-class section-margin">
 	<div class="title-margin-class">
 		<div class="col-md-12">
+<<<<<<< HEAD
 			<div class="title_box_h">
 				<h1> Why Tutorry is the Best?</h1>
 			</div>
 			<div style="padding-top:15px;" class="row">
+=======
+			<div class="">
+  			<p class="title_info" style="color: #91959a;">We provide the best tutoring service</p>
+  			<h1 style="color: #134477;">Useful <span style="color: #aece61;"> Information</span></h1>
+  		</div>
+			<div class="row within-sec-margin">
+>>>>>>> 141f238f075d6579746c3bc3199e61c27cb0402e
 				<div class="col-md-3 col-sm-12">
 					<div style="text-align:center;">
 						<p class="guarantee_icon"></p>

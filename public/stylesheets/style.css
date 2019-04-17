@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body{
   font-family: Sanchez, Arial, sans-serif;
 	font-weight:400;
@@ -157,11 +161,13 @@ font-size:1.3em;
 }
 
 .videopresent{
-  height:40em;
+
+
+  /*height:40em;
 	background-image:url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/photo11.jpg);
 	background-position:center center;
 	background-size:cover;
-	background-repeat:no-repeat;
+	background-repeat:no-repeat;*/
 }
 
 .btn-group button {
@@ -381,7 +387,7 @@ padding-bottom:20px;
     max-width: 800px;
     clear: both;
     margin: auto;
-	color: #134477;
+	  color: #134477;
     text-align: center;
 	}
 
@@ -393,14 +399,13 @@ padding-bottom:20px;
 
 	.howwework_icon{
 	width: 120px;
-    height: 64px;
-	font-size:64px;
-    display: block;
-    margin-bottom: 10px;
-
-	float: none;
-    margin: 10px 20px 20px;
-    line-height: 56px;
+  height: 54px;
+	font-size:54px;
+  display: block;
+  margin-bottom: 10px;
+  float: none;
+  margin: 10px 20px 20px;
+  line-height: 56px;
 	}
 
 /* css for second section*/
