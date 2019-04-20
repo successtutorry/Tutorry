@@ -1,0 +1,67 @@
+.progress{
+	height:5px;
+	margin-left:70px;
+	margin-right:70px;
+}
+
+.modal-body-title{
+    font-size: 24px;
+    line-height: 32px;
+    margin: 15px 0;
+    color: #282828;
+    position: relative;
+    text-align: center;
+    padding: 0 100px;
+    font-weight: 500;
+	   height:65px;
+}
+
+.modal-body-form{
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top:50px;
+	background-color:white;
+}
+
+.modal-body-form-input{
+	border-color: #ececee;
+	border-style:solid solid none solid;
+	border-width:0.5px 0.5px 0px 0.5px;
+	padding:10px 10px 10px 20px;
+}
+
+.modal-body-form-input-radio{
+	height: 20px;
+	width: 20px;
+}
+
+.modal-body-form-input-text{
+margin-left:10px;
+font-size:16px;
+}
+
+.modal-footer-style{
+  border-top:none;
+	padding:25px 35px 15px 35px;
+	margin-top:80px;
+	background-color:#fff;
+}
+/* css*/
+.tab {
+  display: none;
+}
+
+.nextprevbutton{
+	background-color: #aece61;
+	border-radius:10em;
+	color:white;
+	font-size:16px;
+
+}
+
+.nextprevbutton:hover{
+
+	background-color:rgb(19, 68, 119);
+	color:white;
+	transition-duration: 0.4s;
+}
