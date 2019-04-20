@@ -138,26 +138,29 @@ router.route('/register')
 // this route is executed when the user tries to login
 router.route('/login')
 .post(isNotAuthenticated, passport.authenticate('local', {
-    successReturnToOrRedirect: '/',
-    //successRedirect: '/users/dashboard',
+    //successReturnToOrRedirect: '/',
+    successRedirect: '/users/dashboard',
     failureRedirect: '/users/login',
     failureFlash: true
   }));
 
   router.route('/dashboard')
   .get(isAuthenticated, (req, res) =>{
-    req.flash('success', 'Successfully logged in out');
+    //req.flash('success', 'Successfully logged in out');
     if(req.user.country =='student'){
       console.log('student');
+
     }
     else{
       console.log('tutor');
     }
     if(req.user.profilecomplete){
       console.log('your profile is complete');
+
     }else{
 
       console.log('complete your profile');
+    //  res.render('student_profile');
     }
     //res.render('dashboard',{username:req.user.username, })
   });
