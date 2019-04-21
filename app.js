@@ -4,6 +4,9 @@ var expressHbs = require('express-handlebars');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var fs = require('fs');
+var winston = require('winston');
+const json = require('morgan-json');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport  = require('passport');
@@ -18,6 +21,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 require('./config/passport');
 
+
+
 mongoose.Promise = global.Promise;
 
 //database connection
@@ -31,11 +36,16 @@ mongoose.connect('mongodb://root:root123@ds343895.mlab.com:43895/tutorry_v1', { 
 
 var app = express();
 
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+const format = json(':method :url :status :res[content-length] bytes :response-time ms');
+
+
 // view engine setup
 app.engine('.hbs',expressHbs({defaultLayout:'layout',extname:'.hbs'}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', '.hbs');
-app.use(logger('dev'));
+app.use(logger(format));
+app.use(logger(format, { stream: accessLogStream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
