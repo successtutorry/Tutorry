@@ -147,6 +147,7 @@ router.route('/login')
   router.route('/dashboard')
   .get(isAuthenticated, (req, res) =>{
     //req.flash('success', 'Successfully logged in out');
+    console.log(req.sessionID);
     if(req.user.country =='student'){
       console.log('student');
 
@@ -195,7 +196,7 @@ router.route('/login')
        Have a pleasant day.`
        // Send email
        await mailer.sendEmail('tutorry.in@gmail.com', req.body.email, '', html);
-       req.flash('success', 'Link has been send to you on you email id.');
+       console.log('Link has been send to you on you email id.');
        res.redirect('/');
 
  }else{
@@ -309,7 +310,12 @@ router.route('/checkUserInDatabase:email')
 .get(async(req,res)=>{
 
 const user = await User.findOne({ 'email': req.params.email });
-console.log(user);
+if(user){
+
+  res.send('true');
+}else{
+  res.send('false');
+}
 });
 
 
