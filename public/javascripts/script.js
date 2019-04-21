@@ -126,7 +126,7 @@ function displayRegistration(){
 }
 
 function checkifEmailExists(x){
- $.get('/users/checkUserInDatabase:'+ x , function(data, status){
+ $.get('/users/checkUserInDatabase'+ x , function(data, status){
 
    if(data=='true'){
      alert('email exists');
