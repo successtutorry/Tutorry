@@ -45,9 +45,10 @@ function myFuncEnd(){
 
 function myFunction(event) {
   var x = event.key;
-	if(!isNaN(x)){
+	alert(x);
+/*	if(!isNaN(x)){
 		alert('wrong input');
-	}
+	}*/
 }
 
 </script>
@@ -93,7 +94,7 @@ function myFunction(event) {
 						</div>
 						<div class="col-sm-9" style="padding-top:20px;">
 								<div class="form-group">
-									<input onkeydown="myFunction(event)" type="text" class="form-control searchbar-input" id="subject" placeholder="Enter a subject" name="subject">
+									<input onkeydown="myFunction(event);" type="text" class="form-control searchbar-input" id="subject" placeholder="Enter a subject" name="subject">
 								</div>
 								<div class="form-group">
 									<input type="text" class="form-control searchbar-input" id="location" placeholder="Location" name="location">
@@ -102,7 +103,7 @@ function myFunction(event) {
 									<input type="number" class="form-control searchbar-input" id="zipcode" placeholder="Zipcode" name="zipcode">
 								</div>
 								<div class="form-group" style="padding-bottom:15px; text-align:center; margin-left:10px;">
-									<button class="button btn btn-lg" onclick="location.href='/users/find_tutor'" type="button">Find Now</button>
+									<button onclick="location.href='/users/find_tutor'" class="button btn btn-lg" type="button">Find Now</button>
 								</div>
 						</div>
 					</div>
