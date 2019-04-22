@@ -21,7 +21,7 @@ const isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   } else {
-    req.flash('error', 'Sorry, but you must be registered or logged in  first!');
+    console.log('error', 'Sorry, but you must be registered or logged in  first!');
     res.redirect('/');
   }
 };
@@ -30,7 +30,7 @@ const isAuthenticated = (req, res, next) => {
 // already logged in
 const isNotAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
-    req.flash('error', 'Sorry, but you are already logged in!');
+    console.log('error', 'Sorry, but you are already logged in!');
     res.redirect('/');
   } else {
     return next();
@@ -52,7 +52,7 @@ router.route('/register')
       const result = Joi.validate(req.body, userSchema);
       if (result.error) {
         console.log(result.error);
-        req.flash('error', 'Data is not valid. Please try again.');
+        console.log('error', 'Data is not valid. Please try again.');
         res.redirect('/');
         return;
       }
@@ -62,7 +62,7 @@ router.route('/register')
       const user = await User.findOne({ 'email': result.value.email });
       console.log(user);
       if (user) {
-        req.flash('error', 'Email is already in use. Please check your email');
+        console.log('error', 'Email is already in use. Please check your email');
         res.redirect('/');
         return;
       }
@@ -102,7 +102,7 @@ router.route('/register')
       Have a pleasant day.`
       // Send email
       await mailer.sendEmail('tutorry.in@gmail.com', result.value.email, '', html);
-      req.flash('success', 'An email verification code has been sent to you email account, Please check your email and click on the link to complete registration');
+      console.log('success', 'An email verification code has been sent to you email account, Please check your email and click on the link to complete registration');
       res.redirect('/');
 
     } catch(error) {
@@ -318,6 +318,12 @@ if(user){
 }
 });
 
+router.route('/submitrequirement')
+.get((req,res) =>{
+
+  //console.log(req.body);
+  console.log('hi');
+});
 
 router.route('/find_tutor')
   .get((req, res) => {
