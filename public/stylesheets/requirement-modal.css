@@ -51,6 +51,10 @@ font-size:16px;
   display: none;
 }
 
+.quittab {
+  display: none;
+}
+
 .nextprevbutton{
 	background-color: #aece61;
 	border-radius:10em;
