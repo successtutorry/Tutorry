@@ -1,6 +1,12 @@
 var currentTab = 0; // Current tab is set to be the first tab (0)
 var progressdisplay = 1;
 var checked = 0;
+var length = 0;
+var progress = document.getElementById('progress');
+var x = document.getElementsByClassName("tab");
+length = x.length;
+var progress = document.getElementById('progress');
+progress.style.width = (100/length)*(currentTab+1) + "%";
 showTab(currentTab); // Display the current tab
 
 function showTab(n) {
@@ -8,6 +14,7 @@ function showTab(n) {
 document.getElementById('error').style = 'display:none;';
   // This function will display the specified tab of the form ...
   var x = document.getElementsByClassName("tab");
+
 //  alert('displaying tab'+ n);
   x[n].style.display = "block";
   // ... and fix the Previous/Next buttons:
@@ -59,12 +66,12 @@ if ($('input[type=radio]:checked').length > checked) {
   //alert('getting ready to display next tab', currentTab);
  /* progressdisplay = progressdisplay + 1;
   progress.style.width = 6.6666*progressdisplay + "%";*/
-  progress.style.width = 6.6666*(currentTab+1) + "%";
+  progress.style.width = (100/length)*(currentTab+1) + "%";
 
   // if you have reached the end of the form... :
   if (currentTab >= x.length) {
     //...the form gets submitted:
-    document.getElementById("regForm").submit();
+    document.getElementById("requirementform").submit();
     return false;
   }
   // Otherwise, display the correct tab:
@@ -93,7 +100,7 @@ function showprev(n){
   //alert('getting ready to display next tab', currentTab);
  /* progressdisplay = progressdisplay + 1;
   progress.style.width = 6.6666*progressdisplay + "%";*/
-  progress.style.width = 6.6666*(currentTab+1) + "%";
+  progress.style.width = (100/length)*(currentTab+1) + "%";
 
   // if you have reached the end of the form... :
   if (currentTab >= x.length) {
@@ -110,8 +117,9 @@ function showprev(n){
 }
 
 function alertuser(){
-//alert('inside alertuser');
-var header = document.getElementsByClassName("modal-body-title");
-header[currentTab].innerHTML = 'Are you sure you want to quit?<br><a style="text-decoration:none; font-size:18px; color:blue; cursor:pointer;" href="" data-dismiss="modal">Cancel Request?</a><br><a style="text-decoration:none;font-size:18px; color:blue; cursor:pointer;" href="#"  onclick="javascript:showTab(currentTab)">Continue Request?</a>';
-
+   var x = document.getElementsByClassName("tab");
+   x[currentTab].style.display = "none";
+   document.getElementById("modal-footer").style.display = "none";
+   document.getElementById('headertag').innerHTML = 'You have completed '+ (100/length)*(currentTab+1)+ '% , Are you sure you want to quit?';
+   document.getElementById('quittab').style.display = "block";
 }
