@@ -7,6 +7,7 @@ var logger = require('morgan');
 var fs = require('fs');
 //var winston = require('winston');
 const json = require('morgan-json');
+var rfs = require('rotating-file-stream')
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport  = require('passport');
@@ -36,7 +37,18 @@ mongoose.connect('mongodb://root:root123@ds343895.mlab.com:43895/tutorry_v1', { 
 
 var app = express();
 
-var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+/*var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });*/
+
+var logDirectory = path.join(__dirname, 'log')
+
+// ensure log directory exists
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory)
+
+// create a rotating write stream
+var accessLogStream = rfs('information.log', {
+  interval: '1h', // rotate daily
+  path: logDirectory
+})
 const format = json(':method :url :status :res[content-length] bytes :response-time ms');
 
 
@@ -44,7 +56,7 @@ const format = json(':method :url :status :res[content-length] bytes :response-t
 app.engine('.hbs',expressHbs({defaultLayout:'layout',extname:'.hbs'}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', '.hbs');
-app.use(logger(format));
+app.use(logger('dev'));
 app.use(logger(format, { stream: accessLogStream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
