@@ -1,6 +1,6 @@
 
 
-/*var currentTab = 0; // Current tab is set to be the first tab (0)
+var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 
 function showTab(n) {
@@ -71,12 +71,13 @@ x[i].className = x[i].className.replace(" active", "");
 }
 //... and adds the "active" class on the current step:
 x[n].className += " active";
-}*/
+}
 
 // javascript for overlay login and message overlay regForm
 function on(){
  document.getElementById("overlay").style="display:block;";
  document.getElementById("closebtn").style="display:block;";
+
 
 }
 
@@ -99,20 +100,28 @@ function displayRegistration(){
 
 	}
 
-  function showform(){
+  function showform(n){
 
     $.get("/users/checkAuth", function(data, status){
     alert("Data: " + data + "\nStatus: " + status);
-    if(data=='true'){
-      document.getElementById("message-overlay").style="display:block;";
+    if(data=='true'&& n=='1'){
+      //document.getElementById("message-overlay").style="display:block;";
+      $('#myModal').modal('show');
+    //checkrequirementEixts();
     }
-    if(data=='false'){
-      document.getElementById("overlay").style="display:block;";
+    if(data=='false'&& n=="1"){
+      //document.getElementById("overlay").style="display:block;";
+      alert('You must be logged in.');
+      //document.getElementById("message-overlay").style="display:block;";
+      on();
+
     }
 
   });
       //document.getElementById("message-overlay").style="display:block;";
   }
+
+
 
   function hideoverlay(){
 
@@ -129,11 +138,11 @@ function checkifEmailExists(x){
  $.get('/users/checkUserInDatabase'+ x , function(data, status){
 
    if(data=='true'){
-     alert('email exists');
+     //alert('email exists');
    }
    if(data=='false'){
 
-     alert('email does not exist');
+     //alert('email does not exist');
    }
  });
 
