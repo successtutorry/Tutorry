@@ -1,4 +1,4 @@
-var currentTab = 0; // Current tab is set to be the first tab (0)
+/*var currentTab = 0; // Current tab is set to be the first tab (0)
 var progressdisplay = 1;
 var checked = 0;
 var length = 0;
@@ -64,8 +64,7 @@ if ($('input[type=radio]:checked').length > checked) {
 
   currentTab = currentTab + n;
   //alert('getting ready to display next tab', currentTab);
- /* progressdisplay = progressdisplay + 1;
-  progress.style.width = 6.6666*progressdisplay + "%";*/
+
   progress.style.width = (100/length)*(currentTab+1) + "%";
 
   // if you have reached the end of the form... :
@@ -98,8 +97,7 @@ function showprev(n){
 
   currentTab = currentTab + n;
   //alert('getting ready to display next tab', currentTab);
- /* progressdisplay = progressdisplay + 1;
-  progress.style.width = 6.6666*progressdisplay + "%";*/
+
   progress.style.width = (100/length)*(currentTab+1) + "%";
 
   // if you have reached the end of the form... :
@@ -122,4 +120,4 @@ function alertuser(){
    document.getElementById("modal-footer").style.display = "none";
    document.getElementById('headertag').innerHTML = 'You have completed '+ (100/length)*(currentTab+1)+ '% , Are you sure you want to quit?';
    document.getElementById('quittab').style.display = "block";
-}
+}*/
