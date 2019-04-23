@@ -1,7 +1,7 @@
 {{>header}}
-<form id="regForm" action="/action_page.php">
+<!--<form id="regForm" action="/action_page.php">
 		<h1 class="registerheader">Profile Details</h1>
-		<!-- One "tab" for each step in the form: -->
+
 		<div class="tab">
 			<h3 style="color:#134477">Personal info:</h3>
 			<p><input placeholder="First name..." oninput="this.className = ''" name="fname"></p>
@@ -50,7 +50,7 @@
 				<button class="tut-reg-btn" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
 			</div>
 		</div>
-		<!-- Circles which indicates the steps of the form: -->
+
 		<div style="text-align:center;margin-top:40px;">
 			<span class="step"></span>
 			<span class="step"></span>
@@ -58,4 +58,206 @@
 			<span class="step"></span>
 			<span class="step"></span>
 		</div>
+	</form>-->
+<div style="margin-top:100px; width:50%;">
+	<form id="tutorregistration" action="/users/tutor_registration", method="post">
+		<ul>
+			<li><input type="text" placeholder="First Name" id="firstname" name="firstname"></li>
+			<li><input type="text" placeholder="Last Name" id="lastname" name="lastname"></li>
+			<li><input type="email" placeholder="Email" id="email" name="email"></li>
+			<li><input type="text" placeholder="DD/MM/YYYY" id="dob" name="dob"></li>
+			<li>
+				<div>
+					<div class="radio">
+	  				<label><input type="radio" value="male" name="gender">Male</label>
+					</div>
+					<div class="radio">
+	  				<label><input type="radio" value="female" name="gender">Female</label>
+					</div>
+					<div class="radio">
+	  				<label><input type="radio" value="other" name="gender">Other</label>
+					</div>
+				</div>
+			</li>
+			<li><input type="number" placeholder="Contact Number" id="contact" name="contact"></li>
+			<li><input type="text" placeholder="Address line 1" id="address1" name="address1"></li>
+			<li><input type="text" placeholder="Address line 2" id="address2" name="address2"></li>
+			<li><input type="number" placeholder="Zipcode" id="zipcode" name="zipcode"></li>
+			<li><input type="text" placeholder="School Name" id="schoolname" name="schoolname"></li>
+			<li><input type="text" placeholder="College Name" id="collegename" name="collegename"></li>
+			<li><input type="text" placeholder="Degree College Name" id="degreecollegename" name="degreecollegename"></li>
+			<li><input type="text" placeholder="Post Graduation College Name" id="postdegreecollegename" name="postdegreecollegename"></li>
+			<li><input type="text" placeholder="Experience in teaching at school" id="schoolexp" name="schoolexp"></li>
+			<li><input type="text" placeholder="Experience in teaching at college" id="collegeexp" name="collegeexp"></li>
+			<li><input type="text" placeholder="Experience in teaching at coaching institute" id="instituteexp" name="instituteexp"></li>
+			<li><input type="text" placeholder="Experience in teaching privately" id="privateexp" name="privateexp"></li>
+			<li><input type="number" placeholder="Years of Experience in teaching" id="experience" name="experience"></li>
+			<li>
+				<h4>Cities Available:</h4>
+				<div class="checkbox">
+	      	<label><input class="availablearea" type="checkbox" value="thane" name="availablearea[]">Thane</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input class="availablearea" type="checkbox" value="kalyan" name="availablearea[]">Kalyan</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input class="availablearea" type="checkbox" value="bhandup" name="availablearea[]">Bhandup</label>
+	    	</div>
+			</li>
+			<li>
+				<h4>Which subjects you teach ?</h4>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="history" name="subjects[]">History</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="geography" name="subjects[]">Geography</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="maths" name="subjects[]">Maths</label>
+	    	</div>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="science" name="subjects[]">Science</label>
+	    	</div>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="economics" name="subjects[]">Economics</label>
+	    	</div>
+			</li>
+			<li>
+				<h4>Which timings are you Available ?</h4>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="morning" name="time[]">Morning</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="evening" name="time[]">Evening</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="afternoon" name="time[]">Afternoon</label>
+	    	</div>
+			</li>
+			<li>
+				<h4>On what days are you Available ?</h4>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="monday" name="days[]">Monday</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="tuesday" name="days[]">Tuesday</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="wednesday" name="days[]">Wednesday</label>
+	    	</div>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="thursday" name="days[]">Thursday</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="friday" name="days[]">Friday</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="saturday" name="days[]">Saturday</label>
+	    	</div>
+			</li>
+			<li>
+				<h4>Which class students do you teach ?</h4>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="1-5" name="class[]">1-5</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="5-10" name="class[]">5-10</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="10-12" name="class[]">10-12</label>
+	    	</div>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="degree" name="class[]">Degree</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="postgraduation" name="class[]">Post Graduation</label>
+	    	</div>
+			</li>
+			<li>
+				<h4>What is your minimum charge per hour ?</h4>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="200" name="rateperhour[]">200</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="300" name="rateperhour[]">300</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="400" name="rateperhour[]">400</label>
+	    	</div>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="500" name="rateperhour[]">500</label>
+	    	</div>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="600" name="rateperhour[]">600</label>
+	    	</div>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="700" name="rateperhour[]">700</label>
+	    	</div>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="800" name="rateperhour[]">800</label>
+	    	</div>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="900" name="rateperhour[]">900</label>
+	    	</div>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="1000" name="rateperhour[]">1000</label>
+	    	</div>
+			</li>
+			<li>
+				<h4>What type of students your prefer coaching to ?</h4>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="weak" name="typeofstudent[]">weak</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="average" name="typeofstudent[]">average</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="studious" name="typeofstudent[]">studious</label>
+	    	</div>
+			</li>
+			<li>
+				<h4>In which languages can you teach ?</h4>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="english" name="languages[]">English</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="hindi"  name="languages[]">Hindi</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="marathi"  name="languages[]">Marathi</label>
+	    	</div>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="tamil"  name="languages[]">tamil</label>
+	    	</div>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="telugu"  name="languages[]">Telugu</label>
+	    	</div>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="kannada"  name="languages[]">Kannada</label>
+	    	</div>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="urdu"  name="languages[]">urdu</label>
+	    	</div>
+			</li>
+			<li>
+				<h4>Are you comfortable in visiting student's home to teach ?</h4>
+				<div class="radio">
+	      	<label><input type="radio" value="yes" name="homevisit">Yes</label>
+	    	</div>
+	    	<div class="radio">
+	      	<label><input type="radio" value="no" name="homevisit">No</label>
+	    	</div>
+			</li>
+			<li>
+				<h4>Can you give demo classes ?</h4>
+				<div class="radio">
+	      	<label><input type="radio" value="yes" name="demo">Yes</label>
+	    	</div>
+	    	<div class="radio">
+	      	<label><input type="radio" value="no" name="demo">No</label>
+	    	</div>
+			</li>
+<li><button type = "submit " value="submit"></button><li>
+		</ul>
 	</form>
+</div>
