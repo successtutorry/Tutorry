@@ -8,6 +8,7 @@ const url = require('url');
 const bodyParser = require('body-parser');
 const messageForm = require('../models/message');
 const requirementForm = require('../models/requirement');
+const tutor = require('../models/tutorregistration');
 //const tutor = require('../models/tutors');
 const request = require('request');
 const User = require('../models/user');
@@ -321,7 +322,7 @@ if(user){
 });
 
 router.route('/submitrequirement')
-.post((req,res) =>{
+.post(isAuthenticated, (req,res) =>{
 
 const newRequirement = new requirementForm({
   user:req.user,
@@ -329,9 +330,26 @@ const newRequirement = new requirementForm({
   class:req.body.class
 });
 newRequirement.save();
+res.render('find_tutor', req.user)
+//res.redirect();
 //  console.log(req.body);
 
 });
+
+
+/*router.route('/checkrequirementEixts')
+.get(async(req,res)=>{
+  console.log(req.user);
+
+  const existingreq = await requirementForm.findOne({'user' : req.user  });
+  console.log(existingreq);
+  if(existingreq){
+
+    res.send('true');
+  }else{
+    res.send('false');
+  }
+});*/
 
 router.route('/find_tutor')
   .get((req, res) => {
@@ -356,6 +374,48 @@ router.route('/contact')
     router.route('/tutor_registration')
       .get((req, res) => {
         res.render('tutor-registration');
+      });
+
+      router.route('/tutor_registration')
+      .post((req,res)=>{
+        console.log(req.body);
+
+
+        const newTutor = new tutor({
+
+          firstname: req.body.firstname,
+          lastname: req.body.lastname,
+          email: req.body.email,
+          dob: req.body.dob,
+          gender: req.body.gender,
+          contact: req.body.contact,
+          address1: req.body.address1,
+          address2: req.body.address2,
+          zipcode: req.body.zipcode,
+          schoolname: req.body.schoolname,
+          collegename: req.body.collegename,
+          degreecollegename: req.body.degreecollegename,
+          postdegreecollegename: req.body.postdegreecollegename,
+          schoolexp: req.body.schoolexp,
+          collegeexp: req.body.collegeexp,
+          instituteexp: req.body.instituteexp,
+          privateexp: req.body.privateexp,
+          experience: req.body.experience,
+          homevisit: req.body.homevisit,
+          demo: req.body.demo,
+          availablearea:req.body['availablearea[]'],
+          subjects:  req.body['subjects[]'],
+          time: req.body['time[]'],
+          days:  req.body['days[]'],
+          class:  req.body['class[]'],
+          rateperhour: req.body['rateperhour[]'],
+          typeofstudent:  req.body['typeofstudent[]'],
+          languages:  req.body['languages[]']
+        });
+
+        newTutor.save();
+        res.render('tutor_registration');
+
       });
 
 router.route('/view_tutor')
