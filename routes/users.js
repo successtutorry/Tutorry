@@ -7,6 +7,7 @@ const mailer = require('../misc/mailer');
 const url = require('url');
 const bodyParser = require('body-parser');
 const messageForm = require('../models/message');
+const requirementForm = require('../models/requirement');
 //const tutor = require('../models/tutors');
 const request = require('request');
 const User = require('../models/user');
@@ -147,7 +148,7 @@ router.route('/login')
   router.route('/dashboard')
   .get(isAuthenticated, (req, res) =>{
     //req.flash('success', 'Successfully logged in out');
-    console.log(req.sessionID);
+  /*  console.log(req.sessionID);
     if(req.user.country =='student'){
       console.log('student');
 
@@ -163,14 +164,15 @@ router.route('/login')
       console.log('complete your profile');
     //  res.render('student_profile');
     }
-    //res.render('dashboard',{username:req.user.username, })
+    console.log('welcome'+req.user.username);*/
+    res.render('index',{username:req.user.username })
   });
 
 
   router.route('/logout')
   .get(isAuthenticated, (req, res) => {
     req.logout();
-    req.flash('success', 'Successfully logged out. Hope to see you soon!');
+    console.log('success', 'Successfully logged out. Hope to see you soon!');
     res.redirect('/');
   });
 
@@ -319,10 +321,16 @@ if(user){
 });
 
 router.route('/submitrequirement')
-.get((req,res) =>{
+.post((req,res) =>{
 
-  //console.log(req.body);
-  console.log('hi');
+const newRequirement = new requirementForm({
+  user:req.user,
+  location:req.body.location,
+  class:req.body.class
+});
+newRequirement.save();
+//  console.log(req.body);
+
 });
 
 router.route('/find_tutor')
