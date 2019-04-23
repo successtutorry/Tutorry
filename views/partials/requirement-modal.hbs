@@ -2,7 +2,7 @@
   <div  class="modal fade" id="myModal" role="dialog">
     <div  class="modal-dialog">
       <!-- Modal content-->
-      <div  style="background-color: #f6f8fa; height:550px;" class="modal-content">
+      <div id="modal-content" style="background-color: #f6f8fa; height:550px;" class="modal-content">
         <div class="modal-header" style="border-bottom:none;">
           <button type="button" onclick='alertuser();' class="close">&times;</button>
 		      <div class="progress">
@@ -17,7 +17,7 @@
 			      </div>
       			<div class="modal-body-form">
       				<div class="modal-body-form-input" >
-      					<input class="modal-body-form-input-radio" type="radio" name="location" id="thane">
+      					<input class="modal-body-form-input-radio" type="radio" value="thane" name="location" id="thane">
       					<label for="thane" class="modal-body-form-input-text">Thane</label>
       				</div>
       				<div class="modal-body-form-input">
@@ -40,7 +40,7 @@
     			</div>
     			<div class="modal-body-form">
     				<div class="modal-body-form-input" >
-    					<input class="modal-body-form-input-radio" type="radio" name="class" id="school">
+    					<input class="modal-body-form-input-radio" value="5-10" type="radio" name="class" id="school">
     					<label for="school" class="modal-body-form-input-text">5-10</label>
     				</div>
     				<div class="modal-body-form-input">
@@ -57,7 +57,7 @@
     				</div>
     			</div>
         </div>
-    		<div  class="tab modal-body">
+    		<!--<div  class="tab modal-body">
     			<div class="modal-body-title">
     				<h3 style="line-height:32px;">How would you like to meet with the math tutor?</h3>
     			</div>
@@ -125,15 +125,18 @@
     					<span class="modal-body-form-input-text">Balewadi PUNE</span>
     				</div>
     			</div>
-        </div>
+        </div>-->
         <div id="quittab" class="quittab modal-body">
     			<div class="modal-body-title">
     				<h3 id="headertag" style="line-height:32px;"></h3>
     			</div>
           <div style="text-align:center; margin-top:40px;">
-            <a style="color:blue; font-size:18px; text-decoration:none;" href="#" type="button">Continue request ?</button><br>
-            <a style="color:red; font-size:18px; text-decoration:none;" href="#" data-dismiss="modal">Cancel request ?</a>
-
+            <div class="modal-body-form-input" style="background-color:white;">
+              <a style="color:blue; font-size:16px; text-decoration:none;" href="#" type="button">Continue request</a><br>
+            </div>
+            <div class="modal-body-form-input" style="background-color:white;">
+              <a style="color:red; font-size:16px; text-decoration:none;" href="#" data-dismiss="modal">Close request</a>
+            </div>
           </div>
         </div>
 		<div id="error" style="display:none;">
