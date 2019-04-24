@@ -339,18 +339,21 @@ function checkkey(event) {
 			<p  style="color: #91959a;" class="title_info">Find the Right Tutor for You</p>
 			<h1 style="color: #134477;">Featured <span style="color: #aece61;">Tutors</span></h1>
 		</div>
+		 {{# each tutors}}
 		<div class="row title-margin-class within-sec-margin">
+			{{# each this}}
 			<div class="col-sm-4">
 				<div class="card" style="width:250px">
 					<img class="card-img-top" src="http://smarthead.ancorathemes.com/wp-content/uploads/2016/11/tutor2-740x792.jpg" alt="Card image" style="width:100%">
 					<div class="card-body tutor-card-body">
-						<h4 style="color: #134477;" class="card-title">John Doe</h4>
-						<p style="color:#91959a;" class="card-text">HISTORY, GEOGRAPHY, ECONOMICS</p>
+						<h4 style="color: #134477;" class="card-title">{{this.firstname}}</h4>
+						<p style="color:#91959a;" class="card-text">{{this.subjects}}</p>
 						<button onclick="location.href='/users/view_tutor'" class="view_tut_btn button btn btn-lg" type="button">View Tutor</button>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4">
+			{{/each}}
+			<!--<div class="col-sm-4">
 				<div class="card" style="width:250px">
 					<img class="card-img-top" src="http://smarthead.ancorathemes.com/wp-content/uploads/2016/11/tutor2-740x792.jpg" alt="Card image" style="width:100%">
 					<div class="card-body tutor-card-body">
@@ -369,8 +372,10 @@ function checkkey(event) {
 						<button class="view_tut_btn button btn btn-lg" type="button">View Tutor</button>
 					</div>
 				</div>
-			</div>
+			</div>-->
+			
 		</div>
+		{{/each}}
 	</div>
 </div>
 <!--------- end of tutor profile section ------------>
