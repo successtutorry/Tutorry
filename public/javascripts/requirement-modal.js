@@ -1,4 +1,4 @@
-/*var currentTab = 0; // Current tab is set to be the first tab (0)
+var currentTab = 0; // Current tab is set to be the first tab (0)
 var progressdisplay = 1;
 var checked = 0;
 var length = 0;
@@ -120,4 +120,4 @@ function alertuser(){
    document.getElementById("modal-footer").style.display = "none";
    document.getElementById('headertag').innerHTML = 'You have completed '+ (100/length)*(currentTab+1)+ '% , Are you sure you want to quit?';
    document.getElementById('quittab').style.display = "block";
-}*/
+}
