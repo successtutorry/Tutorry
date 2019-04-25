@@ -5,31 +5,70 @@
 <div class="section-margin margin-class">
 	<div class="row title-margin-class">
 		<div class="col-sm-4">
-			<img class="card-img-top" src="http://smarthead.ancorathemes.com/wp-content/uploads/2016/11/tutor2-740x792.jpg" alt="Card image" style="width:100%">
+			<img class="card-img-top" src="/images/{{image}}" alt="Card image" style="width:100%">
 		</div>
 		<div class="col-sm-8">
-			<h1 style="color: #134477;">Taylor Jones</h1>
-			<div class="within-sec-margin">
-				<span class="fa fa-star checked"></span>
-				<span class="fa fa-star checked"></span>
-				<span class="fa fa-star checked"></span>
-				<span class="fa fa-star"></span>
-				<span class="fa fa-star"></span>
+			<div class="row">
+				<div class="col-sm-8">
+					<h1 style="color: #134477;">{{firstname}} {{lastname}}</h1>
+				</div>
+				<div class="col-sm-2" style="margin-top:10px;">
+					<h3 style="color: #134477;">400/hr</h3>
+				</div>
+
 			</div>
-			<p class="within-sec-margin" style="color: #91959a;">My goal as a teacher or tutor is to provide access to quality education. Standartized tests, for better or worse, are the current 		gatekeepers in our society to a shrinking middle class. Suspendisse a sapien consectetur justo pulvinar egestas. Sed imperdiet iaculis arcu, porta semper lacus volutpat et. Aenean ullamcorper tellus et metus facilisis posuere id vitae libero. Nam quis ipsum in metus sollicitudin volutpat eu eget nunc.</p>
-			<h3 style="color: #91959a;">SUBJECTS: HISTORY, GEOGRAPHY</h3>
+			<div class="within-sec-margin">
+				<span class="rating fa fa-star"></span>
+				<span class="rating fa fa-star"></span>
+				<span class="rating fa fa-star"></span>
+				<span class="rating fa fa-star"></span>
+				<span class="rating fa fa-star"></span>
+			</div>
+			<div style="color: #91959a; font-size:12px;">
+				<p class="within-sec-margin" >My goal as a teacher or tutor is to provide access to quality education. Standartized tests, for better or worse, are the current 		gatekeepers in our society to a shrinking middle class. Suspendisse a sapien consectetur justo pulvinar egestas. Sed imperdiet iaculis arcu, porta semper lacus volutpat et. Aenean ullamcorper tellus et metus facilisis posuere id vitae libero. Nam quis ipsum in metus sollicitudin volutpat eu eget nunc.</p>
+			</div>
+			<div style="margin-top:30px;">
+				<h5 style="color: #91959a;">SUBJECTS: {{subjects}}</h5>
+			</div>
 			<button onclick="showform(1);"  class="button btn btn-lg" type="button">Message</button>
 			<!--<button  class="button btn btn-lg" type="button" data-toggle="modal" data-target="#myModal">Message</button>-->
 		</div>
     </div>
 	<div>
 		<div class="btn-group btn-group-lg title-margin-class within-sec-margin">
-			<button onclick="showtab1();" style="background-color: #f6f8fa; color: #134477; border-color: #e3e3e3; margin-right:10px;" type="button" class="btn">Tab 1</button>
-			<button onclick="showtab2();"  style="background-color: #f6f8fa; color: #134477; border-color: #e3e3e3; margin-right:10px;" type="button" class="btn">Tab 2</button>
-			<button onclick="showtab3();"  style="background-color: #f6f8fa;color: #134477; border-color: #e3e3e3;" type="button" class="btn">Tab 3</button>
+			<button onclick="showtab(1);" style="background-color: #f6f8fa; color: #134477; border-color: #e3e3e3; margin-right:10px;" type="button" class="btn">Tab 1</button>
+			<button onclick="showtab(2);"  style="background-color: #f6f8fa; color: #134477; border-color: #e3e3e3; margin-right:10px;" type="button" class="btn">Tab 2</button>
+			<button onclick="showtab(3);"  style="background-color: #f6f8fa;color: #134477; border-color: #e3e3e3;" type="button" class="btn">Tab 3</button>
 		</div>
 		<div id="tabdetails" style="color: #91959a; margin-top:20px;">
-			<p class="title-margin-class" id="paratext">1. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam purus nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam et erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation porta ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure. Suspendisse a sapien consectetur justo pulvinar egestas. Sed amet orci et imperdiet iaculis arcu, porta semper lacus volutpat et."</p>
+			<p class="title-margin-class" id="paratext"></p>
 		</div>
 	</div>
 </div>
+<script>
+
+document.onload = somefunction({{rating}}, 1);
+
+function somefunction(n, a){
+ var ratings = document.getElementsByClassName('rating');
+ document.getElementById('paratext').innerHTML = "This is the " + a + "  paratext";
+
+for(var i =0; i< 5-n; i ++){
+
+	ratings[i].style.display = "none";
+}
+}
+
+function showtab(x){
+
+	if(x=='1'){
+		document.getElementById('paratext').innerHTML = "This is the " + x + "  paratext";
+	}
+	if(x=='2'){
+		document.getElementById('paratext').innerHTML = "This is the " + x + " paratext";
+	}
+	if(x=='3 '){
+		document.getElementById('paratext').innerHTML = "This is the " + x + " paratext";
+	}
+}
+</script>

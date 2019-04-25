@@ -62,6 +62,7 @@
 <div style="margin-top:100px; width:50%;">
 	<form id="tutorregistration" action="/users/tutor_registration", method="post">
 		<ul>
+				<li><input type="file"  id="image" name="image"></li>
 			<li><input type="text" placeholder="First Name" id="firstname" name="firstname"></li>
 			<li><input type="text" placeholder="Last Name" id="lastname" name="lastname"></li>
 			<li><input type="email" placeholder="Email" id="email" name="email"></li>
@@ -257,7 +258,12 @@
 	      	<label><input type="radio" value="no" name="demo">No</label>
 	    	</div>
 			</li>
-<li><button type = "submit " value="submit"></button><li>
+			<li>
+				<h4>Average rating on scale of 5 ?</h4>
+				<input type="number" placeholder="Eg: 4.6" id="rating" name="rating">
+			</li>
+			<li><button type="submit" class="button btn btn-lg">SUBMIT</button></li>
 		</ul>
+
 	</form>
 </div>
