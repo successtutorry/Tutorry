@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 // this is the user Schema
 //these values will be inserted in the table or collection in case of mongodb
 const tutorSchema = new Schema({
+image:String,
 firstname: String,
 lastname: String,
 email: String,
@@ -26,6 +27,7 @@ privateexp: String,
 experience: String,
 homevisit: String,
 demo: String,
+rating:String,
 availablearea:  [{ type: String  }],
 subjects:  [{ type: String  }],
 time:  [{ type: String  }],

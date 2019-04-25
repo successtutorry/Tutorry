@@ -379,10 +379,8 @@ router.route('/contact')
       router.route('/tutor_registration')
       .post((req,res)=>{
         console.log(req.body);
-
-
         const newTutor = new tutor({
-
+          image:req.body.image,
           firstname: req.body.firstname,
           lastname: req.body.lastname,
           email: req.body.email,
@@ -403,6 +401,7 @@ router.route('/contact')
           experience: req.body.experience,
           homevisit: req.body.homevisit,
           demo: req.body.demo,
+          rating:req.body.rating,
           availablearea:req.body['availablearea[]'],
           subjects:  req.body['subjects[]'],
           time: req.body['time[]'],
@@ -414,14 +413,27 @@ router.route('/contact')
         });
 
         newTutor.save();
-        res.render('tutor_registration');
+        res.render('tutor-registration');
 
       });
 
-router.route('/view_tutor')
+
+/*router.route('/view_tutor')
   .get((req, res) => {
   res.render('tutor_details');
-  });
+});*/
+
+
+  router.route('/view_tutor')
+  .get((req, res) => {
+    //var tutor_email = req.query.email;
+    //console.log(req.query.current_tutor)
+   tutor.findOne({ email:req.query.email },function(req,result){
+     //console.log(result);
+     //var current_tutor = result.email;
+     res.render('tutor_details', { firstname: result.firstname, lastname: result.lastname, subjects: result.subjects, rating: result.rating, image:result.image });
+});
+});
 
   /*router.route('/message')
     .get((req, res) => {

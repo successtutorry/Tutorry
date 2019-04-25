@@ -27,8 +27,9 @@ function myFunc() {
 	myFuncEndforSearchBar();
 }*/
 
- myFuncEnd();
+ myFuncEnd ();
  //myFuncEndforSearchBar();
+
 }
 
 function myFuncEnd(){
@@ -344,11 +345,11 @@ function checkkey(event) {
 			{{# each this}}
 			<div class="col-sm-4">
 				<div class="card" style="width:250px">
-					<img class="card-img-top" src="http://smarthead.ancorathemes.com/wp-content/uploads/2016/11/tutor2-740x792.jpg" alt="Card image" style="width:100%">
+					<img class="card-img-top" src="/images/{{this.image}}" alt="Card image" style="width:100%">
 					<div class="card-body tutor-card-body">
 						<h4 style="color: #134477;" class="card-title">{{this.firstname}}</h4>
 						<p style="color:#91959a;" class="card-text">{{this.subjects}}</p>
-						<button onclick="location.href='/users/view_tutor'" class="view_tut_btn button btn btn-lg" type="button">View Tutor</button>
+						<button onclick="location.href='/users/view_tutor?email={{this.email}}'" class="view_tut_btn button btn btn-lg" type="button">View Tutor</button>
 					</div>
 				</div>
 			</div>
@@ -373,7 +374,7 @@ function checkkey(event) {
 					</div>
 				</div>
 			</div>-->
-			
+
 		</div>
 		{{/each}}
 	</div>
