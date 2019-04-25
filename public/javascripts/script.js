@@ -1,6 +1,6 @@
 
 
-var currentTab = 0; // Current tab is set to be the first tab (0)
+/*var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 
 function showTab(n) {
@@ -71,7 +71,7 @@ x[i].className = x[i].className.replace(" active", "");
 }
 //... and adds the "active" class on the current step:
 x[n].className += " active";
-}
+}*/
 
 // javascript for overlay login and message overlay regForm
 function on(){
