@@ -430,8 +430,9 @@ router.route('/contact')
     //console.log(req.query.current_tutor)
    tutor.findOne({ email:req.query.email },function(req,result){
      //console.log(result);
-     //var current_tutor = result.email;
-     res.render('tutor_details', { firstname: result.firstname, lastname: result.lastname, subjects: result.subjects, rating: result.rating, image:result.image });
+     //var current_tutor = result.email
+
+     res.render('tutor_details', { firstname: result.firstname, lastname: result.lastname, subjects: result.subjects, rating: result.rating, image:result.image, price: result.rateperhour[0] });
 });
 });
 
