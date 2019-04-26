@@ -57,6 +57,7 @@ function checkkey(event) {
 
 </script>
 
+
 <div id="myCarousel" class="carousel" data-ride="carousel" data-interval="3000"><!-- home page carousel-->
 <!-- Wrapper for slides -->
 	<div class="carousel-inner" role="listbox">
@@ -88,17 +89,17 @@ function checkkey(event) {
 		  </div>
 		</div>
 		<!----------- start of search bar----------------->
-		<div id="stickysearchbar" class="margin-class" style="">
-			<div class="title-margin-class" style="background-color:#062e57;">
-				<form class="form-inline" action="#">
-					<div class="row">
-						<div class="col-sm-3" >
-							<div class="form-group form-header">
+		<center>
+		<div id="stickysearchbar" class="margin-class  container" style="">
+			<div class="title-margin-class row"   style="background-color: #062e57;">
+				<form class="form-inline " action="#">
+						<div class="col-sm-3 col-md-3">
+							<div class="form-group form-header" style="background-color:#092746;">
 								<h6 style="color:white; font-size:2.5rem; line-height:1;">Find Your</span></h6>
 								<h4 style="color:#aece61; font-size:3.125rem; line-height:1;">Tutor</h4>
 							</div>
 						</div>
-						<div class="col-sm-9" style="padding-top:20px;">
+						<div class="col-sm-9 col-md-9 form-body" style="background-color: #062e57;">
 								<div class="form-group">
 									<input onkeydown="checkkey(event);" type="text" class="form-control searchbar-input" id="subject" placeholder="Enter a subject" name="subject">
 								</div>
@@ -114,8 +115,8 @@ function checkkey(event) {
 						</div>
 					</div>
 				</form>
-		</div>
 	</div>
+</center>
 		<!-----------end of search  bar ----------------->
 
 	</div> <!----------- end of carousel ----------------->
