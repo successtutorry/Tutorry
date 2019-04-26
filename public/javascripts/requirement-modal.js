@@ -123,7 +123,7 @@ function alertuser(){
    document.getElementById('quittab').style.display = "block";
 }
 
-function dosomething(){
+function continue(){
  document.getElementById('quittab').style.display = "none";
  document.getElementById("modal-footer").style.display = "block";
   showTab(currentTab);
