@@ -549,3 +549,13 @@ a.footerlink:hover {
 	height: 2em;
 	background-color: #f6f8fa;
 }
+
+.form-body{
+	padding-top:20px;
+}
+
+@media (max-width: 480px) {
+	.form-body {
+		padding-top:0;
+	}
+}
