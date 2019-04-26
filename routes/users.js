@@ -17,13 +17,14 @@ const passport = require('passport');
 const randomstring = require('randomstring');
 const springedge = require('springedge');
 var email ='';
+var username = '';
 
 //if user is trying to access his home page without login then he is restricted
 const isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   } else {
-    console.log('error', 'Sorry, but you must be registered or logged in  first!');
+    req.flash('error', 'Sorry, but you must be registered or logged in  first!');
     res.redirect('/');
   }
 };
@@ -32,7 +33,7 @@ const isAuthenticated = (req, res, next) => {
 // already logged in
 const isNotAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
-    console.log('error', 'Sorry, but you are already logged in!');
+    req.flash('error', 'Sorry, but you are already logged in!');
     res.redirect('/');
   } else {
     return next();
@@ -54,7 +55,7 @@ router.route('/register')
       const result = Joi.validate(req.body, userSchema);
       if (result.error) {
         console.log(result.error);
-        console.log('error', 'Data is not valid. Please try again.');
+        req.flash('error', 'Data is not valid. Please try again.');
         res.redirect('/');
         return;
       }
@@ -64,7 +65,7 @@ router.route('/register')
       const user = await User.findOne({ 'email': result.value.email });
       console.log(user);
       if (user) {
-        console.log('error', 'Email is already in use. Please check your email');
+        req.flash('error', 'Email is already in use. Please check your email');
         res.redirect('/');
         return;
       }
@@ -104,7 +105,7 @@ router.route('/register')
       Have a pleasant day.`
       // Send email
       await mailer.sendEmail('tutorry.in@gmail.com', result.value.email, '', html);
-      console.log('success', 'An email verification code has been sent to you email account, Please check your email and click on the link to complete registration');
+      req.flash('success', 'An email verification code has been sent to you email account, Please check your email and click on the link to complete registration');
       res.redirect('/');
 
     } catch(error) {
@@ -146,9 +147,15 @@ router.route('/login')
     failureFlash: true
   }));
 
+  router.route('/login')
+  .get((req,res)=>{
+
+    res.render('index',{value:'1'});
+  });
+
   router.route('/dashboard')
   .get(isAuthenticated, (req, res) =>{
-    //req.flash('success', 'Successfully logged in out');
+    req.flash('success', 'Successfully logged in');
   /*  console.log(req.sessionID);
     if(req.user.country =='student'){
       console.log('student');
@@ -166,14 +173,15 @@ router.route('/login')
     //  res.render('student_profile');
     }
     console.log('welcome'+req.user.username);*/
-    res.render('index',{username:req.user.username })
+    username = req.user.username;
+    res.render('index', { username:req.user.username })
   });
 
 
   router.route('/logout')
   .get(isAuthenticated, (req, res) => {
     req.logout();
-    console.log('success', 'Successfully logged out. Hope to see you soon!');
+    req.flash('success', 'Successfully logged out. Hope to see you soon!');
     res.redirect('/');
   });
 
@@ -353,17 +361,24 @@ res.render('find_tutor', req.user)
 
 router.route('/find_tutor')
   .get((req, res) => {
-    res.render('find_tutor');
+    if(isAuthenticated){
+
+    res.render('find_tutor', {username:username});
+  }
+  else{
+
+      res.render('find_tutor');
+  }
   });
 
 router.route('/become_tutor')
     .get((req, res) => {
-      res.render('become_tutor');
+      res.render('become_tutor', {username:username});
     });
 
 router.route('/contact')
     .get((req, res) => {
-    res.render('contact');
+    res.render('contact', {username:username});
   });
 
   router.route('/tutor_details')
