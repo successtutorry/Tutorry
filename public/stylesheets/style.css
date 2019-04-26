@@ -138,6 +138,12 @@ footer {
 	margin-top: 5%;
 }
 
+@media (max-width:480px){
+	.section-margin{
+		margin-top:20%;
+	}
+}
+
 .within-sec-margin {
 	margin-top: 5%;
 }
