@@ -122,10 +122,3 @@ function alertuser(){
    document.getElementById('headertag').innerHTML = 'You have completed '+ (100/length)*(currentTab+1)+ '% , Are you sure you want to quit?';
    document.getElementById('quittab').style.display = "block";
 }
-
-function continue(){
-
-document.getElementById('quittab').style.display = "none";
-document.getElementById("modal-footer").style.display = "block";
-showTab(currentTab);
-}
