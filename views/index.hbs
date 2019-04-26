@@ -3,7 +3,6 @@
 {{>overlay}}
 {{>requirement-modal}}
 <script>
-
 document.addEventListener("scroll", function () {
 	myFunc();
 }, false);
@@ -14,23 +13,18 @@ function myFunc() {
  //var stickysearchbar = document.getElementById("stickysearchbar");
  //var stickysearch = stickysearchbar.offsetTop;
  var y = window.pageYOffset;
-
  if(y>100){
  navbar.style = "background-color:#062e57;";
  }
-
 /*if(y>600){
  stickysearchbar.style = "position:sticky; top:0; padding-top:60px; z-index:100;";
 }*/
-
 /*if(y<600){
 	myFuncEndforSearchBar();
 }*/
 
  myFuncEnd ();
  //myFuncEndforSearchBar();
-
-
 }
 
 function myFuncEnd(){
@@ -41,7 +35,6 @@ function myFuncEnd(){
 }
 }
 
-
 /*function myFuncEndforSearchBar(){
 		var stickysearchbar = document.getElementById("stickysearchbar");
 		stickysearchbar.style = "padding-top:0px";
@@ -49,14 +42,11 @@ function myFuncEnd(){
 
 function checkkey(event) {
   var x = event.key;
-
-	if(!isNaN(x)){
+		if(!isNaN(x)){
 		alert('wrong input');
 	}
 }
-
 </script>
-
 
 <div id="myCarousel" class="carousel" data-ride="carousel" data-interval="3000"><!-- home page carousel-->
 <!-- Wrapper for slides -->
