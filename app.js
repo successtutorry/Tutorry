@@ -71,15 +71,15 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-//app.use(flash());
+app.use(flash());
 
 //new middleware
-/*app.use((req, res, next) => {
+app.use((req, res, next) => {
   res.locals.success_messages = req.flash('success');
   res.locals.error_messages = req.flash('error');
   res.locals.isAuthenticated = req.user ? true: false;
   next();
-});*/
+});
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
