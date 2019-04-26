@@ -559,3 +559,9 @@ a.footerlink:hover {
 		padding-top:0;
 	}
 }
+
+@media (max-width:480px){
+	#stickysearchbar{
+		margin-top:20px;
+	}
+}
