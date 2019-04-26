@@ -3,6 +3,7 @@
 {{>overlay}}
 {{>requirement-modal}}
 <script>
+
 document.addEventListener("scroll", function () {
 	myFunc();
 }, false);
@@ -111,7 +112,7 @@ function checkkey(event) {
 
 	</div> <!----------- end of carousel ----------------->
 
-<h2>{{username}}</h2>
+<h2>{{req.user.username}}</h2>
 
 <!--------- start of video presentation section------------>
 <div id="useful" class="section-margin">
