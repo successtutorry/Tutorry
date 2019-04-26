@@ -116,6 +116,7 @@ function showprev(n){
 
 function alertuser(){
    var x = document.getElementsByClassName("tab");
+
    x[currentTab].style.display = "none";
    document.getElementById("modal-footer").style.display = "none";
    document.getElementById('headertag').innerHTML = 'You have completed '+ (100/length)*(currentTab+1)+ '% , Are you sure you want to quit?';
