@@ -19,22 +19,7 @@
         <li><a style="color:white;" href="/users/find_tutor">Find a Tutor</a></li>
         <li><a style="color:white;" href="/users/become_tutor">Become a Tutor</a></li>
         <li><a style="color:white;" href="/users/contact">Contact</a></li>
-        {{# if isAuthenticated}}
-        <li>
-          <div class="dropdown">
-            <button class="login-close-button dropdown-toggle" type="button" style="padding-top:14px;" data-toggle="dropdown">{{username}}
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-             <li><a href="#">My Profile</a></li>
-             <li><a href="#">My Tutors</a></li>
-             <li><a href="/users/logout">Logout</a></li>
-            </ul>
-          </div>
-        </li>
-        {{else}}
         <li><button class="login-close-button" type="button" onclick="on();" style="padding-top:14px;">Login</button></li>
-        {{/if}}
       </ul>
     </div>
   </div>
