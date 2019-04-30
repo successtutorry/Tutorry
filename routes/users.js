@@ -22,6 +22,7 @@ var username = '';
 //if user is trying to access his home page without login then he is restricted
 const isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
+    username = req.user.username;
     return next();
   } else {
     req.flash('error', 'Sorry, but you must be registered or logged in  first!');
@@ -142,7 +143,7 @@ router.route('/register')
 router.route('/login')
 .post(isNotAuthenticated, passport.authenticate('local', {
     //successReturnToOrRedirect: '/',
-    successRedirect: '/users/dashboard',
+    successRedirect: '/',
     failureRedirect: '/users/login',
     failureFlash: true
   }));
@@ -361,9 +362,9 @@ res.render('find_tutor', req.user)
 
 router.route('/find_tutor')
   .get((req, res) => {
-    if(isAuthenticated){
+    if(req.isAuthenticated()){
 
-    res.render('find_tutor', {username:username});
+    res.render('find_tutor', {username:req.user.username});
   }
   else{
 
@@ -373,7 +374,11 @@ router.route('/find_tutor')
 
 router.route('/become_tutor')
     .get((req, res) => {
-      res.render('become_tutor', {username:username});
+      if(req.isAuthenticated()){
+      res.render('become_tutor', {username:req.user.username});
+    }else{
+        res.render('become_tutor');
+    }
     });
 
 router.route('/contact')
