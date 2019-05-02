@@ -362,14 +362,42 @@ res.render('find_tutor', req.user)
 
 router.route('/find_tutor')
   .get((req, res) => {
+    var tutorChunks = [];
+    var chunkSize = 3;
+    var displaysubjects = [];
+    if(req.query.subjects){
+      displaysubjects.push(req.query.subjects);
+    }
+
+    tutor.find({subjects:req.query.subjects }, function(err, docs){
+    for(var i=0; i < docs.length; i+= chunkSize){
+        tutorChunks.push(docs.slice(i, i+chunkSize));
+        console.log(tutorChunks);
+    }
     if(req.isAuthenticated()){
-
-    res.render('find_tutor', {username:req.user.username});
+      res.render('find_tutor', {tutors: tutorChunks, username:req.user.username});
+    }else{
+    //  console.log(tutorChunks);
+      res.render('find_tutor', {tutors: tutorChunks, displaysub:displaysubjects });
   }
-  else{
+  });
 
-      res.render('find_tutor');
-  }
+  });
+
+  router.route('/gettutor')
+  .get((req,res) =>{
+
+    tutor.find( {experience:req.query.experience}, function(err, docs){
+var subjectChunks = [];
+var chunkSize = 3;
+for(var i=0; i < docs.length; i+= chunkSize){
+subjectChunks.push(docs.slice(i, i+chunkSize));
+}
+res.render('find_tutor', {tutors:subjectChunks});
+
+});
+
+
   });
 
 router.route('/become_tutor')
