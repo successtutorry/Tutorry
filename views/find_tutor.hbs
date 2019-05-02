@@ -65,17 +65,17 @@
 
 <div class="container margin-class section-margin">
 	<div class="title-margin-class">
-		<div class="row">
+    <div class="row">
 			<div class="col-sm-4 col-md-4">
-				<button style="font-size:20px; font-weight:bold;" class="collapsible">Subjects<br><span style="font-size:14px; font-weight:normal;">Choose your subjects</span></button>
+				<button style="font-size:20px; font-weight:bold;" class="collapsible">Subjects<br><span style="font-size:14px; font-weight:normal;">{{displaysub}}</span></button>
 				<div class="content">
 					<div style="margin-top:20px;">
 						<div style="font-size:18px;">
 							<div>
-								<span><input style="margin-left: -120px;" type="checkbox"><span style="margin-left:-120px; cursor:pointer;">abc</span></span>
+								<span onclick="location.href='/users/find_tutor?subjects=history'"><input style="margin-left: -120px;" type="checkbox" value="history" name="subjects[]"><span style="margin-left:-120px; cursor:pointer;">HISTORY</span></span>
 							</div>
 							<div>
-								<span><input style="margin-left: -120px;" type="checkbox"><span style="margin-left:-120px; cursor:pointer;">abc</span></span>
+								<span><input style="margin-left: -120px;" type="checkbox" ><span style="margin-left:-120px; cursor:pointer;">abc</span></span>
 							</div>
 							<div>
 								<span><input style="margin-left: -120px;" type="checkbox"><span style="margin-left:-120px; cursor:pointer;">abc</span></span>
@@ -346,29 +346,26 @@
 						</div>
 					</div>-->
 			</div>
+      {{# each tutors}}
+        {{# each this}}
 			<div class="col-sm-4 col-md-4">
 				<div class="card" style="width:225px">
-					<img class="card-img-top" src="http://smarthead.ancorathemes.com/wp-content/uploads/2016/11/tutor2-740x792.jpg" alt="Card image" style="width:100%">
+					<img class="card-img-top" src="/images/{{this.image}}" alt="Card image" style="width:100%">
 					<div  class="card-body tutor-card-body">
-						<h4 style="color: #134477;" class="card-title">John Doe</h4>
-						<p style="color:#91959a;" class="card-text">HISTORY, GEOGRAPHY, ECONOMICS</p>
-						<button onclick="location.href='/users/view_tutor'" class="view_tut_btn button btn btn-lg" type="button">View Tutor</button>
+						<h4 style="color: #134477;" class="card-title">{{this.firstname}} {{this.lastname}}</h4>
+						<p style="color:#91959a;" class="card-text">{{this.subjects}}</p>
+						<button onclick="location.href='/users/view_tutor?email={{this.email}}'" class="view_tut_btn button btn btn-lg" type="button">View Tutor</button>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 col-md-4">
-				<div class="card" style="width:225px">
-					<img class="card-img-top" src="http://smarthead.ancorathemes.com/wp-content/uploads/2016/11/tutor2-740x792.jpg" alt="Card image" style="width:100%">
-					<div  class="card-body tutor-card-body">
-						<h4 style="color: #134477;" class="card-title">John Doe</h4>
-						<p style="color:#91959a;" class="card-text">HISTORY, GEOGRAPHY, ECONOMICS</p>
-						<button class="view_tut_btn button btn btn-lg" type="button">View Tutor</button>
-					</div>
-				</div>
-			</div>
-		</div>
+      {{/each}}
+  {{/each}}
 	</div>
 </div>
+</div>
+
+
+
 <script>
 
 document.addEventListener("scroll", function () {
@@ -398,4 +395,14 @@ for (i = 0; i < coll.length; i++) {
     }
   });
 }
+
+function gettutor(x){
+  $.get('/users/gettutor?experience='+ x , function(data, status){
+    console.log(data)
+    console.log(data[0][0]);
+  });
+}
+
+
+
 </script>
