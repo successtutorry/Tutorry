@@ -459,11 +459,16 @@ input.invalid {
 
 .feature-wrap {
 	margin-bottom: 20px;
-	background-color: #fff;
+	/*background-color: #aece61;*/
+	background-color: white;
 	padding: 20px;
 	text-align: center;
 	border: 1px solid rgba(0, 0, 0, .1);
 	cursor: pointer;
+}
+
+.feature-wrap:hover{
+	background-color: #aece61;
 }
 
 .h2 {
