@@ -103,7 +103,7 @@ function displayRegistration(){
   function showform(n){
 
     $.get("/users/checkAuth", function(data, status){
-    alert("Data: " + data + "\nStatus: " + status);
+    //alert("Data: " + data + "\nStatus: " + status);
     if(data=='true'&& n=='1'){
       //document.getElementById("message-overlay").style="display:block;";
       $('#myModal').modal('show');
