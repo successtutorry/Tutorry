@@ -39,11 +39,27 @@ function myFuncEnd(){
 		stickysearchbar.style = "padding-top:0px";
 }*/
 
-function checkkey(event) {
+function checksub(event) {
   var x = event.key;
 		if(!isNaN(x)){
-		alert('wrong input');
+		alert('wrong input, please enter valid subject name');
 	}
+}
+function checklocation(event) {
+  var x = event.key;
+		if(!isNaN(x)){
+		alert('wrong input, please enter valid location');
+	}
+}
+function checkzipcode(element) {
+
+	var max_chars = 6;
+
+	if(element.value.length > max_chars) {
+		element.value = element.value.substr(0, max_chars);
+		alert('please enter valid zipcode');
+	}
+
 }
 </script>
 
@@ -78,26 +94,26 @@ function checkkey(event) {
 		  </div>
 		</div>
 		<!----------- start of search bar----------------->
-		<center>
+
 		<div id="stickysearchbar" class="margin-class  container" style="">
 			<div class="title-margin-class"   style="background-color: #062e57;">
 				<div class="row">
 				<form class="form-inline" action="/users/find_tutor" method="get">
 						<div class="col-sm-3 col-md-3">
-							<div class="form-group form-header" style="background-color:#092746;">
+							<div class="form-group form-header" style="">
 								<h6 style="color:white; font-size:2.5rem; line-height:1;">Find Your</span></h6>
 								<h4 style="color:#aece61; font-size:3.125rem; line-height:1;">Tutor</h4>
 							</div>
 						</div>
-						<div class="col-sm-9 col-md-9  form-body" style="background-color: #062e57;">
+						<div class="col-sm-9 col-md-9  form-body" style="">
 								<div class="form-group">
-									<input onkeydown="checkkey(event);" type="text" class="form-control searchbar-input" id="subject" placeholder="Enter a subject" name="subject">
+									<input onkeydown="checksub(event);" type="text" class="form-control searchbar-input" id="subject" placeholder="Enter a subject" name="subject">
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control searchbar-input" id="location" placeholder="Location" name="location">
+									<input onkeydown="checklocation(event);" type="text" class="form-control searchbar-input" id="location" placeholder="Location" name="location">
 								</div>
 								<div class="form-group">
-									<input type="number" class="form-control searchbar-input" id="zipcode" placeholder="Zipcode" name="zipcode">
+									<input onkeydown="checkzipcode(this);" type="number" class="form-control searchbar-input" id="zipcode" placeholder="Zipcode" name="zipcode">
 								</div>
 								<div class="form-group" style="padding-bottom:15px; text-align:center; margin-left:10px;">
 									<button class="button btn btn-lg" type="submit">Find Now</button>
@@ -107,7 +123,6 @@ function checkkey(event) {
 			</div>
 	</div>
 </div>
-</center>
 		<!-----------end of search  bar ----------------->
 
 	</div> <!----------- end of carousel ----------------->
