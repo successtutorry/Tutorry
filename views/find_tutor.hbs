@@ -40,8 +40,8 @@
 </style>
 {{>header}}
 {{>overlay}}
-
-<div  id="stickysearchbar" class="container margin-class section-margin" style=""> <!----------- start of search bar----------------->
+<!----------- start of search bar----------------->
+<!--<div  id="stickysearchbar" class="container margin-class section-margin" style="">
 		<div class="title-margin-class" style="background-color:#062e57;">
 			<form class="form-inline" action="/users/find_tutor">
 				<div class="form-group form-header">
@@ -60,10 +60,40 @@
 				<div class="form-group" style="padding-bottom:15px; text-align:center; margin-left:10px;">
 					<button class="button btn btn-lg" type="submit">Find Now</button>
 				</div>
-      
+
 			</form>
 		</div>
-	</div> <!----------- end of search bar ----------------->
+	</div>-->
+  <!----------- end of search bar ----------------->
+
+  <div id="stickysearchbar" class="margin-class  container" style="margin-top:10%;">
+    <div class="title-margin-class"   style="background-color: #062e57;">
+      <div class="row">
+      <form class="form-inline" action="/users/find_tutor" method="get">
+          <div class="col-sm-3 col-md-3">
+            <div class="form-group form-header" style="">
+              <h6 style="color:white; font-size:2.5rem; line-height:1;">Find Your</span></h6>
+              <h4 style="color:#aece61; font-size:3.125rem; line-height:1;">Tutor</h4>
+            </div>
+          </div>
+          <div class="col-sm-9 col-md-9  form-body" style="">
+              <div class="form-group">
+                <input onkeydown="checkkey(event);" type="text" class="form-control searchbar-input" id="subject" placeholder="Enter a subject" name="subject">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control searchbar-input" id="location" placeholder="Location" name="location">
+              </div>
+              <div class="form-group">
+                <input type="number" class="form-control searchbar-input" id="zipcode" placeholder="Zipcode" name="zipcode">
+              </div>
+              <div class="form-group" style="padding-bottom:15px; text-align:center; margin-left:10px;">
+                <button class="button btn btn-lg" type="submit">Find Now</button>
+              </div>
+          </div>
+      </form>
+    </div>
+</div>
+</div>
 
 
 <div class="container margin-class section-margin">
@@ -371,7 +401,7 @@
 
 <script>
 
-document.addEventListener("scroll", function () {
+/*document.addEventListener("scroll", function () {
 	myFunc();
 }, false);
 
@@ -380,10 +410,10 @@ function myFunc() {
  var sticky = stickysearchbar.offsetTop;
  var y = window.pageYOffset;
 
- if(y>150){
- stickysearchbar.style = "position:sticky; top:0; padding-top:60px; z-index:100;";
+ if(y>100){
+ stickysearchbar.style = "position:sticky; top:0; padding-top:60px; z-index:50;";
  }
-}
+}*/
 var coll = document.getElementsByClassName("collapsible");
 var i;
 
