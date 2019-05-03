@@ -10,16 +10,17 @@
            </i>REGISTER</button>
          <button class="closebutton" onclick="hideoverlay();">X </button>
       </div>
-      <div  style="margin:20px 20px 20px 20px;"><!--start of login form division-->
+      <div  style="margin:30px 20px 20px 20px;"><!--start of login form division-->
          <form id="login-form" action="/users/login" method="post">
             <div class="form-group">
-               <input onfocusout="myFunction();" style="height:3em; background-color: #f6f8fa; " type="email" class="form-control" id="inputEmail" name="email" placeholder="Email">
+               <input onfocusout="myFunction(1);" style="height:3em; background-color: #f6f8fa; " type="email" class="form-control" id="inputEmail" name="email" placeholder="Email">
             </div>
             <div class="form-group">
                <input style="height:3em; background-color: #f6f8fa;" type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
             </div>
             <div class="form-group" style="padding-top:15px;">
                <a style="color:#92b343;" href="/users/forgotPassword">Forgot Password ?</a>
+               <p id="error" style="float:right; color:red;"></p>
             </div>
             <div class="form-group" style="padding-bottom:10px;">
                <button type="submit" class="button btn btn-lg">LOGIN</button>
@@ -29,7 +30,7 @@
       <div style="margin:20px 20px 20px 20px;"><!--start of registration form division-->
          <form id="registration-form" style="display:none;" action="/users/register" method="post">
             <div class="form-group">
-               <input onfocusout="myFunction();" style="height:3em; background-color: #f6f8fa; " type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
+               <input onfocusout="myFunction(2);" style="height:3em; background-color: #f6f8fa; " type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
             </div>
             <div class="form-group">
                <input style="height:3em; background-color: #f6f8fa; " type="text" class="form-control" id="inputUsername" name="username" placeholder="username" required>
@@ -48,9 +49,36 @@
             </div>
             <div class="form-group" style="padding-bottom:10px;">
                <button type="submit" class="button btn btn-lg">REGISTER</button>
+               <p id="registererror" style="float:right; color:red;"></p>
             </div>
          </form>
       </div><!--end of login form division-->
    </div>
 </div>
 <!-----------end of overlay---------->
+<script>
+function myFunction() {
+var x = document.getElementById("inputEmail").value;
+
+checkifEmailExists(x);
+}
+
+function checkifEmailExists(x){
+$.get('/users/checkUserInDatabase'+ x , function(data, status){
+
+ if(data=='true'){
+    document.getElementById('error').innerHTML = "";
+   //alert('email exists');
+    // $('#notifyModal').modal('show');
+ }
+
+ if(data=='false'){
+   document.getElementById('error').innerHTML = "Email id doesn not exists";
+    //$('#notifyModal').modal('show');
+   //alert('email does not exist');
+ }
+
+});
+
+}
+</script>
