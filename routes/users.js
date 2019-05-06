@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const messageForm = require('../models/message');
 const requirementForm = require('../models/requirement');
 const tutor = require('../models/tutorregistration');
+const chat = require('../models/chat');
 //const tutor = require('../models/tutors');
 const request = require('request');
 const User = require('../models/user');
@@ -16,8 +17,12 @@ const User = require('../models/user');
 const passport = require('passport');
 const randomstring = require('randomstring');
 const springedge = require('springedge');
+
+
 var email ='';
 var username = '';
+var studentemail = '';
+var tutoremail = '';
 
 //if user is trying to access his home page without login then he is restricted
 const isAuthenticated = (req, res, next) => {
@@ -394,11 +399,8 @@ for(var i=0; i < docs.length; i+= chunkSize){
 subjectChunks.push(docs.slice(i, i+chunkSize));
 }
 res.render('find_tutor', {tutors:subjectChunks});
-
 });
-
-
-  });
+});
 
 router.route('/become_tutor')
     .get((req, res) => {
@@ -408,6 +410,71 @@ router.route('/become_tutor')
         res.render('become_tutor');
     }
     });
+
+    router.route('/sendchat')
+        .post(isAuthenticated, async(req, res) => {
+          try{
+          const newChat = new chat({
+            message:req.body.message,
+            studentemail:req.user.email,
+            tutoremail:req.body.email
+          });
+        const done =   await newChat.save();
+          console.log(req.body);
+          const link = "http://127.0.0.1:3000/users/reply?studentemail="+req.user.email+"&tutoremail="+req.body.email;
+          const html = `Hi there,
+          <br/>
+          You have a message from ${req.user.email}!
+          <br/><br/>
+          Please reply back on the following link:
+          <br/>
+           <a href="${link}">please click on the link</a>
+          <br/><br/>
+          Have a pleasant day.`
+          // Send email
+          await mailer.sendEmail('tutorry.in@gmail.com', req.body.email, '', html);
+        res.send({status:'success'});
+        //res.redirect('/users/displaychat')
+      }catch(error){
+
+        console.log(error);
+      }
+      });
+
+      router.route('/reply')
+      .get((req,res)=>{
+        studentemail = req.query.studentemail;
+        tutoremail = req.query.tutoremail;
+
+        res.render('reply');
+      })
+
+      router.route('/reply')
+      .post((req, res)=>{
+          const newchat = new chat({
+            message: req.body.message,
+            studentemail:studentemail,
+            tutoremail:tutoremail
+
+          });
+
+          newchat.save();
+
+
+      });
+
+      router.route('/displaychat')
+      .get((req,res)=>{
+      //  var messagearray = [];
+        chat.find({},function(err,result){
+          //console.log(result);
+        /*for(var i=0;i<result.length;i++){
+            messagearray.push(result[i].message);
+          }*/
+          //console.log(messagearray);
+          res.send(result);
+        });
+      });
 
 router.route('/contact')
     .get((req, res) => {
@@ -480,7 +547,7 @@ router.route('/contact')
      //console.log(result);
      //var current_tutor = result.email
 
-     res.render('tutor_details', { firstname: result.firstname, lastname: result.lastname, subjects: result.subjects, rating: result.rating, image:result.image, price: result.rateperhour[0] });
+     res.render('tutor_details', { firstname: result.firstname, lastname: result.lastname, subjects: result.subjects, rating: result.rating, image:result.image, price: result.rateperhour[0], email:result.email });
 });
 });
 
