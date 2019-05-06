@@ -20,6 +20,7 @@ const session = require('express-session');
 //var keystone = require('keystone');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
 require('./config/passport');
 
 
@@ -34,6 +35,7 @@ mongoose.connect('mongodb://root:root123@ds343895.mlab.com:43895/tutorry_v1', { 
     console.log('Connected to the database');
   }
 });
+
 
 var app = express();
 
