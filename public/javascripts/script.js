@@ -109,13 +109,18 @@ function displayRegistration(){
       $('#myModal').modal('show');
     //checkrequirementEixts();
     }
-    if(data=='false'&& n=="1"){
+    if(data=='false'){
       //document.getElementById("overlay").style="display:block;";
       alert('You must be logged in.');
       //document.getElementById("message-overlay").style="display:block;";
       on();
 
     }
+    if(data=='true'&& n=='2'){
+      document.getElementById("myForm").style.display = "block";
+
+    }
+
 
   });
       //document.getElementById("message-overlay").style="display:block;";
@@ -129,7 +134,7 @@ function displayRegistration(){
 
   }
 
-  function myFunction() {
+/*  function myFunction() {
   var x = document.getElementById("inputEmail").value;
   checkifEmailExists(x);
 }
@@ -139,11 +144,13 @@ function checkifEmailExists(x){
 
    if(data=='true'){
      //alert('email exists');
+      // $('#notifyModal').modal('show');
    }
    if(data=='false'){
-
+     document.getElementById('error').innerHTML = "email id doesn not exists"
+      $('#notifyModal').modal('show');
      //alert('email does not exist');
    }
  });
 
-}
+}*/
