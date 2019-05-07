@@ -132,6 +132,18 @@
   </form>
 </div>
 <script>
+
+document.onload = somefunction({{rating}}, 1);
+
+function somefunction(n, a){
+ var ratings = document.getElementsByClassName('rating');
+ document.getElementById('paratext').innerHTML = "This is the " + a + "  paratext";
+
+for(var i =0; i< 5-n; i ++){
+
+	ratings[i].style.display = "none";
+}
+}
 var socket = io();
 
 $(() => {
@@ -159,6 +171,7 @@ function addMessages(message){
 		function sendMessage(message){
 		    $.post('/users/sendchat', message);
 				document.getElementById('message').value = '';
+        $("#messages").append(`<p> ${message.message} </p>`);
 				alert('message has been sent');
 
 		    }
@@ -173,17 +186,6 @@ function closeForm() {
   document.getElementById("myForm").style.display = "none";
 }
 
-document.onload = somefunction({{rating}}, 1);
-
-function somefunction(n, a){
- var ratings = document.getElementsByClassName('rating');
- document.getElementById('paratext').innerHTML = "This is the " + a + "  paratext";
-
-for(var i =0; i< 5-n; i ++){
-
-	ratings[i].style.display = "none";
-}
-}
 
 function showtab(x){
 

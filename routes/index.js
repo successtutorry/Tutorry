@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const tutor = require('../models/tutorregistration');
-//var keystone = require('keystone');
 
  /*GET home page.*/
 /*router.get('/', function(req, res, next) {
@@ -10,7 +9,7 @@ const tutor = require('../models/tutorregistration');
 });*/
 
 router.get('/', (req, res) => {
-
+  //console.log('url is' + req.url);
   if(req.isAuthenticated()){
     tutor.find( { }, function(err, docs){
     var tutorChunks = [];
