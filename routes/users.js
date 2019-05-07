@@ -23,6 +23,18 @@ var email ='';
 var username = '';
 var studentemail = '';
 var tutoremail = '';
+var latesturl = [];
+var checker = '';
+
+router.use(function (req, res, next) {
+  latesturl.push(req.originalUrl);
+  var length = latesturl.length;
+  console.log(latesturl);
+  checker = latesturl[length-3];
+  console.log(checker);
+
+  next()
+})
 
 //if user is trying to access his home page without login then he is restricted
 const isAuthenticated = (req, res, next) => {
@@ -148,10 +160,11 @@ router.route('/register')
 router.route('/login')
 .post(isNotAuthenticated, passport.authenticate('local', {
     //successReturnToOrRedirect: '/',
-    successRedirect: '/',
-    failureRedirect: '/users/login',
+    successRedirect: 'find_tutor',
+    failureRedirect: '/' ,
     failureFlash: true
   }));
+
 
   router.route('/login')
   .get((req,res)=>{
