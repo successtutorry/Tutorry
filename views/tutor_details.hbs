@@ -171,6 +171,7 @@ function addMessages(message){
 		function sendMessage(message){
 		    $.post('/users/sendchat', message);
 				document.getElementById('message').value = '';
+        $("#messages").append(`<p> ${message.message} </p>`);
 				alert('message has been sent');
 
 		    }
