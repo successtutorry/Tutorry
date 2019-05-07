@@ -13,7 +13,7 @@
       <div  style="margin:30px 20px 20px 20px;"><!--start of login form division-->
          <form id="login-form" action="/users/login" method="post">
             <div class="form-group">
-               <input onfocusout="myFunction(1);" style="height:3em; background-color: #f6f8fa; " type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
+               <input onfocusout="myFunction(this.value);" style="height:3em; background-color: #f6f8fa; " type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
             </div>
             <div class="form-group">
                <input style="height:3em; background-color: #f6f8fa;" type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" required>
@@ -30,16 +30,16 @@
       <div style="margin:20px 20px 20px 20px;"><!--start of registration form division-->
          <form id="registration-form" style="display:none;" action="/users/register" method="post">
             <div class="form-group">
-               <input onfocusout="myFunction(2);" style="height:3em; background-color: #f6f8fa; " type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
+               <input onfocusout="myFunction(this.value);" style="height:3em; background-color: #f6f8fa; " type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
             </div>
             <div class="form-group">
                <input style="height:3em; background-color: #f6f8fa; " type="text" class="form-control" id="inputUsername" name="username" placeholder="username" required>
             </div>
             <div class="form-group">
-               <input style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" required>
+               <input onfocusout = "assignpasswordvalue(this.value);" style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" required>
             </div>
             <div class="form-group">
-               <input style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputConfirmPassword" name="confirmationPassword" placeholder="Confirm Password" required>
+               <input onfocusout="checkconfirmpassword();"style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputConfirmPassword" name="confirmationPassword" placeholder="Confirm Password" required>
             </div>
             <div class="form-group">
                <select style="width: 100%;padding: 16px 20px;border: none;border-radius: 4px; background-color: #f1f1f1;"id="usertype" name="usertype">
@@ -49,7 +49,7 @@
             </div>
             <div class="form-group" style="padding-bottom:10px;">
                <button type="submit" class="button btn btn-lg">REGISTER</button>
-               <p id="registererror" style="float:right; color:red;"></p>
+               <p id="registererror" style="float:right; color:red; margin-top:35px;"></p>
             </div>
          </form>
       </div><!--end of login form division-->
@@ -57,25 +57,35 @@
 </div>
 <!-----------end of overlay---------->
 <script>
-function myFunction() {
-var x = document.getElementById("inputEmail").value;
+
+var password = '';
+
+//function to do tasks related to email
+function myFunction(useremail) {
+var x = useremail;
 var valid = emailVaild(x);
+
+//if email is valid then check if email exists in database
 if(valid){
 checkifEmailExists(x);
 }else{
 document.getElementById('error').innerHTML = "Invalid email format";
+
 }
 }
 
+//function which will validate the format of the email id
 function emailVaild(email){
    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+// function which sends email to server to check if it exisit in database or not
 function checkifEmailExists(x){
 $.get('/users/checkUserInDatabase'+ x , function(data, status){
 
  if(data=='true'){
     document.getElementById('error').innerHTML = "";
+    document.getElementById('registererror').innerHTML = "Email already existis";
    //alert('email exists');
     // $('#notifyModal').modal('show');
  }
@@ -88,5 +98,18 @@ $.get('/users/checkUserInDatabase'+ x , function(data, status){
 
 });
 
+}
+
+//get password field value so that it can be used to match later with confirmpassword
+function assignpasswordvalue(x){
+  password = x;
+}
+
+//function to check if the password and confirmpassword is same or not
+function checkconfirmpassword(){
+  var confirmpassword = document.getElementById("inputConfirmPassword").value;
+ if(password!=confirmpassword){
+     document.getElementById('registererror').innerHTML = "password did not match";
+  }
 }
 </script>
