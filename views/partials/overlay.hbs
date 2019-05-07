@@ -13,10 +13,10 @@
       <div  style="margin:30px 20px 20px 20px;"><!--start of login form division-->
          <form id="login-form" action="/users/login" method="post">
             <div class="form-group">
-               <input onfocusout="myFunction(1);" style="height:3em; background-color: #f6f8fa; " type="email" class="form-control" id="inputEmail" name="email" placeholder="Email">
+               <input onfocusout="myFunction(1);" style="height:3em; background-color: #f6f8fa; " type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
             </div>
             <div class="form-group">
-               <input style="height:3em; background-color: #f6f8fa;" type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
+               <input style="height:3em; background-color: #f6f8fa;" type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" required>
             </div>
             <div class="form-group" style="padding-top:15px;">
                <a style="color:#92b343;" href="/users/forgotPassword">Forgot Password ?</a>
@@ -36,10 +36,10 @@
                <input style="height:3em; background-color: #f6f8fa; " type="text" class="form-control" id="inputUsername" name="username" placeholder="username" required>
             </div>
             <div class="form-group">
-               <input style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
+               <input style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" required>
             </div>
             <div class="form-group">
-               <input style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputConfirmPassword" name="confirmationPassword" placeholder="Confirm Password">
+               <input style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputConfirmPassword" name="confirmationPassword" placeholder="Confirm Password" required>
             </div>
             <div class="form-group">
                <select style="width: 100%;padding: 16px 20px;border: none;border-radius: 4px; background-color: #f1f1f1;"id="usertype" name="usertype">
@@ -59,8 +59,16 @@
 <script>
 function myFunction() {
 var x = document.getElementById("inputEmail").value;
-
+var valid = emailVaild(x);
+if(valid){
 checkifEmailExists(x);
+}else{
+document.getElementById('error').innerHTML = "Invalid email format";
+}
+}
+
+function emailVaild(email){
+   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 function checkifEmailExists(x){
