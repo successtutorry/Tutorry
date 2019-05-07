@@ -92,6 +92,7 @@ $.get('/users/checkUserInDatabase'+ x , function(data, status){
 
  if(data=='false'){
    document.getElementById('error').innerHTML = "Email id doesn not exists";
+   document.getElementById('registererror').innerHTML = "";
     //$('#notifyModal').modal('show');
    //alert('email does not exist');
  }
@@ -110,6 +111,8 @@ function checkconfirmpassword(){
   var confirmpassword = document.getElementById("inputConfirmPassword").value;
  if(password!=confirmpassword){
      document.getElementById('registererror').innerHTML = "password did not match";
+  }else{
+    document.getElementById('registererror').innerHTML = "";
   }
 }
 </script>
