@@ -20,6 +20,7 @@ const session = require('express-session');
 //var keystone = require('keystone');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
 require('./config/passport');
 
 
@@ -34,6 +35,7 @@ mongoose.connect('mongodb://root:root123@ds343895.mlab.com:43895/tutorry_v1', { 
     console.log('Connected to the database');
   }
 });
+
 
 var app = express();
 
@@ -71,15 +73,15 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-//app.use(flash());
+app.use(flash());
 
 //new middleware
-/*app.use((req, res, next) => {
+app.use((req, res, next) => {
   res.locals.success_messages = req.flash('success');
   res.locals.error_messages = req.flash('error');
   res.locals.isAuthenticated = req.user ? true: false;
   next();
-});*/
+});
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

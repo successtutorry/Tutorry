@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const messageForm = require('../models/message');
 const requirementForm = require('../models/requirement');
 const tutor = require('../models/tutorregistration');
+const chat = require('../models/chat');
 //const tutor = require('../models/tutors');
 const request = require('request');
 const User = require('../models/user');
@@ -16,14 +17,20 @@ const User = require('../models/user');
 const passport = require('passport');
 const randomstring = require('randomstring');
 const springedge = require('springedge');
+
+
 var email ='';
+var username = '';
+var studentemail = '';
+var tutoremail = '';
 
 //if user is trying to access his home page without login then he is restricted
 const isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
+    username = req.user.username;
     return next();
   } else {
-    console.log('error', 'Sorry, but you must be registered or logged in  first!');
+    req.flash('error', 'Sorry, but you must be registered or logged in  first!');
     res.redirect('/');
   }
 };
@@ -32,7 +39,7 @@ const isAuthenticated = (req, res, next) => {
 // already logged in
 const isNotAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
-    console.log('error', 'Sorry, but you are already logged in!');
+    req.flash('error', 'Sorry, but you are already logged in!');
     res.redirect('/');
   } else {
     return next();
@@ -54,7 +61,7 @@ router.route('/register')
       const result = Joi.validate(req.body, userSchema);
       if (result.error) {
         console.log(result.error);
-        console.log('error', 'Data is not valid. Please try again.');
+        req.flash('error', 'Data is not valid. Please try again.');
         res.redirect('/');
         return;
       }
@@ -64,7 +71,7 @@ router.route('/register')
       const user = await User.findOne({ 'email': result.value.email });
       console.log(user);
       if (user) {
-        console.log('error', 'Email is already in use. Please check your email');
+        req.flash('error', 'Email is already in use. Please check your email');
         res.redirect('/');
         return;
       }
@@ -104,7 +111,7 @@ router.route('/register')
       Have a pleasant day.`
       // Send email
       await mailer.sendEmail('tutorry.in@gmail.com', result.value.email, '', html);
-      console.log('success', 'An email verification code has been sent to you email account, Please check your email and click on the link to complete registration');
+      req.flash('success', 'An email verification code has been sent to you email account, Please check your email and click on the link to complete registration');
       res.redirect('/');
 
     } catch(error) {
@@ -141,14 +148,20 @@ router.route('/register')
 router.route('/login')
 .post(isNotAuthenticated, passport.authenticate('local', {
     //successReturnToOrRedirect: '/',
-    successRedirect: '/users/dashboard',
+    successRedirect: '/',
     failureRedirect: '/users/login',
     failureFlash: true
   }));
 
+  router.route('/login')
+  .get((req,res)=>{
+
+    res.render('index',{value:'1'});
+  });
+
   router.route('/dashboard')
   .get(isAuthenticated, (req, res) =>{
-    //req.flash('success', 'Successfully logged in out');
+    req.flash('success', 'Successfully logged in');
   /*  console.log(req.sessionID);
     if(req.user.country =='student'){
       console.log('student');
@@ -166,14 +179,15 @@ router.route('/login')
     //  res.render('student_profile');
     }
     console.log('welcome'+req.user.username);*/
-    res.render('index',{username:req.user.username })
+    username = req.user.username;
+    res.render('index', { username:req.user.username })
   });
 
 
   router.route('/logout')
   .get(isAuthenticated, (req, res) => {
     req.logout();
-    console.log('success', 'Successfully logged out. Hope to see you soon!');
+    req.flash('success', 'Successfully logged out. Hope to see you soon!');
     res.redirect('/');
   });
 
@@ -353,17 +367,118 @@ res.render('find_tutor', req.user)
 
 router.route('/find_tutor')
   .get((req, res) => {
-    res.render('find_tutor');
+    var tutorChunks = [];
+    var chunkSize = 3;
+    var displaysubjects = [];
+    if(req.query.subjects){
+      displaysubjects.push(req.query.subjects);
+    }
+
+    tutor.find({subjects:req.query.subjects }, function(err, docs){
+    for(var i=0; i < docs.length; i+= chunkSize){
+        tutorChunks.push(docs.slice(i, i+chunkSize));
+        console.log(tutorChunks);
+    }
+    if(req.isAuthenticated()){
+      res.render('find_tutor', {tutors: tutorChunks, username:req.user.username});
+    }else{
+    //  console.log(tutorChunks);
+      res.render('find_tutor', {tutors: tutorChunks, displaysub:displaysubjects });
+  }
   });
+
+  });
+
+  router.route('/gettutor')
+  .get((req,res) =>{
+
+    tutor.find( {experience:req.query.experience}, function(err, docs){
+var subjectChunks = [];
+var chunkSize = 3;
+for(var i=0; i < docs.length; i+= chunkSize){
+subjectChunks.push(docs.slice(i, i+chunkSize));
+}
+res.render('find_tutor', {tutors:subjectChunks});
+});
+});
 
 router.route('/become_tutor')
     .get((req, res) => {
-      res.render('become_tutor');
+      if(req.isAuthenticated()){
+      res.render('become_tutor', {username:req.user.username});
+    }else{
+        res.render('become_tutor');
+    }
     });
+
+    router.route('/sendchat')
+        .post(isAuthenticated, async(req, res) => {
+          try{
+          const newChat = new chat({
+            message:req.body.message,
+            studentemail:req.user.email,
+            tutoremail:req.body.email
+          });
+        const done =   await newChat.save();
+          console.log(req.body);
+          const link = "http://127.0.0.1:3000/users/reply?studentemail="+req.user.email+"&tutoremail="+req.body.email;
+          const html = `Hi there,
+          <br/>
+          You have a message from ${req.user.email}!
+          <br/><br/>
+          Please reply back on the following link:
+          <br/>
+           <a href="${link}">please click on the link</a>
+          <br/><br/>
+          Have a pleasant day.`
+          // Send email
+          await mailer.sendEmail('tutorry.in@gmail.com', req.body.email, '', html);
+        res.send({status:'success'});
+        //res.redirect('/users/displaychat')
+      }catch(error){
+
+        console.log(error);
+      }
+      });
+
+      router.route('/reply')
+      .get((req,res)=>{
+        studentemail = req.query.studentemail;
+        tutoremail = req.query.tutoremail;
+
+        res.render('reply');
+      })
+
+      router.route('/reply')
+      .post((req, res)=>{
+          const newchat = new chat({
+            message: req.body.message,
+            studentemail:studentemail,
+            tutoremail:tutoremail
+
+          });
+
+          newchat.save();
+
+
+      });
+
+      router.route('/displaychat')
+      .get((req,res)=>{
+      //  var messagearray = [];
+        chat.find({},function(err,result){
+          //console.log(result);
+        /*for(var i=0;i<result.length;i++){
+            messagearray.push(result[i].message);
+          }*/
+          //console.log(messagearray);
+          res.send(result);
+        });
+      });
 
 router.route('/contact')
     .get((req, res) => {
-    res.render('contact');
+    res.render('contact', {username:username});
   });
 
   router.route('/tutor_details')
@@ -432,7 +547,7 @@ router.route('/contact')
      //console.log(result);
      //var current_tutor = result.email
 
-     res.render('tutor_details', { firstname: result.firstname, lastname: result.lastname, subjects: result.subjects, rating: result.rating, image:result.image, price: result.rateperhour[0] });
+     res.render('tutor_details', { firstname: result.firstname, lastname: result.lastname, subjects: result.subjects, rating: result.rating, image:result.image, price: result.rateperhour[0], email:result.email });
 });
 });
 

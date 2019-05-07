@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-	     <div style="font-size:2.5em; padding-top:5px;">
+	     <div style="font-size:32px; padding-top:5px;">
 		       <span style="color: #aece61;" class="fas fa-book-reader">
              <a style="text-decoration:none;" class="logo" href="/" >Tutorry</a>
            </span>
@@ -22,19 +22,18 @@
         {{# if isAuthenticated}}
         <li>
           <div class="dropdown">
-            <button class="login-close-button dropdown-toggle" type="button" style="padding-top:14px;" data-toggle="dropdown">{{username}}
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
+           <button class="login-close-button dropdown-toggle" type="button" style="padding-top:14px;" data-toggle="dropdown">{{username}}
+           <span class="caret"></span></button>
+           <ul class="dropdown-menu">
              <li><a href="#">My Profile</a></li>
              <li><a href="#">My Tutors</a></li>
              <li><a href="/users/logout">Logout</a></li>
-            </ul>
-          </div>
-        </li>
-        {{else}}
-        <li><button class="login-close-button" type="button" onclick="on();" style="padding-top:14px;">Login</button></li>
-        {{/if}}
+           </ul>
+         </div>
+       </li>
+          {{else}}
+          <li><button class="login-close-button" type="button" onclick="on();" style="padding-top:14px;">Login</button></li>
+          {{/if}}
       </ul>
     </div>
   </div>
