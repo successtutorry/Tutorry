@@ -11,6 +11,18 @@ const tutor = require('../models/tutorregistration');
 
 router.get('/', (req, res) => {
 
+  if(req.isAuthenticated()){
+    tutor.find( { }, function(err, docs){
+    var tutorChunks = [];
+    var chunkSize = 3;
+    for(var i=0; i < docs.length; i+= chunkSize){
+        tutorChunks.push(docs.slice(i, i+chunkSize));
+    }
+      res.render('index', {  tutors: tutorChunks, username:req.user.username });
+    });
+
+  }else{
+
       tutor.find( { }, function(err, docs){
       var tutorChunks = [];
       var chunkSize = 3;
@@ -19,6 +31,7 @@ router.get('/', (req, res) => {
       }
         res.render('index', {  tutors: tutorChunks });
       });
+    }
 });
 
 
