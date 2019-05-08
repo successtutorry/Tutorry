@@ -20,6 +20,7 @@ const session = require('express-session');
 //var keystone = require('keystone');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var findtutorRouter = require('./routes/findtutor');
 
 require('./config/passport');
 
@@ -84,6 +85,7 @@ app.use((req, res, next) => {
 });
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/findtutor', findtutorRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
