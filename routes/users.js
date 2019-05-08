@@ -378,7 +378,7 @@ res.render('find_tutor', req.user)
   }
 });*/
 
-router.route('/find_tutor')
+/*router.route('/find_tutor')
   .get((req, res) => {
     var tutorChunks = [];
     var chunkSize = 3;
@@ -400,7 +400,7 @@ router.route('/find_tutor')
   }
   });
 
-  });
+});*/
 
   router.route('/gettutor')
   .get((req,res) =>{
