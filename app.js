@@ -39,17 +39,17 @@ var app = express();
 
 /*var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });*/
 
-var logDirectory = path.join(__dirname, 'log')
+//var logDirectory = path.join(__dirname, 'log')
 
 // ensure log directory exists
-fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory)
+//fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory)
 
 // create a rotating write stream
-var accessLogStream = rfs('information.log', {
+/*var accessLogStream = rfs('information.log', {
   interval: '1h', // rotate daily
   path: logDirectory
 })
-const format = json(':method :url :status :res[content-length] bytes :response-time ms');
+const format = json(':method :url :status :res[content-length] bytes :response-time ms');*/
 
 
 // view engine setup
@@ -57,7 +57,7 @@ app.engine('.hbs',expressHbs({defaultLayout:'layout',extname:'.hbs'}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', '.hbs');
 app.use(logger('dev'));
-app.use(logger(format, { stream: accessLogStream }));
+//app.use(logger(format, { stream: accessLogStream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
