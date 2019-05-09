@@ -23,18 +23,11 @@ var email ='';
 var username = '';
 var studentemail = '';
 var tutoremail = '';
-var latesturl = [];
-var checker = '';
+//var latesturl = [];
+//var checker = '';
+var catchurl ='';
+var tutor_email ='';
 
-router.use(function (req, res, next) {
-  latesturl.push(req.originalUrl);
-  var length = latesturl.length;
-  console.log(latesturl);
-  checker = latesturl[length-3];
-  console.log(checker);
-
-  next()
-})
 
 //if user is trying to access his home page without login then he is restricted
 const isAuthenticated = (req, res, next) => {
@@ -42,7 +35,7 @@ const isAuthenticated = (req, res, next) => {
     username = req.user.username;
     return next();
   } else {
-    req.flash('error', 'Sorry, but you must be registered or logged in  first!');
+    //req.flash('error', 'Sorry, but you must be registered or logged in  first!');
     res.redirect('/');
   }
 };
@@ -50,6 +43,8 @@ const isAuthenticated = (req, res, next) => {
 // accessed only when the user is logged in then a message prompts that he is
 // already logged in
 const isNotAuthenticated = (req, res, next) => {
+//  url = req.originalUrl;
+//  console.log(url);
   if (req.isAuthenticated()) {
     req.flash('error', 'Sorry, but you are already logged in!');
     res.redirect('/');
@@ -137,40 +132,122 @@ router.route('/register')
     try{
     console.log('request recieved');
     const token = req.query.id;
-    await User.updateOne(
-      { secretToken: token },
-      {
-        $set: { active: true }
-      },function(err,res){
+    await User.updateOne({ secretToken: token },{$set: { active: true }},function(err,res){
         if(err){
           throw err;
         }else{
           console.log('user verified');
           return;
         }
-      }
-);
+      });
   res.redirect('/');
 }catch(error){
   console.log(error);
 }
 });
 
+router.route('/contact')
+    .get((req, res) => {
+      const isloggedin = req.isAuthenticated();
+      console.log(isloggedin);
+      if(isloggedin){
+        catchurl = req.originalUrl;
+        res.render('contact',{username:req.user.username});
+      }else{
+        catchurl = req.originalUrl;
+        res.render('contact');
+      }
+
+  });
+
 // this route is executed when the user tries to login
-router.route('/login')
+/*router.route('/login')
 .post(isNotAuthenticated, passport.authenticate('local', {
     //successReturnToOrRedirect: '/',
-    successRedirect: 'find_tutor',
+    successRedirect: '{catchurl}',
     failureRedirect: '/' ,
     failureFlash: true
-  }));
-
+  }));*/
 
   router.route('/login')
-  .get((req,res)=>{
+  .post(isNotAuthenticated, passport.authenticate('local', {
 
-    res.render('index',{value:'1'});
+    successRedirect: '/users/loginredirect',
+    failureRedirect: '/users/errorlogin',
+    failureFlash: false
+  }));
+
+  router.route('/home')
+  .get((req,res)=>{
+    catchurl = req.originalUrl;
+    console.log(catchurl);
+    const isloggedin = req.isAuthenticated();
+    if(isloggedin){
+      res.redirect('/');
+    }else{
+      res.redirect('/')
+    }
   });
+
+router.route('/loginredirect')
+.get((req,res)=>{
+
+      switch(catchurl){
+
+        case '/users/become_tutor':
+        res.redirect('/users/become_tutor');
+        break;
+
+        case '/users/contact':
+        //console.log(req.user.username);
+        res.redirect('/users/contact');
+        break;
+
+        case '/users/view_tutor':
+        //console.log(tutor_email);
+        res.redirect('/users/view_tutor?email='+tutor_email);
+        //res.render('tutor_details');
+        break;
+
+        case '/users/find_tutor':
+        res.redirect('/findtutor/find_tutor');
+        break;
+
+        default:
+        res.redirect('/');
+        break;
+
+      }
+});
+
+
+  /*router.route('/showtutor')
+  .get((req,res)=>{
+    console.log(req.query.email);
+    tutor.findOne({ email: req.query.email },function(req,result){
+      res.render('tutor_details', {
+      username:req.user.username,
+      firstname: result.firstname,
+      lastname: result.lastname,
+      subjects: result.subjects,
+      rating: result.rating,
+      image:result.image,
+      price: result.rateperhour[0],
+      email:result.email
+    });
+  });
+});*/
+
+  router.route('/find_tutor')
+  .get((req,res)=>{
+    catchurl = req.originalUrl;
+    const isloggedin = req.isAuthenticated();
+    if(isloggedin){
+      res.redirect('/findtutor/find_tutor');
+    }else{
+      res.render('find_tutor');
+    }
+  })
 
   router.route('/dashboard')
   .get(isAuthenticated, (req, res) =>{
@@ -200,8 +277,22 @@ router.route('/login')
   router.route('/logout')
   .get(isAuthenticated, (req, res) => {
     req.logout();
-    req.flash('success', 'Successfully logged out. Hope to see you soon!');
-    res.redirect('/');
+    //req.flash('success', 'Successfully logged out. Hope to see you soon!');
+    /*if(catchurl='/users/view_tutor'){
+      res.redirect('/users/view_tutor?email='+tutor_email);
+    }else{
+      res.redirect(catchurl);
+  }*/
+  res.redirect('/users/home');
+  });
+
+  router.route('/errorlogin')
+  .get((req,res)=>{
+    if(catchurl='/users/view_tutor'){
+      res.redirect('/users/view_tutor?email='+tutor_email);
+    }else{
+      res.redirect(catchurl);
+    }
   });
 
   router.route('/forgotPassword')
@@ -417,10 +508,13 @@ res.render('find_tutor', {tutors:subjectChunks});
 
 router.route('/become_tutor')
     .get((req, res) => {
-      if(req.isAuthenticated()){
+      catchurl = req.originalUrl;
+    const isloggedin = req.isAuthenticated();
+    if(isloggedin){
       res.render('become_tutor', {username:req.user.username});
     }else{
-        res.render('become_tutor');
+
+      res.render('become_tutor');
     }
     });
 
@@ -489,10 +583,6 @@ router.route('/become_tutor')
         });
       });
 
-router.route('/contact')
-    .get((req, res) => {
-    res.render('contact', {username:username});
-  });
 
   router.route('/tutor_details')
     .get((req, res) => {
@@ -554,14 +644,37 @@ router.route('/contact')
 
   router.route('/view_tutor')
   .get((req, res) => {
-    //var tutor_email = req.query.email;
-    //console.log(req.query.current_tutor)
-   tutor.findOne({ email:req.query.email },function(req,result){
-     //console.log(result);
-     //var current_tutor = result.email
+    tutor_email = req.query.email;
+    const isloggedin = req.isAuthenticated();
+    if(isloggedin){
+      tutor.findOne({ email: req.query.email },function(err,result){
+        res.render('tutor_details', {
+        username:req.user.username,
+        firstname: result.firstname,
+        lastname: result.lastname,
+        subjects: result.subjects,
+        rating: result.rating,
+        image:result.image,
+        price: result.rateperhour[0],
+        email:result.email
+      });
+    });
+  }else{
+    catchurl = '/users'+ req.path;
+    console.log(catchurl);
+    tutor.findOne({ email:req.query.email },function(err,result){
+      res.render('tutor_details', {
+      firstname: result.firstname,
+      lastname: result.lastname,
+      subjects: result.subjects,
+      rating: result.rating,
+      image:result.image,
+      price: result.rateperhour[0],
+      email:result.email
+    });
+  });
 
-     res.render('tutor_details', { firstname: result.firstname, lastname: result.lastname, subjects: result.subjects, rating: result.rating, image:result.image, price: result.rateperhour[0], email:result.email });
-});
+  }
 });
 
   /*router.route('/message')
