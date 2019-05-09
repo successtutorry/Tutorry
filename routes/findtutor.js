@@ -17,7 +17,6 @@ const passport = require('passport');
 const randomstring = require('randomstring');
 const springedge = require('springedge');
 
-
 router.route('/find_tutor')
   .get((req, res) => {
 
@@ -39,8 +38,8 @@ router.route('/find_tutor')
       console.log('nothing');
     }*/
 
-    
-res.render('find_tutor');
+
+res.render('find_tutor',{username:req.user.username});
 
 //console.log(req.query);
 
