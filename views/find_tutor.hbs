@@ -105,10 +105,16 @@
 					<div style="margin-top:20px;">
 						<div style="font-size:18px;">
 							<div>
-								<span onclick="location.href='/users/find_tutor?subjects=history'"><input style="margin-left: -120px;" type="checkbox" value="history" name="subjects[]"><span style="margin-left:-120px; cursor:pointer;">HISTORY</span></span>
+								<span onclick="filtervalue('subjects=history');">
+                  <input style="margin-left: -120px;" type="checkbox" value="history" name="subjects[]">
+                  <span style="margin-left:-120px; cursor:pointer;">HISTORY</span>
+                </span>
 							</div>
 							<div>
-								<span><input style="margin-left: -120px;" type="checkbox" ><span style="margin-left:-120px; cursor:pointer;">abc</span></span>
+								<span onclick="location.href='/findtutor/find_tutor?subjects=maths'">
+                  <input style="margin-left: -120px;" type="checkbox" value="maths" name="subjects[]">
+                  <span style="margin-left:-120px; cursor:pointer;">MATHS</span>
+                </span>
 							</div>
 							<div>
 								<span><input style="margin-left: -120px;" type="checkbox"><span style="margin-left:-120px; cursor:pointer;">abc</span></span>
@@ -119,16 +125,22 @@
 						</div>
 					</div>
 				</div>
-				<button class="collapsible">Subjects</button>
+				<button class="collapsible">RATE</button>
 				<div class="content">
 					<div style="margin-top:20px;">
-						<div style="">
-							<div class="checkbox">
-								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">1-5</label></a>
+						<div style="font-size:18px;">
+							<div>
+                <span onclick="location.href='/findtutor/find_tutor?rateperhour=400'">
+                  <input style="margin-left: -120px;" type="checkbox" value="history" name="rateperhour[]">
+                  <span style="margin-left:-120px; cursor:pointer;">400</span>
+                </span>
 							</div>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">5-10</label>
-							</div></a>
+              <div>
+                <span onclick="location.href='/findtutor/find_tutor?rateperhour=500'">
+                  <input style="margin-left: -120px;" type="checkbox" value="history" name="rateperhour[]">
+                  <span style="margin-left:-120px; cursor:pointer;">500</span>
+                </span>
+							</div>
 							<a style="color:blue;" href="#"><div class="checkbox">
 									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
 							</div></a>
@@ -379,9 +391,9 @@
 						</div>
 					</div>-->
 			</div>
-      {{# each tutors}}
+      {{# each data}}
         {{# each this}}
-			<div class="col-sm-4 col-md-4">
+			<div id="tutorprofilediv" class="col-sm-4 col-md-4">
 				<div class="card" style="width:225px">
 					<img class="card-img-top" src="/images/{{this.image}}" alt="Card image" style="width:100%">
 					<div  class="card-body tutor-card-body">
@@ -436,6 +448,11 @@ function gettutor(x){
   });
 }
 
+function filtervalue(x){
+  $.get('/findtutor/find_tutor?'+ x , function(data, status){
+  $('#tutorprofilediv').load('/findtutor/find_tutor');
+  });
+}
 
 
 </script>

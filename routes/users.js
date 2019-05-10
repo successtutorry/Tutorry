@@ -245,7 +245,7 @@ router.route('/loginredirect')
     if(isloggedin){
       res.redirect('/findtutor/find_tutor');
     }else{
-      res.render('find_tutor');
+      res.redirect('/findtutor/find_tutor');
     }
   })
 
