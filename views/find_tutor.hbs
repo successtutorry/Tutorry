@@ -105,22 +105,16 @@
 					<div style="margin-top:20px;">
 						<div style="font-size:18px;">
 							<div>
-								<span onclick="filtervalue('subjects=history');">
-                  <input style="margin-left: -120px;" type="checkbox" value="history" name="subjects[]">
+								<span>
+                  <input onclick="filtervalue(this)" style="margin-left: -120px;" type="checkbox" value="history" name="subjects[]">
                   <span style="margin-left:-120px; cursor:pointer;">HISTORY</span>
                 </span>
 							</div>
 							<div>
-								<span onclick="location.href='/findtutor/find_tutor?subjects=maths'">
-                  <input style="margin-left: -120px;" type="checkbox" value="maths" name="subjects[]">
+								<span>
+                  <input onclick="filtervalue(this)" style="margin-left: -120px;" type="checkbox" value="maths" name="subjects[]">
                   <span style="margin-left:-120px; cursor:pointer;">MATHS</span>
                 </span>
-							</div>
-							<div>
-								<span><input style="margin-left: -120px;" type="checkbox"><span style="margin-left:-120px; cursor:pointer;">abc</span></span>
-							</div>
-							<div>
-								<span><input style="margin-left: -120px;" type="checkbox"><span style="margin-left:-120px; cursor:pointer;">abc</span></span>
 							</div>
 						</div>
 					</div>
@@ -130,270 +124,24 @@
 					<div style="margin-top:20px;">
 						<div style="font-size:18px;">
 							<div>
-                <span onclick="location.href='/findtutor/find_tutor?rateperhour=400'">
-                  <input style="margin-left: -120px;" type="checkbox" value="history" name="rateperhour[]">
+                <span>
+                  <input onclick="filtervalue(this)" style="margin-left: -120px;" type="checkbox" value="400" name="rateperhour[]">
                   <span style="margin-left:-120px; cursor:pointer;">400</span>
                 </span>
 							</div>
               <div>
-                <span onclick="location.href='/findtutor/find_tutor?rateperhour=500'">
-                  <input style="margin-left: -120px;" type="checkbox" value="history" name="rateperhour[]">
+                <span>
+                  <input onclick="filtervalue(this)" style="margin-left: -120px;" type="checkbox" value="500" name="rateperhour[]">
                   <span style="margin-left:-120px; cursor:pointer;">500</span>
                 </span>
 							</div>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Diploma</label>
-							</div></a>
 						</div>
 					</div>
 				</div>
-				<button class="collapsible">Subjects</button>
-				<div class="content">
-					<div style="margin-top:20px;">
-						<div style="">
-							<div class="checkbox">
-								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">1-5</label></a>
-							</div>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">5-10</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Diploma</label>
-							</div></a>
-						</div>
-					</div>
-				</div>
-				<button class="collapsible">Subjects</button>
-				<div class="content">
-					<div style="margin-top:20px;">
-						<div style="">
-							<div class="checkbox">
-								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">1-5</label></a>
-							</div>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">5-10</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Diploma</label>
-							</div></a>
-						</div>
-					</div>
-				</div>
-				<button class="collapsible">Subjects</button>
-				<div class="content">
-					<div style="margin-top:20px;">
-						<div style="">
-							<div class="checkbox">
-								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">1-5</label></a>
-							</div>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">5-10</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Diploma</label>
-							</div></a>
-						</div>
-					</div>
-				</div>
-				<button class="collapsible">Subjects</button>
-				<div class="content">
-					<div style="margin-top:20px;">
-						<div style="">
-							<div class="checkbox">
-								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">1-5</label></a>
-							</div>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">5-10</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Diploma</label>
-							</div></a>
-						</div>
-					</div>
-				</div>
-				<button class="collapsible">Subjects</button>
-				<div class="content">
-					<div style="margin-top:20px;">
-						<div style="">
-							<div class="checkbox">
-								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">1-5</label></a>
-							</div>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">5-10</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Diploma</label>
-							</div></a>
-						</div>
-					</div>
-				</div>
-				<button class="collapsible">Subjects</button>
-				<div class="content">
-					<div style="margin-top:20px;">
-						<div style="">
-							<div class="checkbox">
-								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">1-5</label></a>
-							</div>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">5-10</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Diploma</label>
-							</div></a>
-						</div>
-					</div>
-				</div>
-				<button class="collapsible">Subjects</button>
-				<div class="content">
-					<div style="margin-top:20px;">
-						<div style="">
-							<div class="checkbox">
-								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">1-5</label></a>
-							</div>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">5-10</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Diploma</label>
-							</div></a>
-						</div>
-					</div>
-				</div>
-				<button class="collapsible">Subjects</button>
-				<div class="content">
-					<div style="margin-top:20px;">
-						<div style="">
-							<div class="checkbox">
-								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">1-5</label></a>
-							</div>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">5-10</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Diploma</label>
-							</div></a>
-						</div>
-					</div>
-				</div>
-
-				<!--<div class="buttons">
-					  <button type="button" class="subject-buttons">Science & Mathematics</button>
-					  <button type="button" class="subject-buttons">Social Sciences</button>
-						<button type="button" class="subject-buttons">Political Sciences</button>
-						<button type="button" class="subject-buttons">Chemistry</button>
-						<button type="button" class="subject-buttons">Physics</button>
-						<button type="button" class="subject-buttons">English</button>
-						<button type="button" class="subject-buttons">Hindi</button>
-						<button type="button" class="subject-buttons">Marathi</button>
-						<button type="button" class="subject-buttons">Goegraphy</button>
-						<button type="button" class="subject-buttons">Mathematics</button>
-						<button type="button" class="subject-buttons">Science</button>
-						<button type="button" class="subject-buttons">History</button>
-						<button type="button" class="subject-buttons">Economics</button>
-						<button type="button" class="subject-buttons">Biology</button>
-						<button type="button" class="subject-buttons">Algebra</button>
-						<button type="button" class="subject-buttons">Geometry</button>
-						<button type="button" class="subject-buttons">Science</button>
-				</div>
-				<div style="margin-top:50px;">
-						<div style="margin-top:20px;">
-							<div style="margin-left:20px;">
-								<h4 >Class:</h4>
-							</div>
-							<div style="">
-								<div class="checkbox">
-		      				<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">1-5</label></a>
-		    				</div>
-		    				<a style="color:blue;" href="#"><div class="checkbox">
-		      					<input style="margin-left:-40px;" type="checkbox" value=""><label style="">5-10</label>
-		    				</div></a>
-		    				<a style="color:blue;" href="#"><div class="checkbox">
-		      					<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
-		    				</div></a>
-								<a style="color:blue;" href="#"><div class="checkbox">
-		      				<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Diploma</label>
-		    				</div></a>
-
-							</div>
-						</div>
-						<div style="margin-top:20px;">
-							<div style="margin-left:20px;">
-								<h4 >Gender:</h4>
-							</div>
-							<div style="">
-								<div class="checkbox">
-		      				<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Male</label>
-		    				</div>
-		    				<div class="checkbox">
-		      					<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Female</label>
-		    				</div>
-
-							</div>
-						</div>
-						<div style="margin-top:20px;">
-							<div style="margin-left:20px;">
-								<h4 >Fees:</h4>
-							</div>
-							<div style="">
-								<div class="checkbox">
-		      				<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Below 400</label>
-		    				</div>
-		    				<div class="checkbox">
-		      					<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Below 700</label>
-		    				</div>
-		    				<div class="checkbox">
-		      					<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Below 1000</label>
-		    				</div>
-							</div>
-						</div>
-						<div style="margin-top:20px;">
-							<div style="margin-left:20px;">
-								<h4>Timing:</h4>
-							</div>
-							<div style="">
-								<div class="checkbox">
-		      				<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Morning</label>
-		    				</div>
-		    				<div class="checkbox">
-		      					<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Afternoon</label>
-		    				</div>
-		    				<div class="checkbox">
-		      					<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Evening</label>
-		    				</div>
-							</div>
-						</div>
-					</div>-->
 			</div>
-      {{# each data}}
+      {{# each tutors}}
         {{# each this}}
-			<div id="tutorprofilediv" class="col-sm-4 col-md-4">
+			<div class="col-sm-4 col-md-4">
 				<div class="card" style="width:225px">
 					<img class="card-img-top" src="/images/{{this.image}}" alt="Card image" style="width:100%">
 					<div  class="card-body tutor-card-body">
@@ -408,8 +156,6 @@
 	</div>
 </div>
 </div>
-
-
 
 <script>
 
@@ -448,11 +194,67 @@ function gettutor(x){
   });
 }
 
+var subject = [];
+var fees = []
+var query = {};
+var query1 = {};
+var query2 = {};
 function filtervalue(x){
-  $.get('/findtutor/find_tutor?'+ x , function(data, status){
-  $('#tutorprofilediv').load('/findtutor/find_tutor');
-  });
+
+if(x.name=='subjects[]')
+  {
+      if(x.checked)
+        {
+            subject.push(x.value);
+            query1 = {subjects:subject[0]};
+        }
+        else
+        {
+            subject.pop(x.value);
+            query1 = {subjects:subject};
+        }
+  }
+  else if(x.name =='rateperhour[]')
+  {
+           if(x.checked)
+           {
+              fees.push(x.value);
+              query2 = {rateperhour:fees};
+           }
+           else
+            {
+              fees.pop(x.value);
+              query2 = {rateperhour:fees};
+            }
+  }
+  else
+  {
+        alert('no subject no fees');
+      }
+
+if(subject.length=='0'){
+  console.log('subject is null');
+  query = query2;
+  searchtutor(query);
+
+}else if(fees.length=='0'){
+  console.log('fees is null');
+  query = query1;
+  searchtutor(query);
+}else{
+  console.log('not null');
+  query = { $or:[query1,query2]};
+  searchtutor(query);
+}
 }
 
 
+function searchtutor(x){
+  JSON.stringify(x);
+$.get('/findtutor/find_tutor?search='+JSON.stringify(x) , function(data, status){
+
+  console.log(data);
+});
+
+}
 </script>

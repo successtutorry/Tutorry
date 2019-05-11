@@ -21,6 +21,7 @@ var subjects = [];
 var fees = [];
 var result1 = [];
 var result2 = [];
+var displaysubjects = [];
 router.route('/find_tutor')
   .get((req, res) => {
 
@@ -75,16 +76,21 @@ router.route('/find_tutor')
     }
 
   }*/
+
+  /*this is the correct one
   var tutorChunks = [];
   var chunkSize = 3;
-  var displaysubjects = [];
-  console.log(req.query.subjects);
+  var query = {};
   if(req.query.subjects){
+    var length = displaysubjects.length;
+    //displaysubjects[length] = req.query.subjects;
     displaysubjects.push(req.query.subjects);
-
+    console.log(displaysubjects);
+     query = {subjects:req.query.subjects};
+     console.log(query);
   }
 
-  tutor.find({subjects:displaysubjects[0] }, function(err, docs){
+  tutor.find(query, function(err, docs){
   for(var i=0; i < docs.length; i+= chunkSize){
       tutorChunks.push(docs.slice(i, i+chunkSize));
       console.log(tutorChunks);
@@ -93,10 +99,32 @@ router.route('/find_tutor')
     res.render('find_tutor', {tutors: tutorChunks, username:req.user.username});
   }else{
   //  console.log(tutorChunks);
-    res.redirect('find_tutor', {tutors: tutorChunks, displaysub:displaysubjects });
+    res.render('find_tutor', {tutors: tutorChunks, displaysub:displaysubjects });
+}
+});*/
+
+var tutorChunks = [];
+var chunkSize = 3;
+console.log(req.query.search);
+if(req.query.search){
+//var query = JSON.parse(req.query.search);
+tutor.find(JSON.parse(req.query.search), function(err, docs){
+for(var i=0; i < docs.length; i+= chunkSize){
+    tutorChunks.push(docs.slice(i, i+chunkSize));
+    console.log(tutorChunks);
+}
+if(req.isAuthenticated()){
+  res.render('find_tutor', {tutors: tutorChunks, username:req.user.username});
+}else{
+//  console.log(tutorChunks);
+  res.render('find_tutor', {tutors: tutorChunks, displaysub:displaysubjects });
+}
+});
+}else{
+  res.render('find_tutor');
 }
 
-});
+
 });
 
 
