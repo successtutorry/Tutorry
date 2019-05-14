@@ -94,9 +94,7 @@
     </div>
 </div>
 </div>
-
-
-<div class="container margin-class section-margin">
+<div id="mainbody" class="container margin-class section-margin">
 	<div class="title-margin-class">
     <div class="row">
 			<div class="col-sm-4 col-md-4">
@@ -106,7 +104,7 @@
 						<div style="font-size:18px;">
 							<div>
 								<span>
-                  <input onclick="filtervalue(this)" style="margin-left: -120px;" type="checkbox" value="history" name="subjects[]">
+                  <input id="history" onclick="filtervalue(this)" style="margin-left: -120px;" type="checkbox" value="history" name="subjects[]">
                   <span style="margin-left:-120px; cursor:pointer;">HISTORY</span>
                 </span>
 							</div>
@@ -125,34 +123,38 @@
 						<div style="font-size:18px;">
 							<div>
                 <span>
-                  <input onclick="filtervalue(this)" style="margin-left: -120px;" type="checkbox" value="400" name="rateperhour[]">
-                  <span style="margin-left:-120px; cursor:pointer;">400</span>
+                  <input onclick="filtervalue(this)" style="margin-left: -120px;" type="checkbox" value="500" name="rateperhour[]">
+                  <span style="margin-left:-120px; cursor:pointer;">500</span>
                 </span>
 							</div>
               <div>
                 <span>
-                  <input onclick="filtervalue(this)" style="margin-left: -120px;" type="checkbox" value="500" name="rateperhour[]">
-                  <span style="margin-left:-120px; cursor:pointer;">500</span>
+                  <input onclick="filtervalue(this)" style="margin-left: -120px;" type="checkbox" value="400" name="rateperhour[]">
+                  <span style="margin-left:-120px; cursor:pointer;">400</span>
                 </span>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+      <div id ="tutorsprofile">
+
       {{# each tutors}}
-        {{# each this}}
+      {{# each this}}
 			<div class="col-sm-4 col-md-4">
-				<div class="card" style="width:225px">
+				<div  class="card" style="width:225px">
 					<img class="card-img-top" src="/images/{{this.image}}" alt="Card image" style="width:100%">
 					<div  class="card-body tutor-card-body">
-						<h4 style="color: #134477;" class="card-title">{{this.firstname}} {{this.lastname}}</h4>
-						<p style="color:#91959a;" class="card-text">{{this.subjects}}</p>
+						<h4  style="color: #134477;" class="card-title">{{this.firstname}} {{this.lastname}}</h4>
+						<p  style="color:#91959a;" class="card-text">{{this.subjects}}</p>
 						<button onclick="location.href='/users/view_tutor?email={{this.email}}'" class="view_tut_btn button btn btn-lg" type="button">View Tutor</button>
 					</div>
 				</div>
 			</div>
       {{/each}}
-  {{/each}}
+      {{/each}}
+
+      <div>
 	</div>
 </div>
 </div>
@@ -172,6 +174,7 @@ function myFunc() {
  stickysearchbar.style = "position:sticky; top:0; padding-top:60px; z-index:50;";
  }
 }*/
+
 var coll = document.getElementsByClassName("collapsible");
 var i;
 
@@ -196,65 +199,80 @@ function gettutor(x){
 
 var subject = [];
 var fees = []
-var query = {};
-var query1 = {};
-var query2 = {};
+var query = { $and: [ {subjects:'history'}, {rateperhour:'400'} ] };
+
 function filtervalue(x){
 
-if(x.name=='subjects[]')
-  {
-      if(x.checked)
-        {
-            subject.push(x.value);
-            query1 = {subjects:subject[0]};
+  /*if(x.name=='subjects[]')
+    {
+        if(x.checked)
+          {
+              subject.push(x.value);
+              query1 = {subjects:subject};
+          }
+          else
+          {
+              subject.pop(x.value);
+              query1 = {subjects:subject};
+          }
+    }
+    else if(x.name =='rateperhour[]')
+    {
+             if(x.checked)
+             {
+                fees.push(x.value);
+                query2 = {rateperhour:fees};
+             }
+             else
+              {
+                fees.pop(x.value);
+                query2 = {rateperhour:fees};
+              }
+    }
+    else
+    {
+          alert('no subject no fees');
         }
-        else
-        {
-            subject.pop(x.value);
-            query1 = {subjects:subject};
-        }
-  }
-  else if(x.name =='rateperhour[]')
-  {
-           if(x.checked)
-           {
-              fees.push(x.value);
-              query2 = {rateperhour:fees};
-           }
-           else
-            {
-              fees.pop(x.value);
-              query2 = {rateperhour:fees};
-            }
-  }
-  else
-  {
-        alert('no subject no fees');
-      }
-
-if(subject.length=='0'){
-  console.log('subject is null');
-  query = query2;
-  searchtutor(query);
-
-}else if(fees.length=='0'){
-  console.log('fees is null');
-  query = query1;
-  searchtutor(query);
-}else{
-  console.log('not null');
-  query = { $or:[query1,query2]};
+  if(subject.length=='0'){
+    console.log('subject is null');
+    query = query2;
+    searchtutor(query);
+  }else if(fees.length=='0'){
+    console.log('fees is null');
+    query = query1;
+    searchtutor(query);
+  }else{
+    console.log('not null');
+    query = { $or:[query1,query2]};
+    searchtutor(query);
+  }*/
   searchtutor(query);
 }
-}
-
+var tutorprofilecontent = '';
 
 function searchtutor(x){
-  JSON.stringify(x);
-$.get('/findtutor/find_tutor?search='+JSON.stringify(x) , function(data, status){
+  x = JSON.stringify(x);
+$.getJSON('/findtutor/find_tutor?search='+x , function(data){
+console.log(data.tutors[0]);
+console.log(data.tutors.length);
+$.each(data.tutors[0], function(data){
+tutorprofilecontent += '<div class="col-sm-4 col-md-4">';
+tutorprofilecontent += '<div  class="card" style="width:225px">'
+//tutorprofilecontent += '<img class="card-img-top" src="/images/'+this.image"' + 'alt="Card image" style="width:100%">';
+tutorprofilecontent += '<div  class="card-body tutor-card-body">';
+tutorprofilecontent += '<h4  style="color: #134477;" class="card-title">'+ this.firstname + ' ' + this.lastname+'</h4>';
+tutorprofilecontent += '<p  style="color:#91959a;" class="card-text">' + this.subjects + '</p>';
+//tutorprofilecontent += '<button onclick="location.href='/users/view_tutor?email='' + this.email + 'class="view_tut_btn button btn btn-lg" type="button">View Tutor</button>';
+tutorprofilecontent += '<button class="view_tut_btn button btn btn-lg" type="button">View Tutor</button>';
+tutorprofilecontent += '</div>';
+tutorprofilecontent += '</div>';
+tutorprofilecontent += '</div>';
 
-  console.log(data);
 });
-
+$('#tutorsprofile').html(tutorprofilecontent);
+});
 }
+
+
+
 </script>

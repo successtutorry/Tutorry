@@ -22,7 +22,8 @@ var fees = [];
 var result1 = [];
 var result2 = [];
 var displaysubjects = [];
-router.route('/find_tutor')
+
+/*router.route('/find_tutor')
   .get((req, res) => {
 
   /*  if(req.query.subject && req.query.location && req.query.zipcode){
@@ -101,30 +102,37 @@ router.route('/find_tutor')
   //  console.log(tutorChunks);
     res.render('find_tutor', {tutors: tutorChunks, displaysub:displaysubjects });
 }
+});
 });*/
 
-var tutorChunks = [];
-var chunkSize = 3;
-console.log(req.query.search);
-if(req.query.search){
-//var query = JSON.parse(req.query.search);
-tutor.find(JSON.parse(req.query.search), function(err, docs){
-for(var i=0; i < docs.length; i+= chunkSize){
-    tutorChunks.push(docs.slice(i, i+chunkSize));
-    console.log(tutorChunks);
-}
-if(req.isAuthenticated()){
-  res.render('find_tutor', {tutors: tutorChunks, username:req.user.username});
+
+router.route('/find_tutor')
+  .get((req, res) => {
+    var tutorChunks = [];
+    var chunkSize = 3;
+    query = '';
+    if(req.query.search){
+      query = JSON.parse(req.query.search);
+      tutor.find(query, function(err, docs){
+      for(var i=0; i < docs.length; i+= chunkSize){
+          tutorChunks.push(docs.slice(i, i+chunkSize));
+          console.log(tutorChunks);
+      }
+      res.json({tutors:tutorChunks});
+
+  });
 }else{
-//  console.log(tutorChunks);
-  res.render('find_tutor', {tutors: tutorChunks, displaysub:displaysubjects });
-}
+
+    tutor.find({ }, function(err, docs){
+    for(var i=0; i < docs.length; i+= chunkSize){
+        tutorChunks.push(docs.slice(i, i+chunkSize));
+        console.log(tutorChunks);
+    }
+    res.render('find_tutor',{tutors:tutorChunks});
+
+
 });
-}else{
-  res.render('find_tutor');
 }
-
-
 });
 
 

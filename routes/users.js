@@ -247,7 +247,7 @@ router.route('/loginredirect')
     }else{
       res.redirect('/findtutor/find_tutor');
     }
-  })
+  });
 
   router.route('/dashboard')
   .get(isAuthenticated, (req, res) =>{
