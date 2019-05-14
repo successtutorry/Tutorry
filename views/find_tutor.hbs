@@ -11,7 +11,6 @@
   outline: none;
   font-size: 15px;
 }
-
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapsible:hover {
   background-color: #aece61; //color changed from ccc to aece61
@@ -37,6 +36,7 @@
   transition: max-height 0.2s ease-out;
   background-color: #f1f1f1;
 }
+
 </style>
 {{>header}}
 {{>overlay}}
@@ -100,26 +100,116 @@
 	<div class="title-margin-class">
     <div class="row">
 			<div class="col-sm-4 col-md-4">
-				<button style="font-size:20px; font-weight:bold;" class="collapsible">Subjects<br><span style="font-size:14px; font-weight:normal;">{{displaysub}}</span></button>
-				<div class="content">
+				<button style="font-size:20px; font-weight:bold;" class="collapsible">Filter<br><span style="font-size:14px; font-weight:normal;">{{displaysub}}</span></button>
+			<!--	<div class="content">
 					<div style="margin-top:20px;">
 						<div style="font-size:18px;">
 							<div>
-								<span onclick="location.href='/users/find_tutor?subjects=history'"><input style="margin-left: -120px;" type="checkbox" value="history" name="subjects[]"><span style="margin-left:-120px; cursor:pointer;">HISTORY</span></span>
+							<span onclick="location.href='/users/find_tutor?subjects=history'"><input style="margin-left: -120px;" type="checkbox" value="history" name="subjects[]"><span style="margin-left:-120px; cursor:pointer;">HISTORY</span></span>
 							</div>
 							<div>
-								<span><input style="margin-left: -120px;" type="checkbox" ><span style="margin-left:-120px; cursor:pointer;">abc</span></span>
+								<span><input style="margin-left: -120px;" type="checkbox" ><span style="margin-left:-120px; cursor:pointer;">Geography</span></span>
 							</div>
 							<div>
-								<span><input style="margin-left: -120px;" type="checkbox"><span style="margin-left:-120px; cursor:pointer;">abc</span></span>
+								<span><input style="margin-left: -120px;" type="checkbox"><span style="margin-left:-120px; cursor:pointer;">Mathematics</span></span>
 							</div>
 							<div>
-								<span><input style="margin-left: -120px;" type="checkbox"><span style="margin-left:-120px; cursor:pointer;">abc</span></span>
+								<span><input style="margin-left: -120px;" type="checkbox"><span style="margin-left:-120px; cursor:pointer;">Science</span></span>
+							</div>
+              <div>
+								<span><input style="margin-left: -120px;" type="checkbox"><span style="margin-left:-120px; cursor:pointer;">English</span></span>
+                <div>
+  								<span><input style="margin-left: -120px;" type="checkbox"><span style="margin-left:-120px; cursor:pointer;">Hindi</span></span>
+  							</div>
+                <div>
+  								<span><input style="margin-left: -120px;" type="checkbox"><span style="margin-left:-120px; cursor:pointer;">Marathi</span></span>
+  							</div>
 							</div>
 						</div>
 					</div>
+				</div>-->
+        <button class="collapsible">Subjects</button>
+        <div class="content">
+          <div style="margin-top:20px;">
+            <div style="">
+              <div class="checkbox">
+                <a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">Maths</label></a>
+              </div>
+              <a style="color:blue;" href="#"><div class="checkbox">
+                  <input style="margin-left:-40px;" type="checkbox" value=""><label style="">Science</label>
+              </div></a>
+              <a style="color:blue;" href="#"><div class="checkbox">
+                  <input style="margin-left:-40px;" type="checkbox" value=""><label style="">English</label>
+              </div></a>
+              <a style="color:blue;" href="#"><div class="checkbox">
+                <input style="margin-left:-40px;" type="checkbox" value=""><label style="">Marathi</label>
+              </div></a>
+              <a style="color:blue;" href="#"><div class="checkbox">
+                <input style="margin-left:-40px;" type="checkbox" value=""><label style="">Hindi</label>
+              </div></a>
+              <a style="color:blue;" href="#"><div class="checkbox">
+                <input style="margin-left:-40px;" type="checkbox" value=""><label style="">History</label>
+              </div></a>
+              <a style="color:blue;" href="#"><div class="checkbox">
+                <input style="margin-left:-40px;" type="checkbox" value=""><label style="">Geog</label>
+              </div></a>
+            </div>
+          </div>
+        </div>
+
+				<button class="collapsible">Class</button>
+				<div class="content">
+					<div style="margin-top:20px;">
+						<div style="">
+							<div class="checkbox">
+								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">1-5</label></a>
+							</div>
+							<a style="color:blue;" href="#"><div class="checkbox">
+									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">5-10</label>
+							</div></a>
+							<a style="color:blue;" href="#"><div class="checkbox">
+									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
+							</div></a>
+							<a style="color:blue;" href="#"><div class="checkbox">
+								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Diploma</label>
+							</div></a>
+						</div>
+					</div>
 				</div>
-				<button class="collapsible">Subjects</button>
+				<button class="collapsible">Prices</button>
+				<div class="content">
+					<div style="margin-top:20px;">
+						<div style="">
+							<div class="checkbox">
+								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">200-300</label></a>
+							</div>
+							<a style="color:blue;" href="#"><div class="checkbox">
+									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">300-400</label>
+							</div></a>
+							<a style="color:blue;" href="#"><div class="checkbox">
+									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">400-500</label>
+							</div></a>
+							<a style="color:blue;" href="#"><div class="checkbox">
+								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">500-800</label>
+							</div></a>
+						</div>
+					</div>
+				</div>
+				<button class="collapsible">Type</button>
+				<div class="content">
+					<div style="margin-top:20px;">
+						<div style="">
+							<div class="checkbox">
+								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">Offline</label></a>
+							</div>
+							<a style="color:blue;" href="#"><div class="checkbox">
+									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Online</label>
+							</div></a>
+
+						</div>
+					</div>
+				</div>
+				<!--<button class="collapsible">Subjects</button>
 				<div class="content">
 					<div style="margin-top:20px;">
 						<div style="">
@@ -232,64 +322,7 @@
 							</div></a>
 						</div>
 					</div>
-				</div>
-				<button class="collapsible">Subjects</button>
-				<div class="content">
-					<div style="margin-top:20px;">
-						<div style="">
-							<div class="checkbox">
-								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">1-5</label></a>
-							</div>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">5-10</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Diploma</label>
-							</div></a>
-						</div>
-					</div>
-				</div>
-				<button class="collapsible">Subjects</button>
-				<div class="content">
-					<div style="margin-top:20px;">
-						<div style="">
-							<div class="checkbox">
-								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">1-5</label></a>
-							</div>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">5-10</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Diploma</label>
-							</div></a>
-						</div>
-					</div>
-				</div>
-				<button class="collapsible">Subjects</button>
-				<div class="content">
-					<div style="margin-top:20px;">
-						<div style="">
-							<div class="checkbox">
-								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">1-5</label></a>
-							</div>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">5-10</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Diploma</label>
-							</div></a>
-						</div>
-					</div>
-				</div>
+				</div>-->
 
 				<!--<div class="buttons">
 					  <button type="button" class="subject-buttons">Science & Mathematics</button>
