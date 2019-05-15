@@ -2,10 +2,10 @@
 <div id="overlay">
    <div class="login">
       <div class="btn-group ">
-         <button  onclick="displayLogin();" style="width:45%;  background-color:white; color: #183e64;">
+         <button id="loginbtn" onclick="displayLogin(this);" style="width:45%;  background-color:#aece61; color:#183e64;">
            <i class="fa fa-unlock" style="font-size:24px; margin-right:10px;">
            </i>LOGIN</button>
-         <button onclick="displayRegistration();" style="width:44%;  color: #e2e2e2; background-color: #757575;">
+         <button id = registerbtn onclick="displayRegistration(this);" style="width:44%; background-color: white; color: #183e64;">
            <i class="fa fa-user-plus" style="font-size:24px; margin-right:10px;">
            </i>REGISTER</button>
          <button class="closebutton" onclick="hideoverlay();">X </button>
@@ -39,7 +39,7 @@
                <input onfocusout = "assignpasswordvalue(this.value);" style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" required>
             </div>
             <div class="form-group">
-               <input onfocusout="checkconfirmpassword();"style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputConfirmPassword" name="confirmationPassword" placeholder="Confirm Password" required>
+               <input onkeyup="checkconfirmpassword();"style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputConfirmPassword" name="confirmationPassword" placeholder="Confirm Password" required>
             </div>
             <div class="form-group">
                <select style="width: 100%;padding: 16px 20px;border: none;border-radius: 4px; background-color: #f1f1f1;"id="usertype" name="usertype">
@@ -63,15 +63,20 @@ var password = '';
 //function to do tasks related to email
 function myFunction(useremail) {
 var x = useremail;
-var valid = emailVaild(x);
-
-//if email is valid then check if email exists in database
-if(valid){
-checkifEmailExists(x);
+//alert(x);
+if(!x){
+  document.getElementById('error').innerHTML = "Email is empty";
 }else{
-document.getElementById('error').innerHTML = "Invalid email format";
+  var valid = emailVaild(x);
+  //if email is valid then check if email exists in database
+  if(valid){
+  checkifEmailExists(x);
+  }else{
+  document.getElementById('error').innerHTML = "Invalid email format";
 
+  }
 }
+
 }
 
 //function which will validate the format of the email id
@@ -91,7 +96,7 @@ $.get('/users/checkUserInDatabase'+ x , function(data, status){
  }
 
  if(data=='false'){
-   document.getElementById('error').innerHTML = "Email id doesn not exists";
+   document.getElementById('error').innerHTML = "Email id does not exists";
    document.getElementById('registererror').innerHTML = "";
     //$('#notifyModal').modal('show');
    //alert('email does not exist');
@@ -110,9 +115,13 @@ function assignpasswordvalue(x){
 function checkconfirmpassword(){
   var confirmpassword = document.getElementById("inputConfirmPassword").value;
  if(password!=confirmpassword){
-     document.getElementById('registererror').innerHTML = "password did not match";
+    document.getElementById('inputConfirmPassword').style = 'border-color:red';
+    document.getElementById('registererror').style.color = "green";
+    document.getElementById('registererror').innerHTML = "password did not match";
   }else{
-    document.getElementById('registererror').innerHTML = "";
+    document.getElementById('inputConfirmPassword').style = '';
+    document.getElementById('registererror').style.color = "green";
+    document.getElementById('registererror').innerHTML = "password matched";
   }
 }
 </script>
