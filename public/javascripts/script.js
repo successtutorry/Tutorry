@@ -86,15 +86,18 @@ function off(){
  document.getElementById("closebtn").style="display:none;";
 }
 
-function displayRegistration(){
+function displayRegistration(x){
+  document.getElementById('loginbtn').style.background = "white";
+  x.style.background = "#aece61";
 
 	document.getElementById("login-form").style = "display:none;";
 	document.getElementById("registration-form").style = "display:initial;";
 
 	}
 
-	function displayLogin(){
-
+	function displayLogin(x){
+    document.getElementById('registerbtn').style.background = "white";
+  x.style.background = "#aece61";
 	document.getElementById("login-form").style = "display:initial;";
 	document.getElementById("registration-form").style = "display:none;";
 
@@ -111,7 +114,7 @@ function displayRegistration(){
     }
     if(data=='false'){
       //document.getElementById("overlay").style="display:block;";
-      alert('You must be logged in.');
+      //alert('You must be logged in.');
       //document.getElementById("message-overlay").style="display:block;";
       on();
 
