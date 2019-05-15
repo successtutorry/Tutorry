@@ -25,7 +25,7 @@ var studentemail = '';
 var tutoremail = '';
 //var latesturl = [];
 //var checker = '';
-var catchurl ='';
+var catchurl ='/';
 var tutor_email ='';
 
 
@@ -288,7 +288,8 @@ router.route('/loginredirect')
 
   router.route('/errorlogin')
   .get((req,res)=>{
-    if(catchurl='/users/view_tutor'){
+    console.log(catchurl);
+    if(catchurl=='/users/view_tutor'){
       res.redirect('/users/view_tutor?email='+tutor_email);
     }else{
       res.redirect(catchurl);
