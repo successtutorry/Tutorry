@@ -1,3 +1,10 @@
+<style>
+.margin-class-new {
+	margin-left: 18%;
+	margin-right: 18%;
+}
+
+</style>
 {{>home_header}}
 {{>overlay}}
 {{>requirement-modal}}
@@ -98,7 +105,7 @@ function checkzipcode(element) {
 		</div>
 		<!----------- start of search bar----------------->
 
-		<div id="stickysearchbar" class="margin-class  container" style="">
+		<div id="stickysearchbar" class="margin-class-new" style="">
 			<div class="title-margin-class"   style="background-color: #062e57;">
 				<div class="row">
 				<form class="form-inline" action="/users/find_tutor" method="get">
@@ -118,7 +125,7 @@ function checkzipcode(element) {
 								<div class="form-group">
 									<input onkeydown="checkzipcode(this);" type="number" class="form-control searchbar-input" id="zipcode" placeholder="Zipcode" name="zipcode">
 								</div>
-								<div class="form-group" style="padding-bottom:15px; text-align:center; margin-left:10px;">
+								<div class="form-group" style="padding-bottom:15px; text-align:center; margin-left:10px; padding-left:10px;">
 									<button class="button btn btn-lg" type="submit">Find Now</button>
 								</div>
 						</div>
