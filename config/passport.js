@@ -27,25 +27,22 @@ passport.use('local', new LocalStrategy({
       console.log(password);
         // 1) Check if the email already exists
         const user = await User.findOne({ 'email': email });
-        console.log('user found');
         if (!user) {
           console.log('user not found');
-            return done(null, false, { message: 'Unknown User' });
+            return done(null, false, { message: 'Email doesn not exists' });
         }
         // 2) Check if the password is correct
         const isValid = await User.comparePasswords(password, user.password);
-
-        console.log(isValid);
-        console.log('password matched');
         if(!isValid){
             console.log('password did not match');
-            return done(null, false, { message: 'Unknown Password' });
+            return done(null, false, { message: 'Please check your password again!' });
         }
 
         //3) check if account has been verified
         if(!user.active){
           console.log('user is not active');
-            return done(null, false, { message: 'You need to verifiy your account'});
+          //req.flash('success','Email not verified! You need to verifiy your email id. please check your email');
+            return done(null, false, { message: 'Email not verified! You need to verifiy your email id. please check your email'});
         }
         console.log(user);
         return done(null, user);

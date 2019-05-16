@@ -1,6 +1,7 @@
 <!--start of overlay--->
 <div id="overlay">
    <div class="login">
+  
       <div class="btn-group ">
          <button id="loginbtn" onclick="displayLogin(this);" style="width:45%;  background-color:#aece61; color:#183e64;">
            <i class="fa fa-unlock" style="font-size:24px; margin-right:10px;">
@@ -39,7 +40,7 @@
                <input onfocusout = "assignpasswordvalue(this.value);" style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" required>
             </div>
             <div class="form-group">
-               <input onkeyup="checkconfirmpassword();"style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputConfirmPassword" name="confirmationPassword" placeholder="Confirm Password" required>
+               <input onfocusout="checkconfirmpassword();"style="height:3em; background-color: #f6f8fa; " type="password" class="form-control" id="inputConfirmPassword" name="confirmationPassword" placeholder="Confirm Password" required>
             </div>
             <div class="form-group">
                <select style="width: 100%;padding: 16px 20px;border: none;border-radius: 4px; background-color: #f1f1f1;"id="usertype" name="usertype">
@@ -48,7 +49,7 @@
                </select>
             </div>
             <div class="form-group" style="padding-bottom:10px;">
-               <button type="submit" class="button btn btn-lg">REGISTER</button>
+               <button id="registrationsend" type="submit" class="button btn btn-lg">REGISTER</button>
                <p id="registererror" style="float:right; color:red; margin-top:35px;"></p>
             </div>
          </form>
@@ -58,7 +59,31 @@
 <!-----------end of overlay---------->
 <script>
 
+
 var password = '';
+
+$("#registrationsend").submit(function(e) {
+
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+
+    var form = $(this);
+    var url = form.attr('action');
+
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: form.serialize(), // serializes the form's elements.
+           success: function(data)
+           {
+              if(data.valu=='1'){
+                alert('success');
+              }
+               // show response from the php script.
+           }
+         });
+
+
+});
 
 //function to do tasks related to email
 function myFunction(useremail) {
@@ -66,6 +91,7 @@ var x = useremail;
 //alert(x);
 if(!x){
   document.getElementById('error').innerHTML = "Email is empty";
+  alert('Email is empty');
 }else{
   var valid = emailVaild(x);
   //if email is valid then check if email exists in database
@@ -73,7 +99,7 @@ if(!x){
   checkifEmailExists(x);
   }else{
   document.getElementById('error').innerHTML = "Invalid email format";
-
+  alert('Invalid email format')
   }
 }
 
@@ -91,6 +117,7 @@ $.get('/users/checkUserInDatabase'+ x , function(data, status){
  if(data=='true'){
     document.getElementById('error').innerHTML = "";
     document.getElementById('registererror').innerHTML = "Email already existis";
+    alert('Email already existis');
    //alert('email exists');
     // $('#notifyModal').modal('show');
  }
@@ -98,6 +125,7 @@ $.get('/users/checkUserInDatabase'+ x , function(data, status){
  if(data=='false'){
    document.getElementById('error').innerHTML = "Email id does not exists";
    document.getElementById('registererror').innerHTML = "";
+
     //$('#notifyModal').modal('show');
    //alert('email does not exist');
  }
@@ -118,6 +146,7 @@ function checkconfirmpassword(){
     document.getElementById('inputConfirmPassword').style = 'border-color:red';
     document.getElementById('registererror').style.color = "green";
     document.getElementById('registererror').innerHTML = "password did not match";
+    alert('password did not match');
   }else{
     document.getElementById('inputConfirmPassword').style = '';
     document.getElementById('registererror').style.color = "green";

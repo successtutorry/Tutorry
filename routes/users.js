@@ -35,7 +35,7 @@ const isAuthenticated = (req, res, next) => {
     username = req.user.username;
     return next();
   } else {
-    //req.flash('error', 'Sorry, but you must be registered or logged in  first!');
+    req.flash('error', 'Sorry, but you must be registered or logged in  first!');
     res.redirect('/');
   }
 };
@@ -43,8 +43,6 @@ const isAuthenticated = (req, res, next) => {
 // accessed only when the user is logged in then a message prompts that he is
 // already logged in
 const isNotAuthenticated = (req, res, next) => {
-//  url = req.originalUrl;
-//  console.log(url);
   if (req.isAuthenticated()) {
     req.flash('error', 'Sorry, but you are already logged in!');
     res.redirect('/');
@@ -126,6 +124,8 @@ router.route('/register')
     }
   });
 
+
+
 // user email verification
   router.route('/verify')
   .get(isNotAuthenticated, async (req,res)=>{
@@ -140,6 +140,7 @@ router.route('/register')
           return;
         }
       });
+      req.flash('success',"Account Verified!");
   res.redirect('/');
 }catch(error){
   console.log(error);
@@ -173,8 +174,8 @@ router.route('/contact')
   .post(isNotAuthenticated, passport.authenticate('local', {
 
     successRedirect: '/users/loginredirect',
-    failureRedirect: '/users/errorlogin',
-    failureFlash: false
+    failureRedirect: 'back',
+    failureFlash: true
   }));
 
   router.route('/home')
@@ -283,18 +284,10 @@ router.route('/loginredirect')
     }else{
       res.redirect(catchurl);
   }*/
-  res.redirect('/users/home');
+  req.flash('success','Successfully logged out hope to see you again!');
+  res.redirect('back');
   });
 
-  router.route('/errorlogin')
-  .get((req,res)=>{
-    console.log(catchurl);
-    if(catchurl=='/users/view_tutor'){
-      res.redirect('/users/view_tutor?email='+tutor_email);
-    }else{
-      res.redirect(catchurl);
-    }
-  });
 
   router.route('/forgotPassword')
    .get(isNotAuthenticated,(req,res)=>{
@@ -318,11 +311,14 @@ router.route('/loginredirect')
        Have a pleasant day.`
        // Send email
        await mailer.sendEmail('tutorry.in@gmail.com', req.body.email, '', html);
+       req.flash('success', 'password reset link has been sent to your email id');
        console.log('Link has been send to you on you email id.');
-       res.redirect('/');
+       res.redirect('back');
 
  }else{
-     console.log('user does not exists or incorrect email id...');
+   console.log('user does not exists or incorrect email id...');
+   req.flash('error','user does not exists or incorrect email id...');
+   res.redirect('back');
  }
 }catch(error){
  console.log(error);
@@ -355,10 +351,13 @@ router.route('/loginredirect')
    console.log(changedPassword);
    if(changedPassword){
      email='';
-     res.redirect('/');
-     return;
+     req.flash('success', 'password successfully changed');
+     res.redirect('back');
+
    } else{
      console.log('some error in changing password');
+     req.flash('error', 'password change unsuccessful please try again');
+     res.redirect('/');
    }
  }
  }catch(error){
