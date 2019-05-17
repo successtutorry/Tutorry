@@ -1,7 +1,6 @@
 <!--start of overlay--->
 <div id="overlay">
    <div class="login">
-  
       <div class="btn-group ">
          <button id="loginbtn" onclick="displayLogin(this);" style="width:45%;  background-color:#aece61; color:#183e64;">
            <i class="fa fa-unlock" style="font-size:24px; margin-right:10px;">
@@ -14,7 +13,7 @@
       <div  style="margin:30px 20px 20px 20px;"><!--start of login form division-->
          <form id="login-form" action="/users/login" method="post">
             <div class="form-group">
-               <input onfocusout="myFunction(this.value);" style="height:3em; background-color: #f6f8fa; " type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
+               <input onfocusout="myFunction(this.value,1);" style="height:3em; background-color: #f6f8fa; " type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
             </div>
             <div class="form-group">
                <input style="height:3em; background-color: #f6f8fa;" type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" required>
@@ -31,7 +30,7 @@
       <div style="margin:20px 20px 20px 20px;"><!--start of registration form division-->
          <form id="registration-form" style="display:none;" action="/users/register" method="post">
             <div class="form-group">
-               <input onfocusout="myFunction(this.value);" style="height:3em; background-color: #f6f8fa; " type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
+               <input onfocusout="myFunction(this.value,2);" style="height:3em; background-color: #f6f8fa; " type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
             </div>
             <div class="form-group">
                <input style="height:3em; background-color: #f6f8fa; " type="text" class="form-control" id="inputUsername" name="username" placeholder="username" required>
@@ -62,7 +61,7 @@
 
 var password = '';
 
-$("#registrationsend").submit(function(e) {
+/*$("#registrationsend").submit(function(e) {
 
     e.preventDefault(); // avoid to execute the actual submit of the form.
 
@@ -83,12 +82,12 @@ $("#registrationsend").submit(function(e) {
          });
 
 
-});
+});*/
 
 //function to do tasks related to email
-function myFunction(useremail) {
+function myFunction(useremail,flag) {
 var x = useremail;
-//alert(x);
+//alert(value);
 if(!x){
   document.getElementById('error').innerHTML = "Email is empty";
   alert('Email is empty');
@@ -96,44 +95,41 @@ if(!x){
   var valid = emailVaild(x);
   //if email is valid then check if email exists in database
   if(valid){
-  checkifEmailExists(x);
+  checkifEmailExists(x,flag);
   }else{
   document.getElementById('error').innerHTML = "Invalid email format";
   alert('Invalid email format')
   }
 }
-
 }
-
 //function which will validate the format of the email id
 function emailVaild(email){
    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
-
 // function which sends email to server to check if it exisit in database or not
-function checkifEmailExists(x){
+function checkifEmailExists(x,flag){
 $.get('/users/checkUserInDatabase'+ x , function(data, status){
-
- if(data=='true'){
+ if(data=='true'&& flag=='1'){
+    document.getElementById('error').innerHTML = "";
+    // $('#notifyModal').modal('show');
+ }
+ if(data=='true'&& flag=='2'){
     document.getElementById('error').innerHTML = "";
     document.getElementById('registererror').innerHTML = "Email already existis";
     alert('Email already existis');
-   //alert('email exists');
-    // $('#notifyModal').modal('show');
  }
-
- if(data=='false'){
+ if(data=='false'&& flag=='1'){
    document.getElementById('error').innerHTML = "Email id does not exists";
    document.getElementById('registererror').innerHTML = "";
-
-    //$('#notifyModal').modal('show');
-   //alert('email does not exist');
+   alert('email does not exist');
  }
 
+ if(data=='false'&& flag=='2'){
+   document.getElementById('error').innerHTML = "Email id does not exists";
+   document.getElementById('registererror').innerHTML = "";
+ }
 });
-
 }
-
 //get password field value so that it can be used to match later with confirmpassword
 function assignpasswordvalue(x){
   password = x;

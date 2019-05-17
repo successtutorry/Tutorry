@@ -110,15 +110,15 @@ router.route('/find_tutor')
   .get((req, res) => {
     var tutorChunks = [];
     var chunkSize = 3;
-    query = '';
-    if(req.query.search){
-      query = JSON.parse(req.query.search);
-      tutor.find(query, function(err, docs){
+    //query = '';
+    if(req.query.id){
+      //query = JSON.parse(req.query.search);
+      tutor.find({subjects:req.query.id}, function(err, docs){
       for(var i=0; i < docs.length; i+= chunkSize){
           tutorChunks.push(docs.slice(i, i+chunkSize));
           console.log(tutorChunks);
       }
-      res.json({tutors:tutorChunks});
+      res.render('find_tutor',{tutors:tutorChunks});
 
   });
 }else{

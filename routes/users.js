@@ -127,48 +127,105 @@ router.route('/register')
 
 
 // user email verification
-  router.route('/verify')
-  .get(isNotAuthenticated, async (req,res)=>{
-    try{
-    console.log('request recieved');
-    const token = req.query.id;
-    await User.updateOne({ secretToken: token },{$set: { active: true }},function(err,res){
-        if(err){
-          throw err;
-        }else{
-          console.log('user verified');
-          return;
-        }
-      });
-      req.flash('success',"Account Verified!");
-  res.redirect('/');
-}catch(error){
+router.route('/verify')
+.get(isNotAuthenticated, async (req,res)=>{
+  try{
+      console.log('request recieved');
+      const token = req.query.id;
+      await User.updateOne({ secretToken: token },{$set: { active: true }},function(err,res){
+          if(err){
+            throw err;
+          }else{
+            console.log('user verified');
+            return;
+          }
+        });
+        req.flash('success',"Account Verified!");
+        res.redirect('/');
+    }catch(error){
+      console.log(error);
+    }
+});
+
+//forgotPassword get and post request from website
+router.route('/forgotPassword')
+ .get(isNotAuthenticated,(req,res)=>{
+ res.render('passwordRecovery');
+
+}).post(async (req,res)=>{
+
+ try{
+
+  var emailId = req.body.email;
+  const userExists = await User.findOne({'email': req.body.email});
+  if(userExists){
+   const link = "http://127.0.0.1:3000/users/changePassword?email="+req.body.email;
+   const html = `
+       Please click on the following link to reset your password
+       <br/>
+       <br/>
+        <a href="${link}">please click this</a>
+       <br/><br/>
+       Have a pleasant day.`
+       // Send email
+       await mailer.sendEmail('tutorry.in@gmail.com', req.body.email, '', html);
+       req.flash('success', 'password reset link has been sent to your email id');
+       console.log('Link has been send to you on you email id.');
+       res.redirect('back');
+
+  }else{
+   console.log('user does not exists or incorrect email id...');
+   req.flash('error','user does not exists or incorrect email id...');
+   res.redirect('back');
+  }
+  }catch(error){
   console.log(error);
+  }
+});
+
+
+//get requets executed when verification mail is clicked
+router.route('/changePassword')
+.get((req,res)=>{
+//console.log(req.query.email);
+email = req.query.email;
+ res.render('passwordRecovery_1',{email:req.query.email});
+
+}).post(async (req,res)=>{
+ console.log("coming from email"+ email);
+
+ try{
+
+   if(req.body.password==req.body.confirmationPassword){
+     console.log('password matched');
+     const hashed = await User.hashPassword(req.body.password);
+     console.log(hashed);
+
+     const changedPassword = await User.update(
+       { email: email },
+       {
+         $set: { password: hashed }
+       }
+       );
+
+ console.log(changedPassword);
+ if(changedPassword){
+   email='';
+   req.flash('success', 'password successfully changed');
+   res.redirect('back');
+
+ } else{
+   console.log('some error in changing password');
+   req.flash('error', 'password change unsuccessful please try again');
+   res.redirect('/');
+ }
+}
+}catch(error){
+   console.log(error);
 }
 });
 
-router.route('/contact')
-    .get((req, res) => {
-      const isloggedin = req.isAuthenticated();
-      console.log(isloggedin);
-      if(isloggedin){
-        catchurl = req.originalUrl;
-        res.render('contact',{username:req.user.username});
-      }else{
-        catchurl = req.originalUrl;
-        res.render('contact');
-      }
 
-  });
-
-// this route is executed when the user tries to login
-/*router.route('/login')
-.post(isNotAuthenticated, passport.authenticate('local', {
-    //successReturnToOrRedirect: '/',
-    successRedirect: '{catchurl}',
-    failureRedirect: '/' ,
-    failureFlash: true
-  }));*/
 
   router.route('/login')
   .post(isNotAuthenticated, passport.authenticate('local', {
@@ -278,92 +335,10 @@ router.route('/loginredirect')
   router.route('/logout')
   .get(isAuthenticated, (req, res) => {
     req.logout();
-    //req.flash('success', 'Successfully logged out. Hope to see you soon!');
-    /*if(catchurl='/users/view_tutor'){
-      res.redirect('/users/view_tutor?email='+tutor_email);
-    }else{
-      res.redirect(catchurl);
-  }*/
-  req.flash('success','Successfully logged out hope to see you again!');
-  res.redirect('back');
+    req.flash('success','Successfully logged out hope to see you again!');
+    res.redirect('back');
   });
 
-
-  router.route('/forgotPassword')
-   .get(isNotAuthenticated,(req,res)=>{
-   res.render('passwordRecovery');
-
- }).post(async (req,res)=>{
-
-   try{
-
- var emailId = req.body.email;
- const userExists = await User.findOne({'email': req.body.email});
-
- if(userExists){
-   const link = "http://127.0.0.1:3000/users/changePassword?email="+req.body.email;
-   const html = `
-       Please click on the following link to reset your password
-       <br/>
-       <br/>
-        <a href="${link}">please click this</a>
-       <br/><br/>
-       Have a pleasant day.`
-       // Send email
-       await mailer.sendEmail('tutorry.in@gmail.com', req.body.email, '', html);
-       req.flash('success', 'password reset link has been sent to your email id');
-       console.log('Link has been send to you on you email id.');
-       res.redirect('back');
-
- }else{
-   console.log('user does not exists or incorrect email id...');
-   req.flash('error','user does not exists or incorrect email id...');
-   res.redirect('back');
- }
-}catch(error){
- console.log(error);
-}
- });
-
- router.route('/changePassword')
- .get((req,res)=>{
- //console.log(req.query.email);
- email = req.query.email;
-   res.render('passwordRecovery_1',{email:req.query.email});
-
- }).post(async (req,res)=>{
-   console.log("coming from email"+ email);
-
-   try{
-
-     if(req.body.password==req.body.confirmationPassword){
-       console.log('password matched');
-       const hashed = await User.hashPassword(req.body.password);
-       console.log(hashed);
-
-       const changedPassword = await User.update(
-         { email: email },
-         {
-           $set: { password: hashed }
-         }
-         );
-
-   console.log(changedPassword);
-   if(changedPassword){
-     email='';
-     req.flash('success', 'password successfully changed');
-     res.redirect('back');
-
-   } else{
-     console.log('some error in changing password');
-     req.flash('error', 'password change unsuccessful please try again');
-     res.redirect('/');
-   }
- }
- }catch(error){
-     console.log(error);
- }
- });
 
  router.route('/checkAuth')
  .get((req,res)=>{
@@ -493,18 +468,6 @@ res.render('find_tutor', req.user)
 
 });*/
 
-  router.route('/gettutor')
-  .get((req,res) =>{
-
-    tutor.find( {experience:req.query.experience}, function(err, docs){
-var subjectChunks = [];
-var chunkSize = 3;
-for(var i=0; i < docs.length; i+= chunkSize){
-subjectChunks.push(docs.slice(i, i+chunkSize));
-}
-res.render('find_tutor', {tutors:subjectChunks});
-});
-});
 
 router.route('/become_tutor')
     .get((req, res) => {
@@ -562,12 +525,8 @@ router.route('/become_tutor')
             message: req.body.message,
             studentemail:studentemail,
             tutoremail:tutoremail
-
           });
-
           newchat.save();
-
-
       });
 
       router.route('/displaychat')
@@ -636,12 +595,6 @@ router.route('/become_tutor')
       });
 
 
-/*router.route('/view_tutor')
-  .get((req, res) => {
-  res.render('tutor_details');
-});*/
-
-
   router.route('/view_tutor')
   .get((req, res) => {
     tutor_email = req.query.email;
@@ -677,12 +630,18 @@ router.route('/become_tutor')
   }
 });
 
-  /*router.route('/message')
+router.route('/contact')
     .get((req, res) => {
-    res.render('message');
-  });*/
+      const isloggedin = req.isAuthenticated();
+      console.log(isloggedin);
+      if(isloggedin){
+        catchurl = req.originalUrl;
+        res.render('contact',{username:req.user.username});
+      }else{
+        catchurl = req.originalUrl;
+        res.render('contact');
+      }
 
-
-
+  });
 
 module.exports = router;

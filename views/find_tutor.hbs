@@ -104,7 +104,7 @@
 						<div style="font-size:18px;">
 							<div>
 								<span>
-                  <input id="history" onclick="filtervalue(this)" style="margin-left: -120px;" type="checkbox" value="history" name="subjects[]">
+                  <input id="history" onclick="location.href='/findtutor/find_tutor?id=history'" style="margin-left: -120px;" type="checkbox" value="history" name="subjects[]">
                   <span style="margin-left:-120px; cursor:pointer;">HISTORY</span>
                 </span>
 							</div>
@@ -190,67 +190,95 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
-function gettutor(x){
+/*function gettutor(x){
   $.get('/users/gettutor?experience='+ x , function(data, status){
     console.log(data)
     console.log(data[0][0]);
   });
-}
+}*/
 
 var subject = [];
 var fees = []
-var query = { $and: [ {subjects:'history'}, {rateperhour:'400'} ] };
+//var query = { $and: [ {subjects:'history'}, {rateperhour:'400'} ] };
 
-function filtervalue(x){
 
-  /*if(x.name=='subjects[]')
+/*function filtervalue(x){
+  if(x.name=='subjects[]')
     {
         if(x.checked)
           {
               subject.push(x.value);
-              query1 = {subjects:subject};
+              query = { $and: [ {subjects:subject}, {rateperhour:'400'} ] };
+              if(fees.length!=0){
+
+                query = { $and: [ {subjects:subject}, {rateperhour:fees} ] };
+              }else{
+                query = { $and: [ {subjects:subject}, {rateperhour:'400'} ] };
+              }
+
           }
           else
           {
               subject.pop(x.value);
-              query1 = {subjects:subject};
+              query = { $and: [ {subjects:'history'}, {rateperhour:'400'} ] };
+
+              if(subject.length==0 && fees.length==0){
+                query = { $and: [ {subjects:'history'}, {rateperhour:'400'} ] };
+              }else if(subject.length!=0&&fees.length==0){
+                query = { $and: [ {subjects:subject}, {rateperhour:'400'} ] };
+              }else if(subject.length=0&&fees.length!=0){
+                query = { $and: [ {subjects:'history'}, {rateperhour:fees} ] };
+              }else{
+                  query = { $and: [ {subjects:'history'}, {rateperhour:'400'} ] };
+              }
+
           }
     }
     else if(x.name =='rateperhour[]')
     {
-             if(x.checked)
-             {
-                fees.push(x.value);
-                query2 = {rateperhour:fees};
-             }
-             else
-              {
-                fees.pop(x.value);
-                query2 = {rateperhour:fees};
-              }
+      if(x.checked)
+        {
+            subject.push(x.value);
+            if(fees){
+              query = { $and: [ {subjects:subject}, {rateperhour:fees} ] };
+            }else{
+              query = { $and: [ {subjects:subject}, {rateperhour:'400'} ] };
+            }
+
+        }
+        else
+        {
+            subject.pop(x.value);
+            if(subject.length==0 && fees.length==0){
+              query = { $and: [ {subjects:'history'}, {rateperhour:'400'} ] };
+            }else if(subject.length!=0&&fees.length==0){
+              query = { $and: [ {subjects:subject}, {rateperhour:'400'} ] };
+            }else if(subject.length=0&&fees.length!=0){
+              query = { $and: [ {subjects:'history'}, {rateperhour:fees} ] };
+            }else{
+                query = { $and: [ {subjects:'history'}, {rateperhour:'400'} ] };
+            }
+
+        }
     }
     else
     {
-          alert('no subject no fees');
-        }
-  if(subject.length=='0'){
-    console.log('subject is null');
-    query = query2;
-    searchtutor(query);
-  }else if(fees.length=='0'){
-    console.log('fees is null');
-    query = query1;
-    searchtutor(query);
-  }else{
-    console.log('not null');
-    query = { $or:[query1,query2]};
-    searchtutor(query);
-  }*/
-  searchtutor(query);
-}
-var tutorprofilecontent = '';
+         query = { $and: [ {subjects:'history'}, {rateperhour:'400'} ] };
+       }
+       if(x.checked){
+         var query={subjects:'history'};
+          searchtutor(query);
+       }else{
+         var query = {}
+         searchtutor(query);
+       }
 
+}*/
+
+/*var tutorprofilecontent = '';
 function searchtutor(x){
+  $('#tutorsprofile').html('');
+  console.log(x);
   x = JSON.stringify(x);
 $.getJSON('/findtutor/find_tutor?search='+x , function(data){
 console.log(data.tutors[0]);
@@ -258,7 +286,7 @@ console.log(data.tutors.length);
 $.each(data.tutors[0], function(data){
 tutorprofilecontent += '<div class="col-sm-4 col-md-4">';
 tutorprofilecontent += '<div  class="card" style="width:225px">'
-//tutorprofilecontent += '<img class="card-img-top" src="/images/'+this.image"' + 'alt="Card image" style="width:100%">';
+//tutorprofilecontent += '<img class="card-img-top" src="/images/" + this.image' + 'alt="Card image" style="width:100%">';
 tutorprofilecontent += '<div  class="card-body tutor-card-body">';
 tutorprofilecontent += '<h4  style="color: #134477;" class="card-title">'+ this.firstname + ' ' + this.lastname+'</h4>';
 tutorprofilecontent += '<p  style="color:#91959a;" class="card-text">' + this.subjects + '</p>';
@@ -271,7 +299,7 @@ tutorprofilecontent += '</div>';
 });
 $('#tutorsprofile').html(tutorprofilecontent);
 });
-}
+}*/
 
 
 
