@@ -415,17 +415,22 @@ if(user){
 });
 
 router.route('/submitrequirement')
-.post(isAuthenticated, (req,res) =>{
+.post(isAuthenticated, async(req,res) =>{
+  try{
 
-const newRequirement = new requirementForm({
+const newRequirement = await new requirementForm({
   user:req.user,
   location:req.body.location,
   class:req.body.class
 });
-newRequirement.save();
-res.render('find_tutor', req.user)
-//res.redirect();
+await newRequirement.save();
+//res.render('find_tutor', req.user)
+req.flash('success','requirements successfully sent');
+res.redirect('back');
 //  console.log(req.body);
+}catch(error){
+  console.log(error);
+}
 
 });
 
@@ -643,5 +648,39 @@ router.route('/contact')
       }
 
   });
+
+  router.route('/requestuser')
+  .get((req,res)=>{
+     res.render('requestregistration');
+  });
+
+  router.route('/requestuser')
+  .post(async(req,res)=>{
+
+    const link ='tutorry.in';
+   const html = `Greeting from team tutorry!!!,
+    <br/>
+    We hope that you are doing well!
+    <br/><br/>
+    Teaching is helping someone in need at times
+    <br/>
+    You get reward for your valuable time.
+    <br/>
+    Whether you are coporate professional or bussiness
+    <br/>
+    person or a student, We at tutorry encourage everyone
+    <br/>
+    to help others by becoming part of tutorry and also get rewarded:)
+    <br/>
+    Please register at link below
+    <br/>
+    <a href="${link}">tutorry.in</a></br></br>
+    <br/><br/><br/>
+    Have a pleasant day!`
+    // Send email
+    await mailer.sendEmail('tutorry.in@gmail.com', req.body.email, '', html);
+    req.flash('success', 'mail successfully sent');
+    res.redirect('back');
+  })
 
 module.exports = router;
