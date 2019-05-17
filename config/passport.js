@@ -1,4 +1,4 @@
-// this file does the authentication part when user registers or login
+// this file does the authentication part while user login
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
