@@ -17,6 +17,7 @@ const User = require('../models/user');
 const passport = require('passport');
 const randomstring = require('randomstring');
 const springedge = require('springedge');
+const Contact = require('../models/contact');
 
 
 var email ='';
@@ -646,6 +647,40 @@ router.route('/contact')
         catchurl = req.originalUrl;
         res.render('contact');
       }
+
+  });
+
+  router.route('/contact')
+  .post(async(req,res)=>{
+    try{
+      const contactsavetodb = await new Contact({
+        email:req.body.email,
+        contact:req.body.contact,
+        textarea:req.body.textarea
+
+      });
+      await contactsavetodb.save();
+      const html = `Hi there,
+      <br/>
+      We have recieved your message.
+      <br/>
+      <p style="text-style:bold">${req.body.textarea}</p>
+      <br/>
+      We will get back to you soon
+      <br/><br/>
+      Have a pleasant day.`
+      await mailer.sendEmail('tutorry.in@gmail.com', req.body.email, '', html);
+      if(contactsavetodb){
+        req.flash('success','Your message has been sent, Someone will get in contact with you soon!');
+        console.log('contact save to database');
+        res.redirect('back');
+      }else{
+        req.flash('error','Please try again in sometime');
+        res.redirecr('back');
+      }
+    }catch(error){
+      console.log(error);
+    }
 
   });
 
