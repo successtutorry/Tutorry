@@ -128,7 +128,12 @@ router.route('/find_tutor')
         tutorChunks.push(docs.slice(i, i+chunkSize));
         console.log(tutorChunks);
     }
-    res.render('find_tutor',{tutors:tutorChunks});
+    if(req.isAuthenticated()){
+        res.render('find_tutor',{tutors:tutorChunks, username:req.user.username});
+    }else{
+        res.render('find_tutor',{tutors:tutorChunks});
+    }
+
 
 
 });
