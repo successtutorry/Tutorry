@@ -1,0 +1,10 @@
+@media (max-width: 1300px) {
+  #contactpage {
+    margin-top:100px;
+  }
+}
+@media (max-width: 1200px) {
+  #contactpage {
+    margin-top:150px;
+  }
+}
