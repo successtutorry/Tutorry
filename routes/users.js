@@ -647,7 +647,7 @@ router.route('/contact')
         catchurl = req.originalUrl;
         res.render('contact');
       }
-
+    ;})
   });
 
   router.route('/contact')
