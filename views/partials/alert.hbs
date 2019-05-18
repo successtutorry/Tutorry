@@ -1,5 +1,25 @@
+<style>
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+</style>
 {{#if success_messages }}
-      <div style="padding: 10px 15px 10px 15px; border:1px solid transparent; border-radius:4px" class="alert-success">{{success_messages}}</div>
+      <div style="padding: 10px 15px 10px 15px; border:1px solid transparent; opacity: 1; transition: opacity 0.6s; background-color:#aece61; color:white;">{{success_messages}}
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      </div>
 {{/if}}
 
 {{#if error_messages }}
