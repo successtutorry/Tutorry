@@ -150,6 +150,19 @@ router.route('/find_tutor')
 
   }
 
+  router.route('/filter')
+  .get((req,res)=>{
+    tutor.find({},function(err,docs){
+
+      if(err){
+        console.log(err);
+      }else{
+        res.send(docs);
+      }
+
+    });
+  });
+
 
 
   module.exports = router;

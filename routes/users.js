@@ -647,8 +647,7 @@ router.route('/contact')
         catchurl = req.originalUrl;
         res.render('contact');
       }
-    ;})
-  });
+    });
 
   router.route('/contact')
   .post(async(req,res)=>{
@@ -689,7 +688,7 @@ router.route('/contact')
      res.render('requestregistration');
   });
 
-  router.route('/requestuser')
+  /*router.route('/requestuser')
   .post(async(req,res)=>{
 
     const link ='tutorry.in';
@@ -716,6 +715,6 @@ router.route('/contact')
     await mailer.sendEmail('tutorry.in@gmail.com', req.body.email, '', html);
     req.flash('success', 'mail successfully sent');
     res.redirect('back');
-  })
+  });*/
 
 module.exports = router;

@@ -25,8 +25,6 @@ var MongoDBStore = require('connect-mongodb-session')(session);
 
 require('./config/passport');
 
-
-
 mongoose.Promise = global.Promise;
 
 //database connection
