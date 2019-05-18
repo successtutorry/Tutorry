@@ -21,6 +21,7 @@ const session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var findtutorRouter = require('./routes/findtutor');
+var MongoDBStore = require('connect-mongodb-session')(session);
 
 require('./config/passport');
 
@@ -37,8 +38,18 @@ mongoose.connect('mongodb://root:root123@ds343895.mlab.com:43895/tutorry_v1', { 
   }
 });
 
-
 var app = express();
+var store = new MongoDBStore({
+  uri: 'mongodb://root:root123@ds343895.mlab.com:43895/tutorry_v1',
+  collection: 'mySessions'
+});
+
+// Catch errors
+store.on('error', function(error) {
+  console.log(error);
+});
+
+
 
 /*var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });*/
 
@@ -66,11 +77,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  cookie: { maxAge: 600000 },
+  cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
   secret: 'tutorrysecret',
-  saveUninitialized: false,
-  resave: false,
-  //store: new mongoStore({ mongooseConnection: mongoose.connection}),
+  resave: true,
+  saveUninitialized: true,
+  store: store
 }));
 app.use(passport.initialize());
 app.use(passport.session());
