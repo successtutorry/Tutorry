@@ -110,10 +110,11 @@ router.route('/find_tutor')
   .get((req, res) => {
     var tutorChunks = [];
     var chunkSize = 3;
-    //query = '';
-    if(req.query.id){
-      //query = JSON.parse(req.query.search);
-      tutor.find({subjects:req.query.id}, function(err, docs){
+    console.log(req.query.search);
+    if(req.query.search){
+      query = JSON.parse(req.query.search);
+      console.log(query);
+      tutor.find(query, function(err, docs){
       for(var i=0; i < docs.length; i+= chunkSize){
           tutorChunks.push(docs.slice(i, i+chunkSize));
           console.log(tutorChunks);
@@ -152,12 +153,17 @@ router.route('/find_tutor')
 
   router.route('/filter')
   .get((req,res)=>{
-    tutor.find({},function(err,docs){
+    console.log(req.query.search);
+    var query = JSON.parse(req.query.search);
+    console.log(query);
+    tutor.find(query,function(err,docs){
 
       if(err){
         console.log(err);
       }else{
+        console.log(docs);
         res.send(docs);
+
       }
 
     });
