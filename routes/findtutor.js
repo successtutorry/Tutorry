@@ -153,6 +153,7 @@ router.route('/find_tutor')
 
   router.route('/filter')
   .get((req,res)=>{
+    console.log(req.session);
     console.log(req.query.search);
     var query = JSON.parse(req.query.search);
     console.log(query);

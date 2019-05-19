@@ -201,6 +201,11 @@
 </div>
 
 <script>
+//var tutorprofilecontent = '';
+window.onload = function () {
+  $('#tutorslist').html(sessionStorage.getItem("sessiontutors"));
+   //console.log(sessionStorage.getItem("sessiontutors"));
+}
 
 var tutorprofilecontent = '';
 var subject = [];
@@ -300,6 +305,9 @@ $.ajax({
 
     });
     $('#tutorslist').html(tutorprofilecontent);
+    //var sessiontutors = tutorprofilecontent;
+    sessionStorage.setItem("sessiontutors", tutorprofilecontent);
+    //console.log(sessionStorage.getItem("sessiontutors"));
     tutorprofilecontent = '';
   },
 });
