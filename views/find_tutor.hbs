@@ -37,9 +37,38 @@
   transition: max-height 0.2s ease-out;
   background-color: #f1f1f1;
 }
+
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  display:none;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 </style>
 {{>header}}
 {{>overlay}}
+<div id="loader"></div>
 <!----------- start of search bar----------------->
 <!--<div  id="stickysearchbar" class="container margin-class section-margin" style="">
 		<div class="title-margin-class" style="background-color:#062e57;">
@@ -104,14 +133,26 @@
 						<div style="font-size:18px;">
 							<div>
 								<span>
-                  <input id="history" style="margin-left: -120px;" type="checkbox" value="history" name="subjects[]">
+                  <input id="history" class="subject filter" style="margin-left: -120px;" type="checkbox" value="history" name="subjects[]">
                   <span style="margin-left:-120px; cursor:pointer;">HISTORY</span>
                 </span>
 							</div>
 							<div>
 								<span>
-                  <input id="maths" onclick="filtervalue(this)" style="margin-left: -120px;" type="checkbox" value="maths" name="subjects[]">
+                  <input id="maths" class="subject filter"  style="margin-left: -120px;" type="checkbox" value="maths" name="subjects[]">
                   <span style="margin-left:-120px; cursor:pointer;">MATHS</span>
+                </span>
+							</div>
+              <div>
+								<span>
+                  <input id="geography" class="subject filter" style="margin-left: -120px;" type="checkbox" value="geography" name="subjects[]">
+                  <span style="margin-left:-120px; cursor:pointer;">GOEGRAPHY</span>
+                </span>
+							</div>
+              <div>
+								<span>
+                  <input id="economics" class="subject filter" style="margin-left: -120px;" type="checkbox" value="economics" name="subjects[]">
+                  <span style="margin-left:-120px; cursor:pointer;">ECONOMICS</span>
                 </span>
 							</div>
 						</div>
@@ -123,13 +164,13 @@
 						<div style="font-size:18px;">
 							<div>
                 <span>
-                  <input onclick="filtervalue(this)" style="margin-left: -120px;" type="checkbox" value="500" name="rateperhour[]">
+                  <input id="500" class="rateperhour filter" style="margin-left: -120px;" type="checkbox" value="500" name="rateperhour[]">
                   <span style="margin-left:-120px; cursor:pointer;">500</span>
                 </span>
 							</div>
               <div>
                 <span>
-                  <input onclick="filtervalue(this)" style="margin-left: -120px;" type="checkbox" value="400" name="rateperhour[]">
+                  <input id="400" class="rateperhour filter" style="margin-left: -120px;" type="checkbox" value="400" name="rateperhour[]">
                   <span style="margin-left:-120px; cursor:pointer;">400</span>
                 </span>
 							</div>
@@ -162,33 +203,112 @@
 <script>
 
 var tutorprofilecontent = '';
+var subject = [];
+var fees=[];
+var query = { $and: [ { subjects: { $all: ['history'] } }, { rateperhour: { $all: ['500'] } } ] };
+$(".filter").click(function(){
+  document.getElementById('loader').style.display = 'block';
+ //var id = this.id;
+ var name = this.name;
+ if(name=='subjects[]'){
 
-$("#history").click(function(){
+if(document.getElementById(this.id).checked){
+  subject.push(this.id);
+  console.log(this.id);
+  console.log('subject pushed is '+this.id+ ' current subject array is ' +subject);
 
-if(document.getElementById('history').checked){
-  $.ajax({
-    type:'GET',
-    url: '/findtutor/filter',
-    success: function(data){
-      $.each(data, function(i, tutor){
-        tutorprofilecontent += '<div class="col-sm-4 col-md-4">';
-        tutorprofilecontent += '<div  class="card" style="width:225px">'
-        tutorprofilecontent += '<img class="card-img-top" alt="Card image" style="width:100%" src=/images/'+this.image+'>'
-        tutorprofilecontent += '<div  class="card-body tutor-card-body">';
-        tutorprofilecontent += '<h4  style="color: #134477;" class="card-title">'+ this.firstname + ' ' + this.lastname+'</h4>';
-        tutorprofilecontent += '<p id="emailpara" style="color:#91959a; display:none" class="card-text">' + this.email + '</p>';
-        tutorprofilecontent += '<a class="view_tut_btn button btn btn-lg" href=/users/view_tutor?email='+ this.email +'>View Tutor</a>';
-        tutorprofilecontent += '</div>';
-        tutorprofilecontent += '</div>';
-        tutorprofilecontent += '</div>';
+  if(subject.length!=0&&fees.length!=0){
 
-      });
-      $('#tutorslist').html(tutorprofilecontent);
-      tutorprofilecontent = '';
-    },
-  });
+    query = { $and: [ { subjects: { $all: subject } }, { rateperhour: { $all: fees } } ] };
+
+  }
+
+  if(subject.length!=0&&fees.length==0){
+    query = { $and: [ { subjects: { $all: subject } }, { rateperhour: { $all: ['500'] } } ] };
+  }
+}else{
+  var index = subject.indexOf(this.id);
+  subject.splice(index, 1);
+  //subject.pop(this.id);
+  console.log(this.id);
+  console.log('subject poped is '+this.id+ ' current subject array is ' +subject);
+  if(subject.length!=0&&fees.length!=0){
+    query = { $and: [ { subjects: { $all: subject } }, { rateperhour: { $all: fees } } ] };
+  }else if(subject.length==0&&fees.length!=0){
+    query = { $and: [ { subjects: { $all: ['history'] } }, { rateperhour: { $all: fees } } ] };
+  }else if(subject.length!=0&& fees.length==0){
+    query = { $and: [ { subjects: { $all: subject } }, { rateperhour: { $all: ['500'] } } ] };
+  }else{
+      query = { $and: [ { subjects: { $all: ['history'] } }, { rateperhour: { $all: ['500'] } } ] };
+  }
+
 }
+
+}else if(name="rateperhour[]"){
+
+  if(document.getElementById(this.id).checked){
+    fees.push(this.id);
+    console.log(this.id);
+    console.log('feest pushed is '+this.id+ ' current fees array is ' +fees);
+
+    if(subject.length!=0&&fees.length!=0){
+
+      query = { $and: [ { subjects: { $all: subject } }, { rateperhour: { $all: fees } } ] };
+
+    }
+
+    if(subject.length==0&&fees.length!=0){
+      query = { $and: [ { subjects: { $all: 'history' } }, { rateperhour: { $all: fees } } ] };
+    }
+  }else{
+    var index = fees.indexOf(this.id);
+    fees.splice(index, 1);
+    console.log(this.id);
+      console.log('feest poped is '+this.id+ ' current fees array is ' +fees);
+    if(subject.length!=0&&fees.length!=0){
+      query = { $and: [ { subjects: { $all: subject } }, { rateperhour: { $all: fees } } ] };
+    }else if(subject.length==0&&fees.length!=0){
+      query = { $and: [ { subjects: { $all: ['history'] } }, { rateperhour: { $all: fees } } ] };
+    }else if(subject.length!=0&& fees.length==0){
+      query = { $and: [ { subjects: { $all: subject } }, { rateperhour: { $all: ['500'] } } ] };
+    }else{
+        query = { $and: [ { subjects: { $all: ['history'] } }, { rateperhour: { $all: ['500'] } } ] };
+    }
+
+  }
+}else{
+  alert('something is wrong');
+  query = { $and: [ { subjects: { $all: ['history'] } }, { rateperhour: { $all: ['500'] } } ] };
+}
+var  x = JSON.stringify(query);
+$.ajax({
+  type:'GET',
+  url: '/findtutor/filter?search='+x,
+  success: function(data){
+    document.getElementById('loader').style.display = 'none';
+    $.each(data, function(i, tutor){
+      tutorprofilecontent += '<div class="col-sm-4 col-md-4">';
+      tutorprofilecontent += '<div  class="card" style="width:225px">'
+      tutorprofilecontent += '<img class="card-img-top" alt="Card image" style="width:100%" src=/images/'+this.image+'>'
+      tutorprofilecontent += '<div  class="card-body tutor-card-body">';
+      tutorprofilecontent += '<h4  style="color: #134477;" class="card-title">'+ this.firstname + ' ' + this.lastname+'</h4>';
+      tutorprofilecontent += '<p id="emailpara" style="color:#91959a; display:none" class="card-text">' + this.email + '</p>';
+      tutorprofilecontent += '<a class="view_tut_btn button btn btn-lg" href=/users/view_tutor?email='+ this.email +'>View Tutor</a>';
+      tutorprofilecontent += '</div>';
+      tutorprofilecontent += '</div>';
+      tutorprofilecontent += '</div>';
+
+    });
+    $('#tutorslist').html(tutorprofilecontent);
+    tutorprofilecontent = '';
+  },
 });
+});
+
+/*$(".filter").click(function(){
+  console.log(this.id);
+  console.log(this.name);
+})*/
 
 
 /*document.addEventListener("scroll", function () {
