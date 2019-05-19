@@ -1,7 +1,56 @@
+
 <style>
+/*range slider*/
+div.scroll {
+  width: 350px;
+  height:300px;
+  overflow: scroll;
+}
+
+/*slider*/
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 10%;
+  height: 5px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 25px;
+  border-radius: 50%;
+  background: #333;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #333;
+  cursor: pointer;
+}
+
+
 /* Style the button that is used to open and close the collapsible content */
+
 .collapsible {
-  background-color: #aece61; //color changed
+  background-color: #f1f1f1; //color changed
   color: #444;
   cursor: pointer;
   padding: 18px;
@@ -13,7 +62,7 @@
 }
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapsible:hover {
-  background-color: #aece61; //color changed from ccc to aece61
+  background-color: #ccc; //color changed from ccc to aece61
 }
 
 .collapsible:after {
@@ -48,6 +97,10 @@
 .margin-class {
 	margin-left: 18%;
 	margin-right: 18%;
+}
+
+.form-group {
+  color:#134477;
 }
 </style>
 {{>header}}
@@ -112,7 +165,7 @@
 	<div class="title-margin-class">
     <div class="row">
 			<div class="col-sm-4 col-md-4">
-				<button style="font-size:20px; font-weight:bold;" class="collapsible">Filter<br><span style="font-size:14px; font-weight:normal;">{{displaysub}}</span></button>
+<div class="scroll">
 			<!--	<div class="content">
 					<div style="margin-top:20px;">
 						<div style="font-size:18px;">
@@ -145,25 +198,25 @@
           <div style="margin-top:20px;">
             <div style="">
               <div class="checkbox">
-                <a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">Maths</label></a>
+                <a style="color:#134477;" href="/"><input id="1-5" style="margin-left:-140px;" type="checkbox" value=""><label style="">Mathematics</label></a>
               </div>
-              <a style="color:blue;" href="#"><div class="checkbox">
-                  <input style="margin-left:-40px;" type="checkbox" value=""><label style="">Science</label>
+              <a style="color:#134477;" href="#"><div class="checkbox">
+                  <input style="margin-left:-140px;" type="checkbox" value=""><label style="">Science</label>
               </div></a>
-              <a style="color:blue;" href="#"><div class="checkbox">
-                  <input style="margin-left:-40px;" type="checkbox" value=""><label style="">English</label>
+              <a style="color:#134477;" href="#"><div class="checkbox">
+                  <input style="margin-left:-140px;" type="checkbox" value=""><label style="">English</label>
               </div></a>
-              <a style="color:blue;" href="#"><div class="checkbox">
-                <input style="margin-left:-40px;" type="checkbox" value=""><label style="">Marathi</label>
+              <a style="color:#134477;" href="#"><div class="checkbox">
+                <input style="margin-left:-140px;" type="checkbox" value=""><label style="">Marathi</label>
               </div></a>
-              <a style="color:blue;" href="#"><div class="checkbox">
-                <input style="margin-left:-40px;" type="checkbox" value=""><label style="">Hindi</label>
+              <a style="color:#134477;" href="#"><div class="checkbox">
+                <input style="margin-left:-140px;" type="checkbox" value=""><label style="">Hindi</label>
               </div></a>
-              <a style="color:blue;" href="#"><div class="checkbox">
-                <input style="margin-left:-40px;" type="checkbox" value=""><label style="">History</label>
+              <a style="color:#134477;" href="#"><div class="checkbox">
+                <input style="margin-left:-140px;" type="checkbox" value=""><label style="">History</label>
               </div></a>
-              <a style="color:blue;" href="#"><div class="checkbox">
-                <input style="margin-left:-40px;" type="checkbox" value=""><label style="">Geog</label>
+              <a style="color:#134477;" href="#"><div class="checkbox">
+                <input style="margin-left:-140px;" type="checkbox" value=""><label style="">Geogaphy</label>
               </div></a>
             </div>
           </div>
@@ -174,92 +227,107 @@
 					<div style="margin-top:20px;">
 						<div style="">
 							<div class="checkbox">
-								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">1-5</label></a>
+								<a style="color:#134477;" href="/"><input id="1-5" style="margin-left:-140px;" type="checkbox" value=""><label style="">1-5</label></a>
 							</div>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">5-10</label>
+							<a style="color:#134477" href="#"><div class="checkbox">
+									<input style="margin-left:-140px;" type="checkbox" value=""><label style="">5-10</label>
 							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
+							<a style="color:#134477;" href="#"><div class="checkbox">
+									<input style="margin-left:-140px;" type="checkbox" value=""><label style="">10-12</label>
 							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Diploma</label>
+							<a style="color:#134477;" href="#"><div class="checkbox">
+								<input style="margin-left:-140px;" type="checkbox" value=""><label style="">Diploma</label>
 							</div></a>
 						</div>
 					</div>
 				</div>
 				<button class="collapsible">Prices</button>
-				<div class="content">
+				  <div class="content">
 					<div style="margin-top:20px;">
 						<div style="">
-							<div class="checkbox">
-								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">200-300</label></a>
+              <div class="slidecontainer">
+                  <input type="range" min="100" max="1000" value="500" class="slider" id="myRange">
+                </div>
+                <br>
+                 <p>Max Price: <span id="demo"></span></p>
+							<!--<div class="checkbox">
+								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-140px;" type="checkbox" value=""><label style="">200-300</label></a>
 							</div>
 							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">300-400</label>
+									<input style="margin-left:-140px;" type="checkbox" value=""><label style="">300-400</label>
 							</div></a>
 							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">400-500</label>
+									<input style="margin-left:-140px;" type="checkbox" value=""><label style="">400-500</label>
 							</div></a>
 							<a style="color:blue;" href="#"><div class="checkbox">
-								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">500-800</label>
-							</div></a>
+								<input style="margin-left:-140px;" type="checkbox" value=""><label style="">500-800</label>
+							</div></a>-->
 						</div>
 					</div>
 				</div>
-				<button class="collapsible">Type</button>
-				<div class="content">
-					<div style="margin-top:20px;">
-						<div style="">
-							<div class="checkbox">
-								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">Offline</label></a>
-							</div>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Online</label>
-							</div></a>
+        <button class="collapsible">Type</button>
+          <div class="content">
+            <div style="margin-top:20px;">
+              <div style="">
+                <div class="form-group">
 
+                    <select class="form-control" id="sel1">
+                      <option>Online</option>
+                      <option>Offline</option>
+
+                    </a>
+                  </select>
+              </div>
+            </div>
+          </div>
+  </div>
+
+		<button class="collapsible">Gender</button>
+				<div class="content">
+					<div style="margin-top:20px;">
+						<div style="">
+                    <div class="radio">
+                      <a style="color:#134477;">
+                      <label><input type="radio" name="optradio">Male</label>
+                    </a>
+                    </div>
+                    <div class="radio">
+                      <a style="color:#134477;">
+                      <label><input type="radio" name="optradio">Female</label>
+                    </div>
+                     </a>
+                    <div class="radio">
+                      <a style="color:#134477;">
+                      <label><input type="radio" name="optradio">Both</label>
+                    </a>
+                    </div>
 						</div>
 					</div>
-				</div>
+        </div>
+
+        <button class="collapsible">Board</button>
+  				<div class="content">
+  					<div style="margin-top:20px;">
+  						<div style="">
+                <div class="form-group">
+
+                    <select class="form-control" id="sel1">
+                      <option>State Board</option>
+                      <option>CBSE Board</option>
+                      <option>ICSE Board</option>
+                    </a>
+                  </select>
+  						</div>
+  					</div>
+  				</div>
+</div>
+</div>
+
+
+
+
+
 				<!--<button class="collapsible">Subjects</button>
-				<div class="content">
-					<div style="margin-top:20px;">
-						<div style="">
-							<div class="checkbox">
-								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">1-5</label></a>
-							</div>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">5-10</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Diploma</label>
-							</div></a>
-						</div>
-					</div>
-				</div>
-				<button class="collapsible">Subjects</button>
-				<div class="content">
-					<div style="margin-top:20px;">
-						<div style="">
-							<div class="checkbox">
-								<a style="color:blue;" href="/"><input id="1-5" style="margin-left:-40px;" type="checkbox" value=""><label style="">1-5</label></a>
-							</div>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">5-10</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-									<input style="margin-left:-40px;" type="checkbox" value=""><label style="">10-12</label>
-							</div></a>
-							<a style="color:blue;" href="#"><div class="checkbox">
-								<input style="margin-left:-40px;" type="checkbox" value=""><label style="">Diploma</label>
-							</div></a>
-						</div>
-					</div>
-				</div>
-				<button class="collapsible">Subjects</button>
 				<div class="content">
 					<div style="margin-top:20px;">
 						<div style="">
@@ -442,7 +510,7 @@
 </div>
 </div>
 
-
+</div>
 
 <script>
 
@@ -481,6 +549,13 @@ function gettutor(x){
   });
 }
 
+//range slider
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
 
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
 
 </script>
