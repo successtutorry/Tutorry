@@ -4,7 +4,7 @@
 div.scroll {
   width: 350px;
   height:300px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 /*slider*/
@@ -53,7 +53,7 @@ div.scroll {
   background-color: #f1f1f1; //color changed
   color: #444;
   cursor: pointer;
-  padding: 18px;
+  padding: 15px;
   width: 100%;
   border: none;
   text-align: left;
@@ -97,6 +97,7 @@ div.scroll {
 .margin-class {
 	margin-left: 18%;
 	margin-right: 18%;
+  margin-top: 15px;
 }
 
 .form-group {
@@ -541,7 +542,6 @@ for (i = 0; i < coll.length; i++) {
     }
   });
 }
-
 function gettutor(x){
   $.get('/users/gettutor?experience='+ x , function(data, status){
     console.log(data)
