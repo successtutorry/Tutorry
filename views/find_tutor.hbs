@@ -1,5 +1,188 @@
 
 <style>
+./****** Bootstrap Colors ******/
+
+@gray-base: #000;
+@gray-darker: lighten(@gray-base, 13.5%);
+@gray-dark: lighten(@gray-base, 20%);
+@gray: lighten(@gray-base, 33.5%);
+@gray-light: lighten(@gray-base, 46.7%);
+@gray-lighter: lighten(@gray-base, 93.5%);
+@brand-primary: darken(#428bca, 6.5%);
+@brand-success: #5cb85c;
+@brand-info: #5bc0de;
+@brand-warning: #f0ad4e;
+@brand-danger: #d9534f;
+
+@icon-font: 'Glyphicons Halflings';
+
+@down-arrow: "\e259";
+@up-arrow: "\e260";
+
+.primary {
+  min-height: 800px;
+
+
+}
+
+/*** Accordion Toggles ***/
+.panel-heading {
+  position: relative;
+
+  .accordion-toggle:after {
+    font-family: @icon-font;
+    content: @up-arrow;
+    position: absolute;
+    right: 16px;
+  }
+
+  .accordion-toggle.collapsed:after {
+    font-family: @icon-font;
+    content: @down-arrow;
+  }
+}
+
+/*** Filter Menu ***/
+
+/* Panels */
+.filter-menu {
+  .panel {
+    border-radius: 0;
+    border: 1px solid @gray-lighter;
+
+  }
+
+  .panel-heading {
+    background: #fff;
+    padding: 0;
+  }
+
+  .panel-title {
+    color: @gray-dark;
+    font-weight: bold;
+    display: block;
+    padding: 16px;
+  }
+
+  a.panel-title {
+    color: @gray-dark;
+
+    &:hover,
+    &:focus {
+      color: @gray-dark;
+      text-decoration: none;
+    }
+  }
+
+  .panel-body {
+    padding: 16px;
+
+  }
+}
+
+/* Inner Panels */
+.filter-menu .panel-group {
+  margin: -16px;
+
+
+  .panel-title {
+    background: #eee;
+    transition: color, 0.5s, ease;
+
+    &:hover {
+      color: @gray-dark;
+      text-decoration: none;
+      background: @gray-light;
+    }
+  }
+
+  .panel + .panel {
+    margin-top: 0;
+
+  }
+}
+
+/*** Filter Menu - Mobile ***/
+
+
+@mobile-menu-bg: #30404a;
+@mobile-menu-bg-active: #3f5460;
+@mobile-menu-border: #4B6473;
+@mobile-menu-text: #f9f9f9;
+
+/* Panels - Mobile */
+.filter-menu.mobile {
+  .btn-link {
+    color: @mobile-menu-text;
+  }
+  hr {
+
+    margin-top: 0;
+    border-top-color: @mobile-menu-border;
+  }
+  .panel-group .panel-heading + .panel-collapse > .panel-body {
+    border-color: @mobile-menu-border;
+  }
+  .panel {
+    border-color: @mobile-menu-border;
+    background: @mobile-menu-bg;
+    color: @mobile-menu-text;
+  }
+  .panel-heading {
+    background: @mobile-menu-bg;
+  }
+  a.panel-title {
+    color: @mobile-menu-text;
+  }
+  a.panel-title:hover {
+    color: @mobile-menu-text;
+  }
+  .panel-group {
+    .panel {
+      border-color: @mobile-menu-border;
+
+    }
+    .panel-title {
+      background: @mobile-menu-bg-active;
+    }
+    .panel-title:hover {
+      color: @mobile-menu-text;
+      background: @mobile-menu-bg;
+    }
+  }
+}
+
+/****** Footer ******/
+
+.footer {
+  background-color: @gray-lighter;
+}
+.footer p {
+  margin: 20px 0;
+  text-align: center;
+  color: darken(@gray-lighter, 40%);
+}
+.footer .glyphicon-heart {
+  color: pink;
+}
+
+/*** Sticky Footer ***/
+
+@footer-height: 60px;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: @footer-height;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: @footer-height;
+}
 /*range slider*/
 div.scroll {
   width: 350px;
@@ -100,6 +283,7 @@ div.scroll {
   margin-top: 15px;
 }
 
+
 .form-group {
   color:#134477;
 }
@@ -162,7 +346,7 @@ div.scroll {
 </div>
 
 
-<div class="container margin-class section-margin">
+<!--<div class="container margin-class section-margin">
 	<div class="title-margin-class">
     <div class="row">
 			<div class="col-sm-4 col-md-4">
@@ -193,7 +377,7 @@ div.scroll {
 							</div>
 						</div>
 					</div>
-				</div>-->
+				</div>
         <button class="collapsible">Subjects</button>
         <div class="content">
           <div style="margin-top:20px;">
@@ -263,7 +447,7 @@ div.scroll {
 							</div></a>
 							<a style="color:blue;" href="#"><div class="checkbox">
 								<input style="margin-left:-140px;" type="checkbox" value=""><label style="">500-800</label>
-							</div></a>-->
+							</div></a>
 						</div>
 					</div>
 				</div>
@@ -513,6 +697,106 @@ div.scroll {
 </div>
 
 </div>
+
+<div class="primary">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-4">
+
+        <div class="filter-menu">
+          <form>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <a class="panel-title accordion-toggle visible-sm-block" role="button" data-toggle="collapse" href="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
+                  Filter
+                </a>
+                <div class="panel-title hidden-sm">
+                  Filter
+                </div><!-- /.panel-title -->
+                <div class="panel-body">
+                  <button class="btn btn-default" type="submit">Apply Filters</button>
+                  <a class="btn btn-sm btn-link pull-right visible-sm-inline" href="#">Clear Selections</a>
+                  <a class="btn btn-sm btn-link pull-right hidden-sm" href="#">Reset</a>
+                </div><!-- /.panel-body -->
+              </div><!-- /.panel-heading -->
+
+              <div class="panel-body">
+                <div class="panel-group" id="filter-menu" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                      <a class="panel-title accordion-toggle" role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Career Stage
+                      </a><!-- /.panel-title -->
+                    </div><!-- /.panel-heading -->
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="panel-body">
+                        <div class="checkbox"><label><input type="checkbox" name="career_state[]" value="recent_graduate">Recent Graduate</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="career_state[]" value="imposter_syndrome">Imposter Syndrome</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="career_state[]" value="wise_old_head">Wise Old Head</label></div>
+                      </div><!-- /.panel-body -->
+                    </div><!-- /.panel-collapse -->
+                  </div><!-- /.panel -->
+
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                      <a class="panel-title accordion-toggle collapsed" role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Topic
+                      </a><!-- /.panel-title -->
+                    </div><!-- /.panel-heading -->
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                      <div class="panel-body">
+                        <div class="checkbox"><label><input type="checkbox" name="topic[]" value="politics">Politics</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="topic[]" value="religion">Religion</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="topic[]" value="music">Music</label></div>
+                      </div><!-- /.panel-body -->
+                    </div><!-- /.panel-collapse -->
+                  </div><!-- /.panel -->
+
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                      <a class="panel-title accordion-toggle collapsed" role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Format
+                      </a><!-- /.panel-title -->
+                    </div><!-- /.panel-heading -->
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                      <div class="panel-body">
+                        <div class="checkbox"><label><input type="checkbox" name="format[]" value="magazine">Magazine</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="format[]" value="website">Website</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="format[]" value="vine">Vine</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="format[]" value="tweet">Tweet</label></div>
+                      </div><!-- /.panel-body -->
+                    </div><!-- /.panel-collapse -->
+                  </div><!-- /.panel -->
+
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFour">
+                      <a class="panel-title accordion-toggle collapsed" role="button" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Status
+                      </a><!-- /.panel-title -->
+                    </div><!-- /.panel-heading -->
+                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                      <div class="panel-body">
+                        <div class="checkbox"><label><input type="checkbox" name="status[]" value="single">Single</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="status[]" value="married">Married</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="status[]" value="its_complicated">It's complicated</label></div>
+                      </div><!-- /.panel-body -->
+                    </div><!-- /.panel-collapse -->
+                  </div><!-- /.panel -->
+                </div><!-- /.panel-group -->
+              </div><!-- /.panel-body -->
+
+            </div><!-- /.panel -->
+          </form>
+        </div><!-- /.filter-menu -->
+      </div>
+
+      <!-- -------------------------------------------------- -->
+
+
+
+  </div><!-- /.container -->
+</div><!-- /.primary -->
+
 
 <script>
 

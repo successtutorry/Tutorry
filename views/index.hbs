@@ -1,5 +1,586 @@
 <style>
 
+.animatable {
+
+  /* initially hide animatable objects */
+  visibility: hidden;
+
+  /* initially pause animatable objects their animations */
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  -ms-animation-play-state: paused;
+  -o-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+/* show objects being animated */
+.animated {
+  visibility: visible;
+
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -ms-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: both;
+
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -ms-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-duration: 1s;
+
+  -webkit-animation-play-state: running;
+  -moz-animation-play-state: running;
+  -ms-animation-play-state: running;
+  -o-animation-play-state: running;
+  animation-play-state: running;
+}
+
+/* CSS Animations (extracted from http://glifo.uiparade.com/) */
+@-webkit-keyframes fadeInDown {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(-20px);
+	}	100% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+	}
+}
+
+@-moz-keyframes fadeInDown {
+	0% {
+		opacity: 0;
+		-moz-transform: translateY(-20px);
+	}
+
+	100% {
+		opacity: 1;
+		-moz-transform: translateY(0);
+	}
+}
+
+@-o-keyframes fadeInDown {
+	0% {
+		opacity: 0;
+		-o-transform: translateY(-20px);
+	}
+
+	100% {
+		opacity: 1;
+		-o-transform: translateY(0);
+	}
+}
+
+@keyframes fadeInDown {
+	0% {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+
+
+@-webkit-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	20% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	20% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-o-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	20% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	60% {
+		opacity: 0;
+	}
+	20% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@-webkit-keyframes bounceInLeft {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateX(-2000px);
+	}
+	60% {
+		-webkit-transform: translateX(20px);
+	}
+
+	80% {
+		-webkit-transform: translateX(-5px);
+	}
+
+	100% {
+		opacity: 1;
+		-webkit-transform: translateX(0);
+	}
+}
+
+@-moz-keyframes bounceInLeft {
+	0% {
+		opacity: 0;
+		-moz-transform: translateX(-2000px);
+	}
+
+	60% {
+		-moz-transform: translateX(20px);
+	}
+
+	80% {
+		-moz-transform: translateX(-5px);
+	}
+
+	100% {
+		opacity: 1;
+		-moz-transform: translateX(0);
+	}
+}
+
+@-o-keyframes bounceInLeft {
+	0% {
+		opacity: 0;
+		-o-transform: translateX(-2000px);
+	}
+
+	60% {
+		opacity: 1;
+		-o-transform: translateX(20px);
+	}
+
+	80% {
+		-o-transform: translateX(-5px);
+	}
+
+	100% {
+		opacity: 1;
+		-o-transform: translateX(0);
+	}
+}
+
+@keyframes bounceInLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(-2000px);
+	}
+
+	60% {
+		transform: translateX(20px);
+	}
+
+	80% {
+		transform: translateX(-5px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+@-webkit-keyframes bounceInRight {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateX(2000px);
+	}
+
+	60% {
+		-webkit-transform: translateX(-20px);
+	}
+
+	80% {
+		-webkit-transform: translateX(5px);
+	}
+
+	100% {
+		opacity: 1;
+		-webkit-transform: translateX(0);
+	}
+}
+
+@-moz-keyframes bounceInRight {
+	0% {
+		opacity: 0;
+		-moz-transform: translateX(2000px);
+	}
+
+	60% {
+		-moz-transform: translateX(-20px);
+	}
+
+	80% {
+		-moz-transform: translateX(5px);
+	}
+
+	100% {
+		opacity: 1;
+		-moz-transform: translateX(0);
+	}
+}
+
+@-o-keyframes bounceInRight {
+	0% {
+		opacity: 0;
+		-o-transform: translateX(2000px);
+	}
+
+	60% {
+		-o-transform: translateX(-20px);
+	}
+
+	80% {
+		-o-transform: translateX(5px);
+	}
+
+	100% {
+		opacity: 1;
+		-o-transform: translateX(0);
+	}
+}
+
+@keyframes bounceInRight {
+	0% {
+		opacity: 0;
+		transform: translateX(2000px);
+	}
+
+	60% {
+		transform: translateX(-20px);
+	}
+
+	80% {
+		transform: translateX(5px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+@-webkit-keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(20px);
+	}	100% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+	}
+}
+
+@-moz-keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		-moz-transform: translateY(20px);
+	}
+
+	100% {
+		opacity: 1;
+		-moz-transform: translateY(0);
+	}
+}
+
+@-o-keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		-o-transform: translateY(20px);
+	}
+
+	100% {
+		opacity: 1;
+		-o-transform: translateY(0);
+	}
+}
+
+@keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@-webkit-keyframes bounceIn {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale(.3);
+	}
+	50% {
+		-webkit-transform: scale(1.05);
+	}
+
+	70% {
+		-webkit-transform: scale(.9);
+	}
+
+	100% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+	}
+}
+
+@-moz-keyframes bounceIn {
+	0% {
+		opacity: 0;
+		-moz-transform: scale(.3);
+	}
+
+	50% {
+		-moz-transform: scale(1.05);
+	}
+
+	70% {
+		-moz-transform: scale(.9);
+	}
+
+	100% {
+		opacity: 1;
+		-moz-transform: scale(1);
+	}
+}
+
+@-o-keyframes bounceIn {
+	0% {
+		opacity: 0;
+		-o-transform: scale(.3);
+	}
+
+	50% {
+		-o-transform: scale(1.05);
+	}
+
+	70% {
+		-o-transform: scale(.9);
+	}
+
+	100% {
+		opacity: 1;
+		-o-transform: scale(1);
+	}
+}
+
+@keyframes bounceIn {
+	0% {
+		opacity: 0;
+		transform: scale(.3);
+	}
+
+	50% {
+		transform: scale(1.05);
+	}
+
+	70% {
+		transform: scale(.9);
+	}
+
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+@-webkit-keyframes moveUp {
+	0% {
+		opacity: 1;
+		-webkit-transform: translateY(40px);
+	}	100% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+	}
+}
+
+@-moz-keyframes moveUp {
+	0% {
+		opacity: 1;
+		-moz-transform: translateY(40px);
+	}
+
+	100% {
+		opacity: 1;
+		-moz-transform: translateY(0);
+	}
+}
+
+@-o-keyframes moveUp {
+	0% {
+		opacity: 1;
+		-o-transform: translateY(40px);
+	}
+
+	100% {
+		opacity: 1;
+		-o-transform: translateY(0);
+	}
+}
+
+@keyframes moveUp {
+	0% {
+		opacity: 1;
+		transform: translateY(40px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@-webkit-keyframes fadeBgColor {
+	0%{
+		background:none;
+	}
+  70%{
+		background:none;
+	}
+	100%{
+		background:#464646;
+	}
+}
+@-o-keyframes fadeBgColor {
+	0%{
+		background:none;
+	}
+  70%{
+		background:none;
+	}
+	100%{
+		background:#464646;
+	}
+}
+@keyframes fadeBgColor {
+	0%{
+		background:none;
+	}
+  70%{
+		background:none;
+	}
+	100%{
+		background:#464646;
+	}
+}
+
+.animated.animationDelay{
+	animation-delay:.4s;
+	-webkit-animation-delay:.4s;
+}
+.animated.animationDelayMed{
+	animation-delay:1.2s;
+	-webkit-animation-delay:1.2s;
+}
+.animated.animationDelayLong{
+	animation-delay:1.6s;
+	-webkit-animation-delay:1.6s;
+}
+.animated.fadeBgColor {
+	-webkit-animation-name: fadeBgColor;
+	-moz-animation-name: fadeBgColor;
+	-o-animation-name: fadeBgColor;
+	animation-name: fadeBgColor;
+}
+.animated.bounceIn {
+	-webkit-animation-name: bounceIn;
+	-moz-animation-name: bounceIn;
+	-o-animation-name: bounceIn;
+	animation-name: bounceIn;
+}
+.animated.bounceInRight {
+	-webkit-animation-name: bounceInRight;
+	-moz-animation-name: bounceInRight;
+	-o-animation-name: bounceInRight;
+	animation-name: bounceInRight;
+}
+.animated.bounceInLeft {
+	-webkit-animation-name: bounceInLeft;
+	-moz-animation-name: bounceInLeft;
+	-o-animation-name: bounceInLeft;
+	animation-name: bounceInLeft;
+}
+.animated.fadeIn {
+	-webkit-animation-name: fadeIn;
+	-moz-animation-name: fadeIn;
+	-o-animation-name: fadeIn;
+	animation-name: fadeIn;
+}
+.animated.fadeInDown {
+	-webkit-animation-name: fadeInDown;
+	-moz-animation-name: fadeInDown;
+	-o-animation-name: fadeInDown;
+	animation-name: fadeInDown;
+}
+.animated.fadeInUp {
+	-webkit-animation-name: fadeInUp;
+	-moz-animation-name: fadeInUp;
+	-o-animation-name: fadeInUp;
+	animation-name: fadeInUp;
+}
+.animated.moveUp {
+	-webkit-animation-name: moveUp;
+	-moz-animation-name: moveUp;
+	-o-animation-name: moveUp;
+	animation-name: moveUp;
+}
+.animated{
+            -moz-animation-duration: 1s;
+            -webkit-animation-duration: 1s;
+            -moz-animation-name: slidein;
+            -webkit-animation-name: slidein;
+         }
+         @-moz-keyframes slidein {
+            from {
+               margin-left:100%;
+               width:300%
+            }
+            to {
+               margin-left:0%;
+               width:100%;
+            }
+         }
+         @-webkit-keyframes slidein {
+            from {
+               margin-left:100%;
+               width:300%
+            }
+            to {
+               margin-left:0%;
+               width:100%;
+            }
+         }
 .abcd {
     /* filter: url(filters.svg#grayscale); Firefox 3.5+ */
       filter: gray; /* IE5+ */
@@ -212,7 +793,7 @@ transition: all 0.7s ease;
 .smartphone {
 	position: relative;
    width: 360px;
-   height: 690px;
+   height: 600px;
    margin: auto;
    border: 16px white solid;
    border-top-width: 60px;
@@ -253,7 +834,7 @@ transition: all 0.7s ease;
 .smartphone .content {
   width: 325px;
   height:300px;
-  background: white;
+
 	  border-radius: 36px;
 }
 </style>
@@ -261,6 +842,86 @@ transition: all 0.7s ease;
 {{>overlay}}
 {{>requirement-modal}}
 <script>
+$(function() {
+
+  var $window           = $(window),
+      win_height_padded = $window.height() * 1.1,
+      isTouch           = Modernizr.touch;
+
+  if (isTouch) { $('.revealOnScroll').addClass('animated'); }
+
+  $window.on('scroll', revealOnScroll);
+
+  function revealOnScroll() {
+    var scrolled = $window.scrollTop(),
+        win_height_padded = $window.height() * 1.1;
+
+    // Showed...
+    $(".revealOnScroll:not(.animated)").each(function () {
+      var $this     = $(this),
+          offsetTop = $this.offset().top;
+
+      if (scrolled + win_height_padded > offsetTop) {
+        if ($this.data('timeout')) {
+          window.setTimeout(function(){
+            $this.addClass('animated ' + $this.data('animation'));
+          }, parseInt($this.data('timeout'),10));
+        } else {
+          $this.addClass('animated ' + $this.data('animation'));
+        }
+      }
+    });
+    // Hidden...
+   $(".revealOnScroll.animated").each(function (index) {
+      var $this     = $(this),
+          offsetTop = $this.offset().top;
+      if (scrolled + win_height_padded < offsetTop) {
+        $(this).removeClass('animated fadeInUp flipInX lightSpeedIn')
+      }
+    });
+  }
+
+  revealOnScroll();
+});
+// Trigger CSS animations on scroll.
+// Detailed explanation can be found at http://www.bram.us/2013/11/20/scroll-animations/
+
+// Looking for a version that also reverses the animation when
+// elements scroll below the fold again?
+// --> Check https://codepen.io/bramus/pen/vKpjNP
+
+jQuery(function($) {
+
+  // Function which adds the 'animated' class to any '.animatable' in view
+  var doAnimations = function() {
+
+    // Calc current offset and get all animatables
+    var offset = $(window).scrollTop() + $(window).height(),
+        $animatables = $('.animatable');
+
+    // Unbind scroll handler if we have no animatables
+    if ($animatables.length == 0) {
+      $(window).off('scroll', doAnimations);
+    }
+
+    // Check all animatables and animate them if necessary
+		$animatables.each(function(i) {
+       var $animatable = $(this);
+			if (($animatable.offset().top + $animatable.height() - 20) < offset) {
+        $animatable.removeClass('animatable').addClass('animated');
+			}
+    });
+
+	};
+
+  // Hook doAnimations on scroll, and trigger a scroll
+	$(window).on('scroll', doAnimations);
+  $(window).trigger('scroll');
+
+});
+function myFunction() {
+            location.reload();
+         }
 document.addEventListener("scroll", function () {
 	myFunc();
 }, false);
@@ -432,13 +1093,13 @@ function checkzipcode(element) {
 			<div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="col-md-12">
                     <div class="service-box"">
-<div class="grow">
+
                         <img src="/images/download.png" width="50" height="50"/>
 												<h4 style="color:white;">Download The Tutorry App or Visit Website</h4>
 												<h5 style="color: #91959a;">Best help at your neighbour.Best education is now easy with Tutorry</h5>
 
 
-</div>
+
 &nbsp
                     </div>
                 </div>
@@ -446,21 +1107,20 @@ function checkzipcode(element) {
 
                 <div class="col-md-12">
                     <div class="service-box">
-											<div class="grow">
+
                         <img src="/images/register.png" width="50" height="50" />
 												<h4 style="color:white;">Get Registered</h4>
 												<h5 style="color: #91959a;">Provide us with your details to find a best match.</h5>
-                    </div>
+
                 </div>
 							</div>
 &nbsp
                 <div class="col-md-12">
                     <div class="service-box">
-											<div class="grow">
-                        <img src="/images/find.png" width="50" height="50"/>
+										  <img src="/images/find.png" width="50" height="50"/>
 												<h4 style="color:white;">Find your tutor</h4>
 												<h5 style="color: #91959a;">Search tutors according to your budget, time, place and other requirements.</h5>
-                    </div>
+
                 </div>
 							</div>
             </div>
@@ -475,9 +1135,9 @@ function checkzipcode(element) {
 						<div class="col-md-4 col-sm-12 col-xs-12 text-center">
 						<div class="smartphone">
 						  <div class="content">
-						   <img class="mySlides" src="https://androidapksfree.com/wp-content/uploads/2017/10/playstore-6-412x708.jpeg" style="width:100%";"height:20%">
+						   <!--<img class="mySlides" src="https://androidapksfree.com/wp-content/uploads/2017/10/playstore-6-412x708.jpeg" style="width:100%";"height:20%">
 						  <img class="mySlides" src="/images/sc4.jpeg" style="width:100%";"height:90%">
-						  <img class="mySlides" src="/images/sc3.jpeg" style="width:100%";"height:65%">
+						  <img class="mySlides" src="/images/sc3.jpeg" style="width:100%";"height:65%">-->
 						  </div>
 					</div>
 
@@ -486,31 +1146,30 @@ function checkzipcode(element) {
 			<div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="col-md-12">
                     <div class="service-box">
-											<div class="grow">
-                        <img src="/images/demo.png" width="50" height="50"/>
+					        <img src="/images/demo.png" width="50" height="50"/>
 												<h4 style="color:white;">Schedule a Demo class</h4>
 												<h5 style="color: #91959a;">None of our students are unhappy after attending a demo class.</h5>
-                    </div>
+
                 </div>
 							</div>
 	&nbsp
                 <div class="col-md-12">
                     <div class="service-box">
-											<div class="grow">
+
                         <img src="/images/teach.png" width="50" height="50"/>
 												<h4 style="color:white;">Start Learning</h4>
 												<h5 style="color: #91959a;">Your better results are not only your battle but its also are responsility. We provide best tutoring services.</h5>
-                    </div>
+
 									</div>
                 </div>
 	&nbsp
                 <div class="col-md-12">
                     <div class="service-box">
-											<div class="grow">
+
                         <img src="/images/feedback.png" width="50" height="50"/>
 												<h4 style="color:white;">Feedback</h4>
 												<h5 style="color: #91959a;">You can like, review, mark as favourite and enjoy more benefits atutorry</h5>
-                    </div>
+
 									</div>
                 </div>
             </div>
@@ -535,16 +1194,19 @@ function checkzipcode(element) {
 
 
 					<!-- Photo Grid -->
-					<div class="row">
+					<!--<div class="row">
 						<div class="column">
+
 							<img class="abcd" src="https://www.w3schools.com/howto/img_forest.jpg" alt="eng" style="width:100%">
 							<div class="content">
-	 <h4>Mathematics</h4>
-	 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
- </div>
-							</div>
+	               <h4>Mathematics</h4>
+                 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
+
+            </div>
+            </div>
 
 							<div class="column">
+
 							<img class="abcd" src="http://maths.iitd.ac.in/drupal/sites/default/files/uploads/5.jpg" alt="maths" style="width:100%">
 							<div class="content">
 						     <h4>Mathematics</h4>
@@ -560,15 +1222,18 @@ function checkzipcode(element) {
 	 <h4>Mathematics</h4>
 	 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
  </div>
+
 						</div>
 						 <div class="column">
+
 							<img  class="abcd" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf-qKxv_sDOMxYNz_-yYrwElcOVIyj9qusYZ0Nd-4y6QSVMkpi" alt="art" style="width:100%">
 							<div class="content">
 	 <h3>Mathematics</h3>
 	 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
  </div>
-						</div>
-						</div>
+</div>
+
+
 &nbsp
 						<div class="row">
 						<div class="column">
@@ -577,19 +1242,24 @@ function checkzipcode(element) {
 							<div class="content">
 	 <h3>Mathematics</h3>
 	 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
- </div>
+
+
+             </div>
 							</div>
 							&nbsp
 							<div class="column">
+
 							<img class="abcd" src="https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="marathi" style="width:100%">
 							<div class="content">
 	 <h3>Mathematics</h3>
 	 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
  </div>
-							</div>
+</div>
+
 
 &nbsp
 						<div class="column">
+
 							<img class="abcd" src="https://wi-images.condecdn.net/image/ylR5okly0zM/crop/405/f/adamgrantillu.jpg" alt="science" style="width:100%">
 							<div class="content">
 	 <h3>Mathematics</h3>
@@ -598,95 +1268,129 @@ function checkzipcode(element) {
 							</div>
 &nbsp
 
-
+</div>
+</div>
 							</div>
-
-
-
-
-
-					</div>
-					</div>
-
-
-
-
-					</div>
+					</div>-->
 					<!--end of grid-->
 
-					<!--<div class="col-md-3 col-sm-6">
+					<div class="col-md-3 col-sm-6">
+            <div class="wrapper">
+              <div class="block animatable bounceInLeft">
 												<div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
 														<div class="h200 h150">
+
 																<img src="/images/Art.png" alt="art" width="80" height="70"/>
 																<h2 class="h2 h40"><a style="color:#337ab7; text-decoration:none;"> Mathematics </a></h2>
 																<p>Drawing, painting, sketching, and much more</p>
+                              </div>
+                          </div>
 														</div>
 												</div>
 										</div>
 					<div class="col-md-3 col-sm-6">
+            <div class="wrapper">
+              <div class="block animatable bounceInLeft">
                         <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
                             <div class="h200 h150">
+
                                 <img src="/images/Art.png" alt="art" width="80" height="70"/>
                                 <h2 class="h2 h40"><a style="color:#337ab7; text-decoration:none;"> Art </a></h2>
                                 <p>Drawing, painting, sketching, and much more</p>
                             </div>
                         </div>
                     </div>
+                  </div>
+              </div>
 										<div class="col-md-3 col-sm-6">
+                      <div class="wrapper">
+                        <div class="block animatable bounceInRight">
 					                        <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
 					                            <div class="h200 h150">
+
 					                                <img src="/images/Art.png" alt="art" width="80" height="70"/>
 					                                <h2 class="h2 h40"><a style="color:#337ab7; text-decoration:none;"> Geography </a></h2>
 					                                <p>Drawing, painting, sketching, and much more</p>
 					                            </div>
 					                        </div>
 					                    </div>
+                            </div>
+                        </div>
 					<div class="col-md-3 col-sm-6">
+            <div class="wrapper">
+              <div class="block animatable bounceInRight">
                         <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
                             <div class="h200 h150">
+
                                 <img src="/images/history.png" alt="History" width="80" height="70"/>
                                 <h2 class="h2 h40"> <a style="color:#337ab7; text-decoration:none;"> History</a></h2>
                                 <p>Academic chapters, Genera knowledge </p>
                             </div>
                         </div>
+                      </div>
+                  </div>
                     </div>
 					<div class="col-md-3 col-sm-6">
+            <div class="wrapper">
+              <div class="block animatable bounceInRight">
                         <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
                             <div class="h200 h150">
+
                                 <img src="/images/science.png" alt="Science"width="80" height="70"/>
                                 <h2 class="h2 h40"> <a style="color:#337ab7; text-decoration:none;"> Science </a></h2>
                                 <p>Conceptutial Knowledge,Help with practicals</p>
                             </div>
                         </div>
                     </div>
+                  </div>
+              </div>
 					<div class="col-md-3 col-sm-6">
+            <div class="wrapper">
+              <div class="block animatable bounceInLeft">
                         <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
                             <div class="h200 h150">
+
                                  <img src="/images/hindi.png" alt="Hindi" width="80" height="70"/>
                                 <h2 class="h2 h40"> <a style="color:#337ab7; text-decoration:none;"> Hindi </a></h2>
                                 <p>Grammar, language basics, lessons, Writing skills</p>
                             </div>
                         </div>
                     </div>
+                  </div>
+              </div>
 					<div class="col-md-3 col-sm-6">
+            <div class="wrapper">
+              <div class="block animatable bounceInRight">
                         <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
                             <div class="h200 h150">
+
                                <img src="/images/eng.png" alt="English" width="80" height="70"/>
                                 <h2 class="h2 h40"> <a style="color:#337ab7; text-decoration:none;"> English </a></h2>
-                                <p>Improvement in grammar, writing skills, Gain language confidence</p>
+                                <p>Improve grammar, writing skills,language confidence</p>
                             </div>
                         </div>
                     </div>
+                  </div>
+              </div>
+
 					<div class="col-md-3 col-sm-6">
+            <div class="wrapper">
+              <div class="block animatable bounceInLeft">
                         <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+
                             <div class="h200 h150">
+
                                 <img src="/images/marathi.png" alt="Marathi" width="80" height="70"/>
                                 <h2 class="h2 h40"> <a style="color:#337ab7; text-decoration:none;"> Marathi </a></h2>
                                 <p>Grammar, language basics, lessons, writing skills</p>
                             </div>
                         </div>
                     </div>
-				</div>-->
+                  </div>
+                </div>
+              </div>
+          </div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -1022,31 +1726,40 @@ function checkzipcode(element) {
  		</div>
 		 <div style="padding-top:15px;" class="row within-sec-margin">
 			 <div class="features">
+         <div class="col-md-4 col-sm-6">
+          <!-- <div class="grow">-->
+            <div class="wrapper">
+              <div class="block animatable bounceInLeft">
+                       <div class="feature-wrap clickMe" data-url="/learn/#/request/home-tutor-academics">
+                           <img src="/images/ol.png" width="80" height="80"/>
+                           <div class="h2">
+               <h3>Group Tutoring</h3>
+             <!--</div>-->
+                           <p style="color: #91959a;">E-learning gives you accessibility to same lessons.</p>
+                       </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
 				 <div class="col-md-4 col-sm-6">
-					 <div class="grow">
-											 <div class="feature-wrap clickMe" data-url="/learn/#/request/home-tutor-academics">
-													 <img src="/images/gp.png" width="80" height="80"/>
-													 <div class="h2">
-							 <h3>Group Tuitions</h3>
-						 </div>
-
-													 <p style="color: #91959a;">Tutorry provides group tutoring also.</p>
-											 </div>
-									 </div>
-									 </div>
-				 <div class="col-md-4 col-sm-6">
-					 <div class="grow">
+					<!-- <div class="grow">-->
+            <div class="wrapper">
+              <div class="block animatable bounceIn">
 											 <div class="feature-wrap clickMe" data-url="/learn/#/request/home-tutor-academics">
 													 <img src="/images/ol.png" width="80" height="80"/>
 													 <div class="h2">
 							 <h3>Online Lessons</h3>
-						 </div>
+						 <!--</div>-->
 													 <p style="color: #91959a;">E-learning gives you accessibility to same lessons.</p>
 											 </div>
 									 </div>
 								 </div>
+               </div>
+             </div>
 				 <div class="col-md-4 col-sm-6">
-					 <div class="grow">
+					 <!--<div class="grow">-->
+             <div class="wrapper">
+               <div class="block animatable bounceInRight">
 											 <div class="feature-wrap clickMe" data-url="/learn/#/request/home-tutor-academics">
 													<img src="/images/boards.png" width="80" height="80"/>
 													 <div class="h2">
@@ -1054,14 +1767,15 @@ function checkzipcode(element) {
 
 
 
-													 <p style="color: #91959a;">Get Tutors for ICSE, CBSE, and state boards.</p>
+													 <p style="color: #91959a;">Get Tutors for ICSE, CBSE, and state boardsbhrh vfgvuvbh.</p>
 												 </div>
 												 </div>
 </div>
 									 </div>
 									 <div>
 									 </div>
-
+                 </div>
+                     </div>
 			 </div>
 		 </div>
 	 </div>
