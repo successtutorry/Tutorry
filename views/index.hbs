@@ -500,12 +500,12 @@
 	-webkit-animation-delay:.4s;
 }
 .animated.animationDelayMed{
-	animation-delay:1.2s;
-	-webkit-animation-delay:1.2s;
+	animation-delay:0s;
+	-webkit-animation-delay:0s;
 }
 .animated.animationDelayLong{
-	animation-delay:1.6s;
-	-webkit-animation-delay:1.6s;
+	animation-delay:0s;
+	-webkit-animation-delay:0s;
 }
 .animated.fadeBgColor {
 	-webkit-animation-name: fadeBgColor;
@@ -556,8 +556,8 @@
 	animation-name: moveUp;
 }
 .animated{
-            -moz-animation-duration: 1s;
-            -webkit-animation-duration: 1s;
+            -moz-animation-duration: 4s;
+            -webkit-animation-duration: 4s;
             -moz-animation-name: slidein;
             -webkit-animation-name: slidein;
          }
@@ -1031,34 +1031,35 @@ function checkzipcode(element) {
 		</div>
 		<!----------- start of search bar----------------->
 
-		<div id="stickysearchbar" class="margin-class-new" style="">
-			<div class="title-margin-class"   style="background-color: #062e57;">
-				<div class="row">
-				<form class="form-inline" action="/users/find_tutor" method="get">
-						<div class="col-sm-3 col-md-3">
-							<div class="form-group form-header" style="">
-								<h6 style="color:white; font-size:2.5rem; line-height:1;">Find Your</span></h6>
-								<h4 style="color:#aece61; font-size:3.125rem; line-height:1;">Tutor</h4>
-							</div>
-						</div>
-						<div class="col-sm-9 col-md-9  form-body" style="">
-								<div class="form-group">
-									<input onkeydown="checksub(event);" type="text" class="form-control searchbar-input" id="subject" placeholder="Enter a subject" name="subject">
-								</div>
-								<div class="form-group">
-									<input onkeydown="checklocation(event);" type="text" class="form-control searchbar-input" id="location" placeholder="Location" name="location">
-								</div>
-								<div class="form-group">
-									<input onkeydown="checkzipcode(this);" type="number" class="form-control searchbar-input" id="zipcode" placeholder="Zipcode" name="zipcode">
-								</div>
-								<div class="form-group" style="padding-bottom:15px; text-align:center; margin-left:10px; padding-left:10px;">
-									<button class="button btn btn-lg" type="submit">Find Now</button>
-								</div>
-						</div>
-				</form>
-			</div>
-	</div>
+    <div id="stickysearchbar" class="margin-class  container" style="margin-top:10%;">
+   <div class="title-margin-class"   style="background-color: #062e57;">
+     <div class="row">
+     <form class="form-inline" action="#" method="get">
+         <div class="col-sm-3 col-md-3">
+           <div class="form-group form-header" style="">
+             <h6 style="color:white; font-size:2.5rem; line-height:1;">Find Your</span></h6>
+             <h4 style="color:#aece61; font-size:3.125rem; line-height:1;">Tutor</h4>
+           </div>
+         </div>
+         <div class="col-sm-9 col-md-9  form-body" style="">
+             <div class="form-group">
+               <input type="text" class="form-control searchbar-input" id="subject" placeholder="Enter a subject" name="subject">
+             </div>
+             <div class="form-group">
+               <input type="text" class="form-control searchbar-input" id="location" placeholder="Location" name="location">
+             </div>
+             <div class="form-group">
+               <input type="number" class="form-control searchbar-input" id="zipcode" placeholder="Zipcode" name="zipcode">
+             </div>
+             <div class="form-group" style="padding-bottom:15px; text-align:center; margin-left:10px;">
+               <button id="searchbarsubmitbtn" class="button btn btn-lg" type="button">Find Now</button>
+             </div>
+         </div>
+     </form>
+   </div>
 </div>
+</div>
+
 		<!-----------end of search  bar ----------------->
 
 	</div> <!----------- end of carousel ----------------->
@@ -1435,6 +1436,7 @@ function checkzipcode(element) {
 				</div>
 			</div>
 		</div>
+
 	</div>
 </div>
 <!--------- end of three important features section ------------>
