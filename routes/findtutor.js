@@ -163,12 +163,19 @@ router.route('/find_tutor')
         console.log(err);
       }else{
         console.log(docs);
-        res.send(docs);
+          res.send(docs);
+
 
       }
 
     });
   });
+
+  router.route('/searchbar')
+  .get((req,res)=>{
+
+    console.log('request recieved');
+  })
 
 
 

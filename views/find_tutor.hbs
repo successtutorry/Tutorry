@@ -98,7 +98,7 @@
   <div id="stickysearchbar" class="margin-class  container" style="margin-top:10%;">
     <div class="title-margin-class"   style="background-color: #062e57;">
       <div class="row">
-      <form class="form-inline" action="/users/find_tutor" method="get">
+      <form class="form-inline" action="#" method="get">
           <div class="col-sm-3 col-md-3">
             <div class="form-group form-header" style="">
               <h6 style="color:white; font-size:2.5rem; line-height:1;">Find Your</span></h6>
@@ -107,7 +107,7 @@
           </div>
           <div class="col-sm-9 col-md-9  form-body" style="">
               <div class="form-group">
-                <input onkeydown="checkkey(event);" type="text" class="form-control searchbar-input" id="subject" placeholder="Enter a subject" name="subject">
+                <input type="text" class="form-control searchbar-input" id="subject" placeholder="Enter a subject" name="subject">
               </div>
               <div class="form-group">
                 <input type="text" class="form-control searchbar-input" id="location" placeholder="Location" name="location">
@@ -116,7 +116,7 @@
                 <input type="number" class="form-control searchbar-input" id="zipcode" placeholder="Zipcode" name="zipcode">
               </div>
               <div class="form-group" style="padding-bottom:15px; text-align:center; margin-left:10px;">
-                <button class="button btn btn-lg" type="submit">Find Now</button>
+                <button id="searchbarsubmitbtn" class="button btn btn-lg" type="button">Find Now</button>
               </div>
           </div>
       </form>
@@ -204,7 +204,7 @@
 //var tutorprofilecontent = '';
 window.onload = function () {
   $('#tutorslist').html(sessionStorage.getItem("sessiontutors"));
-   //console.log(sessionStorage.getItem("sessiontutors"));
+   console.log(sessiontutors.length);
 }
 
 var tutorprofilecontent = '';
@@ -290,6 +290,10 @@ $.ajax({
   type:'GET',
   url: '/findtutor/filter?search='+x,
   success: function(data){
+    if(data.length==0){
+       $('#tutorslist').html('<p style="text-align:center;">Sorry! No tutors matched</p>');
+       document.getElementById('loader').style.display = 'none';
+    }else{
     document.getElementById('loader').style.display = 'none';
     $.each(data, function(i, tutor){
       tutorprofilecontent += '<div class="col-sm-4 col-md-4">';
@@ -309,8 +313,73 @@ $.ajax({
     sessionStorage.setItem("sessiontutors", tutorprofilecontent);
     //console.log(sessionStorage.getItem("sessiontutors"));
     tutorprofilecontent = '';
+  }
   },
 });
+});
+
+$("#searchbarsubmitbtn").click(function(e) {
+
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+    var x = '';
+    var query = {}
+    var form = $(this);
+    var subject = $('#subject').val();
+    var location = $('#location').val();
+    var zipcode = $('#zipcode').val();
+{ $and: [ { price: { $ne: 1.99 } }, { price: { $exists: true } } ] }
+    if(subject.length!=0 && location.length!=0 && zipcode.length!=0){
+          query = {$and: [{subjects:subject}, {availablearea:location}, {zipcode: zipcode}]};
+      }else if(subject.length!=0&&location.length!=0){
+        query = {subjects:subject, availablearea:location, zipcode:'400604'};
+      }else if(location.length!=0 && zipcode.length!=0){
+      query = {subjects:'history', availablearea:location, zipcode: zipcode};
+    }else if(subject.length!=0  && zipcode.length!=0){
+        query = {subjects:subject, availablearea:'thane', zipcode: zipcode};
+      }else if(subject.length!=0){
+        query = {subjects:subject, availablearea:'thane', zipcode: '400604'};
+      }else if(location.length!=0){
+        query = {subjects:'history', availablearea:location, zipcode: '400604'};
+      }else if(zipcode.length!=0){
+        query = {subjects:'history', availablearea:'thane', zipcode: zipcode};
+      }else{
+        console.log('nothing');
+      }
+
+      x= JSON.stringify(query);
+
+      $.ajax({
+           type: "GET",
+           url: '/findtutor/filter?search='+x,
+           data: form.serialize(), // serializes the form's elements.
+           success: function(data){
+             if(data.length==0){
+                $('#tutorslist').html('<p style="text-align:center;">Sorry! No tutors matched</p>');
+             }else{
+             document.getElementById('loader').style.display = 'none';
+             $.each(data, function(i, tutor){
+               tutorprofilecontent += '<div class="col-sm-4 col-md-4">';
+               tutorprofilecontent += '<div  class="card" style="width:225px">'
+               tutorprofilecontent += '<img class="card-img-top" alt="Card image" style="width:100%" src=/images/'+this.image+'>'
+               tutorprofilecontent += '<div  class="card-body tutor-card-body">';
+               tutorprofilecontent += '<h4  style="color: #134477;" class="card-title">'+ this.firstname + ' ' + this.lastname+'</h4>';
+               tutorprofilecontent += '<p id="emailpara" style="color:#91959a; display:none" class="card-text">' + this.email + '</p>';
+               tutorprofilecontent += '<a class="view_tut_btn button btn btn-lg" href=/users/view_tutor?email='+ this.email +'>View Tutor</a>';
+               tutorprofilecontent += '</div>';
+               tutorprofilecontent += '</div>';
+               tutorprofilecontent += '</div>';
+
+             });
+             $('#tutorslist').html(tutorprofilecontent);
+             //var sessiontutors = tutorprofilecontent;
+             sessionStorage.setItem("sessiontutors", tutorprofilecontent);
+             //console.log(sessionStorage.getItem("sessiontutors"));
+             tutorprofilecontent = '';
+             
+           }
+
+           },
+         });
 });
 
 /*$(".filter").click(function(){
