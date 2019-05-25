@@ -489,6 +489,7 @@ router.route('/become_tutor')
 
     router.route('/sendchat')
         .post(isAuthenticated, async(req, res) => {
+          console.log('in send message api');
           try{
           const newChat = new chat({
             message:req.body.message,
@@ -496,6 +497,7 @@ router.route('/become_tutor')
             tutoremail:req.body.email
           });
         const done =   await newChat.save();
+        console.log(done);
           console.log(req.body);
           const link = "http://127.0.0.1:3000/users/reply?studentemail="+req.user.email+"&tutoremail="+req.body.email;
           const html = `Hi there,
@@ -538,12 +540,14 @@ router.route('/become_tutor')
       router.route('/displaychat')
       .get((req,res)=>{
       //  var messagearray = [];
-        chat.find({},function(err,result){
+      console.log(req.query.email);
+        chat.find({tutoremail:req.query.email},function(err,result){
           //console.log(result);
         /*for(var i=0;i<result.length;i++){
             messagearray.push(result[i].message);
           }*/
           //console.log(messagearray);
+          console.log(result);
           res.send(result);
         });
       });

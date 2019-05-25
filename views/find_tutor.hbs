@@ -205,6 +205,10 @@
 window.onload = function () {
   $('#tutorslist').html(sessionStorage.getItem("sessiontutors"));
    console.log('yes');
+   console.log(sessionStorage.getItem("sessionsubjects"));
+   var sessionsub = sessionStorage.getItem("sessionsubjects");
+
+
 }
 
 
@@ -312,6 +316,7 @@ $.ajax({
     $('#tutorslist').html(tutorprofilecontent);
     //var sessiontutors = tutorprofilecontent;
     sessionStorage.setItem("sessiontutors", tutorprofilecontent);
+    sessionStorage.setItem("sessionsubjects", subject);
     //console.log(sessionStorage.getItem("sessiontutors"));
     tutorprofilecontent = '';
   }

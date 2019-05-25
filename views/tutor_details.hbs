@@ -105,7 +105,7 @@
 			</div>
 			<button onclick="showform(1);"  class="button btn btn-lg" type="button">Message</button>
 			<!--<button  class="button btn btn-lg" type="button" data-toggle="modal" data-target="#myModal">Message</button>-->
-			<!--<button onclick="openForm();"  class="button btn btn-lg" type="button">Message</button>-->
+			<button onclick="openForm();"  class="button btn btn-lg" type="button">Message</button>
 		</div>
     </div>
 	<div>
@@ -138,14 +138,12 @@ document.onload = somefunction({{rating}}, 1);
 function somefunction(n, a){
  var ratings = document.getElementsByClassName('rating');
  document.getElementById('paratext').innerHTML = "This is the " + a + "  paratext";
-
 for(var i =0; i< 5-n; i ++){
-
 	ratings[i].style.display = "none";
 }
 }
+var email = '';
 var socket = io();
-
 $(() => {
 $("#send").click(()=>{
 //	alert('send clicked');
@@ -153,7 +151,7 @@ $("#send").click(()=>{
 						//document.getElementById('message').value = '';
 
         });
-				getmessage();
+				getmessage($("#hiddenemail").val());
 			});
 
 socket.on('message', addMessages);
@@ -162,24 +160,28 @@ function addMessages(message){
         $("#messages").append(`<p> ${message.message} </p>`)
     }
 
-		function getmessage(){
-      $.get('/users/displaychat', (data) => {
+		function getmessage(email){
+      console.log(email);
+
+      $.get('/users/displaychat?email='+email, (data) => {
 				data.forEach(addMessages);
       });
     }
 
 		function sendMessage(message){
+      console.log('in sendMessage');
 		    $.post('/users/sendchat', message);
-				document.getElementById('message').value = '';
+				//document.getElementById('message').value = '';
         $("#messages").append(`<p> ${message.message} </p>`);
 				alert('message has been sent');
+        document.getElementById('message').value = '';
 
 		    }
 
 
 function openForm() {
   document.getElementById("myForm").style.display = "block";
-	getmessage();
+
 }
 
 function closeForm() {
