@@ -204,8 +204,9 @@
 //var tutorprofilecontent = '';
 window.onload = function () {
   $('#tutorslist').html(sessionStorage.getItem("sessiontutors"));
-   console.log(sessiontutors.length);
+   console.log('yes');
 }
+
 
 var tutorprofilecontent = '';
 var subject = [];
@@ -327,7 +328,6 @@ $("#searchbarsubmitbtn").click(function(e) {
     var subject = $('#subject').val();
     var location = $('#location').val();
     var zipcode = $('#zipcode').val();
-{ $and: [ { price: { $ne: 1.99 } }, { price: { $exists: true } } ] }
     if(subject.length!=0 && location.length!=0 && zipcode.length!=0){
           query = {$and: [{subjects:subject}, {availablearea:location}, {zipcode: zipcode}]};
       }else if(subject.length!=0&&location.length!=0){
@@ -375,12 +375,15 @@ $("#searchbarsubmitbtn").click(function(e) {
              sessionStorage.setItem("sessiontutors", tutorprofilecontent);
              //console.log(sessionStorage.getItem("sessiontutors"));
              tutorprofilecontent = '';
-             
+
+
            }
 
            },
          });
+
 });
+
 
 /*$(".filter").click(function(){
   console.log(this.id);
