@@ -74,11 +74,13 @@ x[n].className += " active";
 }*/
 
 // javascript for overlay login and message overlay regForm
-function on(){
+function showoverlay(){
  document.getElementById("overlay").style="display:block;";
  document.getElementById("closebtn").style="display:block;";
+}
 
-
+function hideoverlay(){
+  document.getElementById('overlay').style = "display:none;";
 }
 
 function off(){
@@ -129,13 +131,6 @@ function displayRegistration(x){
       //document.getElementById("message-overlay").style="display:block;";
   }
 
-
-
-  function hideoverlay(){
-
- document.getElementById('overlay').style = "display:none;";
-
-  }
 
 /*  function myFunction() {
   var x = document.getElementById("inputEmail").value;
