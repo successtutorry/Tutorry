@@ -172,7 +172,7 @@ router.route('/forgotPassword')
        await mailer.sendEmail('tutorry.in@gmail.com', req.body.email, '', html);
        req.flash('success', 'password reset link has been sent to your email id');
        console.log('Link has been send to you on you email id.');
-       res.redirect('back');
+       res.render('back');
 
   }else{
    console.log('user does not exists or incorrect email id...');
