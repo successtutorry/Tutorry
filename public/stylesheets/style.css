@@ -105,6 +105,7 @@ footer {
 .margin-class {
 	margin-left: 9%;
 	margin-right: 9%;
+	margin-bottom: 100px;
 }
 
 .title-margin-class {
@@ -466,7 +467,7 @@ input.invalid {
 .feature-wrap {
 	margin-bottom: 20px;
 	/*background-color: #aece61;*/
-	background-color: white;
+	background-color: #ccc;
 	padding: 20px;
 	text-align: center;
 	border: 1px solid rgba(0, 0, 0, .1);
