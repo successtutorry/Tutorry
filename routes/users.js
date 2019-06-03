@@ -487,7 +487,7 @@ router.route('/become_tutor')
     }
     });
 
-    router.route('/sendchat')
+    router.route('/sendmessage_to_tutor')
         .post(isAuthenticated, async(req, res) => {
           console.log('in send message api');
           try{
@@ -519,7 +519,7 @@ router.route('/become_tutor')
       }
       });
 
-      router.route('/reply')
+      router.route('/replytostudent')
       .get((req,res)=>{
         studentemail = req.query.studentemail;
         tutoremail = req.query.tutoremail;
@@ -527,7 +527,7 @@ router.route('/become_tutor')
         res.render('reply');
       })
 
-      router.route('/reply')
+      router.route('/replytostudent')
       .post((req, res)=>{
           const newchat = new chat({
             message: req.body.message,
@@ -537,7 +537,7 @@ router.route('/become_tutor')
           newchat.save();
       });
 
-      router.route('/displaychat')
+      router.route('/displaymessage_to_student')
       .get((req,res)=>{
       //  var messagearray = [];
       console.log(req.query.email);
