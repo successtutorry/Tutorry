@@ -3,7 +3,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// this is the user Schema
 //these values will be inserted in the table or collection in case of mongodb
 const tutorSchema = new Schema({
 image:String,

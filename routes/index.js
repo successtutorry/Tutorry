@@ -1,20 +1,20 @@
 var express = require('express');
 var router = express.Router();
 const tutor = require('../models/tutorregistration');
-//var keystone = require('keystone');
 
  /*GET home page.*/
 /*router.get('/', function(req, res, next) {
 
   res.render('index', { title:'Tutorry' });
 });*/
-
+var catchurl = '';
 router.get('/', (req, res) => {
+  //console.log('url is' + req.url);
 
+  var tutorChunks = [];
+  var chunkSize = 3;
   if(req.isAuthenticated()){
     tutor.find( { }, function(err, docs){
-    var tutorChunks = [];
-    var chunkSize = 3;
     for(var i=0; i < docs.length; i+= chunkSize){
         tutorChunks.push(docs.slice(i, i+chunkSize));
     }
@@ -22,10 +22,8 @@ router.get('/', (req, res) => {
     });
 
   }else{
-
+      //catchurl = req.originalUrl;
       tutor.find( { }, function(err, docs){
-      var tutorChunks = [];
-      var chunkSize = 3;
       for(var i=0; i < docs.length; i+= chunkSize){
           tutorChunks.push(docs.slice(i, i+chunkSize));
       }

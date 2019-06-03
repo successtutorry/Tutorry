@@ -17,12 +17,18 @@ const User = require('../models/user');
 const passport = require('passport');
 const randomstring = require('randomstring');
 const springedge = require('springedge');
+const Contact = require('../models/contact');
 
 
 var email ='';
 var username = '';
 var studentemail = '';
 var tutoremail = '';
+//var latesturl = [];
+//var checker = '';
+var catchurl ='/';
+var tutor_email ='';
+
 
 //if user is trying to access his home page without login then he is restricted
 const isAuthenticated = (req, res, next) => {
@@ -119,44 +125,187 @@ router.route('/register')
     }
   });
 
+
+
 // user email verification
-  router.route('/verify')
-  .get(isNotAuthenticated, async (req,res)=>{
-    try{
-    console.log('request recieved');
-    const token = req.query.id;
-    await User.updateOne(
-      { secretToken: token },
-      {
-        $set: { active: true }
-      },function(err,res){
-        if(err){
-          throw err;
-        }else{
-          console.log('user verified');
-          return;
-        }
-      }
-);
-  res.redirect('/');
-}catch(error){
+router.route('/verify')
+.get(isNotAuthenticated, async (req,res)=>{
+  try{
+      console.log('request recieved');
+      const token = req.query.id;
+      await User.updateOne({ secretToken: token },{$set: { active: true }},function(err,res){
+          if(err){
+            throw err;
+          }else{
+            console.log('user verified');
+            return;
+          }
+        });
+        req.flash('success',"Account Verified!");
+        res.redirect('/');
+    }catch(error){
+      console.log(error);
+    }
+});
+
+//forgotPassword get and post request from website
+router.route('/forgotPassword')
+ .get(isNotAuthenticated,(req,res)=>{
+ res.render('passwordRecovery');
+
+}).post(async (req,res)=>{
+
+ try{
+
+  var emailId = req.body.email;
+  const userExists = await User.findOne({'email': req.body.email});
+  if(userExists){
+   const link = "http://127.0.0.1:3000/users/changePassword?email="+req.body.email;
+   const html = `
+       Please click on the following link to reset your password
+       <br/>
+       <br/>
+        <a href="${link}">please click this</a>
+       <br/><br/>
+       Have a pleasant day.`
+       // Send email
+       await mailer.sendEmail('tutorry.in@gmail.com', req.body.email, '', html);
+       req.flash('success', 'password reset link has been sent to your email id');
+       console.log('Link has been send to you on you email id.');
+       res.render('back');
+
+  }else{
+   console.log('user does not exists or incorrect email id...');
+   req.flash('error','user does not exists or incorrect email id...');
+   res.redirect('back');
+  }
+  }catch(error){
   console.log(error);
+  }
+});
+
+
+//get requets executed when verification mail is clicked
+router.route('/changePassword')
+.get((req,res)=>{
+//console.log(req.query.email);
+email = req.query.email;
+ res.render('passwordRecovery_1',{email:req.query.email});
+
+}).post(async (req,res)=>{
+ console.log("coming from email"+ email);
+
+ try{
+
+   if(req.body.password==req.body.confirmationPassword){
+     console.log('password matched');
+     const hashed = await User.hashPassword(req.body.password);
+     console.log(hashed);
+
+     const changedPassword = await User.update(
+       { email: email },
+       {
+         $set: { password: hashed }
+       }
+       );
+
+ console.log(changedPassword);
+ if(changedPassword){
+   email='';
+   req.flash('success', 'password successfully changed');
+   res.redirect('back');
+
+ } else{
+   console.log('some error in changing password');
+   req.flash('error', 'password change unsuccessful please try again');
+   res.redirect('/');
+ }
+}
+}catch(error){
+   console.log(error);
 }
 });
 
-// this route is executed when the user tries to login
-router.route('/login')
-.post(isNotAuthenticated, passport.authenticate('local', {
-    //successReturnToOrRedirect: '/',
-    successRedirect: '/',
-    failureRedirect: '/users/login',
+
+
+  router.route('/login')
+  .post(isNotAuthenticated, passport.authenticate('local', {
+
+    successRedirect: '/users/loginredirect',
+    failureRedirect: 'back',
     failureFlash: true
   }));
 
-  router.route('/login')
+  router.route('/home')
   .get((req,res)=>{
+    catchurl = req.originalUrl;
+    console.log(catchurl);
+    const isloggedin = req.isAuthenticated();
+    if(isloggedin){
+      res.redirect('/');
+    }else{
+      res.redirect('/')
+    }
+  });
 
-    res.render('index',{value:'1'});
+router.route('/loginredirect')
+.get((req,res)=>{
+
+      switch(catchurl){
+
+        case '/users/become_tutor':
+        res.redirect('/users/become_tutor');
+        break;
+
+        case '/users/contact':
+        //console.log(req.user.username);
+        res.redirect('/users/contact');
+        break;
+
+        case '/users/view_tutor':
+        //console.log(tutor_email);
+        res.redirect('/users/view_tutor?email='+tutor_email);
+        //res.render('tutor_details');
+        break;
+
+        case '/users/find_tutor':
+        res.redirect('/findtutor/find_tutor');
+        break;
+
+        default:
+        res.redirect('/');
+        break;
+
+      }
+});
+
+
+  /*router.route('/showtutor')
+  .get((req,res)=>{
+    console.log(req.query.email);
+    tutor.findOne({ email: req.query.email },function(req,result){
+      res.render('tutor_details', {
+      username:req.user.username,
+      firstname: result.firstname,
+      lastname: result.lastname,
+      subjects: result.subjects,
+      rating: result.rating,
+      image:result.image,
+      price: result.rateperhour[0],
+      email:result.email
+    });
+  });
+});*/
+
+  router.route('/find_tutor')
+  .get((req,res)=>{
+    catchurl = req.originalUrl;
+    const isloggedin = req.isAuthenticated();
+    if(isloggedin){
+      res.redirect('/findtutor/find_tutor');
+    }else{
+      res.redirect('/findtutor/find_tutor');
+    }
   });
 
   router.route('/dashboard')
@@ -187,79 +336,10 @@ router.route('/login')
   router.route('/logout')
   .get(isAuthenticated, (req, res) => {
     req.logout();
-    req.flash('success', 'Successfully logged out. Hope to see you soon!');
-    res.redirect('/');
+    req.flash('success','Successfully logged out hope to see you again!');
+    res.redirect('back');
   });
 
-  router.route('/forgotPassword')
-   .get(isNotAuthenticated,(req,res)=>{
-   res.render('passwordRecovery');
-
- }).post(async (req,res)=>{
-
-   try{
-
- var emailId = req.body.email;
- const userExists = await User.findOne({'email': req.body.email});
-
- if(userExists){
-   const link = "http://127.0.0.1:3000/users/changePassword?email="+req.body.email;
-   const html = `
-       Please click on the following link to reset your password
-       <br/>
-       <br/>
-        <a href="${link}">please click this</a>
-       <br/><br/>
-       Have a pleasant day.`
-       // Send email
-       await mailer.sendEmail('tutorry.in@gmail.com', req.body.email, '', html);
-       console.log('Link has been send to you on you email id.');
-       res.redirect('/');
-
- }else{
-     console.log('user does not exists or incorrect email id...');
- }
-}catch(error){
- console.log(error);
-}
- });
-
- router.route('/changePassword')
- .get((req,res)=>{
- //console.log(req.query.email);
- email = req.query.email;
-   res.render('passwordRecovery_1',{email:req.query.email});
-
- }).post(async (req,res)=>{
-   console.log("coming from email"+ email);
-
-   try{
-
-     if(req.body.password==req.body.confirmationPassword){
-       console.log('password matched');
-       const hashed = await User.hashPassword(req.body.password);
-       console.log(hashed);
-
-       const changedPassword = await User.update(
-         { email: email },
-         {
-           $set: { password: hashed }
-         }
-         );
-
-   console.log(changedPassword);
-   if(changedPassword){
-     email='';
-     res.redirect('/');
-     return;
-   } else{
-     console.log('some error in changing password');
-   }
- }
- }catch(error){
-     console.log(error);
- }
- });
 
  router.route('/checkAuth')
  .get((req,res)=>{
@@ -336,17 +416,22 @@ if(user){
 });
 
 router.route('/submitrequirement')
-.post(isAuthenticated, (req,res) =>{
+.post(isAuthenticated, async(req,res) =>{
+  try{
 
-const newRequirement = new requirementForm({
+const newRequirement = await new requirementForm({
   user:req.user,
   location:req.body.location,
   class:req.body.class
 });
-newRequirement.save();
-res.render('find_tutor', req.user)
-//res.redirect();
+await newRequirement.save();
+//res.render('find_tutor', req.user)
+req.flash('success','requirements successfully sent');
+res.redirect('back');
 //  console.log(req.body);
+}catch(error){
+  console.log(error);
+}
 
 });
 
@@ -365,7 +450,7 @@ res.render('find_tutor', req.user)
   }
 });*/
 
-router.route('/find_tutor')
+/*router.route('/find_tutor')
   .get((req, res) => {
     var tutorChunks = [];
     var chunkSize = 3;
@@ -387,32 +472,24 @@ router.route('/find_tutor')
   }
   });
 
-  });
+});*/
 
-  router.route('/gettutor')
-  .get((req,res) =>{
-
-    tutor.find( {experience:req.query.experience}, function(err, docs){
-var subjectChunks = [];
-var chunkSize = 3;
-for(var i=0; i < docs.length; i+= chunkSize){
-subjectChunks.push(docs.slice(i, i+chunkSize));
-}
-res.render('find_tutor', {tutors:subjectChunks});
-});
-});
 
 router.route('/become_tutor')
     .get((req, res) => {
-      if(req.isAuthenticated()){
+      catchurl = req.originalUrl;
+    const isloggedin = req.isAuthenticated();
+    if(isloggedin){
       res.render('become_tutor', {username:req.user.username});
     }else{
-        res.render('become_tutor');
+
+      res.render('become_tutor');
     }
     });
 
     router.route('/sendchat')
         .post(isAuthenticated, async(req, res) => {
+          console.log('in send message api');
           try{
           const newChat = new chat({
             message:req.body.message,
@@ -420,6 +497,7 @@ router.route('/become_tutor')
             tutoremail:req.body.email
           });
         const done =   await newChat.save();
+        console.log(done);
           console.log(req.body);
           const link = "http://127.0.0.1:3000/users/reply?studentemail="+req.user.email+"&tutoremail="+req.body.email;
           const html = `Hi there,
@@ -455,31 +533,25 @@ router.route('/become_tutor')
             message: req.body.message,
             studentemail:studentemail,
             tutoremail:tutoremail
-
           });
-
           newchat.save();
-
-
       });
 
       router.route('/displaychat')
       .get((req,res)=>{
       //  var messagearray = [];
-        chat.find({},function(err,result){
+      console.log(req.query.email);
+        chat.find({tutoremail:req.query.email},function(err,result){
           //console.log(result);
         /*for(var i=0;i<result.length;i++){
             messagearray.push(result[i].message);
           }*/
           //console.log(messagearray);
+          console.log(result);
           res.send(result);
         });
       });
 
-router.route('/contact')
-    .get((req, res) => {
-    res.render('contact', {username:username});
-  });
 
   router.route('/tutor_details')
     .get((req, res) => {
@@ -533,30 +605,120 @@ router.route('/contact')
       });
 
 
-/*router.route('/view_tutor')
-  .get((req, res) => {
-  res.render('tutor_details');
-});*/
-
-
   router.route('/view_tutor')
   .get((req, res) => {
-    //var tutor_email = req.query.email;
-    //console.log(req.query.current_tutor)
-   tutor.findOne({ email:req.query.email },function(req,result){
-     //console.log(result);
-     //var current_tutor = result.email
+    tutor_email = req.query.email;
+    const isloggedin = req.isAuthenticated();
+    if(isloggedin){
+      tutor.findOne({ email: req.query.email },function(err,result){
+        res.render('tutor_details', {
+        username:req.user.username,
+        firstname: result.firstname,
+        lastname: result.lastname,
+        subjects: result.subjects,
+        rating: result.rating,
+        image:result.image,
+        price: result.rateperhour[0],
+        email:result.email
+      });
+    });
+  }else{
+    catchurl = '/users'+ req.path;
+    console.log(catchurl);
+    tutor.findOne({ email:req.query.email },function(err,result){
+      res.render('tutor_details', {
+      firstname: result.firstname,
+      lastname: result.lastname,
+      subjects: result.subjects,
+      rating: result.rating,
+      image:result.image,
+      price: result.rateperhour[0],
+      email:result.email
+    });
+  });
 
-     res.render('tutor_details', { firstname: result.firstname, lastname: result.lastname, subjects: result.subjects, rating: result.rating, image:result.image, price: result.rateperhour[0], email:result.email });
-});
+  }
 });
 
-  /*router.route('/message')
+router.route('/contact')
     .get((req, res) => {
-    res.render('message');
-  });*/
+      const isloggedin = req.isAuthenticated();
+      console.log(isloggedin);
+      if(isloggedin){
+        catchurl = req.originalUrl;
+        res.render('contact',{username:req.user.username});
+      }else{
+        catchurl = req.originalUrl;
+        res.render('contact');
+      }
+    });
 
+  router.route('/contact')
+  .post(async(req,res)=>{
+    try{
+      const contactsavetodb = await new Contact({
+        email:req.body.email,
+        contact:req.body.contact,
+        textarea:req.body.textarea
 
+      });
+      await contactsavetodb.save();
+      const html = `Hi there,
+      <br/>
+      We have recieved your message.
+      <br/>
+      <p style="text-style:bold">${req.body.textarea}</p>
+      <br/>
+      We will get back to you soon
+      <br/><br/>
+      Have a pleasant day.`
+      await mailer.sendEmail('tutorry.in@gmail.com', req.body.email, '', html);
+      if(contactsavetodb){
+        req.flash('success','Your message has been sent, Someone will get in contact with you soon!');
+        console.log('contact save to database');
+        res.redirect('back');
+      }else{
+        req.flash('error','Please try again in sometime');
+        res.redirecr('back');
+      }
+    }catch(error){
+      console.log(error);
+    }
 
+  });
+
+  router.route('/requestuser')
+  .get((req,res)=>{
+     res.render('requestregistration');
+  });
+
+  router.route('/requestuser')
+  .post(async(req,res)=>{
+
+    const link ='tutorry.in';
+   const html = `Greeting from team tutorry!!!,
+    <br/>
+    We hope that you are doing well!
+    <br/><br/>
+    Teaching is helping someone in need at times
+    <br/>
+    You get reward for your valuable time.
+    <br/>
+    Whether you are coporate professional or bussiness
+    <br/>
+    person or a student, We at tutorry encourage everyone
+    <br/>
+    to help others by becoming part of tutorry and also get rewarded:)
+    <br/>
+    Please register at link below
+    <br/>
+    <a href="${link}">tutorry.in</a></br></br>
+    <br/><br/><br/>
+    Have a pleasant day!`
+    // Send email
+    await mailer.sendEmail('tutorry.in@gmail.com', req.body.email, '', html);
+    req.flash('success', 'mail successfully sent');
+    res.redirect('back');
+  });
 
 module.exports = router;

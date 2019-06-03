@@ -1,0 +1,3 @@
+TypeError: Router.use() requires middleware function but got a Object
+solution: The error is caused because one of your route modules is not being exported - meaning Express does not have access to it when it tries to identify all of your routes.
+You can fix this by adding module.exports = router; to the end of each of your route files.
