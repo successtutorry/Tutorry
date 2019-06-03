@@ -3,9 +3,9 @@ html {
 }
 
 body {
-	font-family: Lora;
+	font-family: Sanchez;
 	font-weight: 400;
-	letter-spacing: 1px;
+	letter-spacing: 0;
 }
 
 a:hover {
@@ -127,6 +127,7 @@ footer {
 	border-radius: 10em;
 	margin-top: 20px;
 	color: white;
+
 }
 
 .button:hover {
