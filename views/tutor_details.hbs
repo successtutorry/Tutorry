@@ -143,40 +143,57 @@ for(var i =0; i< 5-n; i ++){
 }
 }
 var email = '';
-/*var socket = io();
+var socket = io();
+socket.on('message', addMessages);
 $(() => {
 $("#send").click(()=>{
 //	alert('send clicked');
             sendMessage({message: $("#message").val(),email:$("#hiddenemail").val()});
 						//document.getElementById('message').value = '';
-
         });
 				getmessage($("#hiddenemail").val());
 			});
-
-socket.on('message', addMessages);
-
 function addMessages(message){
         $("#messages").append(`<p> ${message.message} </p>`)
     }
-
 		function getmessage(email){
       console.log(email);
-
       $.get('/users/displaychat?email='+email, (data) => {
 				data.forEach(addMessages);
       });
     }
-
 		function sendMessage(message){
       console.log('in sendMessage');
 		    $.post('/users/sendchat', message);
 				//document.getElementById('message').value = '';
-        $("#messages").append(`<p> ${message.message} </p>`);
-				alert('message has been sent');
+        //$("#messages").append(`<p> ${message.message} </p>`);
+				//alert('message has been sent');
         document.getElementById('message').value = '';
+		    }
 
-      }*/
+
+/*var socket = io();
+socket.on('message', addMessages);
+$(() => {
+   $("#send").click(()=>{
+     sendMessage({email:$("#hiddenemail").val(), message:$("#message").val()});
+   });
+     getMessages($("#hiddenemail").val());
+   });
+
+   function addMessages(message){
+     $('#messages').append(`<p>  ${message.message} </p>`);
+   }
+
+function getMessages(email){
+  $.get('/users/displaymessage_to_student?email='+email, (data) => {
+    data.forEach(addMessages);
+  })
+}
+
+function sendMessage(message){
+  $.post('/users/sendmessage_to_tutor', message);
+}*/
 
 
 function openForm() {
