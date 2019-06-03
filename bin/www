@@ -6,7 +6,7 @@
 
 var app = require('../app');
 var debug = require('debug')('tutorry-1:server');
-var http = require('http');
+var http = require('http').Server(app);
 
 //var keystone = require('keystone');
 
@@ -23,7 +23,7 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
-var io = require('socket.io')(server);
+var io = require('socket.io')(http);
 io.on('connection', () =>{
   console.log('a user is connected');
 })
