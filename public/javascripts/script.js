@@ -118,7 +118,7 @@ function displayRegistration(x){
       //document.getElementById("overlay").style="display:block;";
       //alert('You must be logged in.');
       //document.getElementById("message-overlay").style="display:block;";
-      on();
+      showoverlay();
 
     }
     if(data=='true'&& n=='2'){
