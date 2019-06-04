@@ -18,8 +18,6 @@ const passport = require('passport');
 const randomstring = require('randomstring');
 const springedge = require('springedge');
 const Contact = require('../models/contact');
-const io = require('../bin/www');
-
 
 var email ='';
 var username = '';
@@ -488,7 +486,8 @@ router.route('/become_tutor')
     }
     });
 
-
+/*
+//sending chat message to tutor
     router.route('/sendchat')
             .post(isAuthenticated, async(req, res) => {
               console.log('in send message api');
@@ -522,6 +521,7 @@ router.route('/become_tutor')
           }
           });
 
+//when tutor clicks the link in email
           router.route('/reply')
           .get((req,res)=>{
             studentemail = req.query.studentemail;
@@ -530,6 +530,7 @@ router.route('/become_tutor')
             res.render('reply');
           })
 
+//when tutor types the message and clicks send
           router.route('/reply')
           .post((req, res)=>{
               const newchat = new chat({
@@ -540,22 +541,21 @@ router.route('/become_tutor')
               newchat.save();
           });
 
+
+//when message should be displayed to student
           router.route('/displaychat')
           .get((req,res)=>{
           //  var messagearray = [];
           console.log(req.query.email);
             chat.find({tutoremail:req.query.email},function(err,result){
               //console.log(result);
-            /*for(var i=0;i<result.length;i++){
-                messagearray.push(result[i].message);
-              }*/
               //console.log(messagearray);
               console.log(result);
               res.send(result);
             });
           });
 
-
+*/
 
   router.route('/tutor_details')
     .get((req, res) => {
