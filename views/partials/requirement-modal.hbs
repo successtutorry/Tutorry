@@ -7,147 +7,89 @@
         <div class="modal-header" style="border-bottom:none;">
           <button type="button" onclick='alertuser();' class="close">&times;</button>
 		      <div class="progress">
-			         <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
-               </div>
+			        <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
+              </div>
 		      </div>
        </div>
-		<form id="requirementform"  action="/users/submitrequirement" method="post">
-        <div  class="tab modal-body">
-			      <div  class="modal-body-title">
-				          <h3 style="line-height:32px;">Where do you want tutor ?</h3>
-			      </div>
-      			<div class="modal-body-form">
-      				<div class="modal-body-form-input" >
-      					<input class="modal-body-form-input-radio" type="radio" value="thane" name="location" id="thane">
-      					<label for="thane" class="modal-body-form-input-text">Thane</label>
-      				</div>
-      				<div class="modal-body-form-input">
-      					<input class="modal-body-form-input-radio" type="radio" name="location" id="kalyan">
-      					<label for="kalyan"  class="modal-body-form-input-text">Kalyan</label>
-      				</div>
-      				<div class="modal-body-form-input">
-      					<input class="modal-body-form-input-radio" type="radio" name="location" id="shivajiNagar">
-      					<label for="shivajiNagar" class="modal-body-form-input-text">Shivaji Nagar PUNE</label>
-      				</div>
-      				<div style=" border:1px solid #ececee; padding:10px 10px 10px 20px;">
-      					<input class="modal-body-form-input-radio" type="radio" name="location" id="balewadi">
-      					<label  class="modal-body-form-input-text">Balewadi PUNE</label>
-      				</div>
-      			</div>
-       </div>
-    		<div  class="tab modal-body">
-    			<div class="modal-body-title">
-    				<h3 style="line-height:32px;">In which class the student is ?</h3>
-    			</div>
-    			<div class="modal-body-form">
-    				<div class="modal-body-form-input" >
-    					<input class="modal-body-form-input-radio" value="5-10" type="radio" name="class" id="school">
-    					<label for="school" class="modal-body-form-input-text">5-10</label>
-    				</div>
-    				<div class="modal-body-form-input">
-    					<input class="modal-body-form-input-radio" type="radio" name="class" id="college">
-    					<label for="college"  class="modal-body-form-input-text">10-12</label>
-    				</div>
-    				<div class="modal-body-form-input">
-    					<input class="modal-body-form-input-radio" type="radio" name="class" id="graduation">
-    					<label for="graduation"  class="modal-body-form-input-text">Graduation</label>
-    				</div>
-    				<div style=" border:1px solid #ececee; padding:10px 10px 10px 20px;">
-    					<input class="modal-body-form-input-radio" type="radio" name="class" id="otherclass">
-    					<label for="otherclass" class="modal-body-form-input-text">Other</label>
-    				</div>
-    			</div>
-        </div>
-    		<!--<div  class="tab modal-body">
-    			<div class="modal-body-title">
-    				<h3 style="line-height:32px;">How would you like to meet with the math tutor?</h3>
-    			</div>
-    			<div class="modal-body-form">
-    				<div class="modal-body-form-input" >
-    					<input class="modal-body-form-input-radio" type="radio">
-    					<span class="modal-body-form-input-text">Thane</span>
-    				</div>
-    				<div class="modal-body-form-input">
-    					<input class="modal-body-form-input-radio" type="radio">
-    					<span  class="modal-body-form-input-text">Kalyan</span>
-    				</div>
-    				<div class="modal-body-form-input">
-    					<input class="modal-body-form-input-radio" type="radio">
-    					<span  class="modal-body-form-input-text">Shivaji Nagar PUNE</span>
-    				</div>
-    				<div style=" border:1px solid #ececee; padding:10px 10px 10px 20px;">
-    					<input class="modal-body-form-input-radio" type="radio">
-    					<span class="modal-body-form-input-text">Balewadi PUNE</span>
-    				</div>
-    			</div>
-        </div>
-    		<div  class="tab modal-body">
-    			<div class="modal-body-title">
-    				<h3 style="line-height:32px;">Anything else the math tutor should know?</h3>
-    			</div>
-    			<div class="modal-body-form">
-    				<div class="modal-body-form-input" >
-    					<input class="modal-body-form-input-radio" type="radio">
-    					<span class="modal-body-form-input-text">Thane</span>
-    				</div>
-    				<div class="modal-body-form-input">
-    					<input class="modal-body-form-input-radio" type="radio">
-    					<span  class="modal-body-form-input-text">Kalyan</span>
-    				</div>
-    				<div class="modal-body-form-input">
-    					<input class="modal-body-form-input-radio" type="radio">
-    					<span  class="modal-body-form-input-text">Shivaji Nagar PUNE</span>
-    				</div>
-    				<div style=" border:1px solid #ececee; padding:10px 10px 10px 20px;">
-    					<input class="modal-body-form-input-radio" type="radio">
-    					<span class="modal-body-form-input-text">Balewadi PUNE</span>
-    				</div>
-    			</div>
-        </div>
-    		<div  class="tab modal-body">
-    			<div class="modal-body-title">
-    				<h3 style="line-height:32px;">Please confirm where you need the math tutoring.</h3>
-    			</div>
-    			<div class="modal-body-form">
-    				<div class="modal-body-form-input" >
-    					<input class="modal-body-form-input-radio" type="radio">
-    					<span class="modal-body-form-input-text">Thane</span>
-    				</div>
-    				<div class="modal-body-form-input">
-    					<input class="modal-body-form-input-radio" type="radio">
-    					<span  class="modal-body-form-input-text">Kalyan</span>
-    				</div>
-    				<div class="modal-body-form-input">
-    					<input class="modal-body-form-input-radio" type="radio">
-    					<span  class="modal-body-form-input-text">Shivaji Nagar PUNE</span>
-    				</div>
-    				<div style=" border:1px solid #ececee; padding:10px 10px 10px 20px;">
-    					<input class="modal-body-form-input-radio" type="radio">
-    					<span class="modal-body-form-input-text">Balewadi PUNE</span>
-    				</div>
-    			</div>
-        </div>-->
-        <div id="quittab" class="quittab modal-body">
-    			<div class="modal-body-title">
-    				<h3 id="headertag" style="line-height:32px;"></h3>
-    			</div>
-          <div style="text-align:center; margin-top:40px;">
-            <div class="modal-body-form-input" style="background-color:white;">
-              <button style="color:blue; font-size:16px; text-decoration:none; background-color:white; border:none;" type="button" onclick="nextTab()">Continue request</button>
+    		<form id="requirementform"  action="/users/submitrequirement" method="post">
+            <div  class="tab modal-body">
+    			      <div  class="modal-body-title">
+    				          <h3 style="line-height:32px;">Where do you want tutor ?</h3>
+    			      </div>
+          			<div class="modal-body-form">
+          				<div class="modal-body-form-input" >
+          					<input class="modal-body-form-input-radio" type="radio" value="thane" name="location" id="thane">
+          					<label for="thane" class="modal-body-form-input-text">Thane</label>
+          				</div>
+          				<div class="modal-body-form-input">
+          					<input class="modal-body-form-input-radio" type="radio" value="kalyan" name="location" id="kalyan">
+          					<label for="kalyan"  class="modal-body-form-input-text">Kalyan</label>
+          				</div>
+          				<div class="modal-body-form-input">
+          					<input class="modal-body-form-input-radio" type="radio" name="location" id="shivajiNagar">
+          					<label for="shivajiNagar" class="modal-body-form-input-text">Shivaji Nagar PUNE</label>
+          				</div>
+          				<div style=" border:1px solid #ececee; padding:10px 10px 10px 20px;">
+          					<input class="modal-body-form-input-radio" type="radio" name="location" id="balewadi">
+          					<label  class="modal-body-form-input-text">Balewadi PUNE</label>
+          				</div>
+          			</div>
+           </div>
+        		<div  class="tab modal-body">
+        			<div class="modal-body-title">
+        				<h3 style="line-height:32px;">In which class the student is ?</h3>
+        			</div>
+        			<div class="modal-body-form">
+        				<div class="modal-body-form-input" >
+        					<input class="modal-body-form-input-radio" value="5-10" type="radio" name="class" id="school">
+        					<label for="school" class="modal-body-form-input-text">5-10</label>
+        				</div>
+        				<div class="modal-body-form-input">
+        					<input class="modal-body-form-input-radio" value="10-12" type="radio" name="class" id="college">
+        					<label for="college"  class="modal-body-form-input-text">10-12</label>
+        				</div>
+        				<div class="modal-body-form-input">
+        					<input class="modal-body-form-input-radio"  type="radio" name="class" id="graduation">
+        					<label for="graduation"  class="modal-body-form-input-text">Graduation</label>
+        				</div>
+        				<div style=" border:1px solid #ececee; padding:10px 10px 10px 20px;">
+        					<input class="modal-body-form-input-radio" type="radio" name="class" id="otherclass">
+        					<label for="otherclass" class="modal-body-form-input-text">Other</label>
+        				</div>
+        			</div>
             </div>
-            <div class="modal-body-form-input" style="background-color:white;">
-              <a style="color:red; font-size:16px; text-decoration:none;" href="#" data-dismiss="modal">Close request</a>
+            <div  class="tab modal-body">
+        			<div class="modal-body-title">
+        				<h3 style="line-height:32px;">Any other message ?</h3>
+                <input type="hidden" id="hiddenemail" value="{{email}}" name="tutoremail">
+        			</div>
+        			<div class="modal-body-form">
+        				<div class="modal-body-form-input">
+        					<textarea style="width:485px; height:167px;" class="modal-body-form-input-radio"  type="text" name="message" id="message"></textarea>
+        				</div>
+        			</div>
             </div>
-          </div>
-        </div>
-		<div id="error" style="display:none;">
-				<p>Please select at least one option</p>
-		</div>
-        <div id="modal-footer" class="modal-footer modal-footer-style">
-          <button style="float:left; padding:10px 15px 10px 15px;" id="prevBtn" type="button" class="btn nextprevbutton" onclick="nextPrev(-1)">Previous</button>
-		  <button style="padding:10px 25px 10px 25px;" id="nextBtn" type="button" class="btn nextprevbutton" onclick="nextPrev(1)">Next</button>
-        </div>
-		</form>
+            <div id="quittab" class="quittab modal-body">
+        			<div class="modal-body-title">
+        				<h3 id="headertag" style="line-height:32px;"></h3>
+        			</div>
+              <div style="text-align:center; margin-top:40px;">
+                <div class="modal-body-form-input" style="background-color:white;">
+                  <button style="color:blue; font-size:16px; text-decoration:none; background-color:white; border:none;" type="button" onclick="nextTab()">Continue request</button>
+                </div>
+                <div class="modal-body-form-input" style="background-color:white;">
+                  <a style="color:red; font-size:16px; text-decoration:none;" href="#" data-dismiss="modal">Close request</a>
+                </div>
+              </div>
+            </div>
+        		<div id="error" style="display:none;">
+        				<p>Please select at least one option</p>
+        		</div>
+            <div id="modal-footer" class="modal-footer modal-footer-style">
+              <button style="float:left; padding:10px 15px 10px 15px;" id="prevBtn" type="button" class="btn nextprevbutton" onclick="nextPrev(-1)">Previous</button>
+    		      <button style="padding:10px 25px 10px 25px;" id="nextBtn" type="button" class="btn nextprevbutton" onclick="nextPrev(1)">Next</button>
+            </div>
+    		</form>
       </div>
     </div>
   </div>

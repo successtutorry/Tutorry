@@ -417,12 +417,28 @@ if(user){
 router.route('/submitrequirement')
 .post(isAuthenticated, async(req,res) =>{
   try{
-
+console.log(req.body.tutoremail);
 const newRequirement = await new requirementForm({
   user:req.user,
   location:req.body.location,
-  class:req.body.class
+  class:req.body.class,
+  message:req.body.message,
+  student: req.user.email,
+  tutor:req.body.tutoremail
+
 });
+const link = "http://127.0.0.1:3000/users/reply?studentemail="+req.user.email+"&tutoremail="+req.body.tutoremail;
+const html = `Hi there,
+<br/>
+You have a message from ${req.user.email}!
+<br/><br/>
+Please reply back on the following link:
+<br/>
+ <a href="${link}">please click on the link</a>
+<br/><br/>
+Have a pleasant day.`
+// Send email
+await mailer.sendEmail('tutorry.in@gmail.com', req.body.tutoremail, '', html);
 await newRequirement.save();
 //res.render('find_tutor', req.user)
 req.flash('success','requirements successfully sent');
@@ -433,6 +449,42 @@ res.redirect('back');
 }
 
 });
+
+router.route('/reply')
+.get((req,res)=>{
+  studentemail = req.query.studentemail;
+  tutoremail = req.query.tutoremail;
+
+  res.render('reply');
+})
+
+
+//when tutor types the message and clicks send
+          router.route('/reply')
+          .post(async(req, res)=>{
+            try{
+              const newchat = new chat({
+                message: req.body.message,
+                studentemail:studentemail,
+                tutoremail:tutoremail
+              });
+            await  newchat.save();
+              const link = "http://127.0.0.1:3000/users/view_tutor?email="+tutoremail;
+              const html = `Hi there,
+              <br/>
+              You have a message from ${tutoremail}!
+              <br/><br/>
+              Please reply back on the following link:
+              <br/>
+               <a href="${link}">please click on the link</a>
+              <br/><br/>
+              Have a pleasant day.`
+              // Send email
+              await mailer.sendEmail('tutorry.in@gmail.com', studentemail, '', html);
+            }catch(error){
+              console.log(error);
+            }
+          });
 
 
 /*router.route('/checkrequirementEixts')
