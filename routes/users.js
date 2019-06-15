@@ -19,7 +19,6 @@ const randomstring = require('randomstring');
 const springedge = require('springedge');
 const Contact = require('../models/contact');
 
-
 var email ='';
 var username = '';
 var studentemail = '';
@@ -418,12 +417,28 @@ if(user){
 router.route('/submitrequirement')
 .post(isAuthenticated, async(req,res) =>{
   try{
-
+console.log(req.body.tutoremail);
 const newRequirement = await new requirementForm({
   user:req.user,
   location:req.body.location,
-  class:req.body.class
+  class:req.body.class,
+  message:req.body.message,
+  student: req.user.email,
+  tutor:req.body.tutoremail
+
 });
+const link = "http://127.0.0.1:3000/users/reply?studentemail="+req.user.email+"&tutoremail="+req.body.tutoremail;
+const html = `Hi there,
+<br/>
+You have a message from ${req.user.email}!
+<br/><br/>
+Please reply back on the following link:
+<br/>
+ <a href="${link}">please click on the link</a>
+<br/><br/>
+Have a pleasant day.`
+// Send email
+await mailer.sendEmail('tutorry.in@gmail.com', req.body.tutoremail, '', html);
 await newRequirement.save();
 //res.render('find_tutor', req.user)
 req.flash('success','requirements successfully sent');
@@ -434,6 +449,42 @@ res.redirect('back');
 }
 
 });
+
+router.route('/reply')
+.get((req,res)=>{
+  studentemail = req.query.studentemail;
+  tutoremail = req.query.tutoremail;
+
+  res.render('reply');
+})
+
+
+//when tutor types the message and clicks send
+          router.route('/reply')
+          .post(async(req, res)=>{
+            try{
+              const newchat = new chat({
+                message: req.body.message,
+                studentemail:studentemail,
+                tutoremail:tutoremail
+              });
+            await  newchat.save();
+              const link = "http://127.0.0.1:3000/users/view_tutor?email="+tutoremail;
+              const html = `Hi there,
+              <br/>
+              You have a message from ${tutoremail}!
+              <br/><br/>
+              Please reply back on the following link:
+              <br/>
+               <a href="${link}">please click on the link</a>
+              <br/><br/>
+              Have a pleasant day.`
+              // Send email
+              await mailer.sendEmail('tutorry.in@gmail.com', studentemail, '', html);
+            }catch(error){
+              console.log(error);
+            }
+          });
 
 
 /*router.route('/checkrequirementEixts')
@@ -487,71 +538,76 @@ router.route('/become_tutor')
     }
     });
 
+/*
+//sending chat message to tutor
     router.route('/sendchat')
-        .post(isAuthenticated, async(req, res) => {
-          console.log('in send message api');
-          try{
-          const newChat = new chat({
-            message:req.body.message,
-            studentemail:req.user.email,
-            tutoremail:req.body.email
+            .post(isAuthenticated, async(req, res) => {
+              console.log('in send message api');
+              try{
+              const newChat = new chat({
+                message:req.body.message,
+                studentemail:req.user.email,
+                tutoremail:req.body.email
+              });
+            const done =   await newChat.save();
+            io.emit('message', req.body);
+            console.log(done);
+              console.log(req.body);
+              const link = "http://127.0.0.1:3000/users/reply?studentemail="+req.user.email+"&tutoremail="+req.body.email;
+              const html = `Hi there,
+              <br/>
+              You have a message from ${req.user.email}!
+              <br/><br/>
+              Please reply back on the following link:
+              <br/>
+               <a href="${link}">please click on the link</a>
+              <br/><br/>
+              Have a pleasant day.`
+              // Send email
+              await mailer.sendEmail('tutorry.in@gmail.com', req.body.email, '', html);
+            res.send({status:'success'});
+            //res.redirect('/users/displaychat')
+          }catch(error){
+
+            console.log(error);
+          }
           });
-        const done =   await newChat.save();
-        console.log(done);
-          console.log(req.body);
-          const link = "http://127.0.0.1:3000/users/reply?studentemail="+req.user.email+"&tutoremail="+req.body.email;
-          const html = `Hi there,
-          <br/>
-          You have a message from ${req.user.email}!
-          <br/><br/>
-          Please reply back on the following link:
-          <br/>
-           <a href="${link}">please click on the link</a>
-          <br/><br/>
-          Have a pleasant day.`
-          // Send email
-          await mailer.sendEmail('tutorry.in@gmail.com', req.body.email, '', html);
-        res.send({status:'success'});
-        //res.redirect('/users/displaychat')
-      }catch(error){
 
-        console.log(error);
-      }
-      });
+//when tutor clicks the link in email
+          router.route('/reply')
+          .get((req,res)=>{
+            studentemail = req.query.studentemail;
+            tutoremail = req.query.tutoremail;
 
-      router.route('/reply')
-      .get((req,res)=>{
-        studentemail = req.query.studentemail;
-        tutoremail = req.query.tutoremail;
+            res.render('reply');
+          })
 
-        res.render('reply');
-      })
-
-      router.route('/reply')
-      .post((req, res)=>{
-          const newchat = new chat({
-            message: req.body.message,
-            studentemail:studentemail,
-            tutoremail:tutoremail
+//when tutor types the message and clicks send
+          router.route('/reply')
+          .post((req, res)=>{
+              const newchat = new chat({
+                message: req.body.message,
+                studentemail:studentemail,
+                tutoremail:tutoremail
+              });
+              newchat.save();
           });
-          newchat.save();
-      });
 
-      router.route('/displaychat')
-      .get((req,res)=>{
-      //  var messagearray = [];
-      console.log(req.query.email);
-        chat.find({tutoremail:req.query.email},function(err,result){
-          //console.log(result);
-        /*for(var i=0;i<result.length;i++){
-            messagearray.push(result[i].message);
-          }*/
-          //console.log(messagearray);
-          console.log(result);
-          res.send(result);
-        });
-      });
 
+//when message should be displayed to student
+          router.route('/displaychat')
+          .get((req,res)=>{
+          //  var messagearray = [];
+          console.log(req.query.email);
+            chat.find({tutoremail:req.query.email},function(err,result){
+              //console.log(result);
+              //console.log(messagearray);
+              console.log(result);
+              res.send(result);
+            });
+          });
+
+*/
 
   router.route('/tutor_details')
     .get((req, res) => {

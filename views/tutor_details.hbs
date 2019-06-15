@@ -125,7 +125,7 @@
 		<div id="messages" style="height:200px; overflow-y:scroll;">
 
 		</div>
-		<input type="hidden" id="hiddenemail" value="{{email}}" name="tutoremail">
+		<!--<input type="hidden" id="hiddenemail" value="{{email}}" name="tutoremail">-->
     <textarea id="message" placeholder="Type message.." name="message" required></textarea>
     <button id="send" type="button" class="btn">Send</button>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
@@ -144,41 +144,29 @@ for(var i =0; i< 5-n; i ++){
 }
 var email = '';
 var socket = io();
-$(() => {
-$("#send").click(()=>{
-//	alert('send clicked');
-            sendMessage({message: $("#message").val(),email:$("#hiddenemail").val()});
-						//document.getElementById('message').value = '';
+   $(() => {
+       $("#send").click(()=>{
+           sendMessage({message: $("#message").val(),email:$("#hiddenemail").val()});
+       })
 
-        });
-				getmessage($("#hiddenemail").val());
-			});
+       getMessages()
+   })
 
-socket.on('message', addMessages);
+   socket.on('message', addMessages)
 
-function addMessages(message){
-        $("#messages").append(`<p> ${message.message} </p>`)
-    }
+   function addMessages(message){
+       $("#messages").append(`<p> ${message.message} </p>`)
+   }
 
-		function getmessage(email){
-      console.log(email);
+   function getMessages(){
+     $.get('/displaychat', (data) => {
+       data.forEach(addMessages);
+     })
+   }
 
-      $.get('/users/displaychat?email='+email, (data) => {
-				data.forEach(addMessages);
-      });
-    }
-
-		function sendMessage(message){
-      console.log('in sendMessage');
-		    $.post('/users/sendchat', message);
-				//document.getElementById('message').value = '';
-        $("#messages").append(`<p> ${message.message} </p>`);
-				alert('message has been sent');
-        document.getElementById('message').value = '';
-
-		    }
-
-
+   function sendMessage(message){
+     $.post('/sendchat', message)
+   }
 function openForm() {
   document.getElementById("myForm").style.display = "block";
 
