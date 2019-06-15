@@ -1,9 +1,7 @@
 
 // this file contains details of sending verification mail
-
 const nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
-
 
 var transporter = nodemailer.createTransport( smtpTransport({
   service: 'gmail',
@@ -15,9 +13,6 @@ var transporter = nodemailer.createTransport( smtpTransport({
     user: 'tutorry.in@gmail.com',
     pass: 'tutorry@123'
   }
- /* tls: {
-    rejectUnauthorized: false
-  }*/
 }));
 
 // this module so that it can be used anywhere in the app
