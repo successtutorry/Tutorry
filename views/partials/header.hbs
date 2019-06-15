@@ -1,5 +1,6 @@
 <!-- start of navigation bar which is common to all other pages-->
 <nav id="common_navbar" class="navbar navbar-inverse navbar-fixed-top">
+    {{>alert}}
   <div class="nav container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -15,7 +16,7 @@
     </div>
   <div style="padding-top:10px;" class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav navbar-right">
-      <li><a style="color:white;" href="/">Home</a></li>
+      <li><a style="color:white;" href="/users/home">Home</a></li>
       <li><a style="color:white;" href="/users/find_tutor">Find a Tutor</a></li>
       <li><a style="color:white;" href="/users/become_tutor">Become a Tutor</a></li>
       <li><a style="color:white;" href="/users/contact">Contact</a></li>
@@ -32,7 +33,7 @@
        </div>
      </li>
       {{else}}
-      <li><button class="login-close-button" type="button" onclick="on();" style="padding-top:14px;">Login</button></li>
+      <li><button class="login-close-button" type="button" onclick="showoverlay();" style="padding-top:14px;">Login</button></li>
       {{/if}}
     </ul>
   </div>

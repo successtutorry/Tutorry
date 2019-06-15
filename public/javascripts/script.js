@@ -74,11 +74,13 @@ x[n].className += " active";
 }*/
 
 // javascript for overlay login and message overlay regForm
-function on(){
+function showoverlay(){
  document.getElementById("overlay").style="display:block;";
  document.getElementById("closebtn").style="display:block;";
+}
 
-
+function hideoverlay(){
+  document.getElementById('overlay').style = "display:none;";
 }
 
 function off(){
@@ -86,15 +88,18 @@ function off(){
  document.getElementById("closebtn").style="display:none;";
 }
 
-function displayRegistration(){
+function displayRegistration(x){
+  document.getElementById('loginbtn').style.background = "white";
+  x.style.background = "#aece61";
 
 	document.getElementById("login-form").style = "display:none;";
 	document.getElementById("registration-form").style = "display:initial;";
 
 	}
 
-	function displayLogin(){
-
+	function displayLogin(x){
+    document.getElementById('registerbtn').style.background = "white";
+  x.style.background = "#aece61";
 	document.getElementById("login-form").style = "display:initial;";
 	document.getElementById("registration-form").style = "display:none;";
 
@@ -111,9 +116,9 @@ function displayRegistration(){
     }
     if(data=='false'){
       //document.getElementById("overlay").style="display:block;";
-      alert('You must be logged in.');
+      //alert('You must be logged in.');
       //document.getElementById("message-overlay").style="display:block;";
-      on();
+      showoverlay();
 
     }
     if(data=='true'&& n=='2'){
@@ -126,13 +131,6 @@ function displayRegistration(){
       //document.getElementById("message-overlay").style="display:block;";
   }
 
-
-
-  function hideoverlay(){
-
- document.getElementById('overlay').style = "display:none;";
-
-  }
 
 /*  function myFunction() {
   var x = document.getElementById("inputEmail").value;
@@ -154,3 +152,5 @@ function checkifEmailExists(x){
  });
 
 }*/
+
+/*search tutor scripts*/

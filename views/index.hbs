@@ -603,10 +603,6 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-family: Arial;
-}
 
 
 .row {
@@ -651,11 +647,6 @@ padding: 0 4px;
   box-sizing: border-box;
 }
 
-body {
-  font-family: Arial;
-  font-size: 17px;
-}
-
 .container {
   position: relative;
   max-width: 800px;
@@ -697,15 +688,10 @@ transition: all 0.7s ease;
 -webkit-filter: saturate(-4);
 }
 
-
-
-
 .column {
   position: relative;
   max-width: 800px;
   margin: 0 auto;
-
-
 }
 
 .column img {vertical-align: middle;}
@@ -720,9 +706,6 @@ transition: all 0.7s ease;
   padding: 1px;
   Height:60%;
 }
-
-
-
 .column {
   position: relative;
   width: 100%;
@@ -733,9 +716,6 @@ transition: all 0.7s ease;
   display: block;
   width: 100%;
   height:100%;
-
-
-
 }
 
 .overlay {
@@ -841,6 +821,7 @@ transition: all 0.7s ease;
 {{>home_header}}
 {{>overlay}}
 {{>requirement-modal}}
+{{>alert}}
 <script>
 $(function() {
 
@@ -974,28 +955,7 @@ function myFuncEnd(){
 		stickysearchbar.style = "padding-top:0px";
 }*/
 
-function checksub(event) {
-  var x = event.key;
-		if(!isNaN(x)){
-		alert('wrong input, please enter valid subject name');
-	}
-}
-function checklocation(event) {
-  var x = event.key;
-		if(!isNaN(x)){
-		alert('wrong input, please enter valid location');
-	}
-}
-function checkzipcode(element) {
 
-	var max_chars = 6;
-
-	if(element.value.length > max_chars) {
-		element.value = element.value.substr(0, max_chars);
-		alert('please enter valid zipcode');
-	}
-
-}
 </script>
 
 <div id="myCarousel" class="carousel" data-ride="carousel" data-interval="3000"><!-- home page carousel-->
@@ -1006,7 +966,7 @@ function checkzipcode(element) {
 				<div class="carousel-caption">
 				  <p>Personal and Online Tutors</p>
 				  <h1 style="font-size:60px;">Time to Learn</h1>
-				  <button  class="button btn btn-lg" type="button" onclick="showform(1);">Find Tutor Now</button>
+				  <button  class="button btn btn-lg" type="button" onclick="location.href='/findtutor/find_tutor'">Find Tutor Now</button>
 					<!--<button onclick="location.href='/users/find_tutor'" class="button btn btn-lg" type="button" data-target="#myModal">Find Tutor Now</button>-->
 
 				</div>
@@ -1014,9 +974,10 @@ function checkzipcode(element) {
 		  <div class="item">
 				<img src="http://smarthead.ancorathemes.com/wp-content/uploads/2017/01/slide2.jpg" alt="Image">
 				<div class="carousel-caption">
+
 				  <p>Personal and Online Tutors</p>
 				  <h1 style="font-size:60px;">Top Tutorring Services</h1>
-				  <button  class="button btn btn-lg" type="button" onclick="showform(1);">Find Tutor Now</button>
+				  <button  class="button btn btn-lg" type="button" onclick="location.href='/findtutor/find_tutor'">Find Tutor Now</button>
 
 				</div>
 		  </div>
@@ -1025,46 +986,46 @@ function checkzipcode(element) {
 				<div class="carousel-caption">
 				 <p>Personal and Online Tutors</p>
 				  <h1 style="font-size:60px;">Find Private Tutor</h1>
-				  <button  class="button btn btn-lg" type="button" onclick="showform(1);">Find Tutor Now</button>
+				  <button  class="button btn btn-lg" type="button" onclick="location.href='/findtutor/find_tutor'">Find Tutor Now</button>
 				</div>
 		  </div>
 		</div>
-		<!----------- start of search bar----------------->
-
-    <div id="stickysearchbar" class="margin-class  container" style="margin-top:10%;">
-   <div class="title-margin-class"   style="background-color: #062e57;">
-     <div class="row">
-     <form class="form-inline" action="#" method="get">
-         <div class="col-sm-3 col-md-3">
-           <div class="form-group form-header" style="">
-             <h6 style="color:white; font-size:2.5rem; line-height:1;">Find Your</span></h6>
-             <h4 style="color:#aece61; font-size:3.125rem; line-height:1;">Tutor</h4>
-           </div>
-         </div>
-         <div class="col-sm-9 col-md-9  form-body" style="">
-             <div class="form-group">
-               <input type="text" class="form-control searchbar-input" id="subject" placeholder="Enter a subject" name="subject">
-             </div>
-             <div class="form-group">
-               <input type="text" class="form-control searchbar-input" id="location" placeholder="Location" name="location">
-             </div>
-             <div class="form-group">
-               <input type="number" class="form-control searchbar-input" id="zipcode" placeholder="Zipcode" name="zipcode">
-             </div>
-             <div class="form-group" style="padding-bottom:15px; text-align:center; margin-left:10px;">
-               <button id="searchbarsubmitbtn" class="button btn btn-lg" type="button">Find Now</button>
-             </div>
-         </div>
-     </form>
-   </div>
-</div>
-</div>
-
-		<!-----------end of search  bar ----------------->
 
 	</div> <!----------- end of carousel ----------------->
 
-<h2>{{req.user.username}}</h2>
+	<!----------- start of search bar----------------->
+
+	<div id="stickysearchbar" class="margin-class  container" style="">
+		<div class="title-margin-class"   style="background-color: #062e57;">
+			<div class="row">
+			<form class="form-inline" action="#" method="get">
+					<div class="col-sm-2 col-md-2">
+						<div class="form-group form-header" style="">
+							<p style="color:white; font-size: 17px; line-height:1;">Find Your</p>
+							<h4 style="color:#aece61; font-size:3.125rem; line-height:1;">Tutor</h4>
+						</div>
+					</div>
+					<div class="col-sm-10 col-md-10  form-body" style="">
+							<div class="form-group">
+								<input onkeydown="checksub(event);" type="text" class="form-control searchbar-input" id="subject" placeholder="Enter a subject" name="subject">
+							</div>
+							<div class="form-group">
+								<input onkeydown="checklocation(event);" type="text" class="form-control searchbar-input" id="location" placeholder="Location" name="location">
+							</div>
+							<div class="form-group">
+								<input onkeydown="checkzipcode(this);" type="number" class="form-control searchbar-input" id="zipcode" placeholder="Zipcode" name="zipcode">
+							</div>
+							<div class="form-group" style="padding-bottom:15px; text-align:center; margin-left:10px;">
+								<button id="searchbarsubmitbtn" class="button btn btn-lg" type="button">Find Now</button>
+							</div>
+					</div>
+			</form>
+		</div>
+</div>
+</div>
+	<!-----------end of search  bar ----------------->
+
+
 
 <!--------- start of video presentation section------------>
 <div id="useful" class="section-margin">
@@ -1093,14 +1054,10 @@ function checkzipcode(element) {
 		<div class="row within-sec-margin">
 			<div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="col-md-12">
-                    <div class="service-box"">
-
+                    <div class="service-box">
                         <img src="/images/download.png" width="50" height="50"/>
 												<h4 style="color:white;">Download The Tutorry App or Visit Website</h4>
 												<h5 style="color: #91959a;">Best help at your neighbour.Best education is now easy with Tutorry</h5>
-
-
-
 &nbsp
                     </div>
                 </div>
@@ -1191,90 +1148,6 @@ function checkzipcode(element) {
   		</div>
 			<div  class="row within-sec-margin">
 				<div class="features">
-
-
-
-					<!-- Photo Grid -->
-					<!--<div class="row">
-						<div class="column">
-
-							<img class="abcd" src="https://www.w3schools.com/howto/img_forest.jpg" alt="eng" style="width:100%">
-							<div class="content">
-	               <h4>Mathematics</h4>
-                 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
-
-            </div>
-            </div>
-
-							<div class="column">
-
-							<img class="abcd" src="http://maths.iitd.ac.in/drupal/sites/default/files/uploads/5.jpg" alt="maths" style="width:100%">
-							<div class="content">
-						     <h4>Mathematics</h4>
-						     <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
-						   </div>
-						</div>
-
-						<div class="column">
-
-							<img class="abcd" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Fiesta_en_la_Plaza_Mayor._Museo_de_Historia_de_Madrid_%28cropped%29.JPG/1200px-Fiesta_
-							en_la_Plaza_Mayor._Museo_de_Historia_de_Madrid_%28cropped%29.JPG" alt="history" style="widt:100%">
-							<div class="content">
-	 <h4>Mathematics</h4>
-	 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
- </div>
-
-						</div>
-						 <div class="column">
-
-							<img  class="abcd" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf-qKxv_sDOMxYNz_-yYrwElcOVIyj9qusYZ0Nd-4y6QSVMkpi" alt="art" style="width:100%">
-							<div class="content">
-	 <h3>Mathematics</h3>
-	 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
- </div>
-</div>
-
-
-&nbsp
-						<div class="row">
-						<div class="column">
-
-							<img class="abcd" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnLm6iXCZENLC9KOXkOFQnGfFNI5GSDlR4t0OKBxjy8Bj_j31pqQ" alt="hindi" style="width:100%">
-							<div class="content">
-	 <h3>Mathematics</h3>
-	 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
-
-
-             </div>
-							</div>
-							&nbsp
-							<div class="column">
-
-							<img class="abcd" src="https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="marathi" style="width:100%">
-							<div class="content">
-	 <h3>Mathematics</h3>
-	 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
- </div>
-</div>
-
-
-&nbsp
-						<div class="column">
-
-							<img class="abcd" src="https://wi-images.condecdn.net/image/ylR5okly0zM/crop/405/f/adamgrantillu.jpg" alt="science" style="width:100%">
-							<div class="content">
-	 <h3>Mathematics</h3>
-	 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
- </div>
-							</div>
-&nbsp
-
-</div>
-</div>
-							</div>
-					</div>-->
-					<!--end of grid-->
-
 					<div class="col-md-3 col-sm-6">
             <div class="wrapper">
               <div class="block animatable bounceInLeft">
@@ -1462,27 +1335,6 @@ function checkzipcode(element) {
 				</div>
 			</div>
 			{{/each}}
-			<!--<div class="col-sm-4">
-				<div class="card" style="width:250px">
-					<img class="card-img-top" src="http://smarthead.ancorathemes.com/wp-content/uploads/2016/11/tutor2-740x792.jpg" alt="Card image" style="width:100%">
-					<div class="card-body tutor-card-body">
-						<h4 style="color: #134477;" class="card-title">John Doe</h4>
-						<p style="color:#91959a;" class="card-text">HISTORY, GEOGRAPHY, ECONOMICS</p>
-						<button class="view_tut_btn button btn btn-lg" type="button">View Tutor</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="card" style="width:250px">
-					<img class="card-img-top" src="http://smarthead.ancorathemes.com/wp-content/uploads/2016/11/tutor2-740x792.jpg" alt="Card image" style="width:100%">
-					<div class="card-body tutor-card-body">
-						<h4 style="color: #134477;" class="card-title">John Doe</h4>
-						<p style="color:#91959a;" class="card-text">HISTORY, GEOGRAPHY, ECONOMICS</p>
-						<button class="view_tut_btn button btn btn-lg" type="button">View Tutor</button>
-					</div>
-				</div>
-			</div>-->
-
 		</div>
 		{{/each}}
 	</div>
