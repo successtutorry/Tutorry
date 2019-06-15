@@ -288,6 +288,7 @@ padding-top: 70px;
 </div>
 </div>
 <!--end of searchbar --->
+<!-- start of filter section-->
 <div class="primary">
   <div class="cont">
     <div class="row">
@@ -381,11 +382,21 @@ padding-top: 70px;
         </div><!-- /.filter-menu -->
       </div>
     </div><!--scroll closed-->
+    <div id="tutorslist">
+    </div>
   </div>
   </div><!-- /.container -->
 </div><!-- /.primary -->
+<!--end of filter section-->
 
 <script>
+window.onload = function () {
+  $('#tutorslist').html(sessionStorage.getItem("sessiontutors"));
+   console.log('yes');
+   console.log(sessionStorage.getItem("sessionsubjects"));
+   var sessionsub = sessionStorage.getItem("sessionsubjects");
+}
+
 var tutorprofilecontent = '';
 var subject = [];
 var fees=[];
