@@ -1,12 +1,18 @@
+var email = document.getElementById('hiddenemail').value ;
+console.log(email);
 var currentTab = 0; // Current tab is set to be the first tab (0)
 var progressdisplay = 1;
 var checked = 0;
 var progress = document.getElementById('progress');
 var length = document.getElementsByClassName("tab").length;
 progress.style.width = (100/length)*(currentTab+1) + "%";
+var currentlocation = '';
+var currentclass = '';
+var details = {};
 showTab(currentTab); // Display the current tab
 
 function showTab(n) {
+
     // This function will display the specified tab of the form ...
 //document.getElementById('error').style = 'display:none;';
   // This function will display the specified tab of the form ...
@@ -20,6 +26,7 @@ function showTab(n) {
     document.getElementById("prevBtn").style.display = "inline";
   }
   if (n == (x.length - 1)) {
+    checked = checked-1;
     document.getElementById("nextBtn").innerHTML = "Submit";
   } else {
     document.getElementById("nextBtn").innerHTML = "Next";
@@ -40,9 +47,10 @@ showprev(-1);
 function shownext(n){
 //alert('inside shownext');
 //alert('checked value is'+ checked);
+
 if ($('input[type=radio]:checked').length > checked) {
     // do something here
-	//alert('something is selected');
+	console.log('something is selected');
 	// This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
   // Hide the current tab:
@@ -53,16 +61,18 @@ if ($('input[type=radio]:checked').length > checked) {
   //alert('getting ready to display next tab', currentTab);
   progress.style.width = (100/length)*(currentTab+1) + "%";
   // if you have reached the end of the form... :
+
   if (currentTab >= x.length) {
-    //...the form gets submitted:
+    console.log('last');
     document.getElementById("requirementform").submit();
-    return false;
   }
   // Otherwise, display the correct tab:
   checked = checked + 1;
   showTab(currentTab);
 }else{
-document.getElementById('error').style = 'text-align:center; display:block;  color:red;';
+
+alert('please select something');
+  //document.getElementById('error').style = 'text-align:center; display:block;  color:red;';
 }
 }
 
@@ -83,7 +93,8 @@ function showprev(n){
   if (currentTab >= x.length) {
     //...the form gets submitted:
     document.getElementById("requirementform").submit();
-    return false;
+
+    //return false;
   }
   // Otherwise, display the correct tab:
  checked = checked - 1;
