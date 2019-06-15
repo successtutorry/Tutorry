@@ -106,7 +106,7 @@ var displaysubjects = [];
 });*/
 
 
-router.route('/find_tutor')
+/*router.route('/find_tutor')
   .get((req, res) => {
     var tutorChunks = [];
     var chunkSize = 3;
@@ -149,7 +149,19 @@ router.route('/find_tutor')
         return tutorlist2.indexOf(e) > -1;
     });
 
-  }
+  }*/
+
+
+  router.route('/find_tutor')
+    .get((req, res) => {
+      if(req.isAuthenticated()){
+          res.render('find_tutor',{ username:req.user.username});
+      }else{
+          res.render('find_tutor');
+      }
+
+    });
+
 
   router.route('/filter')
   .get((req,res)=>{
