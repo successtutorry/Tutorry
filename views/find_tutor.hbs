@@ -321,7 +321,12 @@ padding-top: 70px;
                     </div><!-- /.panel-heading -->
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                       <div class="panel-body">
-                        <div class="checkbox"><label><input type="checkbox" name="career_state[]" value="recent_graduate">Mathematics</label></div>
+                        <div class="checkbox">
+                          <label><input class="filter" id="maths" value="maths" type="checkbox" name="subjects[]">Mathematics</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input class="filter" id="history" value="history" type="checkbox" name="subjects[]">History</label>
+                        </div>
                         <div class="checkbox"><label><input type="checkbox" name="career_state[]" value="imposter_syndrome">Science</label></div>
                         <div class="checkbox"><label><input type="checkbox" name="career_state[]" value="wise_old_head">English</label></div>
                         <div class="checkbox"><label><input type="checkbox" name="career_state[]" value="wise_old_head">Hindi</label></div>
@@ -335,14 +340,17 @@ padding-top: 70px;
                   <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingTwo">
                       <a class="panel-title accordion-toggle collapsed" role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Grade
+                        Fees
                       </a><!-- /.panel-title -->
                     </div><!-- /.panel-heading -->
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                       <div class="panel-body">
-                        <div class="checkbox"><label><input type="checkbox" name="topic[]" value="politics">1-5</label></div>
-                        <div class="checkbox"><label><input type="checkbox" name="topic[]" value="religion">5-8</label></div>
-                        <div class="checkbox"><label><input type="checkbox" name="topic[]" value="music">9-10</label></div>
+                        <div class="checkbox">
+                          <label><input class="filter" id="400" type="checkbox" name="fees[]" value="400">400</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input class="filter" id="500" type="checkbox" name="fees[]" value="500">500</label>
+                        </div>
                       </div><!-- /.panel-body -->
                     </div><!-- /.panel-collapse -->
                   </div><!-- /.panel -->
@@ -402,9 +410,11 @@ var subject = [];
 var fees=[];
 var query = { $and: [ { subjects: { $all: ['history'] } }, { rateperhour: { $all: ['500'] } } ] };
 $(".filter").click(function(){
-  document.getElementById('loader').style.display = 'block';
+  console.log('clicked');
+
  //var id = this.id;
  var name = this.name;
+ console.log(this.name);
  if(name=='subjects[]'){
 
 if(document.getElementById(this.id).checked){
@@ -482,9 +492,7 @@ $.ajax({
   success: function(data){
     if(data.length==0){
        $('#tutorslist').html('<p style="text-align:center;">Sorry! No tutors matched</p>');
-       document.getElementById('loader').style.display = 'none';
     }else{
-    document.getElementById('loader').style.display = 'none';
     $.each(data, function(i, tutor){
       tutorprofilecontent += '<div class="col-sm-4 col-md-4">';
       tutorprofilecontent += '<div  class="card" style="width:225px">'
