@@ -440,6 +440,12 @@ Have a pleasant day.`
 // Send email
 await mailer.sendEmail('tutorry.in@gmail.com', req.body.tutoremail, '', html);
 await newRequirement.save();
+const newChat = new chat({
+  message:req.body.message,
+  studentemail:req.user.email,
+  tutoremail:req.body.tutoremail
+});
+const done =   await newChat.save();
 //res.render('find_tutor', req.user)
 req.flash('success','requirements successfully sent');
 res.redirect('back');
@@ -485,6 +491,20 @@ router.route('/reply')
               console.log(error);
             }
           });
+
+
+          router.route('/displaychat')
+          .get((req,res)=>{
+          //  var messagearray = [];
+          console.log(req.query.email);
+            chat.find({tutoremail:req.query.email},function(err,result){
+              //console.log(result);
+              //console.log(messagearray);
+              console.log(result);
+              res.send(result);
+            });
+          });
+
 
 
 /*router.route('/checkrequirementEixts')
