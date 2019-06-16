@@ -125,7 +125,7 @@
 		<div id="messages" style="height:200px; overflow-y:scroll;">
 
 		</div>
-		<!--<input type="hidden" id="hiddenemail" value="{{email}}" name="tutoremail">-->
+		<input type="hidden" id="hiddenemail" value="{{email}}" name="tutoremail">
     <textarea id="message" placeholder="Type message.." name="message" required></textarea>
     <button id="send" type="button" class="btn">Send</button>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
@@ -141,8 +141,20 @@ function somefunction(n, a){
 for(var i =0; i< 5-n; i ++){
 	ratings[i].style.display = "none";
 }
+getmessage($("#hiddenemail").val());
 }
-var email = '';
+
+function addMessages(message){
+    $("#messages").append(`<p> ${message.message} </p>`)
+}
+
+function getmessage(email){
+  console.log(email);
+  $.get('/users/displaychat?email='+email, (data) => {
+    data.forEach(addMessages);
+  });
+}
+/*var email = '';
 var socket = io();
    $(() => {
        $("#send").click(()=>{
@@ -166,7 +178,8 @@ var socket = io();
 
    function sendMessage(message){
      $.post('/sendchat', message)
-   }
+   }*/
+
 function openForm() {
   document.getElementById("myForm").style.display = "block";
 
