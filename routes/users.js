@@ -412,6 +412,8 @@ const link = "http://127.0.0.1:3000/users/reply?studentemail="+req.user.email+"&
 const html = `Hi there,
 <br/>
 You have a message from ${req.user.email}!
+<br/>
+The message is : ${req.body.message}
 <br/><br/>
 Please reply back on the following link:
 <br/>
@@ -424,7 +426,8 @@ await newRequirement.save();
 const newChat = new chat({
   message:req.body.message,
   studentemail:req.user.email,
-  tutoremail:req.body.tutoremail
+  tutoremail:req.body.tutoremail,
+  sendby:'student'
 });
 const done =   await newChat.save();
 //res.render('find_tutor', req.user)
@@ -453,13 +456,16 @@ router.route('/reply')
               const newchat = new chat({
                 message: req.body.message,
                 studentemail:studentemail,
-                tutoremail:tutoremail
+                tutoremail:tutoremail,
+                sendby:'tutor'
               });
             await  newchat.save();
               const link = "http://127.0.0.1:3000/users/view_tutor?email="+tutoremail;
               const html = `Hi there,
               <br/>
-              You have a message from ${tutoremail}!
+              You have a reply from ${tutoremail}!
+              <br/>
+              The message is : ${req.body.message}
               <br/><br/>
               Please reply back on the following link:
               <br/>
