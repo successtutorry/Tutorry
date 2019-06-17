@@ -23,8 +23,6 @@ var email ='';
 var username = '';
 var studentemail = '';
 var tutoremail = '';
-//var latesturl = [];
-//var checker = '';
 var catchurl ='/';
 var tutor_email ='';
 
@@ -278,23 +276,6 @@ router.route('/loginredirect')
       }
 });
 
-
-  /*router.route('/showtutor')
-  .get((req,res)=>{
-    console.log(req.query.email);
-    tutor.findOne({ email: req.query.email },function(req,result){
-      res.render('tutor_details', {
-      username:req.user.username,
-      firstname: result.firstname,
-      lastname: result.lastname,
-      subjects: result.subjects,
-      rating: result.rating,
-      image:result.image,
-      price: result.rateperhour[0],
-      email:result.email
-    });
-  });
-});*/
 
   router.route('/find_tutor')
   .get((req,res)=>{

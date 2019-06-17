@@ -8,8 +8,6 @@ var app = require('../app');
 var debug = require('debug')('tutorry-1:server');
 var http = require('http');
 
-//var keystone = require('keystone');
-
 /**
  * Get port from environment and store in Express.
  */
