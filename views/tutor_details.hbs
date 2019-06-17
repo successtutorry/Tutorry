@@ -120,10 +120,10 @@
 	</div>
 </div>
 <div class="chat-popup" id="myForm">
-
   <form action="#" class="form-container" method="post">
-		<div id="messages" style="height:200px; overflow-y:scroll;">
-
+		<div id="messages_section" style="height:200px; overflow-y:scroll;">
+      <ul id="messages" class="list-group">
+      </ul>
 		</div>
 		<input type="hidden" id="hiddenemail" value="{{email}}" name="tutoremail">
     <textarea id="message" placeholder="Type message.." name="message" required></textarea>
@@ -134,25 +134,39 @@
 <script>
 
 document.onload = somefunction({{rating}}, 1);
-
+var tutoremail = '';
+var length = 0;
 function somefunction(n, a){
  var ratings = document.getElementsByClassName('rating');
  document.getElementById('paratext').innerHTML = "This is the " + a + "  paratext";
 for(var i =0; i< 5-n; i ++){
 	ratings[i].style.display = "none";
 }
+//tutoremail = $("#hiddenemail").val();
 getmessage($("#hiddenemail").val());
+//getmessage(tutoremail);
+
+
 }
 
 function addMessages(message){
-    $("#messages").append(`<p> ${message.message} </p>`)
+  var sender = message.sendby;
+  if(sender ==='student'){
+    $("#messages").append(`<li style="background-color:#aece61; color:white" class="list-group-item">${message.message}<span style="float:right; margin-top:10px;font-size:10px;">-you</span></li>`)
+  }else{
+    $("#messages").append(`<li style="background-color: #134477; color:white" class="list-group-item">${message.message}<span style="float:right; margin-top:10px;font-size:10px;">${message.tutoremail}</span></li>`)
+
+  }
+
 }
 
 function getmessage(email){
   console.log(email);
   $.get('/users/displaychat?email='+email, (data) => {
     data.forEach(addMessages);
+  //setTimeout(getmessage, 5000);
   });
+
 }
 /*var email = '';
 var socket = io();

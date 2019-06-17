@@ -6,7 +6,9 @@ const chatSchema = new Schema({
 
 	message: String,
 	studentemail: String,
-	tutoremail: String
+	tutoremail: String,
+	sendby: String,
+	sendbyemail: String
 
 }, {
 
