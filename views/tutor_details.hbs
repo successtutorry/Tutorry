@@ -126,7 +126,7 @@
       </ul>
 		</div>
 		<input type="hidden" id="hiddenemail" value="{{email}}" name="tutoremail">
-    <textarea id="message" placeholder="Type message.." name="message" required></textarea>
+    <textarea id="inputmessage" placeholder="Type message.." name="message" required></textarea>
     <button id="send" type="button" class="btn">Send</button>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
@@ -142,10 +142,12 @@ function somefunction(n, a){
 for(var i =0; i< 5-n; i ++){
 	ratings[i].style.display = "none";
 }
+
+
 //tutoremail = $("#hiddenemail").val();
 getmessage($("#hiddenemail").val());
 //getmessage(tutoremail);
-
+document.getElementById("myForm").style.display = "block";
 
 }
 
@@ -168,6 +170,22 @@ function getmessage(email){
   });
 
 }
+
+$("#send").click(()=>{
+//console.log($("#inputmessage").val())
+  //sendMessage({message: $("#inputmessage").val(),email:$("#hiddenemail").val()});
+
+$.post("/users/sendchat", {message: $("#inputmessage").val(),email:$("#hiddenemail").val()}, function(data, status){
+  alert('status' + status);
+  location.reload(true);
+});
+});
+
+/*function sendMessage(message){
+
+  $.post('/users/sendchat', message);
+  alert('message has been posted');
+}*/
 /*var email = '';
 var socket = io();
    $(() => {

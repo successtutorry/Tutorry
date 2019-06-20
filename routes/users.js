@@ -545,25 +545,28 @@ router.route('/become_tutor')
     }
     });
 
-/*
+
 //sending chat message to tutor
     router.route('/sendchat')
-            .post(isAuthenticated, async(req, res) => {
+            .post( async(req, res) => {
               console.log('in send message api');
               try{
               const newChat = new chat({
                 message:req.body.message,
                 studentemail:req.user.email,
-                tutoremail:req.body.email
+                tutoremail:tutor_email,
+                sendby:'student'
               });
             const done =   await newChat.save();
-            io.emit('message', req.body);
-            console.log(done);
+            //io.emit('message', req.body);
+            //console.log(done);
               console.log(req.body);
-              const link = "http://127.0.0.1:3000/users/reply?studentemail="+req.user.email+"&tutoremail="+req.body.email;
+              const link = "http://127.0.0.1:3000/users/reply?studentemail="+req.user.email+"&tutoremail="+tutor_email;
               const html = `Hi there,
               <br/>
               You have a message from ${req.user.email}!
+              <br/>
+              The message is : ${req.body.message}
               <br/><br/>
               Please reply back on the following link:
               <br/>
@@ -579,7 +582,7 @@ router.route('/become_tutor')
             console.log(error);
           }
           });
-
+/*
 //when tutor clicks the link in email
           router.route('/reply')
           .get((req,res)=>{
