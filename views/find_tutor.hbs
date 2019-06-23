@@ -339,50 +339,83 @@ padding-top: 70px;
                   </div><!-- /.panel -->
                   <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingTwo">
-                      <a class="panel-title accordion-toggle collapsed" role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Fees
+                      <a class="panel-title accordion-toggle" role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                        Type
                       </a><!-- /.panel-title -->
                     </div><!-- /.panel-heading -->
-                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
                       <div class="panel-body">
-                        <div class="checkbox">
-                          <label><input class="filter" id="400" type="checkbox" name="fees[]" value="400">400</label>
-                        </div>
-                        <div class="checkbox">
-                          <label><input class="filter" id="500" type="checkbox" name="fees[]" value="500">500</label>
-                        </div>
+                        <select>
+                            <option value="volvo">Offline</option>
+                            <option value="saab">Online</option>
+                        </select>
                       </div><!-- /.panel-body -->
                     </div><!-- /.panel-collapse -->
                   </div><!-- /.panel -->
                   <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingThree">
-                      <a class="panel-title accordion-toggle collapsed" role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Format
+                      <a class="panel-title accordion-toggle" role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                        Grade
                       </a><!-- /.panel-title -->
                     </div><!-- /.panel-heading -->
-                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
                       <div class="panel-body">
-                        <div class="checkbox"><label><input type="checkbox" name="format[]" value="magazine">Magazine</label></div>
-                        <div class="checkbox"><label><input type="checkbox" name="format[]" value="website">Website</label></div>
-                        <div class="checkbox"><label><input type="checkbox" name="format[]" value="vine">Vine</label></div>
-                        <div class="checkbox"><label><input type="checkbox" name="format[]" value="tweet">Tweet</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="format[]" value="magazine">1-5</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="format[]" value="website">5-8</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="format[]" value="vine">9-10</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="format[]" value="tweet">Diploma</label></div>
                       </div><!-- /.panel-body -->
                     </div><!-- /.panel-collapse -->
                   </div><!-- /.panel -->
                   <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingFour">
-                      <a class="panel-title accordion-toggle collapsed" role="button" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        Status
+                      <a class="panel-title accordion-toggle" role="button" data-toggle="collapse" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                      Board
                       </a><!-- /.panel-title -->
                     </div><!-- /.panel-heading -->
-                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                    <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
                       <div class="panel-body">
-                        <div class="checkbox"><label><input type="checkbox" name="status[]" value="single">Single</label></div>
-                        <div class="checkbox"><label><input type="checkbox" name="status[]" value="married">Married</label></div>
-                        <div class="checkbox"><label><input type="checkbox" name="status[]" value="its_complicated">It's complicated</label></div>
+                        <select>
+                            <option value="volvo">State Board</option>
+                            <option value="saab">Cbse Board</option>
+                            <option value="saab">Icse Board</option>
+                        </select>
                       </div><!-- /.panel-body -->
                     </div><!-- /.panel-collapse -->
                   </div><!-- /.panel -->
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFive">
+                      <a class="panel-title accordion-toggle" role="button" data-toggle="collapse" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                       Fees
+                      </a><!-- /.panel-title -->
+                    </div><!-- /.panel-heading -->
+                    <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
+                      <div class="panel-body">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-sm-3">
+                              <input type="range" min="200" max="1000" value="600" class="slider" id="myRange">
+                              <p>Value: <span id="demo"></span></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- /.panel-body -->
+                    </div><!-- /.panel-collapse -->
+                  </div><!-- /.panel -->
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingSix">
+                      <a class="panel-title accordion-toggle" role="button" data-toggle="collapse" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                        Tutor Gender
+                      </a><!-- /.panel-title -->
+                    </div><!-- /.panel-heading -->
+                    <div id="collapseSix" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSix">
+                      <div class="panel-body">
+                        <input type="radio" name="gender" value="male"> Male<br>
+                        <input type="radio" name="gender" value="female"> Female<br>
+                      </div><!-- /.panel-body -->
+                    </div><!-- /.panel-collapse -->
+                  </div><!-- /.panel -->
+
                 </div><!-- /.panel-group -->
               </div><!-- /.panel-body -->
             </div><!-- /.panel -->
@@ -403,6 +436,15 @@ window.onload = function () {
    console.log('yes');
    console.log(sessionStorage.getItem("sessionsubjects"));
    var sessionsub = sessionStorage.getItem("sessionsubjects");
+}
+
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  console.log(this.value);
+  output.innerHTML = this.value;
 }
 
 var tutorprofilecontent = '';
