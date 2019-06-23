@@ -394,23 +394,8 @@ padding-top: 70px;
                         <div class="container">
                           <div class="row">
                             <div class="col-sm-3">
-                              <div id="slider-range"></div>
-                            </div>
-                          </div>
-                          <div class="row slider-labels">
-                            <div class="col-xs-3 caption">
-                              <strong>Min:</strong> <span id="slider-range-value1"></span>
-                            </div>
-                            <div class="col-xs-3 caption">
-                              <strong>Max:</strong> <span id="slider-range-value2"></span>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <form>
-                                <input type="hidden" name="min-value" value="">
-                                <input type="hidden" name="max-value" value="">
-                              </form>
+                              <input type="range" min="200" max="1000" value="600" class="slider" id="myRange">
+                              <p>Value: <span id="demo"></span></p>
                             </div>
                           </div>
                         </div>
@@ -451,6 +436,15 @@ window.onload = function () {
    console.log('yes');
    console.log(sessionStorage.getItem("sessionsubjects"));
    var sessionsub = sessionStorage.getItem("sessionsubjects");
+}
+
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  console.log(this.value);
+  output.innerHTML = this.value;
 }
 
 var tutorprofilecontent = '';
