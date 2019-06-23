@@ -3,9 +3,9 @@ html {
 }
 
 body {
-	font-family: Lora;
+	font-family: Sanchez;
 	font-weight: 400;
-	letter-spacing: 1px;
+	letter-spacing: 0;
 }
 
 a:hover {
@@ -105,7 +105,7 @@ footer {
 .margin-class {
 	margin-left: 9%;
 	margin-right: 9%;
-	//margin-bottom: 100px;
+	margin-bottom: 100px;
 }
 
 .title-margin-class {
@@ -127,6 +127,7 @@ footer {
 	border-radius: 10em;
 	margin-top: 20px;
 	color: white;
+
 }
 
 .button:hover {
@@ -456,8 +457,7 @@ input.invalid {
 /* css for second section*/
 
 .grey_bg {
-	background: #ebf0f2;
-	padding: 0 70px 50px;
+	padding: 0 70px 0;
 }
 
 .features {
@@ -467,10 +467,10 @@ input.invalid {
 .feature-wrap {
 	margin-bottom: 20px;
 	/*background-color: #aece61;*/
-	background-color: #ccc;
+	background-color: white;
 	padding: 20px;
 	text-align: center;
-	border: 1px solid rgba(0, 0, 0, .1);
+	border: 1px solid rgba(174, 206, 97);
 	cursor: pointer;
 }
 
@@ -563,7 +563,7 @@ a.footerlink:hover {
 }
 
 .form-body{
-	padding-top:10px;
+	padding-top:20px;
 }
 
 @media (max-width: 480px) {
