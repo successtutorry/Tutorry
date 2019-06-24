@@ -604,7 +604,6 @@
 }
 
 
-
 .row {
   display: -ms-flexbox; /* IE10 */
   display: flex;
@@ -645,6 +644,11 @@ padding: 0 4px;
 }
 * {
   box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  font-size: 17px;
 }
 
 .container {
@@ -688,10 +692,15 @@ transition: all 0.7s ease;
 -webkit-filter: saturate(-4);
 }
 
+
+
+
 .column {
   position: relative;
   max-width: 800px;
   margin: 0 auto;
+
+
 }
 
 .column img {vertical-align: middle;}
@@ -706,6 +715,9 @@ transition: all 0.7s ease;
   padding: 1px;
   Height:60%;
 }
+
+
+
 .column {
   position: relative;
   width: 100%;
@@ -716,6 +728,9 @@ transition: all 0.7s ease;
   display: block;
   width: 100%;
   height:100%;
+
+
+
 }
 
 .overlay {
@@ -772,8 +787,8 @@ transition: all 0.7s ease;
 /* The device with borders */
 .smartphone {
 	position: relative;
-   width: 360px;
-   height: 600px;
+   width: 300px;
+   height: 500px;
    margin: auto;
    border: 16px white solid;
    border-top-width: 60px;
@@ -812,7 +827,7 @@ transition: all 0.7s ease;
 
 /* The screen (or content) of the device */
 .smartphone .content {
-  width: 325px;
+  width: 265px;
   height:300px;
 
 	  border-radius: 36px;
@@ -821,7 +836,6 @@ transition: all 0.7s ease;
 {{>home_header}}
 {{>overlay}}
 {{>requirement-modal}}
-{{>alert}}
 <script>
 $(function() {
 
@@ -955,7 +969,28 @@ function myFuncEnd(){
 		stickysearchbar.style = "padding-top:0px";
 }*/
 
+function checksub(event) {
+  var x = event.key;
+		if(!isNaN(x)){
+		alert('wrong input, please enter valid subject name');
+	}
+}
+function checklocation(event) {
+  var x = event.key;
+		if(!isNaN(x)){
+		alert('wrong input, please enter valid location');
+	}
+}
+function checkzipcode(element) {
 
+	var max_chars = 6;
+
+	if(element.value.length > max_chars) {
+		element.value = element.value.substr(0, max_chars);
+		alert('please enter valid zipcode');
+	}
+
+}
 </script>
 
 <div id="myCarousel" class="carousel" data-ride="carousel" data-interval="3000"><!-- home page carousel-->
@@ -964,68 +999,66 @@ function myFuncEnd(){
 		  <div class="item active">
 				<img src="http://smarthead.ancorathemes.com/wp-content/uploads/2017/01/slide3.jpg" alt="Image">
 				<div class="carousel-caption">
-				  <p>Personal and Online Tutors</p>
-				  <h1 style="font-size:60px;">Time to Learn</h1>
-				  <button  class="button btn btn-lg" type="button" onclick="location.href='/findtutor/find_tutor'">Find Tutor Now</button>
+				  <h3 style="font-size:22px;font-family:Sanchez;line-height: inherit;">Personal & Online Tutors</h3>
+				  <h1 style="font-size:90px;font-family:Sanchez;">Time to Learn</h1>
+				  <button  class="button btn btn-lg" type="button" onclick="showform(1);">Find Tutor Now</button>
 					<!--<button onclick="location.href='/users/find_tutor'" class="button btn btn-lg" type="button" data-target="#myModal">Find Tutor Now</button>-->
-
 				</div>
 		  </div>
 		  <div class="item">
 				<img src="http://smarthead.ancorathemes.com/wp-content/uploads/2017/01/slide2.jpg" alt="Image">
 				<div class="carousel-caption">
-
-				  <p>Personal and Online Tutors</p>
-				  <h1 style="font-size:60px;">Top Tutorring Services</h1>
-				  <button  class="button btn btn-lg" type="button" onclick="location.href='/findtutor/find_tutor'">Find Tutor Now</button>
+				  <h3 style="font-size:22px;font-family:Sanchez;">Personal & Online Tutors</h3>
+				  <h1 style="font-size:90px;font-family:Sanchez;">Top Tutorring Services</h1>
+				  <button  class="button btn btn-lg" type="button" onclick="showform(1);">Find Tutor Now</button>
 
 				</div>
 		  </div>
 		  <div class="item">
 				<img src="http://smarthead.ancorathemes.com/wp-content/uploads/2017/01/slide1.jpg" alt="Image">
 				<div class="carousel-caption">
-				 <p>Personal and Online Tutors</p>
-				  <h1 style="font-size:60px;">Find Private Tutor</h1>
-				  <button  class="button btn btn-lg" type="button" onclick="location.href='/findtutor/find_tutor'">Find Tutor Now</button>
+				 <h3 style="font-size:22px;font-family:Sanchez;">Personal & Online Tutors</h3>
+				  <h1 style="font-size:90px;font-family:Sanchez;">Find Private Tutor</h1>
+				  <button  class="button btn btn-lg" type="button" onclick="showform(1);">Find Tutor Now</button>
 				</div>
 		  </div>
 		</div>
+		<!----------- start of search bar----------------->
+
+    <div id="stickysearchbar" class="margin-class  container" style="margin-top:10%;">
+   <div class="title-margin-class"   style="background-color: #062e57;">
+     <div class="row">
+     <form class="form-inline" action="#" method="get">
+         <div class="col-sm-3 col-md-3">
+           <div class="form-group form-header" style="">
+             <h6 style="color:white; font-size:2.5rem; line-height:1;">Find Your</span></h6>
+             <h4 style="color:#aece61; font-size:3.125rem; line-height:1;">Tutor</h4>
+           </div>
+         </div>
+         <div class="col-sm-9 col-md-9  form-body" style="">
+             <div class="form-group">
+               <input type="text" class="form-control searchbar-input" id="subject" placeholder="Enter a subject" name="subject">
+             </div>
+             <div class="form-group">
+               <input type="text" class="form-control searchbar-input" id="location" placeholder="Location" name="location">
+             </div>
+             <div class="form-group">
+               <input type="number" class="form-control searchbar-input" id="zipcode" placeholder="Zipcode" name="zipcode">
+             </div>
+             <div class="form-group" style="padding-bottom:15px; text-align:center; margin-left:10px;">
+               <button id="searchbarsubmitbtn" class="button btn btn-lg" type="button">Find Now</button>
+             </div>
+         </div>
+     </form>
+   </div>
+</div>
+</div>
+
+		<!-----------end of search  bar ----------------->
 
 	</div> <!----------- end of carousel ----------------->
 
-	<!----------- start of search bar----------------->
-
-	<div id="stickysearchbar" class="margin-class  container" style="">
-		<div class="title-margin-class"   style="background-color: #062e57;">
-			<div class="row">
-			<form class="form-inline" action="#" method="get">
-					<div class="col-sm-2 col-md-2">
-						<div class="form-group form-header" style="">
-							<p style="color:white; font-size: 17px; line-height:1;">Find Your</p>
-							<h4 style="color:#aece61; font-size:3.125rem; line-height:1;">Tutor</h4>
-						</div>
-					</div>
-					<div class="col-sm-10 col-md-10  form-body" style="">
-							<div class="form-group">
-								<input onkeydown="checksub(event);" type="text" class="form-control searchbar-input" id="subject" placeholder="Enter a subject" name="subject">
-							</div>
-							<div class="form-group">
-								<input onkeydown="checklocation(event);" type="text" class="form-control searchbar-input" id="location" placeholder="Location" name="location">
-							</div>
-							<div class="form-group">
-								<input onkeydown="checkzipcode(this);" type="number" class="form-control searchbar-input" id="zipcode" placeholder="Zipcode" name="zipcode">
-							</div>
-							<div class="form-group" style="padding-bottom:15px; text-align:center; margin-left:10px;">
-								<button id="searchbarsubmitbtn" class="button btn btn-lg" type="button">Find Now</button>
-							</div>
-					</div>
-			</form>
-		</div>
-</div>
-</div>
-	<!-----------end of search  bar ----------------->
-
-
+<h2>{{req.user.username}}</h2>
 
 <!--------- start of video presentation section------------>
 <div id="useful" class="section-margin">
@@ -1044,242 +1077,323 @@ function myFuncEnd(){
  <!--------- end of video presentation section------------>
 
  <!---- start of first how we work section---->
- <div style="background-image: url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/bg_guarantee.jpg?id=211);">
- 	<div id="" class="section-margin margin-class" style="padding-top:6%; padding-bottom:6%;">
- 	<div class="title-margin-class">
- 		<div class="">
- 			<p class="title_info" style="color: #91959a;">Find tutor at your neighbour</p>
- 			<h1 style="color:white;">Search <span style="color: #aece61;">Now</span></h1>
- 		</div>
- 		<div class="row within-sec-margin">
- 			<div class="col-md-4 col-sm-12 col-xs-12">
-                 <div class="col-md-12">
-                     <div class="service-box"">
+<div style="background-image: url(http://smarthead.ancorathemes.com/wp-content/uploads/2016/12/bg_guarantee.jpg?id=211);">
+	<div id="" class="section-margin margin-class" style="padding-top:6%; padding-bottom:6%;">
+	<div class="title-margin-class">
+		<div class="">
+			<p class="title_info" style="color: #91959a;">Find tutor at your neighbour</p>
+			<h1 style="color:white;">Search <span style="color: #aece61;">Now</span></h1>
+		</div>
+		<div class="row within-sec-margin">
+			<div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="col-md-12">
+                    <div class="service-box"">
 
-                         <img src="/images/download.png" width="50" height="50"/>
- 												<h4 style="color:white;">Download The Tutorry App or Visit Website</h4>
- 												<h5 style="color: #91959a;">Best help at your neighbour.Best education is now easy with Tutorry</h5>
-
-
-
- &nbsp
-                     </div>
-                 </div>
-
-
-                 <div class="col-md-12">
-                     <div class="service-box">
-
-                         <img src="/images/register.png" width="50" height="50" />
- 												<h4 style="color:white;">Get Registered</h4>
- 												<h5 style="color: #91959a;">Provide us with your details to find a best match.</h5>
-
-                 </div>
- 							</div>
- &nbsp
-                 <div class="col-md-12">
-                     <div class="service-box">
- 										  <img src="/images/find.png" width="50" height="50"/>
- 												<h4 style="color:white;">Find your tutor</h4>
- 												<h5 style="color: #91959a;">Search tutors according to your budget, time, place and other requirements.</h5>
-
-                 </div>
- 							</div>
-             </div>
-
- 		<!--	<div class="col-md-4 col-sm-12 col-xs-12 text-center">
-                 <div class="img-responsive mobile-screen">
- 									<video width="320" height="400" controls>
-   									<source src="/videos/tutorry.mp4" type="video/mp4">
- 									</video>
- 								</div>
-             </div>-->
- 						<div class="col-md-4 col-sm-12 col-xs-12 text-center">
- 						<div class="smartphone">
- 						  <div class="content">
- 						   <img class="mySlides" src="/images/sc4.jpeg" style="width:100%";"height:20%">
- 						  <img class="mySlides" src="/images/.jpeg" style="width:100%";"height:90%">
- 						  <img class="mySlides" src="/images/.jpeg" style="width:100%";"height:65%">
- 						  </div>
- 					</div>
-
- </div>
-
- 			<div class="col-md-4 col-sm-12 col-xs-12">
-                 <div class="col-md-12">
-                     <div class="service-box">
- 					        <img src="/images/demo.png" width="50" height="50"/>
- 												<h4 style="color:white;">Schedule a Demo class</h4>
- 												<h5 style="color: #91959a;">None of our students are unhappy after attending a demo class.</h5>
-
-                 </div>
- 							</div>
- 	&nbsp
-                 <div class="col-md-12">
-                     <div class="service-box">
-
-                         <img src="/images/teach.png" width="50" height="50"/>
- 												<h4 style="color:white;">Start Learning</h4>
- 												<h5 style="color: #91959a;">Your better results are not only your battle but its also are responsility. We provide best tutoring services.</h5>
-
- 									</div>
-                 </div>
- 	&nbsp
-   &nbsp
-   <br>
-                 <div class="col-md-12">
-                     <div class="service-box">
-
-                         <img src="/images/feedback.png" width="50" height="50"/>
- 												<h4 style="color:white;">Feedback</h4>
- 												<h5 style="color: #91959a;">You can like, review, mark as favourite and enjoy more benefits atutorry</h5>
-
- 									</div>
-                 </div>
-             </div>
- 		</div>
- 	</div>
- 	</div>
- </div>
- <!--- end of first how  we work section---->
+                        <img src="/images/download.png" width="50" height="50"/>
+												<h4 style="color:white;">Download The Tutorry App or Visit Website</h4>
+												<h5 style="color: #91959a;">Best help at your neighbour.Best education is now easy with Tutorry</h5>
 
 
 
- <div class="container-fluid">
-<div class="row margin-class section-margin">
-<div class="title-margin-class">
-  <div class="col-md-12">
-    <div class="">
-      <p class="title_info" style="color: #91959a;">Raise your academics achievements with Tutorry</p>
-      <h1 style="color: #134477;">Academic <span style="color: #aece61;"> Tutors</span></h1>
-    </div>
-    <div  class="row within-sec-margin">
-      <div class="features">
-<div class="col-md-3 col-sm-6">
-          <div class="wrapper">
-
-                      <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
-                          <div class="h200 h150">
-
-                              <img src="/images/maths.png" alt="art" width="80" height="70"/>
-                              <h2 class="h2 h40"><a style="color:#337ab7; text-decoration:none; font-size:20px;"> Mathematics </a></h2>
-                              <p>Drawing, painting, sketching, and much more</p>
-
-                        </div>
-                          </div>
-                      </div>
-                  </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="wrapper">
-
-                      <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
-                          <div class="h200 h150">
-
-                              <img src="/images/Art.png" alt="art" width="80" height="70"/>
-                              <h2 class="h2 h40"><a style="color:#337ab7; text-decoration:none;font-size:20px;"> Art </a></h2>
-                              <p>Drawing, painting, sketching, and much more</p>
-
-                      </div>
-                  </div>
-                </div>
-            </div>
-                  <div class="col-md-3 col-sm-6">
-                    <div class="wrapper">
-
-                                <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
-                                    <div class="h200 h150">
-
-                                        <img src="/images/geog.png" alt="art" width="80" height="70"/>
-                                        <h2 class="h2 h40"><a style="color:#337ab7; text-decoration:none;font-size:20px;"> Geography </a></h2>
-                                        <p>Drawing, painting, sketching, and much more</p>
-
-                                </div>
-                            </div>
-                          </div>
-                      </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="wrapper">
-
-                      <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
-                          <div class="h200 h150">
-
-                              <img src="/images/history.png" alt="History" width="80" height="70"/>
-                              <h2 class="h2 h40"> <a style="color:#337ab7; text-decoration:none;font-size:20px;"> History</a></h2>
-                              <p>Academic chapters, Genera knowledge </p>
-
-                      </div>
+&nbsp
                     </div>
                 </div>
-                  </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="wrapper">
 
-                      <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
-                          <div class="h200 h150">
 
-                              <img src="/images/science.png" alt="Science"width="80" height="70"/>
-                              <h2 class="h2 h40"> <a style="color:#337ab7; text-decoration:none;font-size:20px;"> Science </a></h2>
-                              <p>Conceptutial Knowledge,Help with practicals and theyrgufg jgrvuewgfjv </p>
+                <div class="col-md-12">
+                    <div class="service-box">
 
-                      </div>
-                  </div>
+                        <img src="/images/register.png" width="50" height="50" />
+												<h4 style="color:white;">Get Registered</h4>
+												<h5 style="color: #91959a;">Provide us with your details to find a best match.</h5>
+
                 </div>
-            </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="wrapper">
+							</div>
+&nbsp
+                <div class="col-md-12">
+                    <div class="service-box">
+										  <img src="/images/find.png" width="50" height="50"/>
+												<h4 style="color:white;">Find your tutor</h4>
+												<h5 style="color: #91959a;">Search tutors according to your budget, time, place and other requirements.</h5>
 
-                      <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
-                          <div class="h200 h150">
-
-                               <img src="/images/hindi.png" alt="Hindi" width="80" height="70"/>
-                              <h2 class="h2 h40"> <a style="color:#337ab7; text-decoration:none;font-size:20px;"> Hindi </a></h2>
-                              <p>Grammar, language basics, lessons, Writing skills</p>
-
-                      </div>
-                  </div>
                 </div>
-            </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="wrapper">
-
-                      <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
-                          <div class="h200 h150">
-
-                             <img src="/images/eng.png" alt="English" width="80" height="70"/>
-                              <h2 class="h2 h40"> <a style="color:#337ab7; text-decoration:none;font-size:20px;"> English </a></h2>
-                              <p>Improve grammar, writing skills,language confidence</p>
-
-                      </div>
-                  </div>
-                </div>
+							</div>
             </div>
 
-        <div class="col-md-3 col-sm-6">
-          <div class="wrapper">
+		<!--	<div class="col-md-4 col-sm-12 col-xs-12 text-center">
+                <div class="img-responsive mobile-screen">
+									<video width="320" height="400" controls>
+  									<source src="/videos/tutorry.mp4" type="video/mp4">
+									</video>
+								</div>
+            </div>-->
+						<div class="col-md-4 col-sm-12 col-xs-12 text-center">
+						<div class="smartphone">
+						  <div class="content">
+						   <img class="mySlides" src="/images/sc4.jpeg" style="width:100%";"height:20%">
+						  <img class="mySlides" src="/images/.jpeg" style="width:100%";"height:90%">
+						  <img class="mySlides" src="/images/.jpeg" style="width:100%";"height:65%">
+						  </div>
+					</div>
 
-                      <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+</div>
 
-                          <div class="h200 h150">
+			<div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="col-md-12">
+                    <div class="service-box">
+					        <img src="/images/demo.png" width="50" height="50"/>
+												<h4 style="color:white;">Schedule a Demo class</h4>
+												<h5 style="color: #91959a;">None of our students are unhappy after attending a demo class.</h5>
 
-                              <img src="/images/marathi.png" alt="Marathi" width="80" height="70"/>
-                              <h2 class="h2 h40"> <a style="color:#337ab7; text-decoration:none;font-size:20px;"> Marathi </a></h2>
-                              <p>Grammar, language basics, lessons, writing skills</p>
+                </div>
+							</div>
+	&nbsp
+                <div class="col-md-12">
+                    <div class="service-box">
 
+                        <img src="/images/teach.png" width="50" height="50"/>
+												<h4 style="color:white;">Start Learning</h4>
+												<h5 style="color: #91959a;">Your better results are not only your battle but its also are responsility. We provide best tutoring services.</h5>
+
+									</div>
+                </div>
+	&nbsp
+  &nbsp
+  <br>
+                <div class="col-md-12">
+                    <div class="service-box">
+
+                        <img src="/images/feedback.png" width="50" height="50"/>
+												<h4 style="color:white;">Feedback</h4>
+												<h5 style="color: #91959a;">You can like, review, mark as favourite and enjoy more benefits atutorry</h5>
+
+									</div>
+                </div>
+            </div>
+		</div>
+	</div>
+	</div>
+</div>
+ <!--- end of first how  we work section---->
+
+ <!-- start of third how we work section --->
+ <div class="container-fluid">
+	<div class="row margin-class section-margin">
+	<div class="title-margin-class">
+		<div class="col-md-12">
+			<div class="">
+  			<p class="title_info" style="color: #91959a;">Raise your academics achievements with Tutorry</p>
+  			<h1 style="color: #134477;">Academic <span style="color: #aece61;"> Tutors</span></h1>
+  		</div>
+			<div  class="row within-sec-margin">
+				<div class="features">
+
+
+
+					<!-- Photo Grid -->
+					<!--<div class="row">
+						<div class="column">
+
+							<img class="abcd" src="https://www.w3schools.com/howto/img_forest.jpg" alt="eng" style="width:100%">
+							<div class="content">
+	               <h4>Mathematics</h4>
+                 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
+
+            </div>
+            </div>
+
+							<div class="column">
+
+							<img class="abcd" src="http://maths.iitd.ac.in/drupal/sites/default/files/uploads/5.jpg" alt="maths" style="width:100%">
+							<div class="content">
+						     <h4>Mathematics</h4>
+						     <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
+						   </div>
+						</div>
+
+						<div class="column">
+
+							<img class="abcd" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Fiesta_en_la_Plaza_Mayor._Museo_de_Historia_de_Madrid_%28cropped%29.JPG/1200px-Fiesta_
+							en_la_Plaza_Mayor._Museo_de_Historia_de_Madrid_%28cropped%29.JPG" alt="history" style="widt:100%">
+							<div class="content">
+	 <h4>Mathematics</h4>
+	 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
+ </div>
+
+						</div>
+						 <div class="column">
+
+							<img  class="abcd" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf-qKxv_sDOMxYNz_-yYrwElcOVIyj9qusYZ0Nd-4y6QSVMkpi" alt="art" style="width:100%">
+							<div class="content">
+	 <h3>Mathematics</h3>
+	 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
+ </div>
+</div>
+
+
+&nbsp
+						<div class="row">
+						<div class="column">
+
+							<img class="abcd" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnLm6iXCZENLC9KOXkOFQnGfFNI5GSDlR4t0OKBxjy8Bj_j31pqQ" alt="hindi" style="width:100%">
+							<div class="content">
+	 <h3>Mathematics</h3>
+	 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
+
+
+             </div>
+							</div>
+							&nbsp
+							<div class="column">
+
+							<img class="abcd" src="https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="marathi" style="width:100%">
+							<div class="content">
+	 <h3>Mathematics</h3>
+	 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
+ </div>
+</div>
+
+
+&nbsp
+						<div class="column">
+
+							<img class="abcd" src="https://wi-images.condecdn.net/image/ylR5okly0zM/crop/405/f/adamgrantillu.jpg" alt="science" style="width:100%">
+							<div class="content">
+	 <h3>Mathematics</h3>
+	 <p>Lorem ipsum dolor sit amet, an his etiam torquatos. .</p>
+ </div>
+							</div>
+&nbsp
+
+</div>
+</div>
+							</div>
+					</div>-->
+					<!--end of grid-->
+
+					<div class="col-md-3 col-sm-6">
+            <div class="wrapper">
+
+												<div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+														<div class="h200 h150">
+
+																<img src="/images/maths.png" alt="art" width="80" height="70"/>
+																<h2 class="h2 h40"><a style="color:#337ab7; text-decoration:none; font-size:20px;"> Mathematics </a></h2>
+																<p>Drawing, painting, sketching, and much more</p>
+
+                          </div>
+														</div>
+												</div>
+										</div>
+					<div class="col-md-3 col-sm-6">
+            <div class="wrapper">
+
+                        <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+                            <div class="h200 h150">
+
+                                <img src="/images/Art.png" alt="art" width="80" height="70"/>
+                                <h2 class="h2 h40"><a style="color:#337ab7; text-decoration:none;font-size:20px;"> Art </a></h2>
+                                <p>Drawing, painting, sketching, and much more</p>
+
+                        </div>
+                    </div>
+                  </div>
+              </div>
+										<div class="col-md-3 col-sm-6">
+                      <div class="wrapper">
+
+					                        <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+					                            <div class="h200 h150">
+
+					                                <img src="/images/geog.png" alt="art" width="80" height="70"/>
+					                                <h2 class="h2 h40"><a style="color:#337ab7; text-decoration:none;font-size:20px;"> Geography </a></h2>
+					                                <p>Drawing, painting, sketching, and much more</p>
+
+					                        </div>
+					                    </div>
+                            </div>
+                        </div>
+					<div class="col-md-3 col-sm-6">
+            <div class="wrapper">
+
+                        <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+                            <div class="h200 h150">
+
+                                <img src="/images/history.png" alt="History" width="80" height="70"/>
+                                <h2 class="h2 h40"> <a style="color:#337ab7; text-decoration:none;font-size:20px;"> History</a></h2>
+                                <p>Academic chapters, Genera knowledge </p>
+
+                        </div>
                       </div>
+                  </div>
+                    </div>
+					<div class="col-md-3 col-sm-6">
+            <div class="wrapper">
+
+                        <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+                            <div class="h200 h150">
+
+                                <img src="/images/science.png" alt="Science"width="80" height="70"/>
+                                <h2 class="h2 h40"> <a style="color:#337ab7; text-decoration:none;font-size:20px;"> Science </a></h2>
+                                <p>Conceptutial Knowledge,Help with practicals</p>
+
+                        </div>
+                    </div>
+                  </div>
+              </div>
+					<div class="col-md-3 col-sm-6">
+            <div class="wrapper">
+
+                        <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+                            <div class="h200 h150">
+
+                                 <img src="/images/hindi.png" alt="Hindi" width="80" height="70"/>
+                                <h2 class="h2 h40"> <a style="color:#337ab7; text-decoration:none;font-size:20px;"> Hindi </a></h2>
+                                <p>Grammar, language basics, lessons, Writing skills</p>
+
+                        </div>
+                    </div>
+                  </div>
+              </div>
+					<div class="col-md-3 col-sm-6">
+            <div class="wrapper">
+
+                        <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+                            <div class="h200 h150">
+
+                               <img src="/images/eng.png" alt="English" width="80" height="70"/>
+                                <h2 class="h2 h40"> <a style="color:#337ab7; text-decoration:none;font-size:20px;"> English </a></h2>
+                                <p>Improve grammar, writing skills,language confidence</p>
+
+                        </div>
+                    </div>
+                  </div>
+              </div>
+
+					<div class="col-md-3 col-sm-6">
+            <div class="wrapper">
+
+                        <div class="feature-wrap clickMe" data-url="/learn/#/request/yoga-trainer">
+
+                            <div class="h200 h150">
+
+                                <img src="/images/marathi.png" alt="Marathi" width="80" height="70"/>
+                                <h2 class="h2 h40"> <a style="color:#337ab7; text-decoration:none;font-size:20px;"> Marathi </a></h2>
+                                <p>Grammar, language basics, lessons, writing skills</p>
+
+                        </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-<!-- end of third how we work section --->
-
-
+          </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+ </div>
+ <!-- end of third how we work section --->
 
 
  <!--------- start of three important features section ------------>
@@ -1289,35 +1403,75 @@ function myFuncEnd(){
 			<h4 style="color: #91959a;">All tutors are guranteed by us</h4>
 			<h1 style="color:white;">100% <span style="color: #aece61;">Guarantee</span></h1>
 		</div>
-		<div class="row title-margin-class within-sec-margin" style="display:block; margin-bottom:2%;">
-			<div class="col-sm-4" style="padding-right:15px;">
-				<div style="font-size:1.5em; padding-bottom:7%;">
-					<img src="/images/professional.png" width="30" height="30"/>
-					<span>Professional Tutors</span>
-				</div>
-				<div style="padding-left:7%;">
-					<p style="color: #91959a;">Tutorry provides professional tutors only. Tutors are trained before teaching.</p>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div style="font-size:1.5em; padding-bottom:7%;">
-					<img src="/images/result.png" width="30" height="30"/>
-					<span>Real Results Only</span>
-				</div>
-				<div style="padding-left:7%;">
-					<p style="color: #91959a;">your improvement is our target. We at Tutorry believe in true results.</p>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div style="font-size:1.5em; padding-bottom:7%;">
-					<img src="/images/flexible.png" width="30" height="30"/>
-					<span>Flexible Services</span>
-				</div>
-				<div style="padding-left:7%;">
-					<p style="color: #91959a;">Tutorry works according to your comfort. Timings, budget, tutors are all your choices.</p>
-				</div>
-			</div>
-		</div>
+    <div class="row within-sec-margin">
+      <div class="col-md-6 col-sm-12">
+
+
+      </div>
+      <div class="col-md-12 col-xs-12">
+        <div class="col-md-4 col-xs-12">
+          <div class="service-box">
+            <div class="servie-image">
+              <img src="/images/fees2.png"/>
+</div>
+            <h5>LESS FEES</h5>
+            <br>
+            <p>Tutorry gives you best services at affordable prices.Our aim is personal tutoring at less prices.</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+          <div class="service-box">
+            <div class="servie-image">
+              <img src="/images/tutor.png"/>
+            </div>
+            <h5>PERFECT TUTOR</h5>
+            <br>
+            <p>We will find a perfect and best tutor for you all that we need are your requirements. </p>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+          <div class="service-box">
+            <div class="servie-image">
+              <img src="/images/review.png"/>
+            </div>
+            <h5>TIMELY REVIEWS</h5>
+            <br>
+            <p>We keep tracking your progress so that we can serve you better.Your feedbacks are valued </p>
+          </div>
+        </div>
+        <br>
+        <div class="col-md-4 col-xs-12">
+          <div class="service-box">
+            <div class="servie-image">
+              <img src="/images/online.png"/>
+            </div>
+            <h5>ONLINE CLASSES</h5>
+            <br>
+            <p>For student who cannot meet personally can also avail our services through e-learning.</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+          <div class="service-box">
+            <div class="servie-image">
+              <img src="/images/group.png"/>
+            </div>
+            <h5>GROUP TUTORING </h5>
+            <br>
+            <p>Group tutoring is carried for students in same grade.Revision needed students.</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+          <div class="service-box">
+            <div class="servie-image">
+              <img src="/images/home.png"/>
+            </div>
+            <h5>AT YOUR PLACE</h5>
+            <br>
+            <p>Students can learn at his or her own comfortable places. No travelling kghdvhgigjhh hfghhjb </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
 	</div>
 </div>
@@ -1344,6 +1498,27 @@ function myFuncEnd(){
 				</div>
 			</div>
 			{{/each}}
+			<!--<div class="col-sm-4">
+				<div class="card" style="width:250px">
+					<img class="card-img-top" src="http://smarthead.ancorathemes.com/wp-content/uploads/2016/11/tutor2-740x792.jpg" alt="Card image" style="width:100%">
+					<div class="card-body tutor-card-body">
+						<h4 style="color: #134477;" class="card-title">John Doe</h4>
+						<p style="color:#91959a;" class="card-text">HISTORY, GEOGRAPHY, ECONOMICS</p>
+						<button class="view_tut_btn button btn btn-lg" type="button">View Tutor</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="card" style="width:250px">
+					<img class="card-img-top" src="http://smarthead.ancorathemes.com/wp-content/uploads/2016/11/tutor2-740x792.jpg" alt="Card image" style="width:100%">
+					<div class="card-body tutor-card-body">
+						<h4 style="color: #134477;" class="card-title">John Doe</h4>
+						<p style="color:#91959a;" class="card-text">HISTORY, GEOGRAPHY, ECONOMICS</p>
+						<button class="view_tut_btn button btn btn-lg" type="button">View Tutor</button>
+					</div>
+				</div>
+			</div>-->
+
 		</div>
 		{{/each}}
 	</div>
@@ -1378,7 +1553,7 @@ function myFuncEnd(){
 <!--------- end of help banner section ------------>
 
 <!-- start of fourth how we work section --->
- <div class="container-fluid">
+ <!--<div class="container-fluid">
 	<div  class="row margin-class section-margin">
 	<div class="title-margin-class">
 		<div class="col-md-12">
@@ -1456,8 +1631,73 @@ function myFuncEnd(){
 		</div>
 		</div>
 	</div>
- </div>
+</div>-->
  <!-- end of fourth how we work section --->
+ <div class="container-fluid grey_bg section-margin">
+  <div class="margin-class row" style="padding-top:6%; padding-bottom:6%;">
+ 	 <div class="col-md-12">
+ 		 <div class="">
+  			<p class="title_info" style="color: #91959a;">Our best service is according to your requirement</p>
+  			<h1 style="color: #134477;">Know <span style="color: #aece61;"> More</span></h1>
+  		</div>
+ 		 <div style="padding-top:15px;" class="row within-sec-margin">
+ 			 <div class="features">
+          <div class="col-md-4 col-sm-6">
+           <!-- <div class="grow">-->
+             <div class="wrapper">
+
+                        <div class="feature-wrap clickMe" data-url="/learn/#/request/home-tutor-academics">
+                            <img src="/images/ol.png" width="80" height="80"/>
+                            <div class="h2">
+                <h3>Group Tutoring</h3>
+              <!--</div>-->
+                            <p style="color: #91959a;">E-learning gives you accessibility to same lessons.</p>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+ 				 <div class="col-md-4 col-sm-6">
+ 					<!-- <div class="grow">-->
+             <div class="wrapper">
+
+ 											 <div class="feature-wrap clickMe" data-url="/learn/#/request/home-tutor-academics">
+ 													 <img src="/images/ol.png" width="80" height="80"/>
+ 													 <div class="h2">
+ 							 <h3>Online Lessons</h3>
+ 						 <!--</div>-->
+ 													 <p style="color: #91959a;">E-learning gives you accessibility to same lessons.</p>
+ 											 </div>
+
+ 								 </div>
+                </div>
+              </div>
+ 				 <div class="col-md-4 col-sm-6">
+ 					 <!--<div class="grow">-->
+              <div class="wrapper">
+
+                        <div class="feature-wrap clickMe" data-url="/learn/#/request/home-tutor-academics">
+                            <img src="/images/ol.png" width="80" height="80"/>
+                            <div class="h2">
+                <h3>Online Lessons</h3>
+              <!--</div>-->
+                            <p style="color: #91959a;">E-learning gives you accessibility to same lessons.</p>
+                        </div>
+
+                  </div>
+                 </div>
+               </div>
+ 									 <div>
+ 									 </div>
+                  </div>
+                      </div>
+ 			 </div>
+ 		 </div>
+ 	 </div>
+  </div>
+
+ </div>
+ <!---- end of second how we work section---->
 
 
 
@@ -1580,69 +1820,3 @@ function myFuncEnd(){
 		</div>
 </div>
 <!---- start of second how we work section---->
-<div class="container-fluid grey_bg section-margin">
- <div class="margin-class row" style="padding-top:6%; padding-bottom:6%;">
-	 <div class="col-md-12">
-		 <div class="">
- 			<p class="title_info" style="color: #91959a;">Our best service is according to your requirement</p>
- 			<h1 style="color: #134477;">Know <span style="color: #aece61;"> More</span></h1>
- 		</div>
-		 <div style="padding-top:15px;" class="row within-sec-margin">
-			 <div class="features">
-         <div class="col-md-4 col-sm-6">
-          <!-- <div class="grow">-->
-            <div class="wrapper">
-              <div class="block animatable bounceInLeft">
-                       <div class="feature-wrap clickMe" data-url="/learn/#/request/home-tutor-academics">
-                           <img src="/images/ol.png" width="80" height="80"/>
-                           <div class="h2">
-               <h3>Group Tutoring</h3>
-             <!--</div>-->
-                           <p style="color: #91959a;">E-learning gives you accessibility to same lessons.</p>
-                       </div>
-                   </div>
-                 </div>
-               </div>
-             </div>
-				 <div class="col-md-4 col-sm-6">
-					<!-- <div class="grow">-->
-            <div class="wrapper">
-              <div class="block animatable bounceIn">
-											 <div class="feature-wrap clickMe" data-url="/learn/#/request/home-tutor-academics">
-													 <img src="/images/ol.png" width="80" height="80"/>
-													 <div class="h2">
-							 <h3>Online Lessons</h3>
-						 <!--</div>-->
-													 <p style="color: #91959a;">E-learning gives you accessibility to same lessons.</p>
-											 </div>
-									 </div>
-								 </div>
-               </div>
-             </div>
-				 <div class="col-md-4 col-sm-6">
-					 <!--<div class="grow">-->
-             <div class="wrapper">
-               <div class="block animatable bounceInRight">
-											 <div class="feature-wrap clickMe" data-url="/learn/#/request/home-tutor-academics">
-													<img src="/images/boards.png" width="80" height="80"/>
-													 <div class="h2">
-							 <h3>Lessons for all boards</h3>
-
-
-
-													 <p style="color: #91959a;">Get Tutors for ICSE, CBSE, and state boardsbhrh vfgvuvbh.</p>
-												 </div>
-												 </div>
-</div>
-									 </div>
-									 <div>
-									 </div>
-                 </div>
-                     </div>
-			 </div>
-		 </div>
-	 </div>
- </div>
-
-</div>
-<!---- end of second how we work section---->
