@@ -325,33 +325,41 @@ padding-top: 70px;
                           <label><input class="filter" id="maths" value="maths" type="checkbox" name="subjects[]">Mathematics</label>
                         </div>
                         <div class="checkbox">
+                          <label><input class="filter" id="science" value="science" type="checkbox" name="subjects[]">Science</label>
+                        </div>
+                        <div class="checkbox">
                           <label><input class="filter" id="history" value="history" type="checkbox" name="subjects[]">History</label>
                         </div>
-                        <div class="checkbox"><label><input type="checkbox" name="career_state[]" value="imposter_syndrome">Science</label></div>
-                        <div class="checkbox"><label><input type="checkbox" name="career_state[]" value="wise_old_head">English</label></div>
-                        <div class="checkbox"><label><input type="checkbox" name="career_state[]" value="wise_old_head">Hindi</label></div>
-                        <div class="checkbox"><label><input type="checkbox" name="career_state[]" value="wise_old_head">Marathi</label></div>
-                        <div class="checkbox"><label><input type="checkbox" name="career_state[]" value="wise_old_head">History</label></div>
-                        <div class="checkbox"><label><input type="checkbox" name="career_state[]" value="wise_old_head">Geography</label></div>
-                        <div class="checkbox"><label><input type="checkbox" name="career_state[]" value="wise_old_head">Art</label></div>
+                        <div class="checkbox">
+                          <label><input class="filter" id="geography" value="geography" type="checkbox" name="subjects[]">Geography</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input class="filter" id="english" value="english" type="checkbox" name="subjects[]">English</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input class="filter" id="hindi" value="hindi" type="checkbox" name="subjects[]">Hindi</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input class="filter" id="marathi" value="marathi" type="checkbox" name="subjects[]">Marathi</label>
+                        </div>
                       </div><!-- /.panel-body -->
                     </div><!-- /.panel-collapse -->
                   </div><!-- /.panel -->
-                  <div class="panel panel-default">
+                  <!--<div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingTwo">
                       <a class="panel-title accordion-toggle" role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                         Type
-                      </a><!-- /.panel-title -->
-                    </div><!-- /.panel-heading -->
+
+                    </div>
                     <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
                       <div class="panel-body">
                         <select>
                             <option value="volvo">Offline</option>
                             <option value="saab">Online</option>
                         </select>
-                      </div><!-- /.panel-body -->
-                    </div><!-- /.panel-collapse -->
-                  </div><!-- /.panel -->
+                      </div>
+                    </div>
+                  </div>-->
                   <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingThree">
                       <a class="panel-title accordion-toggle" role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
@@ -360,10 +368,18 @@ padding-top: 70px;
                     </div><!-- /.panel-heading -->
                     <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
                       <div class="panel-body">
-                        <div class="checkbox"><label><input type="checkbox" name="format[]" value="magazine">1-5</label></div>
-                        <div class="checkbox"><label><input type="checkbox" name="format[]" value="website">5-8</label></div>
-                        <div class="checkbox"><label><input type="checkbox" name="format[]" value="vine">9-10</label></div>
-                        <div class="checkbox"><label><input type="checkbox" name="format[]" value="tweet">Diploma</label></div>
+                        <div class="checkbox">
+                          <label><input type="checkbox" name="class[]" value="1-4">1-4</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="checkbox" name="class[]" value="5-8">5-8</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="checkbox" name="class[]" value="9-10">9-10</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="checkbox" name="class[]" value="11-12">11-12</label>
+                        </div>
                       </div><!-- /.panel-body -->
                     </div><!-- /.panel-collapse -->
                   </div><!-- /.panel -->
@@ -376,9 +392,9 @@ padding-top: 70px;
                     <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
                       <div class="panel-body">
                         <select>
-                            <option value="volvo">State Board</option>
-                            <option value="saab">Cbse Board</option>
-                            <option value="saab">Icse Board</option>
+                            <option value="state">State Board</option>
+                            <option value="cbse">Cbse Board</option>
+                            <option value="icse">Icse Board</option>
                         </select>
                       </div><!-- /.panel-body -->
                     </div><!-- /.panel-collapse -->
@@ -412,6 +428,62 @@ padding-top: 70px;
                       <div class="panel-body">
                         <input type="radio" name="gender" value="male"> Male<br>
                         <input type="radio" name="gender" value="female"> Female<br>
+                      </div><!-- /.panel-body -->
+                    </div><!-- /.panel-collapse -->
+                  </div><!-- /.panel -->
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingSeven">
+                      <a class="panel-title accordion-toggle" role="button" data-toggle="collapse" href="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                        Rating
+                      </a><!-- /.panel-title -->
+                    </div><!-- /.panel-heading -->
+                    <div id="collapseSeven" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSeven">
+                      <div class="panel-body">
+                        <div class="checkbox">
+                          <label><input type="checkbox" name="rating[]" value="4">4 & above</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="checkbox" name="rating[]" value="3">3 & above</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="checkbox" name="rating[]" value="2">2 & above</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="checkbox" name="format[]" value="1">1 & above</label>
+                        </div>
+                      </div><!-- /.panel-body -->
+                    </div><!-- /.panel-collapse -->
+                  </div><!-- /.panel -->
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingEight">
+                      <a class="panel-title accordion-toggle" role="button" data-toggle="collapse" href="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+                        Timing
+                      </a><!-- /.panel-title -->
+                    </div><!-- /.panel-heading -->
+                    <div id="collapseEight" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingEight">
+                      <div class="panel-body">
+                        <div class="checkbox"><label><input type="checkbox" name="time[]" value="morning">Morning</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="time[]" value="evening">Evening</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="time[]" value="afternoon">Afternoon</label></div>
+                      </div><!-- /.panel-body -->
+                    </div><!-- /.panel-collapse -->
+                  </div><!-- /.panel -->
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingNinet">
+                      <a class="panel-title accordion-toggle" role="button" data-toggle="collapse" href="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
+                        Days
+                      </a><!-- /.panel-title -->
+                    </div><!-- /.panel-heading -->
+                    <div id="collapseNine" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingNine">
+                      <div class="panel-body">
+                        <div class="checkbox"><label><input type="checkbox" name="days[]" value="monday">Monday</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="days[]" value="tuesday">Tuesday</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="days[]" value="wednesday">Wednesday</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="days[]" value="thursday">Thursday</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="days[]" value="friday">Friday</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="days[]" value="satuday">Saturday</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="days[]" value="sunday">Sunday</label></div>
+
                       </div><!-- /.panel-body -->
                     </div><!-- /.panel-collapse -->
                   </div><!-- /.panel -->
@@ -451,6 +523,7 @@ var tutorprofilecontent = '';
 var subject = [];
 var fees=[];
 var query = { $and: [ { subjects: { $all: ['history'] } }, { rateperhour: { $all: ['500'] } } ] };
+
 $(".filter").click(function(){
   console.log('clicked');
 
@@ -539,6 +612,7 @@ $.ajax({
       tutorprofilecontent += '<div class="col-sm-4 col-md-4">';
       tutorprofilecontent += '<div  class="card" style="width:225px">'
       tutorprofilecontent += '<img class="card-img-top" alt="Card image" style="width:100%" src=/images/'+this.image+'>'
+      //tutorprofilecontent += '<img class="card-img-top" alt="Card image" style="width:100%" src="/images/img_avatar3">'
       tutorprofilecontent += '<div  class="card-body tutor-card-body">';
       tutorprofilecontent += '<h4  style="color: #134477;" class="card-title">'+ this.firstname + ' ' + this.lastname+'</h4>';
       tutorprofilecontent += '<p id="emailpara" style="color:#91959a; display:none" class="card-text">' + this.email + '</p>';
@@ -560,7 +634,7 @@ $.ajax({
 });
 
 $("#searchbarsubmitbtn").click(function(e) {
-
+  console.log('searchbar')
     e.preventDefault(); // avoid to execute the actual submit of the form.
     var x = '';
     var query = {}
@@ -601,6 +675,7 @@ $("#searchbarsubmitbtn").click(function(e) {
                tutorprofilecontent += '<div class="col-sm-4 col-md-4">';
                tutorprofilecontent += '<div  class="card" style="width:225px">'
                tutorprofilecontent += '<img class="card-img-top" alt="Card image" style="width:100%" src=/images/'+this.image+'>'
+               //tutorprofilecontent += '<img class="card-img-top" alt="Card image" style="width:100%" src="#">'
                tutorprofilecontent += '<div  class="card-body tutor-card-body">';
                tutorprofilecontent += '<h4  style="color: #134477;" class="card-title">'+ this.firstname + ' ' + this.lastname+'</h4>';
                tutorprofilecontent += '<p id="emailpara" style="color:#91959a; display:none" class="card-text">' + this.email + '</p>';
