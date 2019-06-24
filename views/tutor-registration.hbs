@@ -1,64 +1,4 @@
 {{>header}}
-<!--<form id="regForm" action="/action_page.php">
-		<h1 class="registerheader">Profile Details</h1>
-
-		<div class="tab">
-			<h3 style="color:#134477">Personal info:</h3>
-			<p><input placeholder="First name..." oninput="this.className = ''" name="fname"></p>
-			<p><input placeholder="Last name..." oninput="this.className = ''" name="lname"></p>
-			<p><input type="date" oninput="this.className = ''" name="dd"></p>
-			<p><input type="number" placeholder="Age..." oninput="this.className = ''" name="fname"></p>
-			<p><select style="height:45px;" class="form-control">
-        <option>Male</option>
-        <option>Female</option>
-        <option>Other</option>
-      </select></p>
-		</div>
-		<div class="tab">
-			<h3 style="color:#134477">Contact info:</h3>
-			<p><input type="text" placeholder="Address..." oninput="this.className = ''" name="lname"></p>
-			<p><input type="number" placeholder="Zipcode" oninput ="this.className=''" name=''></p>
-			<p><select style="height:45px;" class="form-control">
-        <option>City</option>
-        <option>Mumbai</option>
-        <option>Pune</option>
-      </select></p>
-			<p><select style="height:45px;" class="form-control">
-        <option>State</option>
-        <option>Maharashtra</option>
-        <option>Tamil Nadu</option>
-      </select></p>
-			<p><input placeholder="E-mail..." oninput="this.className = ''" name="email"></p>
-			<p><input placeholder="Phone..." oninput="this.className = ''" name="phone"></p>
-		</div>
-		<div class="tab">Educational Info:
-			<p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>
-			<p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
-			<p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
-		</div>
-		<div class="tab">Login Info:
-			<p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-			<p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
-		</div>
-		<div class="tab">Login Info:
-			<p><input placeholder="Username" oninput="this.className = ''" name="uname"></p>
-			<p><input placeholder="Password" oninput="this.className = ''" name="pword" type="password"></p>
-		</div>
-		<div style="overflow:auto;">
-			<div style="float:right;">
-				<button class="tut-reg-btn" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-				<button class="tut-reg-btn" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-			</div>
-		</div>
-
-		<div style="text-align:center;margin-top:40px;">
-			<span class="step"></span>
-			<span class="step"></span>
-			<span class="step"></span>
-			<span class="step"></span>
-			<span class="step"></span>
-		</div>
-	</form>-->
 <div style="margin-top:100px; width:50%;">
 	<form id="tutorregistration" action="/users/tutor_registration", method="post">
 		<ul>
@@ -67,19 +7,6 @@
 			<li><input type="text" placeholder="Last Name" id="lastname" name="lastname"></li>
 			<li><input type="email" placeholder="Email" id="email" name="email"></li>
 			<li><input type="text" placeholder="DD/MM/YYYY" id="dob" name="dob"></li>
-			<li>
-				<div>
-					<div class="radio">
-	  				<label><input type="radio" value="male" name="gender">Male</label>
-					</div>
-					<div class="radio">
-	  				<label><input type="radio" value="female" name="gender">Female</label>
-					</div>
-					<div class="radio">
-	  				<label><input type="radio" value="other" name="gender">Other</label>
-					</div>
-				</div>
-			</li>
 			<li><input type="number" placeholder="Contact Number" id="contact" name="contact"></li>
 			<li><input type="text" placeholder="Address line 1" id="address1" name="address1"></li>
 			<li><input type="text" placeholder="Address line 2" id="address2" name="address2"></li>
@@ -92,7 +19,20 @@
 			<li><input type="text" placeholder="Experience in teaching at college" id="collegeexp" name="collegeexp"></li>
 			<li><input type="text" placeholder="Experience in teaching at coaching institute" id="instituteexp" name="instituteexp"></li>
 			<li><input type="text" placeholder="Experience in teaching privately" id="privateexp" name="privateexp"></li>
+			<li><input type="text" placeholder="Qualification" id="qualification" name="qualification"></li>
 			<li><input type="number" placeholder="Years of Experience in teaching" id="experience" name="experience"></li>
+			<li>
+				<h4>Gender ?</h4>
+					<div class="radio">
+						<label><input type="radio" value="male" name="gender">Male</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" value="female" name="gender">Female</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" value="other" name="gender">Other</label>
+					</div>
+			</li>
 			<li>
 				<h4>Cities Available:</h4>
 				<div class="checkbox">
@@ -121,6 +61,18 @@
 	    	</div>
 				<div class="checkbox">
 	      	<label><input type="checkbox" value="economics" name="subjects[]">Economics</label>
+	    	</div>
+			</li>
+			<li>
+				<h4>Which boards do you teach ?</h4>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="state" name="boards[]">State</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="cbsc" name="boards[]">CBSC</label>
+	    	</div>
+	    	<div class="checkbox">
+	      	<label><input type="checkbox" value="icse" name="boards[]">ICSE</label>
 	    	</div>
 			</li>
 			<li>
@@ -155,23 +107,23 @@
 	    	<div class="checkbox">
 	      	<label><input type="checkbox" value="saturday" name="days[]">Saturday</label>
 	    	</div>
+				<div class="checkbox">
+	      	<label><input type="checkbox" value="sunday" name="days[]">Sunday</label>
+	    	</div>
 			</li>
 			<li>
 				<h4>Which class students do you teach ?</h4>
 				<div class="checkbox">
-	      	<label><input type="checkbox" value="1-5" name="class[]">1-5</label>
+	      	<label><input type="checkbox" value="1-4" name="class[]">1-4</label>
 	    	</div>
 	    	<div class="checkbox">
-	      	<label><input type="checkbox" value="5-10" name="class[]">5-10</label>
+	      	<label><input type="checkbox" value="5-8" name="class[]">5-8</label>
 	    	</div>
 	    	<div class="checkbox">
-	      	<label><input type="checkbox" value="10-12" name="class[]">10-12</label>
+	      	<label><input type="checkbox" value="9-10" name="class[]">9-10</label>
 	    	</div>
 				<div class="checkbox">
-	      	<label><input type="checkbox" value="degree" name="class[]">Degree</label>
-	    	</div>
-	    	<div class="checkbox">
-	      	<label><input type="checkbox" value="postgraduation" name="class[]">Post Graduation</label>
+	      	<label><input type="checkbox" value="11-12" name="class[]">11-12</label>
 	    	</div>
 			</li>
 			<li>
